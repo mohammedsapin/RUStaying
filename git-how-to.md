@@ -27,7 +27,7 @@ After installing you should have access to git bash. Git itself is a program on 
 
 ### Step 2: Forking and Cloning
 
-Information on [Forking and Cloning](https://help.github.com/articles/fork-a-repo/).
+This [article](https://help.github.com/articles/fork-a-repo/) provides information on Forking and cloning the repository.
 
 ### Step 3: Syncing
 
