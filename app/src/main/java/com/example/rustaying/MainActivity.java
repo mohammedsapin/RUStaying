@@ -1,39 +1,56 @@
 package com.example.rustaying;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
+
+    EditText emInput;
+    EditText passInput;
+    Button loginBtn;
+    TextView registerBtn;
+    DatabaseHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button login = findViewById(R.id.loginBtn);
-        TextView RegisterFunction = findViewById(R.id.createAccountBtn);
-        final EditText email = findViewById(R.id.email);
-        final EditText password = findViewById(R.id.password);
+        db = new DatabaseHelper(this);
+        emInput = (EditText) findViewById(R.id.emInput);
+        passInput = (EditText) findViewById(R.id.passInput);
+        loginBtn = (Button) findViewById(R.id.loginBtn);
+        registerBtn = (TextView)findViewById(R.id.registerBtn);
 
-        login.setOnClickListener(new View.OnClickListener() {
+        registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (email.getText().toString().equals("customer@mail.com") && password.getText().toString().equals("password")){
-                    Toast.makeText(getApplicationContext(),"Login Successful",Toast.LENGTH_LONG).show();
-                }else{
-                    Toast.makeText(getApplicationContext(),"Invalid Credentials",Toast.LENGTH_LONG).show();
-                }
+                Intent registerPage = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(registerPage);
             }
         });
 
-        RegisterFunction.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Registering new account",Toast.LENGTH_LONG).show();
+                String email = emInput.getText().toString().trim();
+                String password = passInput.getText().toString().trim();
+                Boolean check = db.checkUser(email,password);
+                if(check == true){
+                    Toast.makeText(MainActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
+                    Intent homeScreen = new Intent(MainActivity.this,HomeActivity.class);
+                    startActivity(homeScreen);
+                    finish();
+                }else{
+                    Toast.makeText(MainActivity.this,"Invalid Credentials",Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
     }
