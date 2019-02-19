@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">RUStaying</string>
-    <string name="email_address">Email Address</string>
+    <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="create_an_account">Register Here</string>
-    <string name="rustaying">RUStaying</string>
+    <string name="register_here">Register Here</string>
+    <string name="logoimage">logoimage</string>
+    <string name="name">Name</string>
+    <string name="register">Register</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
