@@ -1,6 +1,9 @@
 package com.example.rustaying;
 
+<<<<<<< HEAD
 import android.content.Intent;
+=======
+>>>>>>> c74ed92d4cbc64654b618a94c8cee02594bfe798
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+<<<<<<< HEAD
 
     EditText emInput;
     EditText passInput;
@@ -17,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     TextView registerBtn;
     DatabaseHelper db;
 
+=======
+>>>>>>> c74ed92d4cbc64654b618a94c8cee02594bfe798
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
