@@ -33,19 +33,22 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = emailInput.getText().toString().trim();
                 String password = regPassInput.getText().toString().trim();
                 String confirmPassword = confirmPass.getText().toString().trim();
-
-                if (password.equals(confirmPassword)){
-                    long user = db.addUser(email,password);
-                    if (user > 0){
-                        Toast.makeText(RegisterActivity.this,"Registration Successful",Toast.LENGTH_SHORT).show();
-                        Intent loginPage = new Intent(RegisterActivity.this,MainActivity.class);
-                        startActivity(loginPage);
-                        finish();
+                if (db.isEmpty(emailInput) != true && db.isEmpty(regPassInput) != true && db.isEmpty(confirmPass) != true){
+                    if (password.equals(confirmPassword)){
+                        long user = db.addUser(email,password);
+                        if (user > 0){
+                            Toast.makeText(RegisterActivity.this,"Registration Successful",Toast.LENGTH_SHORT).show();
+                            Intent loginPage = new Intent(RegisterActivity.this,MainActivity.class);
+                            startActivity(loginPage);
+                            finish();
+                        }else{
+                            Toast.makeText(RegisterActivity.this,"User already exists",Toast.LENGTH_SHORT).show();
+                        }
                     }else{
-                        Toast.makeText(RegisterActivity.this,"User already exists",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this,"Passwords do not match",Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(RegisterActivity.this,"Passwords do not match",Toast.LENGTH_SHORT).show();
+                    Toast.makeText((RegisterActivity.this),"Please fill out the required fields",Toast.LENGTH_SHORT).show();
                 }
             }
         });

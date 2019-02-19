@@ -41,16 +41,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = emInput.getText().toString().trim();
                 String password = passInput.getText().toString().trim();
-                Boolean check = db.checkUser(email,password);
-                if(check == true){
-                    Toast.makeText(MainActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
-                    Intent homeScreen = new Intent(MainActivity.this,HomeActivity.class);
-                    startActivity(homeScreen);
-                    finish();
-                }else{
-                    Toast.makeText(MainActivity.this,"Invalid Credentials",Toast.LENGTH_SHORT).show();
+                boolean check = db.checkUser(email,password);
+                if (db.isEmpty(emInput) != true && db.isEmpty(passInput) != true){
+                    if(check == true){
+                        Toast.makeText(MainActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
+                        Intent homeScreen = new Intent(MainActivity.this,HomeActivity.class);
+                        startActivity(homeScreen);
+                        finish();
+                    }else{
+                        Toast.makeText(MainActivity.this,"Invalid Credentials",Toast.LENGTH_SHORT).show();
 
+                    }
+                }else{
+                    Toast.makeText(MainActivity.this,"Please fill out the required fields",Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
     }

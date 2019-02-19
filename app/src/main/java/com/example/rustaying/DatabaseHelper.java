@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.EditText;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME="register.db";
@@ -52,6 +53,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }else{
             return false;
+        }
+    }
+    public boolean isEmpty(EditText text){
+        if (text.getText().toString().trim().length() > 0){
+            return false;
+        }else{
+            return true;
         }
     }
 }
