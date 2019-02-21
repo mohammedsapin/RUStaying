@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent registerPage = new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(registerPage);
+                finish();
             }
         });
 
@@ -50,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                     }else{
                         Toast.makeText(MainActivity.this,"Invalid Credentials",Toast.LENGTH_SHORT).show();
-
                     }
                 }else{
                     Toast.makeText(MainActivity.this,"Please fill out the required fields",Toast.LENGTH_SHORT).show();

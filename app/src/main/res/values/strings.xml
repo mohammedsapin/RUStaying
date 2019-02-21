@@ -8,4 +8,14 @@
     <string name="name">Name</string>
     <string name="register">Register</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="home">Home</string>
+    <string name="services">Services</string>
+    <string name="account">Account</string>
+    <string name="profile">Profile</string>
+    <string name="book_a_room">Book a room</string>
+    <string name="inbox">Inbox</string>
+    <string name="logout">Logout</string>
+    <string name="key_card">Key Card</string>
+    <string name="check_in">Check In</string>
+    <string name="welcome_back_name">Welcome</string>
 </resources>
