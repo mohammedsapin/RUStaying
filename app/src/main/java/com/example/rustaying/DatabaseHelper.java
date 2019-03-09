@@ -20,7 +20,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE registeruser (ID INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT)");
+        db.execSQL("CREATE TABLE registeruser (ID INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, email TEXT, password TEXT)");
+        //Change table name to usersTable
     }
 
     @Override
@@ -29,21 +30,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long addUser(String email, String password){
+    public long addUser(String firstName, String lastName, String email, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("email",email);
-        contentValues.put("password",password);
+
+        //contentValues.put("firstName", firstName);
+        //contentValues.put("lastName", lastName);
+        contentValues.put("email", email);
+        contentValues.put("password", password);
+
+        //insert() returns the rowId the new inserted item
         long tableInput = db.insert("registeruser",null,contentValues);
+        //Again change table name to usersTable
         db.close();
         return tableInput;
     }
 
+    //Is this method ever used??
     public boolean checkUser(String email, String password){
         String[] id = {COL_1};
         SQLiteDatabase db = getReadableDatabase();
-        String account = COL_2 + "=?" + " and " + COL_3 + "=?";
-        String[] fullAccount = {email,password};
+
+        //3 lines below don't make sense to me
+        //Why do you have account and fullAccount variables? Why are you storing it in the database like that?
+        String account = COL_2 + "=?" + " and " + COL_3 + "=?"; //email=? and password=? <-- What is this lol
+        String[] fullAccount = {email, password};
         Cursor cursor = db.query(TABLE_NAME,id,account,fullAccount,null,null,null);
         int count = cursor.getCount();
         cursor.close();

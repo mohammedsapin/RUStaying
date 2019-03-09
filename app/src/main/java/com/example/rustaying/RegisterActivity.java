@@ -11,6 +11,8 @@ import android.widget.Toast;
 public class RegisterActivity extends AppCompatActivity {
 
     DatabaseHelper db;
+    EditText firstNameInput;
+    EditText lastNameInput;
     EditText emailInput;
     EditText regPassInput;
     EditText confirmPass;
@@ -22,6 +24,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         db = new DatabaseHelper(this);
+        firstNameInput = (EditText) findViewById(R.id.inputFIrstName);
+        lastNameInput = (EditText) findViewById(R.id.inputLastName);
         emailInput = (EditText) findViewById(R.id.emailinput);
         regPassInput = (EditText) findViewById(R.id.regPassInput);
         confirmPass = (EditText) findViewById(R.id.confirmPass);
@@ -30,18 +34,21 @@ public class RegisterActivity extends AppCompatActivity {
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String firstName = firstNameInput.getText().toString().trim();
+                String lastName = lastNameInput.getText().toString().trim();
                 String email = emailInput.getText().toString().trim();
                 String password = regPassInput.getText().toString().trim();
                 String confirmPassword = confirmPass.getText().toString().trim();
                 if (db.isEmpty(emailInput) != true && db.isEmpty(regPassInput) != true && db.isEmpty(confirmPass) != true){
                     if (password.equals(confirmPassword)){
-                        long user = db.addUser(email,password);
-                        if (user > 0){
-                            Toast.makeText(RegisterActivity.this,"Registration Successful",Toast.LENGTH_SHORT).show();
+                        long user = db.addUser(firstName, lastName, email,password); //Why does addUser return an integer?
+                        if (user > 0){ //Condition for successful registration
+                            //Guest g = new Guest(email, password); //Creating new guest object
+                            Toast.makeText(RegisterActivity.this,"Registration Successful " + firstName,Toast.LENGTH_SHORT).show();
                             Intent loginPage = new Intent(RegisterActivity.this,MainActivity.class);
                             startActivity(loginPage);
                             finish();
-                        }else{
+                        }else{ //Not always true. user will be -1 if there is any sort of error inserting the user to the db table
                             Toast.makeText(RegisterActivity.this,"User already exists",Toast.LENGTH_SHORT).show();
                         }
                     }else{
