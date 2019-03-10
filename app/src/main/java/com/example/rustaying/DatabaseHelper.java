@@ -73,5 +73,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+    public boolean adminCheck(String email, String password){
+        if (email.equals("admin") && password.equals("password")){
+            return true;
+        }
+        return false;
+    }
 }
 
