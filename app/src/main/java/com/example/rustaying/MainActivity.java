@@ -45,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
                 boolean check = db.checkUser(email,password);
                 if (db.isEmpty(emInput) != true && db.isEmpty(passInput) != true){
                     if(check == true){
-                        Toast.makeText(MainActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
+                        //Call database function to get a new Guest object here!!!
+                        Guest g = db.getGuestInfo(email);
+                        Toast.makeText(MainActivity.this,"Welcome " + g.getFirstName(),Toast.LENGTH_SHORT).show();
                         Intent homeScreen = new Intent(MainActivity.this,HomeActivity.class);
                         startActivity(homeScreen);
                         finish();
