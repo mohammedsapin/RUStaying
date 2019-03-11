@@ -1,7 +1,7 @@
 package com.example.rustaying;
 
 public class Guest {
-    private int guestId;
+    private int guestId; //
     private String guestEmail;
     private String guestPassword;
     //private Date accountCreated;
