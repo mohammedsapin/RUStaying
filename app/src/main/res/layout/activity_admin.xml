@@ -4,6 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0c4c8a"
+    android:orientation="vertical"
     tools:context=".AdminActivity">
+
+    <Button
+        android:id="@+id/viewUserBtn"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="96dp"
+        android:background="@drawable/buttonborder"
+        android:drawableStart="@drawable/outline_account_box_white_48"
+        android:drawablePadding="5dp"
+        android:lineSpacingExtra="36sp"
+        android:padding="16dp"
+        android:text="@string/view_users"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

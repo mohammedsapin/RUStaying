@@ -63,6 +63,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+//    public Cursor getUsers(){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor users = db.rawQuery("SELECT * FROM " + TABLE_NAME,null);
+//        return users;
+//    }
+
     public boolean isEmpty(EditText text){
         if (text.getText().toString().trim().length() > 0){
             return false;
