@@ -39,9 +39,14 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = emailInput.getText().toString().trim();
                 String password = regPassInput.getText().toString().trim();
                 String confirmPassword = confirmPass.getText().toString().trim();
+                System.out.println(firstName);
+                System.out.println(lastName);
+                System.out.println(email);
+                System.out.println(password);
                 if (db.isEmpty(emailInput) != true && db.isEmpty(regPassInput) != true && db.isEmpty(confirmPass) != true){
                     if (password.equals(confirmPassword)){
-                        long user = db.addUser(firstName, lastName, email,password); //Why does addUser return an integer?
+                        long user = db.addUser(firstName, lastName, email, password);
+                        System.out.println(user);
                         if (user > 0){ //Condition for successful registration
                             //Guest g = new Guest(email, password); //Creating new guest object
                             Toast.makeText(RegisterActivity.this,"Registration Successful " + firstName,Toast.LENGTH_SHORT).show();

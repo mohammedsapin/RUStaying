@@ -9,10 +9,12 @@ import android.widget.EditText;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME="register.db";
-    public static final String TABLE_NAME="registeruser";
+    public static final String TABLE_NAME="usersTable";
     public static final String COL_1="ID";
-    public static final String COL_2="email";
-    public static final String COL_3="password";
+    public static final String COL_2="firstName";
+    public static final String COL_3="lastName";
+    public static final String COL_4="email";
+    public static final String COL_5="password";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -20,8 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE registeruser (ID INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, email TEXT, password TEXT)");
-        //Change table name to usersTable
+        db.execSQL("CREATE TABLE usersTable (ID INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, email TEXT, password TEXT)");
     }
 
     @Override
@@ -34,26 +35,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        //contentValues.put("firstName", firstName);
-        //contentValues.put("lastName", lastName);
-        contentValues.put("email", email);
-        contentValues.put("password", password);
+        contentValues.put(COL_2, firstName);
+        contentValues.put(COL_3, lastName);
+        contentValues.put(COL_4, email);
+        contentValues.put(COL_5, password);
 
         //insert() returns the rowId the new inserted item
-        long tableInput = db.insert("registeruser",null,contentValues);
-        //Again change table name to usersTable
+        long tableInput = db.insert(TABLE_NAME,null,contentValues);
         db.close();
         return tableInput;
     }
 
-    //Is this method ever used??
     public boolean checkUser(String email, String password){
         String[] id = {COL_1};
         SQLiteDatabase db = getReadableDatabase();
 
-        //3 lines below don't make sense to me
-        //Why do you have account and fullAccount variables? Why are you storing it in the database like that?
-        String account = COL_2 + "=?" + " and " + COL_3 + "=?"; //email=? and password=? <-- What is this lol
+        String account = COL_4 + "=?" + " and " + COL_5 + "=?";
         String[] fullAccount = {email, password};
         Cursor cursor = db.query(TABLE_NAME,id,account,fullAccount,null,null,null);
         int count = cursor.getCount();
