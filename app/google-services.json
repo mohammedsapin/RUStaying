@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "997518637989",
+    "firebase_url": "https://rustaying-678fe.firebaseio.com",
+    "project_id": "rustaying-678fe",
+    "storage_bucket": "rustaying-678fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997518637989:android:59815ca8ad23a3c8",
+        "android_client_info": {
+          "package_name": "com.example.rustaying"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997518637989-hp1jbbll9bfin1on5a3tq6ogcj7n1svl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rustaying",
+            "certificate_hash": "f73da3b0972a2fe9f9803d30319c8ac20cc284e4"
+          }
+        },
+        {
+          "client_id": "997518637989-omk0q1d4geq041qk2vfq9pmr2q1a2ceh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb3uZ96LXWMHJ7qdNsMaOtinBdwzJQPdI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997518637989-omk0q1d4geq041qk2vfq9pmr2q1a2ceh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
