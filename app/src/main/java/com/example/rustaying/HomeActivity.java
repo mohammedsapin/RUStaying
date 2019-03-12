@@ -78,10 +78,12 @@ public class HomeActivity extends AppCompatActivity {
 
                     //Changing colors of the Yes and No buttons
                     Button negativeButton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
-                    negativeButton.setBackgroundColor(Color.DKGRAY);
+                    negativeButton.setTextColor(Color.RED);
+                    negativeButton.setBackgroundColor(Color.WHITE);
 
                     Button positiveButton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
-                    positiveButton.setBackgroundColor(Color.DKGRAY);
+                    positiveButton.setTextColor(Color.RED);
+                    positiveButton.setBackgroundColor(Color.WHITE);
             }
         });
 
