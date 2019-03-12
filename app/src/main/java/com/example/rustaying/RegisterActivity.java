@@ -48,8 +48,8 @@ public class RegisterActivity extends AppCompatActivity {
                         long user = db.addUser(firstName, lastName, email, password);
                         System.out.println(user);
                         if (user > 0){ //Condition for successful registration
-                            //Guest g = new Guest(email, password); //Creating new guest object
-                            Toast.makeText(RegisterActivity.this,"Registration Successful " + firstName,Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(RegisterActivity.this,"Registration Successful",Toast.LENGTH_SHORT).show();
                             Intent loginPage = new Intent(RegisterActivity.this,MainActivity.class);
                             startActivity(loginPage);
                             finish();

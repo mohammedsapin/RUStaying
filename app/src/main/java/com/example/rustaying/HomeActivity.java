@@ -16,6 +16,7 @@ import android.widget.Toast;
 public class HomeActivity extends AppCompatActivity {
 
     Button logout;
+    Button bkRmBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +45,11 @@ public class HomeActivity extends AppCompatActivity {
 
         logout = (Button) findViewById(R.id.logoutBtn);
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        logout.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 //Creating dialog box to confirm if user wants to logout
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomeActivity.this);
                 alertDialog.setMessage("Do you want to logout?")
@@ -83,5 +86,19 @@ public class HomeActivity extends AppCompatActivity {
                     positiveButton.setBackgroundColor(Color.WHITE);
             }
         });
+
+        bkRmBtn = (Button) findViewById(R.id.bkRmBtn);
+        bkRmBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent reservationPage = new Intent(HomeActivity.this,ReservationActivity.class);
+                startActivity(reservationPage); //Redirect to main page
+                finish();
+            }
+        }
+        );
+
     }
 }
