@@ -46,37 +46,32 @@ public class MainActivity extends AppCompatActivity {
                 String adminEmail = emInput.getText().toString();
                 String adminPassword = passInput.getText().toString();
                 boolean check = db.checkUser(email,password);
-<<<<<<< HEAD
-                if (db.isEmpty(emInput) != true && db.isEmpty(passInput) != true){
-                    if(check == true){
-                        //Call database function to get a new Guest object here!!!
-                        Guest g = db.getGuestInfo(email);
-                        Toast.makeText(MainActivity.this,"Welcome " + g.getFirstName(),Toast.LENGTH_SHORT).show();
-                        Intent homeScreen = new Intent(MainActivity.this,HomeActivity.class);
-=======
-                boolean adminCheck = db.adminCheck(adminEmail,adminPassword);
                 if (db.isEmpty(emInput) != true && db.isEmpty(passInput) != true) {
                     if (check == true) {
-                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        //Call database function to get a new Guest object here!!!
+                        //Guest g = db.getGuestInfo(email);
+                        Toast.makeText(MainActivity.this, "Welcome ", Toast.LENGTH_SHORT).show();
                         Intent homeScreen = new Intent(MainActivity.this, HomeActivity.class);
->>>>>>> dcbe4a56472b73f93591527a53d6e855c6be548f
-                        startActivity(homeScreen);
-                        finish();
+                        boolean adminCheck = db.adminCheck(adminEmail, adminPassword);
+                        if (db.isEmpty(emInput) != true && db.isEmpty(passInput) != true) {
+                            if (check == true) {
+                                Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                //Intent homeScreen = new Intent(MainActivity.this, HomeActivity.class);
+                                startActivity(homeScreen);
+                                finish();
+                            } else if (adminCheck) {
+                                Toast.makeText(MainActivity.this, "Admin login Successful", Toast.LENGTH_SHORT).show();
+                                Intent adminScreen = new Intent(MainActivity.this, AdminActivity.class);
+                                startActivity(adminScreen);
+                                finish();
+                            } else {
+                                Toast.makeText(MainActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(MainActivity.this, "Please fill out the required fields", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                    else if (adminCheck) {
-                        Toast.makeText(MainActivity.this, "Admin login Successful", Toast.LENGTH_SHORT).show();
-                        Intent adminScreen = new Intent(MainActivity.this, AdminActivity.class);
-                        startActivity(adminScreen);
-                        finish();
-                    }
-                    else {
-                        Toast.makeText(MainActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
-                    }
-                } else{
-                        Toast.makeText(MainActivity.this, "Please fill out the required fields", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        });
+                }      }});
 
-    }
-}
+
+}}
