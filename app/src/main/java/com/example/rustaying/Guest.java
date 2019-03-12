@@ -1,7 +1,10 @@
 package com.example.rustaying;
 
 public class Guest {
-    private int guestId; //
+
+    private int guestId;
+    private String firstName;
+    private String lastName;
     private String guestEmail;
     private String guestPassword;
     //private Date accountCreated;
@@ -10,9 +13,9 @@ public class Guest {
     private Boolean isCheckedIn;
 
     //Constructor to create Guest object
-    public Guest(String guestEmail, String guestPassword)
+    public Guest(int guestId, String guestEmail, String guestPassword)
     {
-        //this.guestId = 0; How do we assign a guestId number?
+        this.guestId = guestId;
         this.guestEmail = guestEmail;
         this.guestPassword = guestPassword;
         this.accountStatus = "Active"; //Active means they have successfully created an account
@@ -34,6 +37,10 @@ public class Guest {
     {
         return this.guestId;
     }
+
+    public String getFirstName() { return this.firstName; }
+
+    public String getLastName() { return this.lastName; }
 
     public String getGuestEmail()
     {
@@ -63,6 +70,14 @@ public class Guest {
     public void setGuestEmail(String email)
     {
         this.guestEmail = email;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setGuestPassword(String password)
