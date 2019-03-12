@@ -6,6 +6,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class ServicesActivity extends AppCompatActivity {
 
@@ -31,6 +33,14 @@ public class ServicesActivity extends AppCompatActivity {
                         break;
                 }
                 return false;
+            }
+        });
+        Button btn = findViewById(R.id.bellboybutton);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent bu = new Intent(ServicesActivity.this, BellboyActivity.class);
+                startActivity(bu);
             }
         });
     }

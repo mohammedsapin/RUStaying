@@ -8,6 +8,22 @@
     android:orientation="vertical"
     tools:context=".HomeActivity">
 
+    <Button
+        android:id="@+id/bellboybutton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:drawableStart="@drawable/outline_local_mall_white_36dp"
+        android:drawablePadding="5dp"
+        android:padding="16dp"
+        android:text="Request Bellboy"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+  
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
