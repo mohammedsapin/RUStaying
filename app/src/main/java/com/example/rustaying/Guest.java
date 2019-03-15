@@ -4,7 +4,7 @@ public class Guest {
 
     public String firstName;
     public String lastName;
-    private String guestEmail;
+    public String guestEmail;
     //private Date accountCreated;
     //private String accountStatus;
     //private int luggage;
