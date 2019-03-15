@@ -11,6 +11,8 @@ import android.widget.Button;
 
 public class ServicesActivity extends AppCompatActivity {
 
+    Button bellboy;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +37,8 @@ public class ServicesActivity extends AppCompatActivity {
                 return false;
             }
         });
-        Button btn = findViewById(R.id.bellboybutton);
-        btn.setOnClickListener(new View.OnClickListener() {
+        bellboy = (Button) findViewById(R.id.bellboybtn);
+        bellboy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent bu = new Intent(ServicesActivity.this, BellboyActivity.class);

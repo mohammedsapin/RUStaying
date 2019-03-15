@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#0c4c8a"
     android:orientation="vertical"
-    tools:context=".HomeActivity">
+    tools:context=".ProfileActivity">
 
     <FrameLayout
         android:id="@+id/container"

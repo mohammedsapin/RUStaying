@@ -13,10 +13,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class HomeActivity extends AppCompatActivity {
 
     Button logout;
     Button bkRmBtn;
+
+    private FirebaseAuth.AuthStateListener authStateListener;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,18 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        auth = FirebaseAuth.getInstance();
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (user == null){
+                    startActivity(new Intent(HomeActivity.this,MainActivity.class));
+                    finish();
+                }
+            }
+        };
+
         logout = (Button) findViewById(R.id.logoutBtn);
 
         logout.setOnClickListener(new View.OnClickListener()
@@ -57,10 +75,7 @@ public class HomeActivity extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(HomeActivity.this,"Logged Out",Toast.LENGTH_SHORT).show();
-                                Intent mainPage = new Intent(HomeActivity.this,MainActivity.class);
-                                startActivity(mainPage); //Redirect to main page
-                                finish();
+                                logout();
                             }
                         })
                         //Negative button is No, meaning user does not want to logout
@@ -95,10 +110,30 @@ public class HomeActivity extends AppCompatActivity {
             {
                 Intent reservationPage = new Intent(HomeActivity.this,ReservationActivity.class);
                 startActivity(reservationPage); //Redirect to main page
-                finish();
             }
         }
         );
 
+    }
+
+    public void logout(){
+        Toast.makeText(HomeActivity.this,"Logged Out",Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(HomeActivity.this,MainActivity.class));
+        finish();
+        auth.signOut();
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        auth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        if (authStateListener != null){
+            auth.removeAuthStateListener(authStateListener);
+        }
     }
 }

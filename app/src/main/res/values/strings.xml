@@ -18,6 +18,7 @@
     <string name="key_card">Key Card</string>
     <string name="check_in">Check In</string>
     <string name="welcome_back_name">Welcome</string>
-    <string name="first_name">FIrst Name</string>
+    <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
+    <string name="request_bellboy">Request Bellboy</string>
 </resources>
