@@ -20,4 +20,5 @@
     <string name="welcome_back_name">Welcome</string>
     <string name="first_name">FIrst Name</string>
     <string name="last_name">Last Name</string>
+    <string name="view_users">View Users</string>
 </resources>
