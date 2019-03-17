@@ -32,8 +32,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        firstNameInput = (EditText) findViewById(R.id.inputFIrstName);
-        lastNameInput = (EditText) findViewById(R.id.inputLastName);
+        firstNameInput = (EditText) findViewById(R.id.firstname);
+        lastNameInput = (EditText) findViewById(R.id.lastname);
         emailInput = (EditText) findViewById(R.id.emailinput);
         regPassInput = (EditText) findViewById(R.id.regPassInput);
         confirmPass = (EditText) findViewById(R.id.confirmPass);
