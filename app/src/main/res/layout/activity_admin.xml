@@ -13,30 +13,63 @@
         android:background="@color/colorPrimary"
         android:orientation="vertical">
 
-        <!--Add stuff here-->
-        <Button
-            android:id="@+id/viewUserBtn"
+        <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:text="@string/welcome_admin"
+            android:textAlignment="center"
+            android:textSize="48sp"/>
+
+        <Button
+            android:id="@+id/viewRoomBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="@drawable/topborderwhite"
-            android:drawableStart="@drawable/outline_account_box_white_48"
-            android:drawablePadding="5dp"
-            android:padding="8dp"
-            android:text="@string/view_users"
-            android:textAlignment="viewStart"
+            android:text="@string/view_rooms"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/viewGuestsBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/topborderwhite"
+            android:text="@string/view_guests"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/viewServicesBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/topborderwhite"
+            android:text="@string/view_services"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/viewDataBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/topborderwhite"
+            android:text="@string/view_hotel_data"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/adminLogout"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/topborderwhite"
+            android:text="@string/logout"
+            android:textAlignment="center"
             android:textSize="18sp" />
 
     </LinearLayout>
-
-    <!--Dont change-->
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@drawable/topborderwhite"
-        app:itemIconTint="@color/colorText"
-        app:itemTextColor="@color/colorText"
-        app:menu="@menu/navigation" />
 
 </android.support.design.widget.CoordinatorLayout>

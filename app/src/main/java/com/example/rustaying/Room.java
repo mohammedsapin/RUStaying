@@ -4,44 +4,39 @@ public class Room {
     private int roomId;
     private String roomType;
     private boolean isAvailable;
-    //private Date nextReseration;
+    //private Date nextReservation;
 
-    public void Room()
-    {
-        this.roomId = -1;
+    public Room(){
+
+    }
+
+    public Room(int roomId, String roomType, boolean isAvailable){
+        this.roomId = -1;// ?
         this.roomType = null;
         this.isAvailable = false;
     }
 
-    //Getter Methods
-    public int getRoomId()
-    {
-        return this.roomId;
+    public int getRoomId() {
+        return roomId;
     }
 
-    public String getRoomType()
-    {
-        return this.roomType;
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
-    public boolean getIsAvailable()
-    {
-        return this.isAvailable;
+    public String getRoomType() {
+        return roomType;
     }
 
-    //Setter methods
-    public void setRoomId(int id)
-    {
-        this.roomId = id;
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 
-    public void setRoomType(String type)
-    {
-        this.roomType = type;
+    public boolean isAvailable() {
+        return isAvailable;
     }
 
-    public void setAvailable(boolean available)
-    {
+    public void setAvailable(boolean available) {
         isAvailable = available;
     }
 }

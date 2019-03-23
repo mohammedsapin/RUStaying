@@ -11,6 +11,8 @@ import android.widget.Button;
 
 public class ServicesActivity extends AppCompatActivity {
 
+    private static final String TAG = "ServicesActivity";
+
     Button bellboy;
 
     @Override

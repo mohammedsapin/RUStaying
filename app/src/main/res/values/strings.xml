@@ -22,4 +22,10 @@
     <string name="last_name">Last Name</string>
     <string name="request_bellboy">Request Bellboy</string>
     <string name="view_users">View Users</string>
+    <string name="welcome_admin">Welcome Admin</string>
+    <string name="view_rooms">View Rooms</string>
+    <string name="view_guests">View Guests</string>
+    <string name="view_services">View Services</string>
+    <string name="view_hotel_data">View Hotel Data</string>
+    <string name="guest_information">Guest Information</string>
 </resources>

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BellboyActivity"></activity>
+        <activity android:name=".ViewGuests"></activity>
+        <activity android:name=".BellboyActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".ServicesActivity" />
         <activity android:name=".ProfileActivity" />

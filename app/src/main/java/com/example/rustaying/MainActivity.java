@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "Login Activity";
+    private static final String TAG = "MainActivity";
 
     private EditText emInput, passInput;
     private Button loginBtn;

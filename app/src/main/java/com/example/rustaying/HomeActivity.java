@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -18,8 +19,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button logout;
-    Button bkRmBtn;
+    private static final String TAG = "HomeActivity";
+
+    private Button logout, bkRmBtn;
 
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth auth;
@@ -56,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (user == null){
                     startActivity(new Intent(HomeActivity.this,MainActivity.class));
+                    Log.d(TAG, "onAuthStateChanged: Signed out");
                     finish();
                 }
             }

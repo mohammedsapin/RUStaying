@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".HomeActivity">
+    tools:context=".ViewGuests">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -20,23 +20,11 @@
             android:textAlignment="center"
             android:textSize="25sp" />
 
-        <ListView
-            android:id="@+id/guestInfo"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/viewGuestRecycleView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </ListView>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@drawable/topborderwhite"
-        app:itemIconTint="@color/colorText"
-        app:itemTextColor="@color/colorText"
-        app:menu="@menu/navigation" />
 
 </android.support.design.widget.CoordinatorLayout>

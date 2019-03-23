@@ -1,7 +1,6 @@
 package com.example.rustaying;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,8 +23,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText firstNameInput, lastNameInput, emailInput, regPassInput,confirmPass;
     private Button regBtn;
+
     private FirebaseAuth auth;
-    private DatabaseReference Database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +39,6 @@ public class RegisterActivity extends AppCompatActivity {
         regBtn = (Button) findViewById(R.id.regBtn);
 
         auth = FirebaseAuth.getInstance();
-        Database = FirebaseDatabase.getInstance().getReference();
 
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
