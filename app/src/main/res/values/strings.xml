@@ -28,4 +28,5 @@
     <string name="view_services">View Services</string>
     <string name="view_hotel_data">View Hotel Data</string>
     <string name="guest_information">Guest Information</string>
+    <string name="call_bellboy">Call Bellboy</string>
 </resources>

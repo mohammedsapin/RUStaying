@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".BellboyActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/topborderwhite"
+            android:drawableStart="@drawable/outline_local_mall_white_36dp"
+            android:drawablePadding="5dp"
+            android:padding="8dp"
+            android:text="@string/call_bellboy"
+            android:textAlignment="viewStart"
+            android:textSize="18sp" />
+
+
+
+    </LinearLayout>
+
+
+
+</android.support.design.widget.CoordinatorLayout>
