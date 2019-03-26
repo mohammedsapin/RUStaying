@@ -11,9 +11,9 @@ public class Room {
     }
 
     public Room(int roomId, String roomType, boolean isAvailable){
-        this.roomId = -1;// ?
-        this.roomType = null;
-        this.isAvailable = false;
+        this.roomId = roomId;
+        this.roomType = roomType;
+        this.isAvailable = isAvailable;
     }
 
     public int getRoomId() {
@@ -32,11 +32,11 @@ public class Room {
         this.roomType = roomType;
     }
 
-    public boolean isAvailable() {
+    public boolean getIsAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(boolean available) {
+    public void setIsAvailable(boolean available) {
         isAvailable = available;
     }
 }

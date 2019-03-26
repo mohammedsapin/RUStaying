@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "997518637989-gmg0cefbh9kf737dti3ilk64o9qskrfm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rustaying",
+            "certificate_hash": "0089d130699af181580cfa875e58a0cbf4cf403f"
+          }
+        },
+        {
           "client_id": "997518637989-omk0q1d4geq041qk2vfq9pmr2q1a2ceh.apps.googleusercontent.com",
           "client_type": 3
         }
