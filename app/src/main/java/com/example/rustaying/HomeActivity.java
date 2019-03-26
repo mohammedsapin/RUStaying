@@ -21,7 +21,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
 
-    private Button logout, bkRmBtn;
+    private Button logout, bkRmBtn, feedbackBtn;
 
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth auth;
@@ -111,11 +111,21 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent reservationPage = new Intent(HomeActivity.this,ReservationActivity.class);
-                startActivity(reservationPage); //Redirect to main page
+                Intent bookRoomPage = new Intent(HomeActivity.this, ViewRooms.class);
+                startActivity(bookRoomPage); //Redirect to list of all rooms
             }
         }
         );
+
+        feedbackBtn = (Button)findViewById(R.id.feedbackBtn);
+        feedbackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent feedback = new Intent(HomeActivity.this,FeedbackActivity.class);
+                startActivity(feedback); //Redirect to feedback page
+            }
+        });
 
     }
 

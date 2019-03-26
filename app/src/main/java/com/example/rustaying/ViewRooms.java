@@ -17,11 +17,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ViewGuests extends AppCompatActivity {
+public class ViewRooms extends AppCompatActivity {
 
-    private static final String TAG = "ViewGuests";
+    private static final String TAG = "ViewRooms";
 
-    private ArrayList<Guest> guestInfo = new ArrayList<>();
+    private ArrayList<Room> roomList = new ArrayList<>();
 
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
@@ -31,7 +31,7 @@ public class ViewGuests extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_guests);
+        setContentView(R.layout.activity_view_rooms);
 
         createRecycleView();
 
@@ -51,7 +51,7 @@ public class ViewGuests extends AppCompatActivity {
             }
         };
 
-        myRef.child("Guest").addValueEventListener(new ValueEventListener() {
+        myRef.child("Rooms").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 showData(dataSnapshot);
@@ -62,32 +62,32 @@ public class ViewGuests extends AppCompatActivity {
 
             }
         });
-
     }
 
     private void createRecycleView(){
         Log.d(TAG, "createRecycleView: Started view");
-        RecyclerView recyclerView = findViewById(R.id.viewGuestRecycleView);
+        RecyclerView recyclerView = findViewById(R.id.viewRoomsRecycleView);
+        ViewRoomsAdapter adapter = new ViewRoomsAdapter(this,roomList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ViewGuestsAdapter adapter = new ViewGuestsAdapter(this,guestInfo);
         recyclerView.setAdapter(adapter);
     }
 
     private void showData(DataSnapshot dataSnapshot) {
-        for (DataSnapshot data : dataSnapshot.getChildren()) {
+        for (DataSnapshot data : dataSnapshot.getChildren()){
 
-            Guest info = new Guest();
+            Room room = new Room(); // create new object
 
-            info.setFirstName(data.getValue(Guest.class).getFirstName());
-            info.setLastName(data.getValue(Guest.class).getLastName());
-            info.setGuestEmail(data.getValue(Guest.class).getGuestEmail());
+            room.setRoomId(data.getValue(Room.class).getRoomId()); // set first name
+            room.setRoomType(data.getValue(Room.class).getRoomType()); // set last name
+            room.setIsAvailable(data.getValue(Room.class).getIsAvailable()); // set email
+
             //add object to array list
-            guestInfo.add(new Guest(info.getFirstName(),info.getLastName(),info.getGuestEmail()));
+            roomList.add(new Room(room.getRoomId(),room.getRoomType(),room.getIsAvailable()));
 
-            Log.d(TAG, "showData: First Name: " + info.getFirstName());
-            Log.d(TAG, "showData: LastName: " + info.getLastName());
-            Log.d(TAG, "showData: Guest Email: " + info.getGuestEmail());
-            Log.d(TAG, "showData: Array List: " + guestInfo);
+            Log.d(TAG, "showData: Room ID: " + room.getRoomId());
+            Log.d(TAG, "showData: Room Type: " + room.getRoomType());
+            Log.d(TAG, "showData: Availability: " + room.getIsAvailable());
+            Log.d(TAG, "showData: Array List: " + roomList );
 
             //add array list to recycle view
             createRecycleView();

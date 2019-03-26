@@ -21,6 +21,7 @@
             android:textAlignment="center"
             android:textSize="48sp" />
 
+
         <Button
             android:id="@+id/bkRmBtn"
             android:layout_width="fill_parent"
@@ -69,6 +70,17 @@
             android:textAlignment="viewStart"
             android:textSize="18sp" />
 
+        <Button
+            android:id="@+id/feedbackBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonborder"
+            android:drawableStart="@drawable/outline_file_copy_white_48dp"
+            android:drawablePadding="5dp"
+            android:padding="8dp"
+            android:text="@string/feedback"
+            android:textAlignment="viewStart"
+            android:textSize="18sp" />
         <Button
             android:id="@+id/logoutBtn"
             android:layout_width="fill_parent"

@@ -15,8 +15,6 @@ public class ServicesActivity extends AppCompatActivity {
 
     private static final String TAG = "ServicesActivity";
 
-    private Spinner button2; //never used
-
     Button bellboy;
 
     @Override
@@ -53,17 +51,7 @@ public class ServicesActivity extends AppCompatActivity {
         });
 
 
-        //This code looks wrong / might be in the wrong activity - Mo
-        //I copied your code and deleted all branches bc too many errors were happening
 
-        //get the spinner from the xml.
-        Spinner dropdown = findViewById(R.id.button2); // need to create spinner not button
-        //create a list of items for the spinner.
-        String[] items = new String[]{"1","2","three"};
-        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-    //There are multiple variations of this, but this is the basic variant.
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-    //set the spinners adapter to the previously created one.
-        dropdown.setAdapter(adapter);
+
     }
 }
