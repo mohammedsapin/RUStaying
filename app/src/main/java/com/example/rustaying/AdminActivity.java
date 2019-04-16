@@ -39,7 +39,7 @@ public class AdminActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user == null){
-                    startActivity(new Intent(AdminActivity.this, MainActivity.class ));
+                    startActivity(new Intent(AdminActivity.this, LoginActivity.class ));
                     Log.d(TAG, "onAuthStateChanged: Signed out");
                     finish();
                 }

@@ -57,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (user == null){
-                    startActivity(new Intent(HomeActivity.this,MainActivity.class));
+                    startActivity(new Intent(HomeActivity.this, LoginActivity.class));
                     Log.d(TAG, "onAuthStateChanged: Signed out");
                     finish();
                 }
@@ -131,7 +131,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void logout(){
         Toast.makeText(HomeActivity.this,"Logged Out",Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(HomeActivity.this,MainActivity.class));
+        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
         finish();
         auth.signOut();
     }
