@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "997518637989-hbp4n7dp9o22gf042jehs9ltst5lgnon.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rustaying",
+            "certificate_hash": "ad548363d24a9b4ccaad4bff0033aa3366bf7fd6"
+          }
+        },
+        {
           "client_id": "997518637989-omk0q1d4geq041qk2vfq9pmr2q1a2ceh.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -41,20 +49,13 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "997518637989-omk0q1d4geq041qk2vfq9pmr2q1a2ceh.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }
