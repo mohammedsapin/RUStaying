@@ -20,13 +20,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Random;
+public class MaintenanceActivity extends AppCompatActivity {
+    Service maintenance = new Service();
 
-public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelectedListener{
-
-    Service bellboy = new Service();
-
-    private static final String TAG = "BellboyActivity";
+    private static final String TAG = "MaintenaceActivity";
     private Button back;
     private Button submitButton;
 
@@ -36,11 +33,11 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
     private FirebaseAuth mAuth;
     String userID;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bellboy);
-
+        setContentView(R.layout.activity_maintenance);
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -51,7 +48,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ba = new Intent(BellboyActivity.this, ServicesActivity.class);
+                Intent ba = new Intent(MaintenanceActivity.this, ServicesActivity.class);
                 startActivity(ba);
             }
         });
@@ -65,7 +62,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String hourValue = parent.getItemAtPosition(position).toString();
-                bellboy.setHourValue(hourValue);
+                maintenance.setHourValue(hourValue);
             }
 
             @Override
@@ -84,7 +81,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String minuteValue = parent.getItemAtPosition(position).toString();
-                bellboy.setMinuteValue(minuteValue);
+                maintenance.setMinuteValue(minuteValue);
             }
 
             @Override
@@ -102,26 +99,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String ampmValue = parent.getItemAtPosition(position).toString();
-                bellboy.setAmpmValue(ampmValue);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        Spinner luggageNum = (Spinner) findViewById(R.id.luggageNum);
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.luggageNum));
-        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        luggageNum.setAdapter(adapter4);
-
-        luggageNum.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String luggageValue = parent.getItemAtPosition(position).toString();
-               // int luggage = Integer.parseInt(luggageValue);
-                bellboy.setLuggageValue(luggageValue);
+                maintenance.setAmpmValue(ampmValue);
             }
 
             @Override
@@ -136,30 +114,25 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
             @Override
             public void onClick(View v)
             {
-                Random rand = new Random();
-                int random1 = rand.nextInt(1000);
-                int random2 = rand.nextInt(1000);
-                int random3 = rand.nextInt(1000);
-                String random = Integer.toString(random1) + Integer.toString(random2) + Integer.toString(random3);
-                String hourValue = bellboy.getHourValue();
-                String minuteValue = bellboy.getMinuteValue();
-                String ampmValue = bellboy.getAmpmValue();
-                String numLuggageValue = bellboy.getLuggageValue();
-                String requestedTimeBellboy = hourValue + ":" + minuteValue + " " + ampmValue;
-                String requestType = "Bellboy";
-                Service service = new Service(requestType,numLuggageValue,requestedTimeBellboy);
-                myRef.child("Service").child(userID).child(random).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
+                String hourValue = maintenance.getHourValue();
+                String minuteValue = maintenance.getMinuteValue();
+                String ampmValue = maintenance.getAmpmValue();
+                String numLuggageValue = maintenance.getLuggageValue();
+                String requestedTime = hourValue + ":" + minuteValue + " " + ampmValue;
+                String requestType = "Maintenance";
+                Service service = new Service();
+              //  service.Service3(requestType,numLuggageValue,requestedTime);
+                /*myRef.child("Service").child(userID).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(BellboyActivity.this, "Request Sent!",Toast.LENGTH_SHORT).show();
-                        Intent submit = new Intent(BellboyActivity.this,ServicesActivity.class);
+                        Toast.makeText(MaintenanceActivity.this, "Request Sent!",Toast.LENGTH_SHORT).show();
+                        Intent submit = new Intent(MaintenanceActivity.this,ServicesActivity.class);
                         startActivity(submit); //Redirect to main page
                         finish();
                     }
-                });
+                });*/
 
             }
         });
-
     }
 }
