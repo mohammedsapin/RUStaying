@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewRooms"></activity>
+        <activity android:name=".BellboyAdmin"></activity>
+        <activity android:name=".ViewRooms" />
         <activity android:name=".ViewGuests" />
         <activity android:name=".BellboyActivity" />
         <activity android:name=".AdminActivity" />
@@ -19,12 +20,11 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".FeedbackActivity"/>
+        <activity android:name=".FeedbackActivity" />
         <activity android:name=".ReservationActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".HotelInfo" />
-        <activity android:name=".MainActivity" >
-
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
