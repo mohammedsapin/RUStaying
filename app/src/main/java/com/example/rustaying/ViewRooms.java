@@ -1,5 +1,6 @@
 package com.example.rustaying;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,10 +29,23 @@ public class ViewRooms extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_rooms);
+
+        //GET DATA from ReservationActivity
+        Intent i = getIntent();
+        Bundle b = i.getBundleExtra("resInfo");
+
+        String checkIn = b.getString("checkIn");
+        String[] roomTypes = new String[3];
+        roomTypes = b.getStringArray("roomTypes");
+
+        //Log.d(TAG, checkIn);
+        //Log.d(TAG, roomTypes[0]);
 
         createRecycleView();
 
@@ -62,6 +76,8 @@ public class ViewRooms extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     private void createRecycleView(){
@@ -84,10 +100,10 @@ public class ViewRooms extends AppCompatActivity {
             //add object to array list
             roomList.add(new Room(room.getRoomId(),room.getRoomType(),room.getIsAvailable()));
 
-            Log.d(TAG, "showData: Room ID: " + room.getRoomId());
-            Log.d(TAG, "showData: Room Type: " + room.getRoomType());
-            Log.d(TAG, "showData: Availability: " + room.getIsAvailable());
-            Log.d(TAG, "showData: Array List: " + roomList );
+            //Log.d(TAG, "showData: Room ID: " + room.getRoomId());
+            //Log.d(TAG, "showData: Room Type: " + room.getRoomType());
+            //Log.d(TAG, "showData: Availability: " + room.getIsAvailable());
+            //Log.d(TAG, "showData: Array List: " + roomList );
 
             //add array list to recycle view
             createRecycleView();

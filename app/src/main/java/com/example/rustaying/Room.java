@@ -1,10 +1,16 @@
 package com.example.rustaying;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 public class Room {
     private int roomId;
     private String roomType;
     private boolean isAvailable;
-    //private Date nextReservation;
+
+
+    //2D array for holding pairs of checkIn and checkOut dates
+    ArrayList[][] reservations = new ArrayList[50][2];
 
     public Room(){
 
@@ -39,4 +45,14 @@ public class Room {
     public void setIsAvailable(boolean available) {
         isAvailable = available;
     }
+
+    public ArrayList[][] getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(ArrayList[][] reservations) {
+        this.reservations = reservations;
+    }
+
+
 }

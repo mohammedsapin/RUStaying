@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         viewRoomsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent viewRooms = new Intent(MainActivity.this, ViewRooms.class);
+                Intent viewRooms = new Intent(MainActivity.this, ReservationActivity.class);
                 startActivity(viewRooms);
             }
         });

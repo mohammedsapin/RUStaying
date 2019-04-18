@@ -111,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent bookRoomPage = new Intent(HomeActivity.this, ViewRooms.class);
+                Intent bookRoomPage = new Intent(HomeActivity.this, ReservationActivity.class);
                 startActivity(bookRoomPage); //Redirect to list of all rooms
             }
         }
