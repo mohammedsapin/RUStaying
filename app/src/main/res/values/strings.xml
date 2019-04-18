@@ -55,6 +55,9 @@
     <string name="number_of_bags">Number of Bags</string>
     <string name="hotel_info">hotel Info</string>
     <string name="textview">TextView</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="button">Button</string>
     <string-array name="hours">
         <item>1</item>
         <item>2</item>
