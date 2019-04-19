@@ -16,6 +16,9 @@ public class ServicesActivity extends AppCompatActivity {
     private static final String TAG = "ServicesActivity";
 
     Button bellboy;
+    Button travelvalet;
+    Button maintenance;
+    Button roomSerivce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,33 @@ public class ServicesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent bu = new Intent(ServicesActivity.this, BellboyActivity.class);
+                startActivity(bu);
+            }
+        });
+
+        travelvalet = (Button) findViewById(R.id.travelvaletbtn);
+        travelvalet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent bu = new Intent(ServicesActivity.this, ValetTravelActivity.class);
+                startActivity(bu);
+            }
+        });
+
+        maintenance = (Button) findViewById(R.id.maintenancebtn);
+        maintenance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent bu = new Intent(ServicesActivity.this, MaintenanceActivity.class);
+                startActivity(bu);
+            }
+        });
+
+        roomSerivce = (Button) findViewById(R.id.roomServicebtn);
+        roomSerivce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent bu = new Intent(ServicesActivity.this, RoomServiceActivity.class);
                 startActivity(bu);
             }
         });
