@@ -17,6 +17,9 @@
         <activity android:name=".MaintenanceAdmin" />
         <activity android:name=".ValetAdmin" />
         <activity android:name=".BellboyAdmin" />
+        <activity android:name=".RoomServiceActivity"></activity>
+        <activity android:name=".ValetTravelActivity" />
+        <activity android:name=".MaintenanceActivity" />
         <activity android:name=".ViewRooms" />
         <activity android:name=".ViewGuests" />
         <activity android:name=".BellboyActivity" />
