@@ -9,119 +9,6 @@
     <string name="register">Register</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="home">Home</string>
-    <string name="account">Account</string>
-    <string name="profile">Profile</string>
-    <string name="book_a_room">Book a room</string>
-    <string name="inbox">Inbox</string>
-    <string name="logout">Logout</string>
-    <string name="key_card">Key Card</string>
-    <string name="check_in">Check In</string>
-    <string name="welcome_back_name">Welcome</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
-    <string name="request_bellboy">Request Bellboy</string>
-    <string name="view_users">View Users</string>
-    <string name="welcome_admin">Welcome Admin</string>
-    <string name="view_rooms">View Rooms</string>
-    <string name="view_guests">View Guests</string>
-    <string name="view_services">View Services</string>
-    <string name="view_hotel_data">View Hotel Data</string>
-    <string name="guest_information">Guest Information</string>
-    <string name="room_information">Room Information</string>
-    <string name="room_id">Room ID</string>
-    <string name="room_type">Room Type</string>
-    <string name="room_availability">Room Availability</string>
-    <string name="feedback_activity">Feedback Activity</string>
-    <string name="q1">Q1</string>
-    <string name="q2">Q2</string>
-    <string name="q3">Q3</string>
-    <string name="submit">Submit</string>
-    <string name="a1">A1</string>
-    <string name="a2">A2</string>
-    <string name="feedback">Feedback</string>
-
-    <string name="back">Back</string>
-    <string name="bellboy_title">CALL BELLBOY</string>
-    <string name="time_of_request">What time should we arrive?</string>
-    <string name="number_of_luggage">Number of Luggage?</string>
-    <string name="submit_button">SUBMIT</string>
-    <string name="request_id_status">Request ID</string>
-    <string name="request_status">Status</string>
-    <string name="how_was_your_overall_stay_at_the_varghese_hotel">How was your overall stay at the Varghese Hotel?</string>
-    <string name="answer">Answer</string>
-    <string name="any_issues_with_your_stay_at_varghese_hotel">Any issues with your stay at Varghese Hotel?</string>
-    <string name="rate_your_stay_at_varghese_hotel">Rate your stay at Varghese Hotel</string>
-    <string name="number_of_bags">Number of Bags</string>
-    <string name="hotel_info">hotel Info</string>
-    <string name="textview">TextView</string>
-    <string name="services">Services</string>
-    <string-array name="hours">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-    </string-array>
-    <string-array name="minutes">
-        <item>00</item>
-        <item>05</item>
-        <item>10</item>
-        <item>15</item>
-        <item>20</item>
-        <item>25</item>
-        <item>30</item>
-        <item>35</item>
-        <item>40</item>
-        <item>45</item>
-        <item>50</item>
-        <item>55</item>
-    </string-array>
-    <string-array name="ampm">
-        <item>"AM"</item>
-        <item>"PM"</item>
-    </string-array>
-    <string-array name="luggageNum">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-    </string-array>
-    <string name="valet_title">CALL VALET OR TRAVEL</string>
-    <string name="startingAddress">Starting Address:</string>
-    <string name="destAddress">Destination Address:</string>
-    <string name="startingCity">City, State Zip:</string>
-    <string name="destCity">City, State Zip:</string>
-    <string name="startTitle">Starting Address:</string>
-    <string name="destTitle">Destination Address:</string>
-    <string name="request_travelvalet">REQUEST TRAVEL AND VALET</string>
-    <string name="request_maintenance">REQUEST MAINTENANCE</string>
-    <string name="request_roomservice">REQUEST ROOMSERVICE</string>
-</resources>
-=======
-<resources>
-    <string name="app_name">RUStaying</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="register_here">Register Here</string>
-    <string name="logoimage">logoimage</string>
-    <string name="name">Name</string>
-    <string name="register">Register</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="home">Home</string>
     <string name="services">Services</string>
     <string name="account">Account</string>
     <string name="profile">Profile</string>
@@ -216,111 +103,6 @@
         <item>10</item>
     </string-array>
 
-</resources>
-
-<resources>
-    <string name="app_name">RUStaying</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="register_here">Register Here</string>
-    <string name="logoimage">logoimage</string>
-    <string name="name">Name</string>
-    <string name="register">Register</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="home">Home</string>
-    <string name="services">Services</string>
-    <string name="account">Account</string>
-    <string name="profile">Profile</string>
-    <string name="book_a_room">Book a room</string>
-    <string name="inbox">Inbox</string>
-    <string name="logout">Logout</string>
-    <string name="key_card">Key Card</string>
-    <string name="check_in">Check In</string>
-    <string name="welcome_back_name">Welcome</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
-    <string name="request_bellboy">Request Bellboy</string>
-    <string name="view_users">View Users</string>
-    <string name="welcome_admin">Welcome Admin</string>
-    <string name="view_rooms">View Rooms</string>
-    <string name="view_guests">View Guests</string>
-    <string name="view_services">View Services</string>
-    <string name="view_hotel_data">View Hotel Data</string>
-    <string name="guest_information">Guest Information</string>
-    <string name="room_information">Room Information</string>
-    <string name="room_id">Room ID</string>
-    <string name="room_type">Room Type</string>
-    <string name="room_availability">Room Availability</string>
-    <string name="feedback_activity">Feedback Activity</string>
-    <string name="q1">Q1</string>
-    <string name="q2">Q2</string>
-    <string name="q3">Q3</string>
-    <string name="submit">Submit</string>
-    <string name="a1">A1</string>
-    <string name="a2">A2</string>
-    <string name="feedback">Feedback</string>
-
-    <string name="back">Back</string>
-    <string name="bellboy_title">CALL BELLBOY</string>
-    <string name="time_of_request">When should we arrive?</string>
-    <string name="number_of_luggage">Number of Luggage?</string>
-    <string name="submit_button">SUBMIT</string>
-    <string name="request_id_status">Request ID</string>
-    <string name="request_status">Status</string>
-    <string name="how_was_your_overall_stay_at_the_varghese_hotel">How was your overall stay at the Varghese Hotel?</string>
-    <string name="answer">Answer</string>
-    <string name="any_issues_with_your_stay_at_varghese_hotel">Any issues with your stay at Varghese Hotel?</string>
-    <string name="rate_your_stay_at_varghese_hotel">Rate your stay at Varghese Hotel</string>
-    <string name="number_of_bags">Number of Bags</string>
-    <string name="hotel_info">hotel Info</string>
-    <string name="textview">TextView</string>
-    <string-array name="hours">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-    </string-array>
-    <string-array name="minutes">
-        <item>00</item>
-        <item>05</item>
-        <item>10</item>
-        <item>15</item>
-        <item>20</item>
-        <item>25</item>
-        <item>30</item>
-        <item>35</item>
-        <item>40</item>
-        <item>45</item>
-        <item>50</item>
-        <item>55</item>
-    </string-array>
-    <string-array name="ampm">
-        <item>"AM"</item>
-        <item>"PM"</item>
-    </string-array>
-    <string-array name="luggageNum">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-    </string-array>
-
-
     <string name="maintenance_title">CALL MAINTENANCE</string>
     <string name="maintenance_input">Please provide a brief description of the problem:</string>
 
@@ -334,17 +116,10 @@
     <string name="request_travelvalet">REQUEST TRAVEL AND VALET</string>
     <string name="request_maintenance">REQUEST MAINTENANCE</string>
     <string name="request_roomservice">REQUEST ROOMSERVICE</string>
-
     <string name="calendarServices">Select Date</string>
     <string name="dateServices">Date</string>
-
     <string name="roomserivce_title">CALL ROOMSERVICE</string>
-
-
     <string name="fromLocation">Where should we pick up your luggage?</string>
-
-
-
     <string name="feedbk">Feedback Form</string>
     <string name="Q1">Please rate your experience</string>
     <string name="Q2">Which of these features did you use: </string>

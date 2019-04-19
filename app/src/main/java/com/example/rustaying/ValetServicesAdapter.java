@@ -37,7 +37,7 @@ public class ValetServicesAdapter extends RecyclerView.Adapter<ValetServicesAdap
 
         viewHolder.requestType.setText(info.getRequestType());
 //        viewHolder.requestDate.setText(info.getRequestDate());
-        viewHolder.requestTime.setText(info.getRequestedTime());
+        //viewHolder.requestTime.setText(info.getRequestedTime());
 //        viewHolder.pickUp.setText(info.getPickUp());
 //        viewHolder.destination.setText(info.getDestination());
     }

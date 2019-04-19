@@ -59,7 +59,7 @@ public class FeedbackActivity extends AppCompatActivity {
         });
         answerBox1 = (EditText) findViewById(R.id.A1);
         answerBox2 = (EditText) findViewById(R.id.A2);
-        starBar = (RatingBar) findViewById(R.id.starBar);
+        //starBar = (RatingBar) findViewById(R.id.starBar);
         submitButton = (Button) findViewById(R.id.submitButton);
 
         //feedbackDatabase = FirebaseDatabase.getInstance().getReference();

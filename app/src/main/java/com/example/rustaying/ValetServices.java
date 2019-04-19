@@ -102,16 +102,17 @@ public class ValetServices extends AppCompatActivity {
 
             info.setRequestType(data.getValue(Service.class).getRequestType());
 //            info.setRequestDate(data.getValue(Service.class).getRequestDate());
-            info.setRequestedTime(data.getValue(Service.class).getRequestedTime());
+            //info.setRequestedTime(data.getValue(Service.class).getRequestedTime());
 //            info.setPickUp(data.getValue(Service.class).getPickUp());
 //            info.setDestination(data.getValue(Service.class).getDestination());
 
             //add object to array list
-            serviceList.add(new Service(info.getRequestType(),info.getLuggageValue(),info.getRequestedTime()));
+            //serviceList.add(new Service(info.getRequestType(),info.getLuggageValue(),
+              //      info.getRequestedTime()));
 
             Log.d(TAG, "showData: " + info.getRequestType());
 //            Log.d(TAG, "showData: " + info.getRequestDate());
-            Log.d(TAG, "showData: " + info.getRequestedTime());
+            //Log.d(TAG, "showData: " + info.getRequestedTime());
 //            Log.d(TAG, "showData: " + info.getPickUp());
 //            Log.d(TAG, "showData: " + info.getDestination());
             Log.d(TAG, "showData: Array List: " + info);

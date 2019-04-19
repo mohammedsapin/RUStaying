@@ -120,10 +120,10 @@ public class ViewServices extends AppCompatActivity implements SwipeControllerLi
 
             //Valet
             info.setRequestedTimeValet(data.getValue(Service.class).getRequestedTimeValet());
-            info.setAnswer1(data.getValue(Service.class).getAnswer1());
-            info.setAnswer2(data.getValue(Service.class).getAnswer2());
-            info.setAnswer3(data.getValue(Service.class).getAnswer3());
-            info.setAnswer4(data.getValue(Service.class).getAnswer4());
+            //info.setAnswer1(data.getValue(Service.class).getAnswer1());
+            //info.setAnswer2(data.getValue(Service.class).getAnswer2());
+            //info.setAnswer3(data.getValue(Service.class).getAnswer3());
+            //info.setAnswer4(data.getValue(Service.class).getAnswer4());
 
             //Maintenance
             info.setRequestedTimeMaintenance(data.getValue(Service.class).getRequestedTimeMaintenance());
@@ -146,9 +146,9 @@ public class ViewServices extends AppCompatActivity implements SwipeControllerLi
                     info.getLuggageValue(),info.getRequestedTimeBellboy(),info.getFromWhere()));
 
             //valet
-            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
-                    info.getRequestedTimeValet(),info.getAnswer1(),info.getAnswer2(),
-                    info.getAnswer3(),info.getAnswer4()));
+            //serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
+                    //info.getRequestedTimeValet(),info.getAnswer1(),info.getAnswer2(),
+                    //info.getAnswer3(),info.getAnswer4()));
 
             //Maintenance
             serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),

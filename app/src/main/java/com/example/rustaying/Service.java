@@ -43,10 +43,10 @@ public class Service {
                    String answer3, String answer4, String requestDate) {
         this.requestType = requestType;
         this.requestedTimeValet = requestedTimeValet;
-        this.answer1 = answer1;
-        this.answer2 = answer2;
-        this.answer3 = answer3;
-        this.answer4 = answer4;
+        this.startingStreet = answer1;
+        this.startingCityStateZip = answer2;
+        this.destinationStreet = answer3;
+        this.destinationCityStateZip = answer4;
         this.requestDate = requestDate;
     }
 
@@ -147,10 +147,6 @@ public class Service {
 
     public void setRequestedTimeValet(String requestedTimeValet) {
         this.requestedTimeValet = requestedTimeValet;
-    }
-
-    public String getAnswer1() {
-        return answer1;
     }
 
     public void setStartingStreet(String startingStreet) {
