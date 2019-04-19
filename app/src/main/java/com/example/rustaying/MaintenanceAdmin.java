@@ -15,9 +15,10 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class BellboyAdmin extends AppCompatActivity {
+public class MaintenanceAdmin extends AppCompatActivity {
 
-    private static final String TAG = "BellboyAdmin";
+
+    private static final String TAG = "MaintenanceAdmin";
 
     //Firebase variable
     FirebaseAuth mAuth;
@@ -27,13 +28,12 @@ public class BellboyAdmin extends AppCompatActivity {
     Button viewServices, logout;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bellboy_admin);
+        setContentView(R.layout.activity_maintenance_admin);
 
-        //Firebase Objects and Methods
+    //Firebase Objects and Methods
         mAuth = FirebaseAuth.getInstance();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -41,7 +41,7 @@ public class BellboyAdmin extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user == null){
-                    startActivity(new Intent(BellboyAdmin.this, LoginActivity.class ));
+                    startActivity(new Intent(MaintenanceAdmin.this, LoginActivity.class ));
                     Log.d(TAG, "onAuthStateChanged: Signed out");
                     finish();
                 }
@@ -49,8 +49,8 @@ public class BellboyAdmin extends AppCompatActivity {
         };
 
         ////XML Objects and Methods
-        viewServices = (Button) findViewById(R.id.viewServicesBB);
-        logout = (Button) findViewById(R.id.bellboyLogout);
+        viewServices = (Button) findViewById(R.id.viewServicesMaintenance);
+        logout = (Button) findViewById(R.id.maintenanceLogout);
 
         viewServices.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,13 +63,13 @@ public class BellboyAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Creating dialog box to confirm if user wants to logout
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(BellboyAdmin.this);
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(MaintenanceAdmin.this);
                 alertDialog.setMessage("Do you want to logout?")
                         //Positive button is Yes, meaning the use wants to logout
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(BellboyAdmin.this,"Logged out",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MaintenanceAdmin.this,"Logged out",Toast.LENGTH_SHORT).show();
                                 mAuth.signOut();
                             }
                         })
@@ -97,10 +97,7 @@ public class BellboyAdmin extends AppCompatActivity {
         });
 
 
-
-
-
-        }
+    }
 
     @Override
     protected void onStart() {
@@ -115,4 +112,7 @@ public class BellboyAdmin extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
+
+
 }

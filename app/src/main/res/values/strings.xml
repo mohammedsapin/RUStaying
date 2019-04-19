@@ -55,6 +55,9 @@
     <string name="number_of_bags">Number of Bags</string>
     <string name="hotel_info">hotel Info</string>
     <string name="textview">TextView</string>
+    <string name="welcome_bellboy">Welcome Bellboy</string>
+    <string name="welcome_valet">Welcome Valet</string>
+    <string name="welcome_maintenance">Welcome Maintenance</string>
     <string-array name="hours">
         <item>1</item>
         <item>2</item>
