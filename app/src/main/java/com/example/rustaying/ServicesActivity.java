@@ -52,7 +52,7 @@ public class ServicesActivity extends AppCompatActivity {
                 startActivity(bu);
             }
         });
-
+      
         travelvalet = (Button) findViewById(R.id.travelvaletbtn);
         travelvalet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,9 +79,5 @@ public class ServicesActivity extends AppCompatActivity {
                 startActivity(bu);
             }
         });
-
-
-
-
     }
 }

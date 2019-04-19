@@ -8,6 +8,7 @@
     tools:context=".ValetTravelActivity">
 
     <Button
+
         android:id="@+id/calendarBtn1"
         android:layout_width="106dp"
         android:layout_height="55dp"
@@ -313,4 +314,3 @@
         app:menu="@menu/navigation" />
 
 </android.support.constraint.ConstraintLayout>
-

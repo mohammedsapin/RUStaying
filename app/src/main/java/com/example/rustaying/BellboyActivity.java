@@ -22,11 +22,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Random;
-
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -40,8 +38,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
     private static final String TAG = "BellboyActivity";
     private Button back;
     private Button submitButton;
-
-    //
+  
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
@@ -165,7 +162,6 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String luggageValue = parent.getItemAtPosition(position).toString();
-               // int luggage = Integer.parseInt(luggageValue);
                 bellboy.setLuggageValue(luggageValue);
             }
 
@@ -214,7 +210,6 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                         finish();
                     }
                 });
-
             }
         });
 

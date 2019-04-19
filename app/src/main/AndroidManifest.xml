@@ -11,6 +11,48 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ValetTravelActivity"></activity>
+        <activity android:name=".ViewServices" />
+        <activity android:name=".ViewRooms" />
+        <activity android:name=".ViewGuests" />
+        <activity android:name=".BellboyActivity" />
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".ServicesActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".FeedbackActivity" />
+        <activity android:name=".ReservationActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".HotelInfo" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.rustaying">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ValetServices"></activity>
+        <activity android:name=".BellboyServices" />
+        <activity android:name=".RoomServiceAdmin" />
+        <activity android:name=".MaintenanceAdmin" />
+        <activity android:name=".ValetAdmin" />
+        <activity android:name=".BellboyAdmin" />
         <activity android:name=".RoomServiceActivity"></activity>
         <activity android:name=".ValetTravelActivity" />
         <activity android:name=".MaintenanceActivity" />
@@ -34,5 +76,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

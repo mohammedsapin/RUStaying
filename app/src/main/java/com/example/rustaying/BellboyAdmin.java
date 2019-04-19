@@ -15,21 +15,21 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class AdminActivity extends AppCompatActivity {
+public class BellboyAdmin extends AppCompatActivity {
 
-    private static final String TAG = "AdminActivity";
+    private static final String TAG = "BellboyAdmin";
 
-    //Firebase Stuff
+    //Firebase variable
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
 
-    //XML Attributes
-    Button viewRooms, viewGuests, viewServices, viewData, log_out;
+    //xml variable
+    Button viewServices, logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(R.layout.activity_bellboy_admin);
 
         //Firebase Objects and Methods
         mAuth = FirebaseAuth.getInstance();
@@ -39,59 +39,35 @@ public class AdminActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user == null){
-                    startActivity(new Intent(AdminActivity.this, LoginActivity.class ));
+                    startActivity(new Intent(BellboyAdmin.this, LoginActivity.class ));
                     Log.d(TAG, "onAuthStateChanged: Signed out");
                     finish();
                 }
             }
         };
 
-        //XML Objects and Methods
-        viewRooms = (Button) findViewById(R.id.viewRoomBtn);
-        viewGuests = (Button) findViewById(R.id.viewGuestsBtn);
-        viewServices = (Button) findViewById(R.id.viewServicesBtn);
-        viewData = (Button) findViewById(R.id.viewDataBtn);
-        log_out = (Button) findViewById(R.id.adminLogout);
-
-        viewRooms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AdminActivity.this, ViewRooms.class));
-            }
-        });
-
-        viewGuests.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AdminActivity.this, ViewGuests.class));
-            }
-        });
-
+        ////XML Objects and Methods
+        viewServices = (Button) findViewById(R.id.viewServicesBB);
         viewServices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminActivity.this,ViewServices.class));
+                startActivity(new Intent(BellboyAdmin.this, BellboyServices.class));
+                Log.d(TAG, "onClick: button clicked");
             }
         });
 
-        viewData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        log_out.setOnClickListener(new View.OnClickListener() {
+        logout = (Button) findViewById(R.id.bellboyLogout);
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Creating dialog box to confirm if user wants to logout
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(AdminActivity.this);
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(BellboyAdmin.this);
                 alertDialog.setMessage("Do you want to logout?")
                         //Positive button is Yes, meaning the use wants to logout
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(AdminActivity.this,"Logged out",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(BellboyAdmin.this,"Logged out",Toast.LENGTH_SHORT).show();
                                 mAuth.signOut();
                             }
                         })
@@ -117,7 +93,12 @@ public class AdminActivity extends AppCompatActivity {
                 positiveButton.setBackgroundColor(Color.WHITE);
             }
         });
-    }
+
+
+
+
+
+        }
 
     @Override
     protected void onStart() {
