@@ -1,5 +1,7 @@
 package com.example.rustaying;
 
+
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -11,9 +13,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,12 +28,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Random;
 
 public class ValetTravelActivity extends AppCompatActivity {
 
     Service valettravel = new Service();
-
     private static final String TAG = "ValetTravel Activity";
     private EditText answerBox1;
     private EditText answerBox2;
@@ -37,6 +43,14 @@ public class ValetTravelActivity extends AppCompatActivity {
     private EditText answerBox4;
     private Button back;
     private Button submitButton;
+
+
+    DatePickerDialog dateDialog;
+    Button dateBtn1;
+    Button viewBtn;
+    TextView date1;
+    Calendar c;
+    LocalDate requestDate;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
@@ -60,6 +74,32 @@ public class ValetTravelActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent ba = new Intent(ValetTravelActivity.this, ServicesActivity.class);
                 startActivity(ba);
+            }
+        });
+
+        dateBtn1 = (Button) findViewById(R.id.calendarBtn1);
+        viewBtn = (Button) findViewById(R.id.viewRoomsBtn);
+
+        date1 = (TextView) findViewById(R.id.requestDate);
+
+
+        dateBtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                dateDialog = new DatePickerDialog(ValetTravelActivity.this, R.style.Theme_AppCompat, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year1, int month1, int dayOfMonth1) {
+                        date1.setText((month1 + 1) + "/" + dayOfMonth1 + "/" + year1);
+                        requestDate = parseDate(year1, (month1 + 1), dayOfMonth1);
+                        String requestDate1=requestDate.toString();
+                        valettravel.setRequestDate(requestDate1);
+                    }
+                }, year, month, day);
+                dateDialog.show();
             }
         });
 
@@ -133,10 +173,11 @@ public class ValetTravelActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 Random rand = new Random();
-                int random1 = rand.nextInt(1000);
-                int random2 = rand.nextInt(1000);
-                int random3 = rand.nextInt(1000);
-                String random = Integer.toString(random1) + Integer.toString(random2) + Integer.toString(random3);
+
+                long random = 100000000 + rand.nextInt(900000000);
+                valettravel.setRequestID(random);
+                long requestID=valettravel.getRequestID();
+                String request= Long.toString(requestID);
 
                 final String answer1 = answerBox1.getText().toString().trim();
                 final String answer2 = answerBox2.getText().toString().trim();
@@ -147,15 +188,14 @@ public class ValetTravelActivity extends AppCompatActivity {
                 String hourValue = valettravel.getHourValue();
                 String minuteValue = valettravel.getMinuteValue();
                 String ampmValue = valettravel.getAmpmValue();
-                String requestedTime = hourValue + ":" + minuteValue + " " + ampmValue;
+                String requestedTimeValet = hourValue + ":" + minuteValue + " " + ampmValue;
                 String requestType = "ValetTravel";
-
+                String requestDate=valettravel.getRequestDate();
 
                 if (!TextUtils.isEmpty(answer1) && !TextUtils.isEmpty(answer2)) {
-                    //Service valettravel = new Service(requestType, requestedTime, answer1,
-                            //answer3, answer2, answer4);
+                    Service valettravel = new Service(requestType, requestDate, requestedTimeValet, answer1, answer3, answer2, answer4);
 
-                    myRef.child("Service").child(userID).child(random).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    myRef.child("Service").child(userID).child(request).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(ValetTravelActivity.this, "Request Sent!",Toast.LENGTH_SHORT).show();
@@ -174,5 +214,9 @@ public class ValetTravelActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private LocalDate parseDate(int year, int month, int date)
+    {
+        return LocalDate.of(year, month, date);
     }
 }

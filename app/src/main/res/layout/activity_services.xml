@@ -38,6 +38,29 @@
             android:textAlignment="viewStart"
             android:textSize="18sp" />
 
+        <Button
+            android:id="@+id/maintenancebtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/topborderwhite"
+            android:drawableStart="@drawable/outline_local_mall_white_36dp"
+            android:drawablePadding="5dp"
+            android:padding="8dp"
+            android:text="@string/request_maintenance"
+            android:textAlignment="viewStart"
+            android:textSize="18sp" />
+        <Button
+            android:id="@+id/roomServicebtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/topborderwhite"
+            android:drawableStart="@drawable/outline_local_mall_white_36dp"
+            android:drawablePadding="5dp"
+            android:padding="8dp"
+            android:text="@string/request_roomservice"
+            android:textAlignment="viewStart"
+            android:textSize="18sp" />
+
     </LinearLayout>
 
 
