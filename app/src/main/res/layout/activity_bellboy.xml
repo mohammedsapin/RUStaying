@@ -7,6 +7,44 @@
     android:background="#0c4c8a"
     tools:context=".BellboyActivity">
 
+
+    <Button
+        android:id="@+id/calendarBtn1"
+        android:layout_width="106dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="48dp"
+        android:text="@string/calendarServices"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#FFFF"
+        app:layout_constraintBottom_toTopOf="@+id/navigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </View>
+
+
+    <EditText
+        android:id="@+id/requestDate"
+        android:layout_width="221dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="168dp"
+        android:ems="10"
+        android:hint="@string/dateServices"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        android:textColor="@color/colorText"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -70,10 +108,27 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.005"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.322" />
+        app:layout_constraintVertical_bias="0.661" />
+
+    <TextView
+        android:id="@+id/fromLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/fromLocation"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/navigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.437" />
 
     <Button
         android:id="@+id/submitButton"
@@ -84,14 +139,14 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/submit_button"
-        android:textSize="18sp"
         android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.973"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.859" />
 
     <Spinner
         android:id="@+id/hours"
@@ -104,10 +159,10 @@
         android:popupBackground="@drawable/appbackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintHorizontal_bias="0.067"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintVertical_bias="0.336" />
 
     <Spinner
         android:id="@+id/minutes"
@@ -123,7 +178,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintVertical_bias="0.336" />
 
     <Spinner
         android:id="@+id/ampm"
@@ -139,7 +194,7 @@
         app:layout_constraintHorizontal_bias="0.97"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintVertical_bias="0.336" />
 
     <Spinner
         android:id="@+id/luggageNum"
@@ -155,7 +210,37 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.384" />
+        app:layout_constraintVertical_bias="0.734" />
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/navigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55" >
+
+        <RadioButton
+            android:id="@+id/room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Room"
+            android:textSize="20dp"
+            android:textColor="@color/colorText"/>
+
+        <RadioButton
+            android:id="@+id/lobby"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lobby"
+            android:textSize="20dp"
+            android:textColor="@color/colorText"/>
+
+    </RadioGroup>
 
     <FrameLayout
         android:id="@+id/container"

@@ -1,13 +1,271 @@
 package com.example.rustaying;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Random;
 
 public class RoomServiceActivity extends AppCompatActivity {
+
+    Service roomservice = new Service();
+    DatePickerDialog dateDialog;
+    Button dateBtn1;
+    Button viewBtn;
+    TextView date1;
+    Calendar c;
+    LocalDate requestDate;
+
+    private Button back;
+    private Button submitButton;
+
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
+    private FirebaseAuth mAuth;
+    String userID;
+
+
+private EditText answerBox1;
+    CheckBox checkbox1;
+    CheckBox checkbox2;
+    CheckBox checkbox3;
+    CheckBox checkbox4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_service);
+
+        mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
+        FirebaseUser user = mAuth.getCurrentUser();
+        userID = user.getUid();
+
+        back = (Button) findViewById(R.id.backButton);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ba = new Intent(RoomServiceActivity.this, ServicesActivity.class);
+                startActivity(ba);
+            }
+        });
+
+
+        dateBtn1 = (Button) findViewById(R.id.calendarBtn1);
+        viewBtn = (Button) findViewById(R.id.viewRoomsBtn);
+
+        date1 = (TextView) findViewById(R.id.requestDate);
+
+
+        dateBtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                dateDialog = new DatePickerDialog(RoomServiceActivity.this, R.style.Theme_AppCompat, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year1, int month1, int dayOfMonth1) {
+                        date1.setText((month1 + 1) + "/" + dayOfMonth1 + "/" + year1);
+                        requestDate = parseDate(year1, (month1 + 1), dayOfMonth1);
+                        String requestDate1=requestDate.toString();
+                        roomservice.setRequestDate(requestDate1);
+                    }
+                }, year, month, day);
+                dateDialog.show();
+            }
+        });
+
+        Spinner hours = (Spinner) findViewById(R.id.hours);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.hours));
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        hours.setAdapter(adapter1);
+        //  String hourValue, minuteValue, ampmValue, numb
+        hours.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String hourValue = parent.getItemAtPosition(position).toString();
+                roomservice.setHourValue(hourValue);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        Spinner minutes = (Spinner) findViewById(R.id.minutes);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.minutes));
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        minutes.setAdapter(adapter2);
+        minutes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String minuteValue = parent.getItemAtPosition(position).toString();
+                roomservice.setMinuteValue(minuteValue);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        Spinner ampm = (Spinner) findViewById(R.id.ampm);
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.ampm));
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ampm.setAdapter(adapter3);
+        // String ampmValue=" ";
+        ampm.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String ampmValue = parent.getItemAtPosition(position).toString();
+                roomservice.setAmpmValue(ampmValue);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        checkbox1=(CheckBox)findViewById(R.id.checkBox1);
+        checkbox2=(CheckBox)findViewById(R.id.checkBox2);
+        checkbox3=(CheckBox)findViewById(R.id.checkBox3);
+        checkbox4=(CheckBox)findViewById(R.id.checkBox4);
+
+        checkbox1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if (checkbox1.isChecked()){
+                    String towels = checkbox1.getText().toString();
+                    roomservice.setTowels(towels);
+                }
+            }
+        }
+        );
+        checkbox2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if (checkbox2.isChecked()){
+                    String soap = checkbox2.getText().toString();
+                    roomservice.setSoap(soap);
+                }
+            }
+        }
+        );
+        checkbox3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if (checkbox3.isChecked()){
+                    String bedsheets = checkbox3.getText().toString();
+                    roomservice.setBedsheets(bedsheets);
+                }
+            }
+        }
+        );
+        checkbox4.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if (checkbox4.isChecked()){
+                    String cleaningservice = checkbox4.getText().toString();
+                    roomservice.setCleaningservice(cleaningservice);
+                }
+            }
+        }
+        );
+
+        answerBox1 = (EditText) findViewById(R.id.A1);
+        submitButton= (Button) findViewById(R.id.submitButton);
+        submitButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Random rand = new Random();
+                long random = 100000000 + rand.nextInt(900000000);
+                roomservice.setRequestID(random);
+                long requestID=roomservice.getRequestID();
+                String request= Long.toString(requestID);
+
+
+
+                String hourValue = roomservice.getHourValue();
+                String minuteValue = roomservice.getMinuteValue();
+                String ampmValue = roomservice.getAmpmValue();
+                String requestedTimeRoomService = hourValue + ":" + minuteValue + " " + ampmValue;
+                String requestType = "RoomService";
+                String requestDate=roomservice.getRequestDate();
+                String towels=roomservice.getTowels();
+                String soap=roomservice.getSoap();
+                String bedsheets=roomservice.getBedsheets();
+                String cleaningservice=roomservice.getCleaningservice();
+                final String answer1 = answerBox1.getText().toString().trim();
+
+                String checkboxes="";
+                if (towels!=null){
+                    checkboxes+=" " + towels;
+                }
+                if(soap!=null){
+                    checkboxes+=" " +soap;
+                }
+                if(bedsheets!=null){
+                    checkboxes+=" "+bedsheets;
+                }
+                if(cleaningservice!=null){
+                    checkboxes+=" "+cleaningservice;
+                }
+
+                    Service valettravel = new Service(requestType, requestDate, requestedTimeRoomService, answer1, towels, soap, bedsheets, cleaningservice, checkboxes);
+
+                    myRef.child("Service").child(userID).child(request).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(RoomServiceActivity.this, "Request Sent!",Toast.LENGTH_SHORT).show();
+                            Intent submit = new Intent(RoomServiceActivity.this,ServicesActivity.class);
+                            startActivity(submit); //Redirect to main page
+                            finish();
+                        }
+                    });
+
+
+
+            }
+        });
+
+
+
+
+    }
+    private LocalDate parseDate(int year, int month, int date)
+    {
+        return LocalDate.of(year, month, date);
     }
 }

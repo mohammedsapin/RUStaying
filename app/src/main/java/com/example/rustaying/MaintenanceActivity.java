@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
@@ -20,6 +21,28 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
+import android.widget.TextView;
+import android.content.Intent;
+import android.view.View;
+
+import org.w3c.dom.Text;
+
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Random;
+
+
+
 public class MaintenanceActivity extends AppCompatActivity {
     Service maintenance = new Service();
 
@@ -27,12 +50,26 @@ public class MaintenanceActivity extends AppCompatActivity {
     private Button back;
     private Button submitButton;
 
+    DatePickerDialog dateDialog;
+
+    Button dateBtn1;
+    Button viewBtn;
+    TextView date1;
+    Calendar c;
+
+    private EditText answerBox1;
+
+    LocalDate requestDate; //LocalDate object used in ResInfo object
+
+
     //
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
     String userID;
-
+    CheckBox checkbox1;
+    CheckBox checkbox2;
+    CheckBox checkbox3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +80,7 @@ public class MaintenanceActivity extends AppCompatActivity {
         myRef = mFirebaseDatabase.getReference();
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
+
 
         back = (Button) findViewById(R.id.backButton);
         back.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +108,34 @@ public class MaintenanceActivity extends AppCompatActivity {
 
             }
         });
+
+        dateBtn1 = (Button) findViewById(R.id.calendarBtn1);
+        viewBtn = (Button) findViewById(R.id.viewRoomsBtn);
+
+        date1 = (TextView) findViewById(R.id.requestDate);
+
+
+        dateBtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                dateDialog = new DatePickerDialog(MaintenanceActivity.this, R.style.Theme_AppCompat, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year1, int month1, int dayOfMonth1) {
+                        date1.setText((month1 + 1) + "/" + dayOfMonth1 + "/" + year1);
+                        requestDate = parseDate(year1, (month1 + 1), dayOfMonth1);
+                        String requestDate1=requestDate.toString();
+                        maintenance.setRequestDate(requestDate1);
+                    }
+                    }, year, month, day);
+                dateDialog.show();
+            }
+        });
+
+
 
 
         Spinner minutes = (Spinner) findViewById(R.id.minutes);
@@ -108,21 +174,81 @@ public class MaintenanceActivity extends AppCompatActivity {
             }
         });
 
+
+
+        checkbox1=(CheckBox)findViewById(R.id.checkBox1);
+        checkbox2=(CheckBox)findViewById(R.id.checkBox2);
+        checkbox3=(CheckBox)findViewById(R.id.checkBox3);
+
+        checkbox1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if (checkbox1.isChecked()){
+                    String bathroom = checkbox1.getText().toString();
+                    maintenance.setBathroom(bathroom);
+
+                }
+            }
+        }
+        );
+        checkbox2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if (checkbox2.isChecked()){
+                    String electronic = checkbox2.getText().toString();
+                    maintenance.setElectronic(electronic);
+                }
+            }
+        }
+        );
+        checkbox3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if (checkbox3.isChecked()){
+                    String lighting = checkbox3.getText().toString();
+                    maintenance.setLighting(lighting);
+                }
+            }
+        }
+        );
+
+
+        answerBox1 = (EditText) findViewById(R.id.A1);
         submitButton= (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
+                Random rand = new Random();
+                long random = 100000000 + rand.nextInt(900000000);
+                maintenance.setRequestID(random);
+                long requestID=maintenance.getRequestID();
+                String request= Long.toString(requestID);
+
+                final String answer1 = answerBox1.getText().toString().trim();
                 String hourValue = maintenance.getHourValue();
                 String minuteValue = maintenance.getMinuteValue();
                 String ampmValue = maintenance.getAmpmValue();
-                String numLuggageValue = maintenance.getLuggageValue();
-                String requestedTime = hourValue + ":" + minuteValue + " " + ampmValue;
+                String requestedTimeMaintenance = hourValue + ":" + minuteValue + " " + ampmValue;
                 String requestType = "Maintenance";
-                Service service = new Service();
-              //  service.Service3(requestType,numLuggageValue,requestedTime);
-                /*myRef.child("Service").child(userID).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
+                String requestDate = maintenance.getRequestDate();
+                String bathroom=maintenance.getBathroom();
+                String electronic=maintenance.getElectronic();
+                String lighting=maintenance.getLighting();
+
+                String checkboxes="";
+                if (bathroom!=null){
+                    checkboxes+=" " + bathroom;
+                }
+                if(electronic!=null){
+                    checkboxes+=" " +electronic;
+                }
+                if(lighting!=null){
+                    checkboxes+=" "+lighting;
+                }
+                Service service= new Service(requestType, requestDate, requestedTimeMaintenance, answer1, bathroom, electronic, lighting, checkboxes);
+                myRef.child("Service").child(userID).child(request).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(MaintenanceActivity.this, "Request Sent!",Toast.LENGTH_SHORT).show();
@@ -130,9 +256,14 @@ public class MaintenanceActivity extends AppCompatActivity {
                         startActivity(submit); //Redirect to main page
                         finish();
                     }
-                });*/
+                });
 
             }
         });
+    }
+
+    private LocalDate parseDate(int year, int month, int date)
+    {
+        return LocalDate.of(year, month, date);
     }
 }

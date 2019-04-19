@@ -43,7 +43,7 @@
 
     <string name="back">Back</string>
     <string name="bellboy_title">CALL BELLBOY</string>
-    <string name="time_of_request">What time should we arrive?</string>
+    <string name="time_of_request">When should we arrive?</string>
     <string name="number_of_luggage">Number of Luggage?</string>
     <string name="submit_button">SUBMIT</string>
     <string name="request_id_status">Request ID</string>
@@ -113,6 +113,15 @@
     <string name="request_travelvalet">REQUEST TRAVEL AND VALET</string>
     <string name="request_maintenance">REQUEST MAINTENANCE</string>
     <string name="request_roomservice">REQUEST ROOMSERVICE</string>
+
+    <string name="calendarServices">Select Date</string>
+    <string name="dateServices">Date</string>
+
+    <string name="roomserivce_title">CALL ROOMSERVICE</string>
+
+
+    <string name="fromLocation">Where should we pick up your luggage?</string>
+
 
 
 </resources>
