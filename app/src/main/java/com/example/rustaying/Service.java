@@ -9,29 +9,143 @@ public class Service {
     private String minuteValue;
     private String ampmValue;
     private String luggageValue;
-    private String requestedTime;
+    private String requestedTimeValet;
     private String answer1;
     private String answer2;
     private String answer3;
     private String answer4;
+    private String requestedTimeBellboy;
+    private String requestDate;
+    private String inputs;
+    private String bathroom;
+    private String electronic;
+    private String lighting;
+    private String checkboxes;
+    private String towels;
+    private String soap;
+    private String bedsheets;
+    private String cleaningservice;
+    private String requestedTimeMaintenance;
+    private String requestedTimeRoomService;
+    private String fromWhere;
 
-    public Service(){
-
-    }
-
-    public Service(String requestType, String luggageValue, String requestedTime) {
+    public Service(String requestType, String luggageValue, String requestedTimeBellboy,
+                   String requestDate, String fromWhere) {
         this.requestType = requestType;
         this.luggageValue = luggageValue;
-        this.requestedTime = requestedTime;
+        this.requestedTimeBellboy = requestedTimeBellboy;
+        this.requestDate = requestDate;
+        this.fromWhere = fromWhere;
     }
 
-    public Service(String requestType, String requestedTime, String answer1, String answer2, String answer3, String answer4) {
+    public Service(String requestType, String requestedTimeValet, String answer1, String answer2,
+                   String answer3, String answer4, String requestDate) {
         this.requestType = requestType;
-        this.requestedTime = requestedTime;
+        this.requestedTimeValet = requestedTimeValet;
         this.answer1 = answer1;
         this.answer2 = answer2;
         this.answer3 = answer3;
         this.answer4 = answer4;
+        this.requestDate = requestDate;
+    }
+
+    public Service(String requestType, String requestDate, String inputs, String bathroom,
+                   String electronic, String lighting, String checkboxes,
+                   String requestedTimeMaintenance) {
+        this.requestType = requestType;
+        this.requestDate = requestDate;
+        this.inputs = inputs;
+        this.bathroom = bathroom;
+        this.electronic = electronic;
+        this.lighting = lighting;
+        this.checkboxes = checkboxes;
+        this.requestedTimeMaintenance = requestedTimeMaintenance;
+    }
+
+    public Service(String requestType, String requestDate, String inputs, String checkboxes,
+                   String towels, String soap, String bedsheets, String cleaningservice,
+                   String requestedTimeRoomService) {
+        this.requestType = requestType;
+        this.requestDate = requestDate;
+        this.inputs = inputs;
+        this.checkboxes = checkboxes;
+        this.towels = towels;
+        this.soap = soap;
+        this.bedsheets = bedsheets;
+        this.cleaningservice = cleaningservice;
+        this.requestedTimeRoomService = requestedTimeRoomService;
+    }
+
+    public long getRequestID() {
+        return requestID;
+    }
+
+    public void setRequestID(long requestID) {
+        this.requestID = requestID;
+    }
+
+    public String getRequestType() {
+        return requestType;
+    }
+
+    public void setRequestType(String requestType) {
+        this.requestType = requestType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getHourValue() {
+        return hourValue;
+    }
+
+    public void setHourValue(String hourValue) {
+        this.hourValue = hourValue;
+    }
+
+    public String getMinuteValue() {
+        return minuteValue;
+    }
+
+    public void setMinuteValue(String minuteValue) {
+        this.minuteValue = minuteValue;
+    }
+
+    public String getAmpmValue() {
+        return ampmValue;
+    }
+
+    public void setAmpmValue(String ampmValue) {
+        this.ampmValue = ampmValue;
+    }
+
+    public String getLuggageValue() {
+        return luggageValue;
+    }
+
+    public void setLuggageValue(String luggageValue) {
+        this.luggageValue = luggageValue;
+    }
+
+    public String getRequestedTimeValet() {
+        return requestedTimeValet;
+    }
+
+    public void setRequestedTimeValet(String requestedTimeValet) {
+        this.requestedTimeValet = requestedTimeValet;
     }
 
     public String getAnswer1() {
@@ -66,79 +180,118 @@ public class Service {
         this.answer4 = answer4;
     }
 
-    public Service(String hourValue){
-        this.hourValue = hourValue;
+    public String getRequestedTimeBellboy() {
+        return requestedTimeBellboy;
     }
 
-    public String getHourValue() {
-        return hourValue;
+    public void setRequestedTimeBellboy(String requestedTimeBellboy) {
+        this.requestedTimeBellboy = requestedTimeBellboy;
     }
 
-    public String getLuggageValue() {
-        return luggageValue;
+    public String getRequestDate() {
+        return requestDate;
     }
 
-    public void setLuggageValue(String luggageValue) {
-        this.luggageValue = luggageValue;
+    public void setRequestDate(String requestDate) {
+        this.requestDate = requestDate;
     }
 
-    public String getRequestedTime() {
-        return requestedTime;
+    public String getInputs() {
+        return inputs;
     }
 
-    public void setRequestedTime(String requestedTime) {
-        this.requestedTime = requestedTime;
+    public void setInputs(String inputs) {
+        this.inputs = inputs;
     }
 
-    public void setHourValue(String hourValue) {
-        this.hourValue = hourValue;
+    public String getBathroom() {
+        return bathroom;
     }
 
-    public String getMinuteValue() {
-        return minuteValue;
+    public void setBathroom(String bathroom) {
+        this.bathroom = bathroom;
     }
 
-    public void setMinuteValue(String minuteValue) {
-        this.minuteValue = minuteValue;
+    public String getElectronic() {
+        return electronic;
     }
 
-    public String getAmpmValue() {
-        return ampmValue;
+    public void setElectronic(String electronic) {
+        this.electronic = electronic;
     }
 
-    public void setAmpmValue(String ampmValue) {
-        this.ampmValue = ampmValue;
+    public String getLighting() {
+        return lighting;
     }
 
-    public long getRequestID() {
-        return requestID;
+    public void setLighting(String lighting) {
+        this.lighting = lighting;
     }
 
-    public void setRequestID(long requestID) {
-        this.requestID = requestID;
+    public String getCheckboxes() {
+        return checkboxes;
     }
 
-    public String getRequestType() {
-        return requestType;
+    public void setCheckboxes(String checkboxes) {
+        this.checkboxes = checkboxes;
     }
 
-    public void setRequestType(String requestType) {
-        this.requestType = requestType;
+    public String getTowels() {
+        return towels;
     }
 
-    public String getDescription() {
-        return description;
+    public void setTowels(String towels) {
+        this.towels = towels;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getSoap() {
+        return soap;
     }
 
-    public String getStatus() {
-        return status;
+    public void setSoap(String soap) {
+        this.soap = soap;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public String getBedsheets() {
+        return bedsheets;
+    }
+
+    public void setBedsheets(String bedsheets) {
+        this.bedsheets = bedsheets;
+    }
+
+    public String getCleaningservice() {
+        return cleaningservice;
+    }
+
+    public void setCleaningservice(String cleaningservice) {
+        this.cleaningservice = cleaningservice;
+    }
+
+    public String getRequestedTimeMaintenance() {
+        return requestedTimeMaintenance;
+    }
+
+    public void setRequestedTimeMaintenance(String requestedTimeMaintenance) {
+        this.requestedTimeMaintenance = requestedTimeMaintenance;
+    }
+
+    public String getRequestedTimeRoomService() {
+        return requestedTimeRoomService;
+    }
+
+    public void setRequestedTimeRoomService(String requestedTimeRoomService) {
+        this.requestedTimeRoomService = requestedTimeRoomService;
+    }
+
+    public String getFromWhere() {
+        return fromWhere;
+    }
+
+    public void setFromWhere(String fromWhere) {
+        this.fromWhere = fromWhere;
+    }
+
+    public Service() {
     }
 }

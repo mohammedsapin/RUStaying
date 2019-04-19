@@ -37,12 +37,17 @@ public class ViewServicesAdapter extends RecyclerView.Adapter<ViewServicesAdapte
 
         viewHolder.requestType.setText(info.getRequestType());
         viewHolder.luggageVal.setText(info.getLuggageValue());
-        viewHolder.requestTime.setText(info.getRequestedTime());
+        //viewHolder.requestTime.setText(info.getRequestedTime());
     }
 
     @Override
     public int getItemCount(){
         return serviceList.size();
+    }
+
+    public void removeItem(int position){
+        serviceList.remove(position);
+        notifyItemRemoved(position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

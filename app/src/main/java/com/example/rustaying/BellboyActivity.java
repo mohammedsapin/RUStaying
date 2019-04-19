@@ -146,16 +146,16 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                 String numLuggageValue = bellboy.getLuggageValue();
                 String requestedTime = hourValue + ":" + minuteValue + " " + ampmValue;
                 String requestType = "Bellboy";
-                Service service = new Service(requestType,numLuggageValue,requestedTime);
-                myRef.child("Service").child(userID).child(request).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(BellboyActivity.this, "Request Sent!",Toast.LENGTH_SHORT).show();
-                        Intent submit = new Intent(BellboyActivity.this,ServicesActivity.class);
-                        startActivity(submit); //Redirect to main page
-                        finish();
-                    }
-                });
+                //Service service = new Service(requestType,numLuggageValue,requestedTime);
+//                myRef.child("Service").child(userID).child(request).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        Toast.makeText(BellboyActivity.this, "Request Sent!",Toast.LENGTH_SHORT).show();
+//                        Intent submit = new Intent(BellboyActivity.this,ServicesActivity.class);
+//                        startActivity(submit); //Redirect to main page
+//                        finish();
+//                    }
+//                });
 
             }
         });

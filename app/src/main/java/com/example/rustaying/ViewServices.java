@@ -5,10 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,14 +24,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ViewServices extends AppCompatActivity {
+public class ViewServices extends AppCompatActivity implements SwipeControllerListener {
 
     private static final String TAG = "ViewServices";
 
     //Services List
     private ArrayList<Service> serviceList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private ViewServicesAdapter adapter;
 
-    SwipeController swipeController = null;
 
     //Firebase
     private FirebaseDatabase mFirebaseDatabase;
@@ -91,18 +95,14 @@ public class ViewServices extends AppCompatActivity {
      Log.d(TAG, "createRecycleView: Started view");
      RecyclerView recyclerView = findViewById(R.id.viewServicesRecycleView);
      recyclerView.setLayoutManager(new LinearLayoutManager(this));
-     final ViewServicesAdapter adapter = new ViewServicesAdapter(this,serviceList);
+     ViewServicesAdapter adapter = new ViewServicesAdapter(this,serviceList);
+     recyclerView.setItemAnimator(new DefaultItemAnimator());
      recyclerView.setAdapter(adapter);
 
-     swipeController = new SwipeController(new SwipeControllerActions() {
-         @Override
-         public void onRightClicked(int position) {
-             super.onRightClicked(position);
-         }
-     });
+     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new SwipeController(0,
+             ItemTouchHelper.LEFT,this);
 
-     ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
-     itemTouchHelper.attachToRecyclerView(recyclerView);
+     new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
     }
 
 
@@ -111,17 +111,55 @@ public class ViewServices extends AppCompatActivity {
 
             Service info = new Service();
 
+            //bellboy
             info.setRequestType(data.getValue(Service.class).getRequestType());
+            info.setRequestDate(data.getValue(Service.class).getRequestDate());
             info.setLuggageValue(data.getValue(Service.class).getLuggageValue());
-            info.setRequestedTime(data.getValue(Service.class).getRequestedTime());
+            info.setRequestedTimeBellboy(data.getValue(Service.class).getRequestedTimeBellboy());
+            info.setFromWhere(data.getValue(Service.class).getFromWhere());
 
-            //add object to array list
-            serviceList.add(new Service(info.getRequestType(),info.getLuggageValue(),info.getRequestedTime()));
+            //Valet
+            info.setRequestedTimeValet(data.getValue(Service.class).getRequestedTimeValet());
+            info.setAnswer1(data.getValue(Service.class).getAnswer1());
+            info.setAnswer2(data.getValue(Service.class).getAnswer2());
+            info.setAnswer3(data.getValue(Service.class).getAnswer3());
+            info.setAnswer4(data.getValue(Service.class).getAnswer4());
 
-            Log.d(TAG, "showData: " + info.getRequestType());
-            Log.d(TAG, "showData: " + info.getLuggageValue());
-            Log.d(TAG, "showData: " + info.getRequestedTime());
-            Log.d(TAG, "showData: Array List: " + info);
+            //Maintenance
+            info.setRequestedTimeMaintenance(data.getValue(Service.class).getRequestedTimeMaintenance());
+            info.setInputs(data.getValue(Service.class).getInputs());
+            info.setBathroom(data.getValue(Service.class).getBathroom());
+            info.setElectronic(data.getValue(Service.class).getElectronic());
+            info.setLighting(data.getValue(Service.class).getLighting());
+            info.setCheckboxes(data.getValue(Service.class).getCheckboxes());
+
+            //Room Service
+            info.setRequestedTimeRoomService(data.getValue(Service.class).getRequestedTimeRoomService());
+            info.setTowels(data.getValue(Service.class).getTowels());
+            info.setSoap(data.getValue(Service.class).getSoap());
+            info.setBedsheets(data.getValue(Service.class).getBedsheets());
+            info.setCleaningservice(data.getValue(Service.class).getBedsheets());
+
+
+            //bellboy
+            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
+                    info.getLuggageValue(),info.getRequestedTimeBellboy(),info.getFromWhere()));
+
+            //valet
+            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
+                    info.getRequestedTimeValet(),info.getAnswer1(),info.getAnswer2(),
+                    info.getAnswer3(),info.getAnswer4()));
+
+            //Maintenance
+            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
+                    info.getRequestedTimeMaintenance(),info.getInputs(),info.getBathroom(),
+                    info.getElectronic(),info.getLighting(),info.getCheckboxes()));
+
+            //Room Service
+            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
+                    info.getRequestedTimeRoomService(), info.getInputs(), info.getTowels(),
+                    info.getSoap(),info.getBedsheets(),info.getCleaningservice(),
+                    info.getCheckboxes()));
 
             //add array list to recycle view
             createRecycleView();
@@ -143,4 +181,12 @@ public class ViewServices extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onSwipe(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+        if (viewHolder instanceof ViewServicesAdapter.ViewHolder){
+            int deletedIndex = viewHolder.getAdapterPosition();
+            adapter.removeItem(deletedIndex);
+            Toast.makeText(ViewServices.this, "Completed Request",Toast.LENGTH_SHORT).show();
+        }
+    }
 }

@@ -152,7 +152,8 @@ public class ValetTravelActivity extends AppCompatActivity {
 
 
                 if (!TextUtils.isEmpty(answer1) && !TextUtils.isEmpty(answer2)) {
-                    Service valettravel = new Service(requestType, requestedTime, answer1, answer3, answer2, answer4);
+                    //Service valettravel = new Service(requestType, requestedTime, answer1,
+                            //answer3, answer2, answer4);
 
                     myRef.child("Service").child(userID).child(random).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
