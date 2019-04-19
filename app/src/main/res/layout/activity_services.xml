@@ -26,7 +26,6 @@
             android:textAlignment="viewStart"
             android:textSize="18sp" />
 
-        <!--Add stuff here-->
         <Button
             android:id="@+id/travelvaletbtn"
             android:layout_width="fill_parent"
@@ -38,6 +37,7 @@
             android:text="@string/request_travelvalet"
             android:textAlignment="viewStart"
             android:textSize="18sp" />
+
         <Button
             android:id="@+id/maintenancebtn"
             android:layout_width="fill_parent"

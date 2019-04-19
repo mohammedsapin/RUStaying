@@ -70,7 +70,7 @@ public class AdminActivity extends AppCompatActivity {
         viewServices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(AdminActivity.this,ViewServices.class));
             }
         });
 

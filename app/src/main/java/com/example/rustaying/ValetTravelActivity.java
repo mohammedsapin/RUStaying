@@ -1,5 +1,6 @@
 package com.example.rustaying;
 
+
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -27,6 +28,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Random;
@@ -41,6 +43,7 @@ public class ValetTravelActivity extends AppCompatActivity {
     private EditText answerBox4;
     private Button back;
     private Button submitButton;
+
 
     DatePickerDialog dateDialog;
     Button dateBtn1;
@@ -73,7 +76,6 @@ public class ValetTravelActivity extends AppCompatActivity {
                 startActivity(ba);
             }
         });
-
 
         dateBtn1 = (Button) findViewById(R.id.calendarBtn1);
         viewBtn = (Button) findViewById(R.id.viewRoomsBtn);
@@ -171,6 +173,7 @@ public class ValetTravelActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 Random rand = new Random();
+
                 long random = 100000000 + rand.nextInt(900000000);
                 valettravel.setRequestID(random);
                 long requestID=valettravel.getRequestID();
@@ -211,11 +214,9 @@ public class ValetTravelActivity extends AppCompatActivity {
             }
         });
 
-
     }
     private LocalDate parseDate(int year, int month, int date)
     {
         return LocalDate.of(year, month, date);
     }
 }
-
