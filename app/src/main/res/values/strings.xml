@@ -58,6 +58,10 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="reset_password">Reset Password</string>
     <string name="button">Button</string>
+    <string name="view_your_past_reservations">View your past reservations</string>
+    <string name="edit_profile">Edit Profile?</string>
+    <string name="placebo">placebo</string>
+    <string name="send_email">Send Email</string>
     <string-array name="hours">
         <item>1</item>
         <item>2</item>
