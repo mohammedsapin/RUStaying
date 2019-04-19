@@ -16,15 +16,24 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
 
-    private Button logout, bkRmBtn, feedbackBtn;
+    private Button logout, bkRmBtn, feedbackBtn, checkInBtn;
+    Guest g = new Guest(); //Guest object for user
 
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth auth;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +60,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
+
+
         auth = FirebaseAuth.getInstance();
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        myRef = mFirebaseDatabase.getReference();
+
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -60,6 +75,23 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity(new Intent(HomeActivity.this, LoginActivity.class));
                     Log.d(TAG, "onAuthStateChanged: Signed out");
                     finish();
+                }
+                else
+                {
+                    String userID = user.getUid();
+                    myRef.child("Guest").child(userID).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            initGuestObject(dataSnapshot); //Initializing Object works
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
                 }
             }
         };
@@ -126,6 +158,50 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(feedback); //Redirect to feedback page
             }
         });
+
+        checkInBtn = (Button)findViewById(R.id.checkInBtn);
+        checkInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Log.i(TAG, "T" + g.getCheckInDate());
+
+                //On button click, check the check in and check out dates
+                if(g.getCheckInDate().equals("") || g.getCheckInDate() == null
+                        || g.getCheckOutDate().equals("") || g.getCheckOutDate() == null) //Means no reservation made
+                {
+                    Toast.makeText(HomeActivity.this, "You have no reservations",Toast.LENGTH_SHORT).show();
+                }
+                else //If there is reservation, setup intent and send checkIn and checkOut date to new activity
+                {
+
+                    Intent checkInAct = new Intent(HomeActivity.this, CheckInActivity.class);
+
+                    //Set up Bundle to send checkIn and checkOut dates to ChechInActivity
+                    Bundle b = new Bundle();
+                    b.putString("checkInDate", g.getCheckInDate());
+                    b.putString("checkOutDate", g.getCheckOutDate());
+
+
+                    checkInAct.putExtra("reservationDates", b);
+                    startActivity(checkInAct); //Redirect to check in page
+
+                }
+            }
+        });
+
+    }
+
+    private void initGuestObject(DataSnapshot dataSnapshot)
+    {
+            //Setting fields of guest object
+            g.setFirstName(dataSnapshot.getValue(Guest.class).getFirstName());
+            g.setLastName(dataSnapshot.getValue(Guest.class).getLastName());
+            g.setCheckedIn(dataSnapshot.getValue(Guest.class).isCheckedIn());
+            g.setAccountStatus(dataSnapshot.getValue(Guest.class).isAccountStatus());
+            g.setLuggage(dataSnapshot.getValue(Guest.class).getLuggage());
+            g.setCheckInDate(dataSnapshot.getValue(Guest.class).getCheckInDate());
+            g.setCheckOutDate(dataSnapshot.getValue(Guest.class).getCheckOutDate());
 
     }
 

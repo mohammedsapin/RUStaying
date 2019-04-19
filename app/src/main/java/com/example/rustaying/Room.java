@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Room {
-    private int roomId;
+    private String roomId;
     private String roomType;
     private boolean isAvailable;
 
@@ -16,17 +16,17 @@ public class Room {
 
     }
 
-    public Room(int roomId, String roomType, boolean isAvailable){
+    public Room(String roomId, String roomType, boolean isAvailable){
         this.roomId = roomId;
         this.roomType = roomType;
         this.isAvailable = isAvailable;
     }
 
-    public int getRoomId() {
+    public String getRoomId() {
         return roomId;
     }
 
-    public void setRoomId(int roomId) {
+    public void setRoomId(String roomId) {
         this.roomId = roomId;
     }
 

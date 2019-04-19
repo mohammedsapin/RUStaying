@@ -11,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -31,7 +32,7 @@ public class ReservationActivity extends AppCompatActivity {
     TextView date1, date2; //Texts to display string
     Calendar c;
 
-    LocalDate checkInDate, checkOutDate; //LocalDate object used in ResInfo object
+    LocalDate checkInDate, checkOutDate, currentDate; //LocalDate object used in ResInfo object
     ResInfo info; //Object to send to another activity
 
     CheckBox single, double1, queen, king;
@@ -47,6 +48,7 @@ public class ReservationActivity extends AppCompatActivity {
         date1 = (TextView) findViewById(R.id.checkInDate);
         date2 = (TextView) findViewById(R.id.checkOutDate);
 
+
         single = (CheckBox)findViewById(R.id.single);
         double1 = (CheckBox)findViewById(R.id.doubleTxt);
         queen = (CheckBox)findViewById(R.id.queen);
@@ -61,13 +63,25 @@ public class ReservationActivity extends AppCompatActivity {
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
+                currentDate = parseDate(year,(month+1), day); //Current date of LocalDate object
+
                 checkInDialog = new DatePickerDialog(ReservationActivity.this, R.style.Theme_AppCompat, new DatePickerDialog.OnDateSetListener()
                 {
                     @Override
                     public void onDateSet(DatePicker view, int year1, int month1, int dayOfMonth1)
                     {
-                        date1.setText((month1 + 1) + "/" +  dayOfMonth1 + "/" + year1);
                         checkInDate = parseDate(year1, (month1+1), dayOfMonth1);
+                        if(checkInDate.compareTo(currentDate) < 0)
+                        {
+                            Toast.makeText(ReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
+                            checkInDate = null;
+                        }
+                        else
+                        {
+                            date1.setText((month1 + 1) + "/" +  dayOfMonth1 + "/" + year1);
+                        }
+
+
                     }
                 }, year, month, day);
 
@@ -91,8 +105,23 @@ public class ReservationActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year1, int month1, int dayOfMonth1)
                     {
-                        date2.setText((month1 + 1) + "/" +  dayOfMonth1 + "/" + year1);
                         checkOutDate = parseDate(year1, (month1+1), dayOfMonth1);
+
+                        if(checkOutDate.compareTo(currentDate) < 0)
+                        {
+                            Toast.makeText(ReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
+                            checkOutDate = null;
+                        }
+                        else if(checkOutDate.compareTo(checkInDate) < 1)
+                        {
+                            Toast.makeText(ReservationActivity.this, "Check out date cannot be before check in date",Toast.LENGTH_LONG).show();
+                            checkOutDate = null;
+                        }
+                        else
+                        {
+                            date2.setText((month1 + 1) + "/" +  dayOfMonth1 + "/" + year1);
+                        }
+
                     }
                 }, year, month, (day+1));
 
@@ -123,23 +152,29 @@ public class ReservationActivity extends AppCompatActivity {
                     roomTypes[3] = "King";
                 }
 
-                //Check checkIn and checkOut dates to make sure they are not null
+                if(checkInDate != null && checkOutDate != null)
+                {
+                    //Check checkIn and checkOut dates to make sure they are not null
 
-                //Setup ResInfo object
-                info = new ResInfo(checkInDate, checkOutDate, roomTypes);
+                    //Setup ResInfo object
+                    info = new ResInfo(checkInDate, checkOutDate, roomTypes);
 
 
-                Intent viewRooms = new Intent(ReservationActivity.this, ViewRooms.class);
+                    Intent viewRooms = new Intent(ReservationActivity.this, newViewRooms.class);
 
-                Bundle b = new Bundle();
-                b.putString("checkIn", info.getCheckIn().toString());
-                b.putString("checkOut", info.getCheckOut().toString());
-                b.putStringArray("roomTypes", info.getRoomTypes());
+                    Bundle b = new Bundle();
+                    b.putString("checkIn", info.getCheckIn().toString());
+                    b.putString("checkOut", info.getCheckOut().toString());
+                    b.putStringArray("roomTypes", info.getRoomTypes());
 
-                viewRooms.putExtra("resInfo", b);
+                    viewRooms.putExtra("resInfo", b);
 
-                startActivity(viewRooms);
-
+                    startActivity(viewRooms);
+                }
+                else
+                {
+                    Toast.makeText(ReservationActivity.this, "Please choose valid dates",Toast.LENGTH_SHORT);
+                }
             }
         });
 

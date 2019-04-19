@@ -83,13 +83,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="60dp"
         android:ems="10"
-        android:hint="@string/date"
+        android:hint="@string/mm_dd_yyy"
+        android:importantForAutofill="no"
         android:inputType="date"
         android:textColor="@color/colorText"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/checkOut"
@@ -119,7 +119,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="@string/date"
+        android:hint="@string/mm_dd_yyy"
         android:importantForAutofill="no"
         android:inputType="date"
         android:textColor="@color/colorText"

@@ -55,16 +55,32 @@
     <string name="number_of_bags">Number of Bags</string>
     <string name="hotel_info">hotel Info</string>
     <string name="textview">TextView</string>
-    <string name="check_in_date">Check In Date:</string>
-    <string name="date">Date</string>
+    <string name="check_in_date1">Check In Date:</string>
+    <string name="date2">Date</string>
     <string name="calendar">Calendar</string>
-    <string name="check_out_date">Check Out Date:</string>
+    <string name="check_out_date1">Check Out Date:</string>
     <string name="single">Single</string>
     <string name="select_room_type">Select Room Type</string>
     <string name="queen">Queen</string>
     <string name="king">King</string>
     <string name="double1">double1</string>
+
     <string name="view_available_rooms">View Available Rooms</string>
+    <string name="mm_dd_yyy">MM/DD/YYY</string>
+    <string name="check_in_txt">Check In!</string>
+    <string name="your_reservation">Your Reservation:</string>
+    <string name="check_in_date">Check In Date:</string>
+    <string name="check_out_date">Check Out Date:</string>
+    <string name="check_in_1">Check In!</string>
+    <string name="date3">Date</string>
+    <string name="date4">Date</string>
+    <string name="room_number">Room Number</string>
+    <string name="single_room_full_bed">Single Room - Full Bed</string>
+    <string name="price">Price</string>
+    <string name="book">Book!</string>
+    <string name="todo">TODO</string>
+    <string name="testt">TESTT</string>
+
 
     <string-array name="hours">
         <item>1</item>
