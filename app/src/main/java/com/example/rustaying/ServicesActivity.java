@@ -15,7 +15,7 @@ public class ServicesActivity extends AppCompatActivity {
 
     private static final String TAG = "ServicesActivity";
 
-    Button bellboy;
+    Button bellboy, travelValet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,15 @@ public class ServicesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent bu = new Intent(ServicesActivity.this, BellboyActivity.class);
+                startActivity(bu);
+            }
+        });
+
+        travelValet = (Button) findViewById(R.id.travelvaletbtn);
+        travelValet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent bu = new Intent(ServicesActivity.this, ValetTravelActivity.class);
                 startActivity(bu);
             }
         });
