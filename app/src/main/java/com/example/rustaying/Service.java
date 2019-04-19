@@ -10,10 +10,6 @@ public class Service {
     private String ampmValue;
     private String luggageValue;
     private String requestedTimeValet;
-    private String answer1;
-    private String answer2;
-    private String answer3;
-    private String answer4;
     private String requestedTimeBellboy;
     private String requestDate;
     private String inputs;
@@ -28,12 +24,18 @@ public class Service {
     private String requestedTimeMaintenance;
     private String requestedTimeRoomService;
     private String fromWhere;
+    private String startingStreet;
+    private String startingCityStateZip;
+    private String destinationStreet;
+    private String destinationCityStateZip;
+
 
     public Service(){
 
     }
 
-    public Service(String requestType, String requestDate, String luggageValue, String requestedTime, String fromWhere) {//bellboy
+    //bellboy
+    public Service(String requestType, String requestDate, String luggageValue, String requestedTime, String fromWhere) {
         this.requestType = requestType;
         this.requestDate=requestDate;
         this.luggageValue = luggageValue;
@@ -41,17 +43,19 @@ public class Service {
         this.fromWhere=fromWhere;
     }
 
-    public Service(String requestType, String requestDate, String requestedTime, String answer1, String answer2, String answer3, String answer4) {//valet and travel
+    //valet and travel
+    public Service(String requestType, String requestDate, String requestedTime, String answer1, String answer2, String answer3, String answer4) {
         this.requestType = requestType;
         this.requestDate=requestDate;
         this.requestedTimeValet = requestedTime;
-        this.answer1 = answer1;
-        this.answer2 = answer2;
-        this.answer3 = answer3;
-        this.answer4 = answer4;
+        this.startingStreet=answer1;
+        this.startingCityStateZip=answer2;
+        this.destinationStreet=answer3;
+        this.destinationCityStateZip=answer4;
+
     }
 
-//maintenance
+    //maintenance
     public Service(String requestType, String requestDate, String requestedTime, String inputs, String bathroom, String electronic, String lighting, String checkboxes) {
         this.requestType = requestType;
         this.requestedTimeMaintenance = requestedTime;
@@ -64,7 +68,7 @@ public class Service {
     }
 
 
-//roomservice
+    //roomservice
     public Service(String requestType, String requestDate, String requestedTime, String inputs, String towels, String soap, String bedsheets, String cleaningservice, String checkboxes){
         this.requestType = requestType;
         this.requestedTimeRoomService = requestedTime;
@@ -179,37 +183,36 @@ public class Service {
         this.lighting= lighting;
     }
 
-
-    public String getAnswer1() {
-        return answer1;
+    public String getStartingStreet() {
+        return startingStreet;
     }
 
-    public void setAnswer1(String answer1) {
-        this.answer1 = answer1;
+    public void setStartingStreet(String startingStreet) {
+        this.startingStreet = startingStreet;
     }
 
-    public String getAnswer2() {
-        return answer2;
+    public String getStartingCityStateZip() {
+        return startingCityStateZip;
     }
 
-    public void setAnswer2(String answer2) {
-        this.answer2 = answer2;
+    public void setStartingCityStateZip(String startingCityStateZip) {
+        this.startingCityStateZip = startingCityStateZip;
     }
 
-    public String getAnswer3() {
-        return answer3;
+    public String getDestinationStreet() {
+        return destinationStreet;
     }
 
-    public void setAnswer3(String answer3) {
-        this.answer3 = answer3;
+    public void setDestinationStreet(String destinationStreet) {
+        this.destinationStreet = destinationStreet;
     }
 
-    public String getAnswer4() {
-        return answer4;
+    public String getDestinationCityStateZip() {
+        return destinationCityStateZip;
     }
 
-    public void setAnswer4(String answer4) {
-        this.answer4 = answer4;
+    public void setDestinationCityStateZip(String destinationCityStateZip) {
+        this.destinationCityStateZip = destinationCityStateZip;
     }
 
     public Service(String hourValue){

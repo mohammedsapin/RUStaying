@@ -11,13 +11,20 @@
         android:id="@+id/calendarBtn1"
         android:layout_width="106dp"
         android:layout_height="55dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="448dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/calendarServices"
+        app:layout_constraintBottom_toBottomOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#FFFF"
@@ -33,16 +40,22 @@
         android:id="@+id/requestDate"
         android:layout_width="221dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="448dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="440dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/dateServices"
         android:importantForAutofill="no"
         android:inputType="date"
         android:textColor="@color/colorText"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/navigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043" />
 
     <Button
         android:id="@+id/backButton"

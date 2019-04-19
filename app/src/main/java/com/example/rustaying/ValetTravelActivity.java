@@ -176,11 +176,11 @@ public class ValetTravelActivity extends AppCompatActivity {
                 long requestID=valettravel.getRequestID();
                 String request= Long.toString(requestID);
 
-                final String answer1 = answerBox1.getText().toString().trim();
-                final String answer2 = answerBox2.getText().toString().trim();
+                final String startingStreet = answerBox1.getText().toString().trim();
+                final String  destinationStreet= answerBox2.getText().toString().trim();
 
-                final String answer3 = answerBox3.getText().toString().trim();
-                final String answer4 = answerBox4.getText().toString().trim();
+                final String startingCityStateZip = answerBox3.getText().toString().trim();
+                final String destinationCityStateZip = answerBox4.getText().toString().trim();
 
                 String hourValue = valettravel.getHourValue();
                 String minuteValue = valettravel.getMinuteValue();
@@ -189,8 +189,8 @@ public class ValetTravelActivity extends AppCompatActivity {
                 String requestType = "ValetTravel";
                 String requestDate=valettravel.getRequestDate();
 
-                if (!TextUtils.isEmpty(answer1) && !TextUtils.isEmpty(answer2)) {
-                    Service valettravel = new Service(requestType, requestDate, requestedTimeValet, answer1, answer3, answer2, answer4);
+                if (!TextUtils.isEmpty(startingStreet) && !TextUtils.isEmpty(startingCityStateZip)&& !TextUtils.isEmpty(destinationCityStateZip)&& !TextUtils.isEmpty(destinationStreet)) {
+                    Service valettravel = new Service(requestType, requestDate, requestedTimeValet, startingStreet, startingCityStateZip, destinationStreet, destinationCityStateZip);
 
                     myRef.child("Service").child(userID).child(request).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
