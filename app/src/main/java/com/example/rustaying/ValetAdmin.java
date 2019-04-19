@@ -48,14 +48,16 @@ public class ValetAdmin extends AppCompatActivity {
 
         ////XML Objects and Methods
         viewServices = (Button) findViewById(R.id.viewServicesValet);
-        logout = (Button) findViewById(R.id.valetLogout);
 
         viewServices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(ValetAdmin.this, ValetServices.class));
+                Log.d(TAG, "onClick: button clicked");
             }
         });
+
+        logout = (Button) findViewById(R.id.valetLogout);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override

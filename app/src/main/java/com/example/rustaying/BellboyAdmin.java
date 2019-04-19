@@ -26,8 +26,6 @@ public class BellboyAdmin extends AppCompatActivity {
     //xml variable
     Button viewServices, logout;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,15 +48,15 @@ public class BellboyAdmin extends AppCompatActivity {
 
         ////XML Objects and Methods
         viewServices = (Button) findViewById(R.id.viewServicesBB);
-        logout = (Button) findViewById(R.id.bellboyLogout);
-
         viewServices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(BellboyAdmin.this, BellboyServices.class));
+                Log.d(TAG, "onClick: button clicked");
             }
         });
 
+        logout = (Button) findViewById(R.id.bellboyLogout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

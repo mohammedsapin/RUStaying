@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RoomServiceAdmin"></activity>
+        <activity android:name=".ValetServices"></activity>
+        <activity android:name=".BellboyServices" />
+        <activity android:name=".RoomServiceAdmin" />
         <activity android:name=".MaintenanceAdmin" />
         <activity android:name=".ValetAdmin" />
         <activity android:name=".BellboyAdmin" />

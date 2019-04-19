@@ -57,17 +57,17 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                         else if (email.equals("bellboyadmin@mail.com")) {
                                             Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
-                                            Intent adminPage = new Intent(LoginActivity.this, AdminActivity.class);
+                                            Intent adminPage = new Intent(LoginActivity.this, BellboyAdmin.class);
                                             startActivity(adminPage);
                                         }
                                         else if (email.equals("valetadmin@mail.com")) {
                                             Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
-                                            Intent adminPage = new Intent(LoginActivity.this, AdminActivity.class);
+                                            Intent adminPage = new Intent(LoginActivity.this, ValetAdmin.class);
                                             startActivity(adminPage);
                                         }
                                         else if (email.equals("maintenanceadmin@mail.com")) {
                                             Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
-                                            Intent adminPage = new Intent(LoginActivity.this, AdminActivity.class);
+                                            Intent adminPage = new Intent(LoginActivity.this, MaintenanceAdmin.class);
                                             startActivity(adminPage);
                                         }
                                         else if (email.equals("roomservicesadmin@mail.com")) {
