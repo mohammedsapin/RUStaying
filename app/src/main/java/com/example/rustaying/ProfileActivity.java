@@ -60,6 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
                     case R.id.navigation_services:
                         break;
                 }
+                return false;
             }
         });
 

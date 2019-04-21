@@ -400,5 +400,5 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
 

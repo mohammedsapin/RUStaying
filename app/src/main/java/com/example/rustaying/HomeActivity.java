@@ -28,7 +28,6 @@ public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
 
     private Button logout, bkRmBtn, feedbackBtn, checkInBtn;
-    Guest g = new Guest(); //Guest object for user
 
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth auth;
