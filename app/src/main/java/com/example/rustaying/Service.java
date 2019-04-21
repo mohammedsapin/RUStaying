@@ -180,34 +180,6 @@ public class Service {
         this.requestedTimeValet = requestedTimeValet;
     }
 
-    public void setStartingStreet(String startingStreet) {
-        this.startingStreet = startingStreet;
-    }
-
-    public String getStartingCityStateZip() {
-        return startingCityStateZip;
-    }
-
-    public void setStartingCityStateZip(String startingCityStateZip) {
-        this.startingCityStateZip = startingCityStateZip;
-    }
-
-    public String getDestinationStreet() {
-        return destinationStreet;
-    }
-
-    public void setDestinationStreet(String destinationStreet) {
-        this.destinationStreet = destinationStreet;
-    }
-
-    public String getDestinationCityStateZip() {
-        return destinationCityStateZip;
-    }
-
-    public void setDestinationCityStateZip(String destinationCityStateZip) {
-        this.destinationCityStateZip = destinationCityStateZip;
-    }
-
     public String getRequestedTimeBellboy() {
         return requestedTimeBellboy;
     }

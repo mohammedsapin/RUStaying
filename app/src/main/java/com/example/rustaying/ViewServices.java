@@ -131,9 +131,9 @@ public class ViewServices extends AppCompatActivity{
 
 
             //valet (Mandy edited)
-            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
-                    info.getRequestedTimeValet(),info.getStartingStreet(),info.getStartingCityStateZip(),
-                    info.getDestinationStreet(),info.getDestinationCityStateZip()));
+//            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
+//                    info.getRequestedTimeValet(),info.getStartingStreet(),info.getStartingCityStateZip(),
+//                    info.getDestinationStreet(),info.getDestinationCityStateZip()));
 
             //Maintenance
 //            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),

@@ -41,7 +41,7 @@ public class ViewServicesAdapter extends RecyclerView.Adapter<ViewServicesAdapte
         viewHolder.requestType.setText(info.getRequestType());
         viewHolder.bellboyDate.setText(info.getRequestDate());
         viewHolder.luggageVal.setText(info.getLuggageValue());
-        viewHolder.requestTime.setText(info.getRequestedTimeBellboy());
+        //viewHolder.requestTime.setText(info.getRequestedTimeBellboy());
         viewHolder.fromWhere.setText(info.getFromWhere());
     }
 
@@ -50,11 +50,6 @@ public class ViewServicesAdapter extends RecyclerView.Adapter<ViewServicesAdapte
         return serviceList.size();
     }
 
-
-    public void deleteItem(int position){
-
-
-    }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView requestType, luggageVal, requestTime, bellboyDate, fromWhere;
