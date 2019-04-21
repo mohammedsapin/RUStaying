@@ -145,10 +145,10 @@ public class ViewServices extends AppCompatActivity implements SwipeControllerLi
             serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
                     info.getLuggageValue(),info.getRequestedTimeBellboy(),info.getFromWhere()));
 
-            //valet
+            //valet (Mandy edited)
             serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
-                    info.getRequestedTimeValet(),info.getAnswer1(),info.getAnswer2(),
-                    info.getAnswer3(),info.getAnswer4()));
+                    info.getRequestedTimeValet(),info.getStartingStreet(),info.getStartingCityStateZip(),
+                    info.getDestinationStreet(),info.getDestinationCityStateZip()));
 
             //Maintenance
             serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),

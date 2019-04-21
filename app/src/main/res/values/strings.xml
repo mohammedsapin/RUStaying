@@ -109,6 +109,8 @@
     <string name="request_travelvalet">REQUEST TRAVEL AND VALET</string>
     <string name="request_maintenance">REQUEST MAINTENANCE</string>
     <string name="request_roomservice">REQUEST ROOMSERVICE</string>
+    <string name="destination_address">Destination Address</string>
+    <string name="starting_address">Starting Address</string>
 </resources>
 =======
 <resources>

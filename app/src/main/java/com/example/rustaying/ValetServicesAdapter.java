@@ -36,10 +36,12 @@ public class ValetServicesAdapter extends RecyclerView.Adapter<ValetServicesAdap
         Service info = serviceList.get(i);
 
         viewHolder.requestType.setText(info.getRequestType());
-//        viewHolder.requestDate.setText(info.getRequestDate());
-        viewHolder.requestTime.setText(info.getRequestedTime());
-//        viewHolder.pickUp.setText(info.getPickUp());
-//        viewHolder.destination.setText(info.getDestination());
+        viewHolder.requestDate.setText(info.getRequestDate());
+        viewHolder.requestTime.setText(info.getRequestedTimeValet());
+        viewHolder.startingStreet.setText(info.getStartingStreet());
+        viewHolder.startingCityStateZip.setText(info.getStartingCityStateZip());
+        viewHolder.destinationStreet.setText(info.getDestinationStreet());
+        viewHolder.destinationCityStateZip.setText(info.getDestinationCityStateZip());
     }
 
     @Override
@@ -48,15 +50,19 @@ public class ValetServicesAdapter extends RecyclerView.Adapter<ValetServicesAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView requestType, requestDate, requestTime, pickUp, destination;
+        TextView requestType, requestDate, requestTime, startingStreet, startingCityStateZip,
+                destinationStreet, destinationCityStateZip;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
             requestType = itemView.findViewById(R.id.requestType);
             requestDate = itemView.findViewById(R.id.requestDate);
             requestTime = itemView.findViewById(R.id.requestTime);
-            pickUp = itemView.findViewById(R.id.pickUp);
-            destination = itemView.findViewById(R.id.destination);
+            startingStreet = itemView.findViewById(R.id.startingStreet);
+            startingCityStateZip = itemView.findViewById(R.id.startingCityStateZip);
+            destinationStreet = itemView.findViewById(R.id.destinationStreet);
+            destinationCityStateZip = itemView.findViewById(R.id.destinationCityStateZip);
+
         }
     }
 }

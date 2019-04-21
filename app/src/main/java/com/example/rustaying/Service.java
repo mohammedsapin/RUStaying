@@ -28,6 +28,10 @@ public class Service {
     private String requestedTimeMaintenance;
     private String requestedTimeRoomService;
     private String fromWhere;
+    private String startingStreet;
+    private String startingCityStateZip;
+    private String destinationStreet;
+    private String destinationCityStateZip;
 
     public Service(String requestType, String luggageValue, String requestedTimeBellboy,
                    String requestDate, String fromWhere) {
@@ -38,14 +42,46 @@ public class Service {
         this.fromWhere = fromWhere;
     }
 
+    public String getStartingStreet() {
+        return startingStreet;
+    }
+
+    public void setStartingStreet(String startingStreet) {
+        this.startingStreet = startingStreet;
+    }
+
+    public String getStartingCityStateZip() {
+        return startingCityStateZip;
+    }
+
+    public void setStartingCityStateZip(String startingCityStateZip) {
+        this.startingCityStateZip = startingCityStateZip;
+    }
+
+    public String getDestinationStreet() {
+        return destinationStreet;
+    }
+
+    public void setDestinationStreet(String destinationStreet) {
+        this.destinationStreet = destinationStreet;
+    }
+
+    public String getDestinationCityStateZip() {
+        return destinationCityStateZip;
+    }
+
+    public void setDestinationCityStateZip(String destinationCityStateZip) {
+        this.destinationCityStateZip = destinationCityStateZip;
+    }
+
     public Service(String requestType, String requestedTimeValet, String answer1, String answer2,
                    String answer3, String answer4, String requestDate) {
         this.requestType = requestType;
         this.requestedTimeValet = requestedTimeValet;
-        this.answer1 = answer1;
-        this.answer2 = answer2;
-        this.answer3 = answer3;
-        this.answer4 = answer4;
+        this.startingStreet = answer1;
+        this.destinationStreet = answer2;
+        this.startingCityStateZip = answer3;
+        this.destinationCityStateZip = answer4;
         this.requestDate = requestDate;
     }
 
