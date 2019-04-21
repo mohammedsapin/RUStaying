@@ -55,7 +55,28 @@ public class LoginActivity extends AppCompatActivity {
                                             Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
                                             Intent adminPage = new Intent(LoginActivity.this, AdminActivity.class);
                                             startActivity(adminPage);
-                                        } else {
+                                        }
+                                        else if (email.equals("bellboyadmin@mail.com")) {
+                                            Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
+                                            Intent adminPage = new Intent(LoginActivity.this, BellboyAdmin.class);
+                                            startActivity(adminPage);
+                                        }
+                                        else if (email.equals("valetadmin@mail.com")) {
+                                            Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
+                                            Intent adminPage = new Intent(LoginActivity.this, ValetAdmin.class);
+                                            startActivity(adminPage);
+                                        }
+                                        else if (email.equals("maintenanceadmin@mail.com")) {
+                                            Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
+                                            Intent adminPage = new Intent(LoginActivity.this, MaintenanceAdmin.class);
+                                            startActivity(adminPage);
+                                        }
+                                        else if (email.equals("roomservicesadmin@mail.com")) {
+                                            Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
+                                            Intent adminPage = new Intent(LoginActivity.this, AdminActivity.class);
+                                            startActivity(adminPage);
+                                        }
+                                        else {
                                             Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
                                             Intent homePage = new Intent(LoginActivity.this, HomeActivity.class);
                                             startActivity(homePage);
