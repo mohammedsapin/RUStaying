@@ -54,7 +54,25 @@
     <string name="rate_your_stay_at_varghese_hotel">Rate your stay at Varghese Hotel</string>
     <string name="number_of_bags">Number of Bags</string>
     <string name="hotel_info">hotel Info</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="button">Button</string>
+    <string name="view_your_past_reservations">View your past reservations</string>
+    <string name="edit_profile">Edit Profile?</string>
+    <string name="placebo">placebo</string>
+    <string name="send_email">Send Email</string>
+    <string name="edit_info">Edit info?</string>
+    <string name="edit_your_info">Edit your info</string>
+    <string name="please_enter_your_first_name">Please enter your first name</string>
+    <string name="first_name_here">First name here</string>
+    <string name="please_enter_your_last_name">Please enter your last name</string>
+    <string name="last_name_here">Last name here</string>
+    <string name="please_enter_your_new_email_address">Please enter your new email address</string>
+    <string name="email_here">Email here</string>
     <string name="textview">TextView</string>
+    <string name="welcome_bellboy">Welcome Bellboy</string>
+    <string name="welcome_valet">Welcome Valet</string>
+    <string name="welcome_maintenance">Welcome Maintenance</string>
     <string-array name="hours">
         <item>1</item>
         <item>2</item>
@@ -100,6 +118,23 @@
         <item>10</item>
     </string-array>
 
+    <string name="maintenance_title">CALL MAINTENANCE</string>
+    <string name="maintenance_input">Please provide a brief description of the problem:</string>
+
+    <string name="valet_title">CALL VALET OR TRAVEL</string>
+    <string name="startingAddress">Starting Address:</string>
+    <string name="destAddress">Destination Address:</string>
+    <string name="startingCity">City, State Zip:</string>
+    <string name="destCity">City, State Zip:</string>
+    <string name="startTitle">Starting Address:</string>
+    <string name="destTitle">Destination Address:</string>
+    <string name="request_travelvalet">REQUEST TRAVEL AND VALET</string>
+    <string name="request_maintenance">REQUEST MAINTENANCE</string>
+    <string name="request_roomservice">REQUEST ROOMSERVICE</string>
+    <string name="calendarServices">Select Date</string>
+    <string name="dateServices">Date</string>
+    <string name="roomserivce_title">CALL ROOMSERVICE</string>
+    <string name="fromLocation">Where should we pick up your luggage?</string>
     <string name="feedbk">Feedback Form</string>
     <string name="Q1">Please rate your experience</string>
     <string name="Q2">Which of these features did you use: </string>
@@ -117,3 +152,4 @@
     <string name="comments">Any additional comments or concerns:</string>
     <string name="typeHere">Type here</string>
 </resources>
+

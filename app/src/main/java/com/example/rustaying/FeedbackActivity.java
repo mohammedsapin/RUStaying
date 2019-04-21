@@ -78,6 +78,7 @@ public class FeedbackActivity extends AppCompatActivity {
         cBox4 = (CheckBox) findViewById(R.id.cb4);
         switch1 = (Switch)findViewById(R.id.switch1);
 
+
         submitButton = (Button) findViewById(R.id.submitButton);
 
         //feedbackDatabase = FirebaseDatabase.getInstance().getReference();
