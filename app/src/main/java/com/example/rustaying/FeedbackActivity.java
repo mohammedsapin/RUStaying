@@ -24,14 +24,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class FeedbackActivity extends AppCompatActivity {
     private static final String TAG = "Feedback Activity";
     private EditText answerBox1;
     private RatingBar ratingBar1,ratingBar2,ratingBar3,ratingBar4,ratingBar5;
     private CheckBox cBox1, cBox2, cBox3, cBox4;
     private Switch switch1;
-    //private RadioGroup rGroup1;
-    //private RadioButton rButton1,rButton2;
+
     private Button submitButton;
     // private FirebaseDatabase mFirebaseDatabase;
     //private DatabaseReference feedbackDatabase;
@@ -40,30 +42,12 @@ public class FeedbackActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String userID;
 
-    /*
-    public void onRadioButtonClicked(View view){
-        boolean checked = ((RadioButton) view).isChecked();
-
-        switch (view.getId()){
-            case R.id.radio1:
-                if(checked){
-                    rButton1 = true;
-                }
-                break;
-            case R.id.radio2:
-                if(checked){
-                    rButton2 = true;
-                }
-                break;
-        }
-    }
-    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
-        /*
+        
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -83,7 +67,6 @@ public class FeedbackActivity extends AppCompatActivity {
                 return false;
             }
         });
-        */
 
         ratingBar1 = (RatingBar) findViewById(R.id.rating1);
         ratingBar2 = (RatingBar) findViewById(R.id.rating2);
@@ -96,9 +79,7 @@ public class FeedbackActivity extends AppCompatActivity {
         cBox3 = (CheckBox) findViewById(R.id.cb3);
         cBox4 = (CheckBox) findViewById(R.id.cb4);
         switch1 = (Switch)findViewById(R.id.switch1);
-        //rGroup1 = (RadioGroup)findViewById(R.id.rGroup1);
-        //rButton1 = (RadioButton)findViewById(R.id.radio1);
-        //rButton2 = (RadioButton)findViewById(R.id.radio2);
+
 
         submitButton = (Button) findViewById(R.id.submitButton);
 
@@ -109,34 +90,30 @@ public class FeedbackActivity extends AppCompatActivity {
         myRef = mFirebaseDatabase.getReference();
         final FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
-        /*
+        
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                float notNull =0;
-                boolean notTrue = false;
+                //float notNull =0;
+                //boolean notTrue = false;
 
 
                 final String answer1 = answerBox1.getText().toString().trim();
 
-                final float rating1=ratingBar1.getRating();
-                final float rating2=ratingBar2.getRating();
-                final float rating3=ratingBar3.getRating();
-                final float rating4=ratingBar4.getRating();
-                final float rating5=ratingBar5.getRating();
+                final String rating1= Float.toString(ratingBar1.getRating());
+                final String rating2= Float.toString(ratingBar2.getRating());
+                final String rating3= Float.toString(ratingBar3.getRating());
+                final String rating4= Float.toString(ratingBar4.getRating());
+                final String rating5= Float.toString(ratingBar5.getRating());
 
                 final boolean check1 =cBox1.isChecked();
                 final boolean check2 =cBox2.isChecked();
                 final boolean check3 =cBox3.isChecked();
                 final boolean check4 =cBox4.isChecked();
                 final boolean switch1Checked = switch1.isChecked();
-                //final boolean radio1 = rButton1.isChecked();
-                //final boolean radio2 = rButton2.isChecked();
 
-
-
-                if (!TextUtils.isEmpty(answer1) && notNull!=0.0) {
+                if (ratingBar1.getRating() > 0){
                     Feedback feedbackInfo = new Feedback(rating1, rating2, rating3, rating4, rating5, answer1,
                             check1, check2, check3, check3, switch1Checked);
                     myRef.child("Feedback").child(userID).setValue(feedbackInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -148,11 +125,10 @@ public class FeedbackActivity extends AppCompatActivity {
                         }
                     });
 
-                } else{
+                }else{
                     Toast.makeText(FeedbackActivity.this,"Please fill out the required fields",Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        */
     }
 }

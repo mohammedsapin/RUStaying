@@ -4,16 +4,20 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 
 public class Feedback {
-    private float rating1, rating2, rating3, rating4, rating5;
+
+    private String rating1;
+    private String rating2;
+    private String rating3;
+    private String rating4;
+    private String rating5;
     private boolean cb1, cb2, cb3, cb4, sw1;
     private String answer1;
 
 
     public Feedback(){
-
     }
 
-    public Feedback(float rating1, float rating2, float rating3, float rating4, float rating5,
+    public Feedback(String rating1, String rating2, String rating3, String rating4, String rating5,
                     String answer1, boolean cb1, boolean cb2, boolean cb3, boolean cb4, boolean sw1){
         this.answer1 = answer1;
         this.rating1 = rating1;
@@ -26,19 +30,8 @@ public class Feedback {
         this.cb3 = cb3;
         this.cb4 = cb4;
         this.sw1= sw1;
-        //this.rButton1 = radio1;
-        //this.rButton2 = radio2;
-
     }
 
-
-    public float getRating1() {
-        return rating1;
-    }
-
-    public void setRating1(float rating1) {
-        this.rating1 = rating1;
-    }
 
 
     public float getRating2() {
@@ -83,5 +76,82 @@ public class Feedback {
         this.answer1 = answer1;
     }
 
+    public boolean isCb1() {
+        return cb1;
+    }
 
+    public void setCb1(boolean cb1) {
+        this.cb1 = cb1;
+    }
+
+    public boolean isCb2() {
+        return cb2;
+    }
+
+    public void setCb2(boolean cb2) {
+        this.cb2 = cb2;
+    }
+
+    public boolean isCb3() {
+        return cb3;
+    }
+
+    public void setCb3(boolean cb3) {
+        this.cb3 = cb3;
+    }
+
+    public boolean isCb4() {
+        return cb4;
+    }
+
+    public void setCb4(boolean cb4) {
+        this.cb4 = cb4;
+    }
+
+    public boolean isSw1() {
+        return sw1;
+    }
+
+    public void setSw1(boolean sw1) {
+        this.sw1 = sw1;
+    }
+    public String getRating1() {
+        return rating1;
+    }
+
+    public void setRating1(String rating1) {
+        this.rating1 = rating1;
+    }
+
+    public String getRating2() {
+        return rating2;
+    }
+
+    public void setRating2(String rating2) {
+        this.rating2 = rating2;
+    }
+
+    public String getRating3() {
+        return rating3;
+    }
+
+    public void setRating3(String rating3) {
+        this.rating3 = rating3;
+    }
+
+    public String getRating4() {
+        return rating4;
+    }
+
+    public void setRating4(String rating4) {
+        this.rating4 = rating4;
+    }
+
+    public String getRating5() {
+        return rating5;
+    }
+
+    public void setRating5(String rating5) {
+        this.rating5 = rating5;
+    }
 }

@@ -8,7 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,11 +37,33 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private String userID;
     private Guest g = new Guest();
-
+    private Button Edit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.navigation_account:
+                        Intent account = new Intent(ProfileActivity.this,ProfileActivity.class);
+                        startActivity(account);
+                        break;
+                    case R.id.navigation_home:
+                        Intent home = new Intent(ProfileActivity.this,HomeActivity.class);
+                        startActivity(home);
+                        break;
+                    case R.id.navigation_services:
+                        break;
+                }
+            }
+        });
+
+
 
         //mListView=(ListView)findViewById(R.id.guestInfo);
         mFirebaseDatabase=FirebaseDatabase.getInstance();
@@ -47,6 +71,17 @@ public class ProfileActivity extends AppCompatActivity {
         myRef=mFirebaseDatabase.getReference();
         FirebaseUser user = auth.getCurrentUser();
         userID = user.getUid();
+
+
+
+        Edit = (Button) findViewById(R.id.EditButton);
+        Edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent editInfo = new Intent(ProfileActivity.this,EditInfoActivity.class);
+                startActivity(editInfo); //Redirect to feedback page
+            }
+        });
 
 
 
@@ -93,14 +128,10 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void showData(DataSnapshot dataSnapshot) {
-            g.setFirstName(dataSnapshot.getValue(Guest.class).getFirstName());
-            g.setLastName(dataSnapshot.getValue(Guest.class).getLastName());
-            g.setCheckedIn(dataSnapshot.getValue(Guest.class).isCheckedIn());
-            g.setGuestEmail(dataSnapshot.getValue(Guest.class).getGuestEmail());
-            g.setAccountStatus(dataSnapshot.getValue(Guest.class).isAccountStatus());
-            g.setLuggage(dataSnapshot.getValue(Guest.class).getLuggage());
-            g.setCheckInDate(dataSnapshot.getValue(Guest.class).getCheckInDate());
-            g.setCheckOutDate(dataSnapshot.getValue(Guest.class).getCheckOutDate());
+        g.setFirstName(dataSnapshot.getValue(Guest.class).getFirstName());
+        g.setLastName(dataSnapshot.getValue(Guest.class).getLastName());
+        g.setGuestEmail(dataSnapshot.getValue(Guest.class).getGuestEmail());
+
     }
 
     @Override
