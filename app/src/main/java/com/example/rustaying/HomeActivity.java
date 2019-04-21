@@ -16,15 +16,23 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class HomeActivity extends AppCompatActivity {
-
+    private Guest g = new Guest();
     private static final String TAG = "HomeActivity";
 
-    private Button logout, bkRmBtn, feedbackBtn;
+    private Button logout, bkRmBtn, feedbackBtn, checkInBtn;
 
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth auth;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +59,17 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
+
+
         auth = FirebaseAuth.getInstance();
+        mFirebaseDatabase=FirebaseDatabase.getInstance();
+        myRef=mFirebaseDatabase.getReference();
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        myRef = mFirebaseDatabase.getReference();
+
+
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -61,11 +78,28 @@ public class HomeActivity extends AppCompatActivity {
                     Log.d(TAG, "onAuthStateChanged: Signed out");
                     finish();
                 }
+                else
+                {
+                    String userID = user.getUid();
+                    myRef.child("Guest").child(userID).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            initGuestObject(dataSnapshot); //Initializing Object works
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }
             }
         };
 
         logout = (Button) findViewById(R.id.logoutBtn);
-
+        /*
         logout.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -111,21 +145,85 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent bookRoomPage = new Intent(HomeActivity.this, ViewRooms.class);
+                Intent bookRoomPage = new Intent(HomeActivity.this, ReservationActivity.class);
                 startActivity(bookRoomPage); //Redirect to list of all rooms
             }
         }
         );
+        */
 
         feedbackBtn = (Button)findViewById(R.id.feedbackBtn);
-        feedbackBtn.setOnClickListener(new View.OnClickListener() {
+        String userID = user.getUid();
+
+        myRef.child("Guest").child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                showData(dataSnapshot);
+                final Boolean check = g.isCheckedIn();
+
+                feedbackBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (check){
+                            Intent feedback = new Intent(HomeActivity.this, FeedbackActivity.class);
+                            startActivity(feedback); //Redirect to feedback page
+                        }
+                        else{
+                            Toast.makeText(HomeActivity.this,"You don't have access to Feedback since you are not checked-in.",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        checkInBtn = (Button)findViewById(R.id.checkInBtn);
+        checkInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                Intent feedback = new Intent(HomeActivity.this,FeedbackActivity.class);
-                startActivity(feedback); //Redirect to feedback page
+
+                //On button click, check the check in and check out dates
+                if(g.getCheckInDate().equals("") || g.getCheckInDate() == null
+                        || g.getCheckOutDate().equals("") || g.getCheckOutDate() == null) //Means no reservation made
+                {
+                    Toast.makeText(HomeActivity.this, "You have no reservations",Toast.LENGTH_SHORT).show();
+                }
+
+                else //If there is reservation, setup intent and send checkIn and checkOut date to new activity
+                {
+                    Intent checkInAct = new Intent(HomeActivity.this, CheckInActivity.class);
+
+                    //Set up Bundle to send checkIn and checkOut dates to CheckInActivity
+                    Bundle b = new Bundle();
+                    b.putString("checkInDate", g.getCheckInDate());
+                    b.putString("checkOutDate", g.getCheckOutDate());
+
+
+                    checkInAct.putExtra("reservationDates", b);
+                    startActivity(checkInAct); //Redirect to check in page
+
+                }
             }
         });
+
+    }
+
+    private void initGuestObject(DataSnapshot dataSnapshot)
+    {
+            //Setting fields of guest object
+            g.setFirstName(dataSnapshot.getValue(Guest.class).getFirstName());
+            g.setLastName(dataSnapshot.getValue(Guest.class).getLastName());
+            g.setCheckedIn(dataSnapshot.getValue(Guest.class).isCheckedIn());
+            g.setAccountStatus(dataSnapshot.getValue(Guest.class).isAccountStatus());
+            g.setLuggage(dataSnapshot.getValue(Guest.class).getLuggage());
+            g.setCheckInDate(dataSnapshot.getValue(Guest.class).getCheckInDate());
+            g.setCheckOutDate(dataSnapshot.getValue(Guest.class).getCheckOutDate());
 
     }
 
@@ -148,5 +246,8 @@ public class HomeActivity extends AppCompatActivity {
         if (authStateListener != null){
             auth.removeAuthStateListener(authStateListener);
         }
+    }
+    private void showData(DataSnapshot dataSnapshot) {
+        g.setCheckedIn(dataSnapshot.getValue(Guest.class).isCheckedIn());
     }
 }

@@ -99,6 +99,7 @@ public class EditInfoActivity extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 Toast.makeText(EditInfoActivity.this, "Info updated", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(EditInfoActivity.this, ProfileActivity.class));
+                                finish();
 
                             }else{
                                 startActivity(new Intent(EditInfoActivity.this, ProfileActivity.class));

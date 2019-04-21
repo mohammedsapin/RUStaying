@@ -37,7 +37,9 @@ public class BellboyServicesAdapter extends RecyclerView.Adapter<BellboyServices
 
         viewHolder.requestType.setText(info.getRequestType());
         viewHolder.luggageVal.setText(info.getLuggageValue());
-        //viewHolder.requestTime.setText(info.getRequestedTime());
+        viewHolder.requestTime.setText(info.getRequestedTimeBellboy());
+        viewHolder.fromWhere.setText(info.getFromWhere());
+        viewHolder.requestDate.setText(info.getRequestDate());
     }
 
     @Override
@@ -46,13 +48,16 @@ public class BellboyServicesAdapter extends RecyclerView.Adapter<BellboyServices
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView requestType, luggageVal, requestTime;
+        TextView requestType, luggageVal, requestTime, requestDate, fromWhere;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
             requestType = itemView.findViewById(R.id.requestType);
             luggageVal = itemView.findViewById(R.id.luggageVal);
             requestTime = itemView.findViewById(R.id.requestTime);
+            requestDate = itemView.findViewById(R.id.requestDate);
+            fromWhere = itemView.findViewById(R.id.fromWhere);
+
         }
     }
 }

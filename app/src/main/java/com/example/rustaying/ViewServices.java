@@ -129,7 +129,11 @@ public class ViewServices extends AppCompatActivity{
             serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
                     info.getLuggageValue(),info.getRequestedTimeBellboy(),info.getFromWhere()));
 
-            //Valet
+
+            //valet (Mandy edited)
+            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
+                    info.getRequestedTimeValet(),info.getStartingStreet(),info.getStartingCityStateZip(),
+                    info.getDestinationStreet(),info.getDestinationCityStateZip()));
 
             //Maintenance
 //            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),

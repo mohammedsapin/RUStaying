@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = "MainActivity";
     private Button registerBtn;
     private Button loginBtn;
     private Button hotelInfoBtn;
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         viewRoomsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent viewRooms = new Intent(MainActivity.this, ViewRooms.class);
+                Intent viewRooms = new Intent(MainActivity.this, ReservationActivity.class);
                 startActivity(viewRooms);
             }
         });

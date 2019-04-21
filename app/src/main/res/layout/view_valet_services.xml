@@ -7,7 +7,8 @@
     android:clickable="true"
     android:focusable="true"
     android:layout_margin="8dp"
-    android:background="?android:attr/selectableItemBackground">
+
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,7 +58,52 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/pickUp"
+                android:text="@string/starting_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/startingStreet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/startingCityStateZip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="@string/destination_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/design_default_color_primary"
@@ -71,9 +117,25 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/destination"
-                android:layout_width="wrap_content"
+                android:id="@+id/destinationStreet"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/destinationCityStateZip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
                 android:textColor="@color/design_default_color_primary"
                 android:textSize="16sp" />
 
