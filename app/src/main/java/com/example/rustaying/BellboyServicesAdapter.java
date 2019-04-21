@@ -40,7 +40,6 @@ public class BellboyServicesAdapter extends RecyclerView.Adapter<BellboyServices
         viewHolder.requestTime.setText(info.getRequestedTimeBellboy());
         viewHolder.fromWhere.setText(info.getFromWhere());
         viewHolder.requestDate.setText(info.getRequestDate());
-
     }
 
     @Override

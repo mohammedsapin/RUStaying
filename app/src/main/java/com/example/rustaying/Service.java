@@ -10,10 +10,6 @@ public class Service {
     private String ampmValue;
     private String luggageValue;
     private String requestedTimeValet;
-    private String answer1;
-    private String answer2;
-    private String answer3;
-    private String answer4;
     private String requestedTimeBellboy;
     private String requestDate;
     private String inputs;
@@ -184,36 +180,32 @@ public class Service {
         this.requestedTimeValet = requestedTimeValet;
     }
 
-    public String getAnswer1() {
-        return answer1;
+    public void setStartingStreet(String startingStreet) {
+        this.startingStreet = startingStreet;
     }
 
-    public void setAnswer1(String answer1) {
-        this.answer1 = answer1;
+    public String getStartingCityStateZip() {
+        return startingCityStateZip;
     }
 
-    public String getAnswer2() {
-        return answer2;
+    public void setStartingCityStateZip(String startingCityStateZip) {
+        this.startingCityStateZip = startingCityStateZip;
     }
 
-    public void setAnswer2(String answer2) {
-        this.answer2 = answer2;
+    public String getDestinationStreet() {
+        return destinationStreet;
     }
 
-    public String getAnswer3() {
-        return answer3;
+    public void setDestinationStreet(String destinationStreet) {
+        this.destinationStreet = destinationStreet;
     }
 
-    public void setAnswer3(String answer3) {
-        this.answer3 = answer3;
+    public String getDestinationCityStateZip() {
+        return destinationCityStateZip;
     }
 
-    public String getAnswer4() {
-        return answer4;
-    }
-
-    public void setAnswer4(String answer4) {
-        this.answer4 = answer4;
+    public void setDestinationCityStateZip(String destinationCityStateZip) {
+        this.destinationCityStateZip = destinationCityStateZip;
     }
 
     public String getRequestedTimeBellboy() {

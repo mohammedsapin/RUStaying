@@ -110,14 +110,6 @@ public class BellboyServices extends AppCompatActivity {
             //bellboy
             serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
                     info.getLuggageValue(),info.getRequestedTimeBellboy(),info.getFromWhere()));
-
-            Log.d(TAG, "showData: " + info.getRequestType());
-            Log.d(TAG, "showData: " + info.getRequestDate());
-            Log.d(TAG, "showData: " + info.getLuggageValue());
-            Log.d(TAG, "showData: " + info.getRequestedTimeBellboy());
-            Log.d(TAG, "showData: " + info.getFromWhere());
-            Log.d(TAG, "showData: Array List: " + info);
-
             //add array list to recycle view
             createRecycleView();
         }

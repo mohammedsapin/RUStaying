@@ -114,17 +114,6 @@ public class ValetServices extends AppCompatActivity {
                     info.getRequestedTimeValet(),info.getStartingStreet(),info.getStartingCityStateZip(),
                     info.getDestinationStreet(),info.getDestinationCityStateZip()));
 
-            //change view services class //
-
-            Log.d(TAG, "showData: " + info.getRequestType());
-            Log.d(TAG, "showData: " + info.getRequestDate());
-            Log.d(TAG, "showData: " + info.getRequestedTimeValet());
-            Log.d(TAG, "showData: " + info.getStartingStreet());
-            Log.d(TAG, "showData: " + info.getStartingCityStateZip());
-            Log.d(TAG, "showData: " + info.getDestinationStreet());
-            Log.d(TAG, "showData: " + info.getDestinationCityStateZip());
-            Log.d(TAG, "showData: Array List: " + info);
-
             //add array list to recycle view
             createRecycleView();
         }

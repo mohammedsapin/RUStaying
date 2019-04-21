@@ -120,10 +120,10 @@ public class ViewServices extends AppCompatActivity implements SwipeControllerLi
 
             //Valet
             info.setRequestedTimeValet(data.getValue(Service.class).getRequestedTimeValet());
-            info.setAnswer1(data.getValue(Service.class).getAnswer1());
-            info.setAnswer2(data.getValue(Service.class).getAnswer2());
-            info.setAnswer3(data.getValue(Service.class).getAnswer3());
-            info.setAnswer4(data.getValue(Service.class).getAnswer4());
+            //info.setAnswer1(data.getValue(Service.class).getAnswer1());
+            //info.setAnswer2(data.getValue(Service.class).getAnswer2());
+            //info.setAnswer3(data.getValue(Service.class).getAnswer3());
+            //info.setAnswer4(data.getValue(Service.class).getAnswer4());
 
             //Maintenance
             info.setRequestedTimeMaintenance(data.getValue(Service.class).getRequestedTimeMaintenance());
