@@ -29,12 +29,12 @@ public class Service {
     private String destinationStreet;
     private String destinationCityStateZip;
 
-    public Service(String requestType, String luggageValue, String requestedTimeBellboy,
-                   String requestDate, String fromWhere) {
+    public Service(String requestType, String requestDate, String luggageValue,
+                   String requestedTimeBellboy, String fromWhere) {
         this.requestType = requestType;
+        this.requestDate = requestDate;
         this.luggageValue = luggageValue;
         this.requestedTimeBellboy = requestedTimeBellboy;
-        this.requestDate = requestDate;
         this.fromWhere = fromWhere;
     }
 

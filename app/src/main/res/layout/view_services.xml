@@ -22,8 +22,17 @@
                 android:id="@+id/requestType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Request"
                 android:textColor="@color/design_default_color_primary"
                 android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/bellboyDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary" />
 
         </LinearLayout>
 
@@ -33,9 +42,17 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of Bags: "
+                android:textColor="@color/design_default_color_primary" />
+
+            <TextView
                 android:id="@+id/luggageVal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="4"
                 android:textColor="@color/design_default_color_primary"
                 android:textSize="16sp" />
 
@@ -43,11 +60,27 @@
                 android:id="@+id/requestTimeBellboy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="11:00 AM"
                 android:textAlignment="textEnd"
                 android:textColor="@color/design_default_color_primary"
                 android:textSize="16sp" />
 
         </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/fromWhere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lobby"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="16sp" />
+
+</LinearLayout>
 
     </LinearLayout>
 

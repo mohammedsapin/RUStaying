@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class ViewServicesAdapter extends RecyclerView.Adapter<ViewServicesAdapter.ViewHolder> {
@@ -36,8 +39,10 @@ public class ViewServicesAdapter extends RecyclerView.Adapter<ViewServicesAdapte
         Service info = serviceList.get(i);
 
         viewHolder.requestType.setText(info.getRequestType());
+        viewHolder.bellboyDate.setText(info.getRequestDate());
         viewHolder.luggageVal.setText(info.getLuggageValue());
-        //viewHolder.requestTime.setText(info.getRequestedTime());
+        viewHolder.requestTime.setText(info.getRequestedTimeBellboy());
+        viewHolder.fromWhere.setText(info.getFromWhere());
     }
 
     @Override
@@ -45,19 +50,22 @@ public class ViewServicesAdapter extends RecyclerView.Adapter<ViewServicesAdapte
         return serviceList.size();
     }
 
-    public void removeItem(int position){
-        serviceList.remove(position);
-        notifyItemRemoved(position);
+
+    public void deleteItem(int position){
+
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView requestType, luggageVal, requestTime;
+        TextView requestType, luggageVal, requestTime, bellboyDate, fromWhere;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
             requestType = itemView.findViewById(R.id.requestType);
+            bellboyDate = itemView.findViewById(R.id.bellboyDate);
             luggageVal = itemView.findViewById(R.id.luggageVal);
             requestTime = itemView.findViewById(R.id.requestTime);
+            fromWhere = itemView.findViewById(R.id.fromWhere);
         }
     }
 }

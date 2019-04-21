@@ -187,7 +187,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                 Random rand = new Random();
                 long random = 100000000 + rand.nextInt(900000000);
                 bellboy.setRequestID(random);
-                long requestID=bellboy.getRequestID();
+                long requestID = bellboy.getRequestID();
                 String request= Long.toString(requestID);
                 String hourValue = bellboy.getHourValue();
                 String minuteValue = bellboy.getMinuteValue();
