@@ -151,5 +151,9 @@
     <string name="maintenance">If you used the Maintenance Service feature, please rate it: </string>
     <string name="comments">Any additional comments or concerns:</string>
     <string name="typeHere">Type here</string>
+    <string name="bellboy_requests">Bellboy Requests</string>
+    <string name="valet_and_travel_requests">Valet and Travel Requests</string>
+    <string name="maintenance_requests">Maintenance Requests</string>
+    <string name="room_service_requests">Room Service Requests</string>
 </resources>
 

@@ -1,72 +1,73 @@
 package com.example.rustaying;
 
-
+import android.content.Context;
 import android.graphics.Canvas;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class SwipeController extends ItemTouchHelper.SimpleCallback {
 
-    private SwipeControllerListener listener;
+    private RecyclerView mAdapter;
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("Service");
+    private Drawable icon;
+    private final ColorDrawable background;
 
 
-    public SwipeController(int dragDirs, int swipeDirs, SwipeControllerListener listener) {
-        super(dragDirs, swipeDirs);
-        this.listener = listener;
+    public SwipeController(RecyclerView adapter) {
+        super(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
+        mAdapter = adapter;
+        icon = ContextCompat.getDrawable(mAdapter.getContext(),R.drawable.ic_check_white_24dp);
+        background = new ColorDrawable(Color.RED);
     }
 
     @Override
-    public boolean onMove(@NonNull RecyclerView recyclerView,
-                          @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
-        return true;
+    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+        // used for up and down movements
+        return false;
     }
 
     @Override
-    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        if (listener!=null){
-            listener.onSwipe(viewHolder,i,viewHolder.getAdapterPosition());
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction){
+        int position = viewHolder.getAdapterPosition();
+    }
+
+    @Override
+    public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+        super.onChildDraw(c, recyclerView, viewHolder, dX,
+                dY, actionState, isCurrentlyActive);
+        View itemView = viewHolder.itemView;
+        int backgroundCornerOffset = 20;
+        int iconMargin = (itemView.getHeight() - icon.getIntrinsicHeight()) / 2;
+        int iconTop = itemView.getTop() + (itemView.getHeight() - icon.getIntrinsicHeight()) / 2;
+        int iconBottom = iconTop + icon.getIntrinsicHeight();
+
+        if (dX > 0) { // Swiping to the right
+            int iconLeft = itemView.getLeft() + iconMargin + icon.getIntrinsicWidth();
+            int iconRight = itemView.getLeft() + iconMargin;
+            icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
+
+            background.setBounds(itemView.getLeft(), itemView.getTop(),
+                    itemView.getLeft() + ((int) dX) + backgroundCornerOffset,
+                    itemView.getBottom());
+        } else if (dX < 0) { // Swiping to the left
+            int iconLeft = itemView.getRight() - iconMargin - icon.getIntrinsicWidth();
+            int iconRight = itemView.getRight() - iconMargin;
+            icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
+
+            background.setBounds(itemView.getRight() + ((int) dX) - backgroundCornerOffset,
+                    itemView.getTop(), itemView.getRight(), itemView.getBottom());
+        } else { // view is unSwiped
+            background.setBounds(0, 0, 0, 0);
         }
-    }
-
-    @Override
-    public void clearView(@NonNull RecyclerView recyclerView,
-                          @NonNull RecyclerView.ViewHolder viewHolder) {
-        View foregroundView = ((ViewServicesAdapter.ViewHolder)viewHolder).itemView;
-        getDefaultUIUtil().clearView(foregroundView);
-    }
-
-    @Override
-    public int convertToAbsoluteDirection(int flags, int layoutDirection) {
-        return super.convertToAbsoluteDirection(flags, layoutDirection);
-    }
-
-
-
-    @Override
-    public void onSelectedChanged(@Nullable RecyclerView.ViewHolder viewHolder, int actionState) {
-        if (viewHolder != null){
-            View foregroundView = ((ViewServicesAdapter.ViewHolder)viewHolder).itemView;
-            getDefaultUIUtil().onSelected(foregroundView);
-        }
-    }
-
-    @Override
-    public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView,
-                            @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY,
-                            int actionState, boolean isCurrentlyActive) {
-        View foregroundView = ((ViewServicesAdapter.ViewHolder)viewHolder).itemView;
-        getDefaultUIUtil().onDraw(c,recyclerView,foregroundView,dX,dY,actionState,isCurrentlyActive);
-    }
-
-    @Override
-    public void onChildDrawOver(@NonNull Canvas c, @NonNull RecyclerView recyclerView,
-                                RecyclerView.ViewHolder viewHolder, float dX, float dY,
-                                int actionState, boolean isCurrentlyActive) {
-        View foregroundView = ((ViewServicesAdapter.ViewHolder)viewHolder).itemView;
-        getDefaultUIUtil().onDrawOver(c,recyclerView,foregroundView,dX,dY,actionState,
-                isCurrentlyActive);
+        background.draw(c);
+        icon.draw(c);
     }
 }

@@ -11,19 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditInfoActivity"></activity>
-         <activity android:name=".PasswordActivity" />
-        <activity android:name=".ValetServices"></activity>
+        <activity android:name=".AdminServiceList"></activity>
+        <activity android:name=".EditInfoActivity" />
+        <activity android:name=".PasswordActivity" />
+        <activity android:name=".ValetServices" />
         <activity android:name=".BellboyServices" />
         <activity android:name=".RoomServiceAdmin" />
         <activity android:name=".MaintenanceAdmin" />
         <activity android:name=".ValetAdmin" />
         <activity android:name=".BellboyAdmin" />
-        <activity android:name=".RoomServiceActivity"></activity>
+        <activity android:name=".RoomServiceActivity" />
         <activity android:name=".ValetTravelActivity" />
         <activity android:name=".MaintenanceActivity" />
         <activity android:name=".ViewRooms" />
         <activity android:name=".ViewGuests" />
+        <activity android:name=".ViewServices" />
         <activity android:name=".BellboyActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".ServicesActivity" />
@@ -42,4 +44,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
