@@ -59,15 +59,13 @@
                 android:id="@+id/bookBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/roomNum"
                 android:layout_alignTop="@+id/roomType"
+                android:layout_alignEnd="@+id/price"
                 android:layout_alignBottom="@+id/roomPic"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="155dp"
-                android:layout_marginTop="26dp"
-                android:layout_marginEnd="26dp"
-                android:layout_marginBottom="16dp"
-                android:text="@string/book" />
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="-215dp"
+                android:layout_marginBottom="14dp"
+                android:text="Book" />
 
         </RelativeLayout>
 

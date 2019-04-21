@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,13 +31,13 @@ public class newViewRooms extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
-
+    private ResInfo resInfo;
 
     RecyclerView recyclerView;
     newRoomAdapter adapter;
 
     ArrayList<Room> roomList = new ArrayList<>();
-
+    String[] receivedRoomTypes = new String[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +48,28 @@ public class newViewRooms extends AppCompatActivity {
         Intent i = getIntent();
         Bundle b = i.getBundleExtra("resInfo");
 
-        String checkIn = b.getString("checkIn");
-        String[] roomTypes = new String[3];
-        roomTypes = b.getStringArray("roomTypes");
+        receivedRoomTypes = b.getStringArray("roomTypes");
 
-        Log.i(TAG, "TTTTT: " + checkIn);
+        int inDay = b.getInt("inDay");
+        int inMonth = b.getInt("inMonth");
+        int inYear = b.getInt("inYear");
+
+        int outDay = b.getInt("outDay");
+        int outMonth = b.getInt("outMonth");
+        int outYear = b.getInt("outYear");
+
+        Log.i(TAG, "onCreate: " + inDay);
+        Log.i(TAG, "onCreate: " + inMonth);
+        Log.i(TAG, "onCreate: " + inYear);
+
+        Log.i(TAG, "onCreate: " + outDay);
+        Log.i(TAG, "onCreate: " + outMonth);
+        Log.i(TAG, "onCreate: " + outYear);
+
+        LocalDate inDate = parseDate(inYear, inMonth, inDay);
+        LocalDate outDate = parseDate(outYear, outMonth, outDay);
+
+        resInfo = new ResInfo(inDate, outDate, receivedRoomTypes);
 
         createRecycleView();
 
@@ -72,7 +93,6 @@ public class newViewRooms extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 showData(dataSnapshot);
-                Log.i(TAG, "YYYYYY " + roomList.get(0).getRoomType());
             }
 
             @Override
@@ -81,20 +101,19 @@ public class newViewRooms extends AppCompatActivity {
             }
         });
 
-        /*
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        //recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new newRoomAdapter(this, roomList);
-        recyclerView.setAdapter(adapter);
-        */
+
+    }
+
+    private LocalDate parseDate(int year, int month, int date)
+    {
+        return LocalDate.of(year, month, date);
     }
 
     private void createRecycleView(){
         Log.d(TAG, "createRecycleView: Started view");
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        newRoomAdapter adapter = new newRoomAdapter(this,roomList);
+        newRoomAdapter adapter = new newRoomAdapter(this,roomList, resInfo);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
@@ -109,7 +128,24 @@ public class newViewRooms extends AppCompatActivity {
             room.setRoomType(data.getValue(Room.class).getRoomType()); // set last name
             room.setIsAvailable(data.getValue(Room.class).getIsAvailable()); // set email
 
-            Log.d(TAG, "showData: " + room.getRoomType());
+
+            if(receivedRoomTypes[0] == null && room.getRoomType().equals("Single"))
+            {
+                continue;
+            }
+            else if (receivedRoomTypes[1] == null && room.getRoomType().equals("Double"))
+            {
+                continue;
+            }
+            else if(receivedRoomTypes[2] == null && room.getRoomType().equals("Queen"))
+            {
+                continue;
+            }
+            else if(receivedRoomTypes[3] == null && room.getRoomType().equals("King"))
+            {
+                continue;
+            }
+
 
             //add object to array list
             roomList.add(new Room(room.getRoomId(),room.getRoomType(),room.getIsAvailable()));

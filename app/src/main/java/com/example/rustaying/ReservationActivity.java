@@ -133,7 +133,7 @@ public class ReservationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String[] roomTypes = new String[3]; //String array of room types checked
+                String[] roomTypes = new String[4]; //String array of room types checked
                 //Determine which checkboxes are checked
                 if(single.isChecked())
                 {
@@ -163,6 +163,15 @@ public class ReservationActivity extends AppCompatActivity {
                     Intent viewRooms = new Intent(ReservationActivity.this, newViewRooms.class);
 
                     Bundle b = new Bundle();
+
+                    b.putInt("inDay", info.getCheckIn().getDayOfMonth());
+                    b.putInt("inMonth", info.getCheckIn().getMonth().getValue());
+                    b.putInt("inYear", info.getCheckIn().getYear());
+
+                    b.putInt("outDay", info.getCheckOut().getDayOfMonth());
+                    b.putInt("outMonth", info.getCheckOut().getMonth().getValue());
+                    b.putInt("outYear", info.getCheckOut().getYear());
+
                     b.putString("checkIn", info.getCheckIn().toString());
                     b.putString("checkOut", info.getCheckOut().toString());
                     b.putStringArray("roomTypes", info.getRoomTypes());

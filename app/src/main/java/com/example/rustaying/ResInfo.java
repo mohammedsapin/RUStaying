@@ -4,9 +4,12 @@ import java.time.LocalDate;
 public class ResInfo {
     private LocalDate checkIn;
     private LocalDate checkOut;
-    private String [] roomTypes = new String[3]; //Hold types of rooms guest wants
+    private String [] roomTypes = new String[4]; //Hold types of rooms guest wants
 
-    //Constructor
+    //Constructors
+    public ResInfo(){
+
+    }
     public ResInfo(LocalDate checkIn, LocalDate checkOut, String[] roomTypes)
     {
         this.checkIn = checkIn;

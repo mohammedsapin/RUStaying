@@ -77,10 +77,29 @@
     <string name="room_number">Room Number</string>
     <string name="single_room_full_bed">Single Room - Full Bed</string>
     <string name="price">Price</string>
-    <string name="book">Book!</string>
+    <string name="book1">Book!</string>
     <string name="todo">TODO</string>
     <string name="testt">TESTT</string>
 
+    <string name="feedbk">Feedback Form</string>
+    <string name="Q1">Please rate your experience</string>
+    <string name="Q2">Which of these features did you use: </string>
+    <string name="cb1">Room Service</string>
+    <string name="cb2">Bellboy Services</string>
+    <string name="cb3">Valet Services</string>
+    <string name="cb4">Maintenance</string>
+    <string name="chkin">If you used our Online Check-In feature, did you find it convenient?</string>
+    <string name="y">Yes</string>
+    <string name="n">No</string>
+    <string name="roomservice">If you used our Room Service feature, please rate it: </string>
+    <string name="Bellboyservice">If you used our Bellboy feature, please rate it: </string>
+    <string name="ValetServices">If you used the Valet Service feature, please rate it: </string>
+    <string name="maintenance">If you used the Maintenance Service feature, please rate it: </string>
+    <string name="comments">Any additional comments or concerns:</string>
+    <string name="typeHere">Type here</string>
+    <string name="book">Book!</string>
+
+    <string name="edit_info">Edit Info</string>
 
     <string-array name="hours">
         <item>1</item>

@@ -164,7 +164,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Log.i(TAG, "T" + g.getCheckInDate());
 
                 //On button click, check the check in and check out dates
                 if(g.getCheckInDate().equals("") || g.getCheckInDate() == null
@@ -172,12 +171,12 @@ public class HomeActivity extends AppCompatActivity {
                 {
                     Toast.makeText(HomeActivity.this, "You have no reservations",Toast.LENGTH_SHORT).show();
                 }
+
                 else //If there is reservation, setup intent and send checkIn and checkOut date to new activity
                 {
-
                     Intent checkInAct = new Intent(HomeActivity.this, CheckInActivity.class);
 
-                    //Set up Bundle to send checkIn and checkOut dates to ChechInActivity
+                    //Set up Bundle to send checkIn and checkOut dates to CheckInActivity
                     Bundle b = new Bundle();
                     b.putString("checkInDate", g.getCheckInDate());
                     b.putString("checkOutDate", g.getCheckOutDate());
