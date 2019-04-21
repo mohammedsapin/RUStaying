@@ -54,6 +54,21 @@
     <string name="rate_your_stay_at_varghese_hotel">Rate your stay at Varghese Hotel</string>
     <string name="number_of_bags">Number of Bags</string>
     <string name="hotel_info">hotel Info</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="button">Button</string>
+    <string name="view_your_past_reservations">View your past reservations</string>
+    <string name="edit_profile">Edit Profile?</string>
+    <string name="placebo">placebo</string>
+    <string name="send_email">Send Email</string>
+    <string name="edit_info">Edit info?</string>
+    <string name="edit_your_info">Edit your info</string>
+    <string name="please_enter_your_first_name">Please enter your first name</string>
+    <string name="first_name_here">First name here</string>
+    <string name="please_enter_your_last_name">Please enter your last name</string>
+    <string name="last_name_here">Last name here</string>
+    <string name="please_enter_your_new_email_address">Please enter your new email address</string>
+    <string name="email_here">Email here</string>
     <string name="textview">TextView</string>
     <string name="welcome_bellboy">Welcome Bellboy</string>
     <string name="welcome_valet">Welcome Valet</string>
@@ -137,3 +152,4 @@
     <string name="comments">Any additional comments or concerns:</string>
     <string name="typeHere">Type here</string>
 </resources>
+
