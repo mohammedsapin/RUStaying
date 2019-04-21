@@ -29,7 +29,6 @@ public class Service {
     private String destinationStreet;
     private String destinationCityStateZip;
 
-
     public Service(String requestType, String luggageValue, String requestedTimeBellboy,
                    String requestDate, String fromWhere) {
         this.requestType = requestType;
@@ -39,13 +38,45 @@ public class Service {
         this.fromWhere = fromWhere;
     }
 
+    public String getStartingStreet() {
+        return startingStreet;
+    }
+
+    public void setStartingStreet(String startingStreet) {
+        this.startingStreet = startingStreet;
+    }
+
+    public String getStartingCityStateZip() {
+        return startingCityStateZip;
+    }
+
+    public void setStartingCityStateZip(String startingCityStateZip) {
+        this.startingCityStateZip = startingCityStateZip;
+    }
+
+    public String getDestinationStreet() {
+        return destinationStreet;
+    }
+
+    public void setDestinationStreet(String destinationStreet) {
+        this.destinationStreet = destinationStreet;
+    }
+
+    public String getDestinationCityStateZip() {
+        return destinationCityStateZip;
+    }
+
+    public void setDestinationCityStateZip(String destinationCityStateZip) {
+        this.destinationCityStateZip = destinationCityStateZip;
+    }
+
     public Service(String requestType, String requestedTimeValet, String answer1, String answer2,
                    String answer3, String answer4, String requestDate) {
         this.requestType = requestType;
         this.requestedTimeValet = requestedTimeValet;
         this.startingStreet = answer1;
-        this.startingCityStateZip = answer2;
-        this.destinationStreet = answer3;
+        this.destinationStreet = answer2;
+        this.startingCityStateZip = answer3;
         this.destinationCityStateZip = answer4;
         this.requestDate = requestDate;
     }

@@ -101,21 +101,18 @@ public class ValetServices extends AppCompatActivity {
             Service info = new Service();
 
             info.setRequestType(data.getValue(Service.class).getRequestType());
-//            info.setRequestDate(data.getValue(Service.class).getRequestDate());
-            //info.setRequestedTime(data.getValue(Service.class).getRequestedTime());
-//            info.setPickUp(data.getValue(Service.class).getPickUp());
-//            info.setDestination(data.getValue(Service.class).getDestination());
+            info.setRequestDate(data.getValue(Service.class).getRequestDate());
+            info.setRequestedTimeValet(data.getValue(Service.class).getRequestedTimeValet());
+            info.setStartingStreet(data.getValue(Service.class).getStartingStreet());
+            info.setStartingCityStateZip(data.getValue(Service.class).getStartingCityStateZip());
+            info.setDestinationStreet(data.getValue(Service.class).getDestinationStreet());
+            info.setDestinationCityStateZip(data.getValue(Service.class).getDestinationCityStateZip());
 
             //add object to array list
-            //serviceList.add(new Service(info.getRequestType(),info.getLuggageValue(),
-              //      info.getRequestedTime()));
-
-            Log.d(TAG, "showData: " + info.getRequestType());
-//            Log.d(TAG, "showData: " + info.getRequestDate());
-            //Log.d(TAG, "showData: " + info.getRequestedTime());
-//            Log.d(TAG, "showData: " + info.getPickUp());
-//            Log.d(TAG, "showData: " + info.getDestination());
-            Log.d(TAG, "showData: Array List: " + info);
+            //valet
+            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
+                    info.getRequestedTimeValet(),info.getStartingStreet(),info.getStartingCityStateZip(),
+                    info.getDestinationStreet(),info.getDestinationCityStateZip()));
 
             //add array list to recycle view
             createRecycleView();

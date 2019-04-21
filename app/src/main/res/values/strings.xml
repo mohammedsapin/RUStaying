@@ -40,7 +40,6 @@
     <string name="a1">A1</string>
     <string name="a2">A2</string>
     <string name="feedback">Feedback</string>
-
     <string name="back">Back</string>
     <string name="bellboy_title">CALL BELLBOY</string>
     <string name="time_of_request">What time should we arrive?</string>
@@ -175,4 +174,6 @@
     <string name="maintenance">If you used the Maintenance Service feature, please rate it: </string>
     <string name="comments">Any additional comments or concerns:</string>
     <string name="typeHere">Type here</string>
+    <string name="destination_address">Destination Address</string>
+    <string name="starting_address">Starting Address</string>
 </resources>

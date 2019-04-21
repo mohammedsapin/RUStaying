@@ -101,18 +101,15 @@ public class BellboyServices extends AppCompatActivity {
             Service info = new Service();
 
             info.setRequestType(data.getValue(Service.class).getRequestType());
+            info.setRequestDate(data.getValue(Service.class).getRequestDate());
             info.setLuggageValue(data.getValue(Service.class).getLuggageValue());
-            //info.setRequestedTime(data.getValue(Service.class).getRequestedTime());
+            info.setRequestedTimeBellboy(data.getValue(Service.class).getRequestedTimeBellboy());
+            info.setFromWhere(data.getValue(Service.class).getFromWhere());
 
             //add object to array list
-            //serviceList.add(new Service(info.getRequestType(),info.getLuggageValue(),
-                    //info.getRequestedTime()));
-
-            Log.d(TAG, "showData: " + info.getRequestType());
-            Log.d(TAG, "showData: " + info.getLuggageValue());
-            //Log.d(TAG, "showData: " + info.getRequestedTime());
-            Log.d(TAG, "showData: Array List: " + info);
-
+            //bellboy
+            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
+                    info.getLuggageValue(),info.getRequestedTimeBellboy(),info.getFromWhere()));
             //add array list to recycle view
             createRecycleView();
         }
