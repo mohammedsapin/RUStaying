@@ -11,13 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PasswordActivity"></activity>
+        <activity android:name=".EditInfoActivity"></activity>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".PasswordActivity" />
         <activity android:name=".ViewRooms" />
         <activity android:name=".ViewGuests" />
         <activity android:name=".BellboyActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".ServicesActivity" />
-        <activity android:name=".ProfileActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".FeedbackActivity" />

@@ -8,8 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,53 +31,17 @@ public class ProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "ProfileActivity";
 
-    //firebase stuff
+    private FirebaseAuth.AuthStateListener authStateListener;
+    private FirebaseAuth auth;
     private FirebaseDatabase mFirebaseDatabase;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
     private String userID;
-
-    //XML attributes
-    private ListView guestInfoList;
-
+    private Guest g = new Guest();
+    private Button Edit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        //XML objects
-        guestInfoList = (ListView) findViewById(R.id.guestInfo);
-
-        //Firebase Objects
-        mAuth = FirebaseAuth.getInstance();
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = mFirebaseDatabase.getReference();
-        final FirebaseUser user = mAuth.getCurrentUser();
-        userID = user.getUid();
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if (user != null){
-                    Log.d(TAG, "onAuthStateChanged: " + userID);
-                }else {
-                    Log.d(TAG, "onAuthStateChanged: Signed out");
-                }
-            }
-        };
-
-        myRef.child("Guests").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                showData(dataSnapshot);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -81,42 +49,105 @@ public class ProfileActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.navigation_account:
+                        Intent account = new Intent(ProfileActivity.this,ProfileActivity.class);
+                        startActivity(account);
                         break;
                     case R.id.navigation_home:
                         Intent home = new Intent(ProfileActivity.this,HomeActivity.class);
                         startActivity(home);
                         break;
                     case R.id.navigation_services:
-                        Intent services = new Intent(ProfileActivity.this,ServicesActivity.class);
-                        startActivity(services);
                         break;
                 }
                 return false;
             }
         });
+
+
+
+        //mListView=(ListView)findViewById(R.id.guestInfo);
+        mFirebaseDatabase=FirebaseDatabase.getInstance();
+        auth = FirebaseAuth.getInstance();
+        myRef=mFirebaseDatabase.getReference();
+        FirebaseUser user = auth.getCurrentUser();
+        userID = user.getUid();
+
+
+
+        Edit = (Button) findViewById(R.id.EditButton);
+        Edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent editInfo = new Intent(ProfileActivity.this,EditInfoActivity.class);
+                startActivity(editInfo); //Redirect to feedback page
+            }
+        });
+
+
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user==null){
+                    startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                    Log.d(TAG, "onAuthStateChanged: Signed out");
+                    finish();
+                }else{
+
+                    Log.d(TAG,"onAuthStateChanged:signed in");
+                    myRef.child("Guest").child(userID).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            showData(dataSnapshot);
+
+                            TextView fname2 = (TextView) findViewById(R.id.fname2);
+                            String firstName = g.getFirstName();
+                            fname2.setText(firstName);
+
+                            TextView lname2 = (TextView) findViewById(R.id.lname2);
+                            String lastName = g.getLastName();
+                            lname2.setText(lastName);
+
+                            TextView email2 = (TextView) findViewById(R.id.email2);
+                            String email = g.getGuestEmail();
+                            email2.setText(email);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+            }
+        };
+
+
+
     }
 
-    private void showData(DataSnapshot dataSnapshot){
-        for (DataSnapshot data : dataSnapshot.getChildren()){
-            Guest info = new Guest();
-            info.setFirstName(data.child(userID).getValue(Guest.class).getFirstName()); // set first name
-            info.setLastName(data.child(userID).getValue(Guest.class).getLastName()); // set last name
-            info.setGuestEmail(data.child(userID).getValue(Guest.class).getGuestEmail()); // set email
+    private void showData(DataSnapshot dataSnapshot) {
+        g.setFirstName(dataSnapshot.getValue(Guest.class).getFirstName());
+        g.setLastName(dataSnapshot.getValue(Guest.class).getLastName());
+        g.setGuestEmail(dataSnapshot.getValue(Guest.class).getGuestEmail());
 
-            Log.d(TAG, "showData: First Name: " + info.getFirstName());
-            Log.d(TAG, "showData: Last Name: " + info.getLastName());
-            Log.d(TAG, "showData: Guest Email: " + info.getGuestEmail());
-
-            ArrayList<String> guestInfo = new ArrayList<>();
-
-            guestInfo.add(info.getFirstName());
-            guestInfo.add(info.getLastName());
-            guestInfo.add(info.getGuestEmail());
-
-            ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,guestInfo);
-
-            guestInfoList.setAdapter(adapter);
-
-        }
     }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        auth.addAuthStateListener(authStateListener);
+    }
+    @Override
+    public void onStop(){
+        super.onStop();
+        auth.removeAuthStateListener(authStateListener);
+    }
+    private void toastMessage(String message){
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+
+
+
 }
