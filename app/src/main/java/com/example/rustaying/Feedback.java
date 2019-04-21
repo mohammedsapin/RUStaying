@@ -4,6 +4,7 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 
 public class Feedback {
+
     private String rating1;
     private String rating2;
     private String rating3;
@@ -31,6 +32,40 @@ public class Feedback {
         this.sw1= sw1;
     }
 
+
+
+    public float getRating2() {
+        return rating2;
+    }
+
+    public void setRating2(float rating1) {
+        this.rating2 = rating2;
+    }
+
+
+    public float getRating3() { return rating3;}
+
+    public void setRating3(float rating1) {
+        this.rating3 = rating3;
+    }
+
+
+    public float getRating4() {
+        return rating4;
+    }
+
+    public void setRating4(float rating1) {
+        this.rating4 = rating4;
+    }
+
+
+    public float getRating5() {
+        return rating5;
+    }
+
+    public void setRating5(float rating1) {
+        this.rating5 = rating5;
+    }
 
 
     public String getAnswer1() {

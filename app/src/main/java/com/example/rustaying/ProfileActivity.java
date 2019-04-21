@@ -43,6 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -59,7 +60,6 @@ public class ProfileActivity extends AppCompatActivity {
                     case R.id.navigation_services:
                         break;
                 }
-                return false;
             }
         });
 

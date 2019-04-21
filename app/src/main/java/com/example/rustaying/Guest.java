@@ -1,27 +1,36 @@
 package com.example.rustaying;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Guest {
 
     private String firstName, lastName, guestEmail;
-    private Date accountCreated;
+    private String accountCreated;
     private boolean accountStatus;
     private int luggage;
     private boolean isCheckedIn;
+
+    private String checkInDate;
+    private String checkOutDate;
+
     //add more as we keep working on project
 
     public Guest() {
+        //this.checkInDate = null;
+        //this.checkOutDate = null;
         // Default constructor need for DataSnapshot on firebase
     }
-
 
     //Constructor to create Guest object
     public Guest(String firstName, String lastName, String guestEmail) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.guestEmail = guestEmail;
+        this.isCheckedIn = true;
         this.accountStatus = true;
+        this.checkInDate = "";
+        this.checkOutDate = "";
     }
 
     public String getFirstName() {
@@ -48,11 +57,11 @@ public class Guest {
         this.guestEmail = guestEmail;
     }
 
-    public Date getAccountCreated() {
+    public String getAccountCreated() {
         return accountCreated;
     }
 
-    public void setAccountCreated(Date accountCreated) {
+    public void setAccountCreated(String accountCreated) {
         this.accountCreated = accountCreated;
     }
 
@@ -79,4 +88,21 @@ public class Guest {
     public void setCheckedIn(boolean checkedIn) {
         isCheckedIn = checkedIn;
     }
+
+    public String getCheckInDate() {
+        return checkInDate;
+    }
+
+    public void setCheckInDate(String checkInDate) {
+        this.checkInDate = checkInDate;
+    }
+
+    public String getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public void setCheckOutDate(String checkOutDate) {
+        this.checkOutDate = checkOutDate;
+    }
+
 }

@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,36 +19,57 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
-public class ViewRooms extends AppCompatActivity {
+public class newViewRooms extends AppCompatActivity {
 
-    private static final String TAG = "ViewRooms";
-
-    private ArrayList<Room> roomList = new ArrayList<>();
+    private static final String TAG = "newViewRooms";
 
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
+    private ResInfo resInfo;
 
+    RecyclerView recyclerView;
+    newRoomAdapter adapter;
 
+    ArrayList<Room> roomList = new ArrayList<>();
+    String[] receivedRoomTypes = new String[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_rooms);
+        setContentView(R.layout.activity_new_view_rooms);
 
         //GET DATA from ReservationActivity
         Intent i = getIntent();
         Bundle b = i.getBundleExtra("resInfo");
 
-        String checkIn = b.getString("checkIn");
-        String[] roomTypes = new String[3];
-        roomTypes = b.getStringArray("roomTypes");
+        receivedRoomTypes = b.getStringArray("roomTypes");
 
-        //Log.d(TAG, checkIn);
-        //Log.d(TAG, roomTypes[0]);
+        int inDay = b.getInt("inDay");
+        int inMonth = b.getInt("inMonth");
+        int inYear = b.getInt("inYear");
+
+        int outDay = b.getInt("outDay");
+        int outMonth = b.getInt("outMonth");
+        int outYear = b.getInt("outYear");
+
+        Log.i(TAG, "onCreate: " + inDay);
+        Log.i(TAG, "onCreate: " + inMonth);
+        Log.i(TAG, "onCreate: " + inYear);
+
+        Log.i(TAG, "onCreate: " + outDay);
+        Log.i(TAG, "onCreate: " + outMonth);
+        Log.i(TAG, "onCreate: " + outYear);
+
+        LocalDate inDate = parseDate(inYear, inMonth, inDay);
+        LocalDate outDate = parseDate(outYear, outMonth, outDay);
+
+        resInfo = new ResInfo(inDate, outDate, receivedRoomTypes);
 
         createRecycleView();
 
@@ -78,17 +102,24 @@ public class ViewRooms extends AppCompatActivity {
         });
 
 
+
+    }
+
+    private LocalDate parseDate(int year, int month, int date)
+    {
+        return LocalDate.of(year, month, date);
     }
 
     private void createRecycleView(){
         Log.d(TAG, "createRecycleView: Started view");
-        RecyclerView recyclerView = findViewById(R.id.viewRoomsRecycleView);
-        ViewRoomsAdapter adapter = new ViewRoomsAdapter(this,roomList);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        newRoomAdapter adapter = new newRoomAdapter(this,roomList, resInfo);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
 
     private void showData(DataSnapshot dataSnapshot) {
+
         for (DataSnapshot data : dataSnapshot.getChildren()){
 
             Room room = new Room(); // create new object
@@ -96,6 +127,25 @@ public class ViewRooms extends AppCompatActivity {
             room.setRoomId(data.getValue(Room.class).getRoomId()); // set first name
             room.setRoomType(data.getValue(Room.class).getRoomType()); // set last name
             room.setIsAvailable(data.getValue(Room.class).getIsAvailable()); // set email
+
+
+            if(receivedRoomTypes[0] == null && room.getRoomType().equals("Single"))
+            {
+                continue;
+            }
+            else if (receivedRoomTypes[1] == null && room.getRoomType().equals("Double"))
+            {
+                continue;
+            }
+            else if(receivedRoomTypes[2] == null && room.getRoomType().equals("Queen"))
+            {
+                continue;
+            }
+            else if(receivedRoomTypes[3] == null && room.getRoomType().equals("King"))
+            {
+                continue;
+            }
+
 
             //add object to array list
             roomList.add(new Room(room.getRoomId(),room.getRoomType(),room.getIsAvailable()));
@@ -107,7 +157,9 @@ public class ViewRooms extends AppCompatActivity {
 
             //add array list to recycle view
             createRecycleView();
+
         }
+
     }
 
     @Override
@@ -123,4 +175,5 @@ public class ViewRooms extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
 }

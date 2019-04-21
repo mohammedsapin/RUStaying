@@ -33,6 +33,7 @@ public class FeedbackActivity extends AppCompatActivity {
     private RatingBar ratingBar1,ratingBar2,ratingBar3,ratingBar4,ratingBar5;
     private CheckBox cBox1, cBox2, cBox3, cBox4;
     private Switch switch1;
+
     private Button submitButton;
     // private FirebaseDatabase mFirebaseDatabase;
     //private DatabaseReference feedbackDatabase;
@@ -46,6 +47,7 @@ public class FeedbackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
+        
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -88,7 +90,7 @@ public class FeedbackActivity extends AppCompatActivity {
         myRef = mFirebaseDatabase.getReference();
         final FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
-
+        
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +113,6 @@ public class FeedbackActivity extends AppCompatActivity {
                 final boolean check4 =cBox4.isChecked();
                 final boolean switch1Checked = switch1.isChecked();
 
-
                 if (ratingBar1.getRating() > 0){
                     Feedback feedbackInfo = new Feedback(rating1, rating2, rating3, rating4, rating5, answer1,
                             check1, check2, check3, check3, switch1Checked);
@@ -129,6 +130,5 @@ public class FeedbackActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 }

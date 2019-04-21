@@ -46,8 +46,8 @@ public class ViewRoomsAdapter extends RecyclerView.Adapter<ViewRoomsAdapter.View
             isAvailableString = "NO";
         }
 
-        String roomNumber = Integer.toString(info.getRoomId());
-        Log.d(TAG, "onBindViewHolder: " + roomNumber);
+        //String roomNumber = Integer.toString(info.getRoomId());
+        //Log.d(TAG, "onBindViewHolder: " + roomNumber);
 
         viewHolder.roomID.setText("Room Number: " + info.getRoomId());
         viewHolder.roomType.setText("Room Type: " + info.getRoomType());
