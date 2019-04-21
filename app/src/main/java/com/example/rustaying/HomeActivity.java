@@ -16,15 +16,22 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class HomeActivity extends AppCompatActivity {
-
+    private Guest g = new Guest();
     private static final String TAG = "HomeActivity";
 
     private Button logout, bkRmBtn, feedbackBtn;
 
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth auth;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,10 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         auth = FirebaseAuth.getInstance();
+        mFirebaseDatabase=FirebaseDatabase.getInstance();
+        myRef=mFirebaseDatabase.getReference();
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -65,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
         };
 
         logout = (Button) findViewById(R.id.logoutBtn);
-
+        /*
         logout.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -116,14 +126,35 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
         );
+        */
 
         feedbackBtn = (Button)findViewById(R.id.feedbackBtn);
-        feedbackBtn.setOnClickListener(new View.OnClickListener() {
+        String userID = user.getUid();
+
+        myRef.child("Guest").child(userID).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v)
-            {
-                Intent feedback = new Intent(HomeActivity.this,FeedbackActivity.class);
-                startActivity(feedback); //Redirect to feedback page
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                showData(dataSnapshot);
+                final Boolean check = g.isCheckedIn();
+
+                feedbackBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (check){
+                            Intent feedback = new Intent(HomeActivity.this, FeedbackActivity.class);
+                            startActivity(feedback); //Redirect to feedback page
+                        }
+                        else{
+                            Toast.makeText(HomeActivity.this,"You don't have access to Feedback since you are not checked-in.",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
@@ -148,5 +179,8 @@ public class HomeActivity extends AppCompatActivity {
         if (authStateListener != null){
             auth.removeAuthStateListener(authStateListener);
         }
+    }
+    private void showData(DataSnapshot dataSnapshot) {
+        g.setCheckedIn(dataSnapshot.getValue(Guest.class).isCheckedIn());
     }
 }
