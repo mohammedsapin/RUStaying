@@ -99,7 +99,7 @@ public class HomeActivity extends AppCompatActivity {
         };
 
         logout = (Button) findViewById(R.id.logoutBtn);
-        /*
+
         logout.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -150,7 +150,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
         );
-        */
+
 
         feedbackBtn = (Button)findViewById(R.id.feedbackBtn);
         String userID = user.getUid();

@@ -15,6 +15,8 @@
         android:layout_marginTop="164dp"
         android:layout_marginEnd="48dp"
         android:text="@string/calendarServices"
+        android:background="@android:color/white"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -139,7 +141,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/submit_button"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -212,35 +214,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.734" />
 
-    <RadioGroup
-        android:id="@+id/radiogroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/navigationView"
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/A1"
+        android:layout_width="393dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:hint="From Lobby, Room Number, etc."
+        android:textColor="@android:color/white"
+        android:textColorHint="@color/colorText"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" >
-
-        <RadioButton
-            android:id="@+id/room"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="My Room"
-            android:textSize="20dp"
-            android:textColor="@color/colorText"/>
-
-        <RadioButton
-            android:id="@+id/lobby"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lobby"
-            android:textSize="20dp"
-            android:textColor="@color/colorText"/>
-
-    </RadioGroup>
+        app:layout_constraintVertical_bias="0.569" />
 
     <FrameLayout
         android:id="@+id/container"

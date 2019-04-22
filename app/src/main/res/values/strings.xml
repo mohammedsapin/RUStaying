@@ -153,7 +153,7 @@
     <string name="destTitle">Destination Address:</string>
     <string name="request_travelvalet">REQUEST TRAVEL AND VALET</string>
     <string name="request_maintenance">REQUEST MAINTENANCE</string>
-    <string name="request_roomservice">REQUEST ROOMSERVICE</string>
+    <string name="request_roomservice">REQUEST ROOM SERVICE</string>
     <string name="calendarServices">Select Date</string>
     <string name="dateServices">Date</string>
     <string name="roomserivce_title">CALL ROOMSERVICE</string>
