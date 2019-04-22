@@ -70,20 +70,19 @@ public class Service {
         this.destinationCityStateZip = destinationCityStateZip;
     }
 
-    public Service(String requestType, String requestedTimeValet, String answer1, String answer2,
-                   String answer3, String answer4, String requestDate) {
+    public Service(String requestType, String requestedTimeValet, String requestDate, String answer1, String answer2,
+                   String answer3, String answer4) {
         this.requestType = requestType;
         this.requestedTimeValet = requestedTimeValet;
+        this.requestDate = requestDate;
         this.startingStreet = answer1;
         this.destinationStreet = answer2;
         this.startingCityStateZip = answer3;
         this.destinationCityStateZip = answer4;
-        this.requestDate = requestDate;
     }
 
-    public Service(String requestType, String requestDate, String inputs, String bathroom,
-                   String electronic, String lighting, String checkboxes,
-                   String requestedTimeMaintenance) {
+    public Service(String requestType, String requestDate, String requestedTimeMaintenance, String inputs, String bathroom,
+                   String electronic, String lighting, String checkboxes) {
         this.requestType = requestType;
         this.requestDate = requestDate;
         this.inputs = inputs;
@@ -94,9 +93,8 @@ public class Service {
         this.requestedTimeMaintenance = requestedTimeMaintenance;
     }
 
-    public Service(String requestType, String requestDate, String inputs, String checkboxes,
-                   String towels, String soap, String bedsheets, String cleaningservice,
-                   String requestedTimeRoomService) {
+    public Service(String requestType, String requestDate, String requestedTimeRoomService, String inputs,
+                   String towels, String soap, String bedsheets, String cleaningservice, String checkboxes) {
         this.requestType = requestType;
         this.requestDate = requestDate;
         this.inputs = inputs;

@@ -24,8 +24,8 @@ public class AdminActivity extends AppCompatActivity {
     FirebaseAuth.AuthStateListener mAuthListener;
 
     //XML Attributes
-    Button viewRooms, viewGuests, viewServices, viewData, log_out;
-
+    Button viewGuests, viewServices, viewData, log_out;
+//    Button viewRooms;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +47,7 @@ public class AdminActivity extends AppCompatActivity {
         };
 
         //XML Objects and Methods
-        viewRooms = (Button) findViewById(R.id.viewRoomBtn);
+        //viewRooms = (Button) findViewById(R.id.viewRoomBtn);
         viewGuests = (Button) findViewById(R.id.viewGuestsBtn);
         viewServices = (Button) findViewById(R.id.viewServicesBtn);
         viewData = (Button) findViewById(R.id.viewDataBtn);

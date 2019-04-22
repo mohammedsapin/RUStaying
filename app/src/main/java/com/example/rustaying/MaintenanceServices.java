@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -21,10 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class BellboyServices extends AppCompatActivity {
+public class MaintenanceServices extends AppCompatActivity {
 
-    private static final String TAG = "BellboyServices";
-
+    private static final String TAG = "MaintenanceServices";
     //Services List
     private ArrayList<Service> serviceList = new ArrayList<>();
 
@@ -38,7 +38,7 @@ public class BellboyServices extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bellboy_services);
+        setContentView(R.layout.activity_valet_services);
 
         createRecycleView();
 
@@ -88,9 +88,10 @@ public class BellboyServices extends AppCompatActivity {
 
     private void createRecycleView(){
         Log.d(TAG, "createRecycleView: Started view");
-        RecyclerView recyclerView = findViewById(R.id.viewServicesRecycleView);
+        RecyclerView recyclerView = findViewById(R.id.viewMaintenanceServices);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        BellboyServicesAdapter adapter = new BellboyServicesAdapter(this,serviceList);
+        MaintenanceServicesAdapter adapter = new MaintenanceServicesAdapter(this,serviceList);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
     }
 
@@ -101,17 +102,19 @@ public class BellboyServices extends AppCompatActivity {
             Service info = new Service();
 
             info.setRequestType(data.getValue(Service.class).getRequestType());
+            info.setRequestedTimeMaintenance(data.getValue(Service.class).getRequestedTimeMaintenance());
             info.setRequestDate(data.getValue(Service.class).getRequestDate());
-            info.setLuggageValue(data.getValue(Service.class).getLuggageValue());
-            info.setRequestedTimeBellboy(data.getValue(Service.class).getRequestedTimeBellboy());
-            info.setFromWhere(data.getValue(Service.class).getFromWhere());
+            info.setCheckboxes(data.getValue(Service.class).getCheckboxes());
+            info.setInputs(data.getValue(Service.class).getInputs());
 
-            //add object to array list
-            //bellboy
-            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
-                    info.getLuggageValue(),info.getRequestedTimeBellboy(),info.getFromWhere()));
+            if (info.getRequestType().equals("Maintenance")){
+            serviceList.add(new Service(info.getRequestType(),info.getRequestedTimeMaintenance(),
+                    info.getRequestDate(),info.getCheckboxes(),info.getInputs()));
+
+
             //add array list to recycle view
-            createRecycleView();
+                createRecycleView();
+            }
         }
     }
 

@@ -11,20 +11,20 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class BellboyServicesAdapter extends RecyclerView.Adapter<BellboyServicesAdapter.ViewHolder> {
-    private static final String TAG = "BellboyServicesAdapter";
+public class RoomServicesAdapter extends RecyclerView.Adapter<RoomServicesAdapter.ViewHolder> {
+    private static final String TAG = "RoomServicesAdapter";
 
     private ArrayList<Service> serviceList;
     private Context mContext;
 
-    public BellboyServicesAdapter (Context mContext, ArrayList<Service> serviceList){
+    public RoomServicesAdapter(Context mContext, ArrayList<Service> serviceList){
         this.serviceList = serviceList;
         this.mContext = mContext;
     }
 
     @Override
     public ViewHolder onCreateViewHolder( ViewGroup viewGroup, int i){
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_bellboy_services,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_room_services,viewGroup,false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -52,11 +52,11 @@ public class BellboyServicesAdapter extends RecyclerView.Adapter<BellboyServices
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-            requestType = itemView.findViewById(R.id.requestType);
-            luggageVal = itemView.findViewById(R.id.luggageVal);
-            requestTime = itemView.findViewById(R.id.requestTime);
-            requestDate = itemView.findViewById(R.id.requestDate);
-            fromWhere = itemView.findViewById(R.id.fromWhere);
+            requestType = itemView.findViewById(R.id.requestTypeR);
+            luggageVal = itemView.findViewById(R.id.checkboxesR);
+            requestTime = itemView.findViewById(R.id.requestTimeR);
+            requestDate = itemView.findViewById(R.id.requestDateR);
+            fromWhere = itemView.findViewById(R.id.inputsR);
 
         }
     }

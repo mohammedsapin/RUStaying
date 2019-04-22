@@ -55,7 +55,7 @@ public class MaintenanceAdmin extends AppCompatActivity {
         viewServices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(MaintenanceAdmin.this,MaintenanceServices.class));
             }
         });
 

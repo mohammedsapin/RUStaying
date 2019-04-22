@@ -31,21 +31,21 @@ public class AdminServiceList extends AppCompatActivity {
         valet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(AdminServiceList.this, ValetServices.class));
             }
         });
 
         maint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(AdminServiceList.this,MaintenanceServices.class));
             }
         });
 
         roomService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(AdminServiceList.this, RoomServices.class));
             }
         });
     }
