@@ -55,6 +55,8 @@ public class EditInfoActivity extends AppCompatActivity {
                         startActivity(home);
                         break;
                     case R.id.navigation_services:
+                        Intent service = new Intent(EditInfoActivity.this, ServicesActivity.class);
+                        startActivity(service);
                         break;
                 }
                 return false;
@@ -85,14 +87,22 @@ public class EditInfoActivity extends AppCompatActivity {
                 final String answer3 = emailID.getText().toString().trim();
 
 
-
-
-
-                if (!TextUtils.isEmpty(answer1) && !TextUtils.isEmpty(answer2) && !TextUtils.isEmpty(answer3)) {
                     Map<String,Object> list = new HashMap<>();
-                        list.put("firstName",answer1);
-                        list.put("lastName",answer2);
-                        list.put("guestEmail",answer3);
+
+                    if(!answer1.isEmpty()) {
+                        list.put("firstName", answer1);
+                    }
+
+                    if(!answer2.isEmpty()) {
+                        list.put("lastName", answer2);
+                    }
+
+                    if(!answer3.isEmpty()) {
+                        list.put("guestEmail", answer3);
+                    }
+
+
+
                     myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -108,9 +118,7 @@ public class EditInfoActivity extends AppCompatActivity {
                         }
                     });
 
-                } else{
-                    Toast.makeText(EditInfoActivity.this,"Please fill out the required fields",Toast.LENGTH_SHORT).show();
-                }
+
 
 
             }

@@ -53,12 +53,12 @@ public class AdminActivity extends AppCompatActivity {
         viewData = (Button) findViewById(R.id.viewDataBtn);
         log_out = (Button) findViewById(R.id.adminLogout);
 
-//        viewRooms.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(AdminActivity.this, ViewRooms.class));
-//            }
-//        });
+        viewRooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminActivity.this, newViewRooms.class));
+            }
+        });
 
         viewGuests.setOnClickListener(new View.OnClickListener() {
             @Override

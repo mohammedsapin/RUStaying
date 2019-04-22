@@ -84,6 +84,8 @@ public class MaintenanceActivity extends AppCompatActivity {
                         startActivity(account);
                         break;
                     case R.id.navigation_home:
+                        Intent home = new Intent(MaintenanceActivity.this,HomeActivity.class);
+                        startActivity(home);
                         break;
                     case R.id.navigation_services:
                         Intent services = new Intent(MaintenanceActivity.this,
@@ -155,7 +157,7 @@ public class MaintenanceActivity extends AppCompatActivity {
                         }
 
                     }
-                    }, year, month, day);
+                }, year, month, day);
                 dateDialog.show();
             }
         });
@@ -206,35 +208,35 @@ public class MaintenanceActivity extends AppCompatActivity {
         checkbox3=(CheckBox)findViewById(R.id.checkBox3);
 
         checkbox1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                if (checkbox1.isChecked()){
-                    String bathroom = checkbox1.getText().toString();
-                    maintenance.setBathroom(bathroom);
+                                         @Override
+                                         public void onClick(View v){
+                                             if (checkbox1.isChecked()){
+                                                 String bathroom = checkbox1.getText().toString();
+                                                 maintenance.setBathroom(bathroom);
 
-                }
-            }
-        }
+                                             }
+                                         }
+                                     }
         );
         checkbox2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                if (checkbox2.isChecked()){
-                    String electronic = checkbox2.getText().toString();
-                    maintenance.setElectronic(electronic);
-                }
-            }
-        }
+                                         @Override
+                                         public void onClick(View v){
+                                             if (checkbox2.isChecked()){
+                                                 String electronic = checkbox2.getText().toString();
+                                                 maintenance.setElectronic(electronic);
+                                             }
+                                         }
+                                     }
         );
         checkbox3.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                if (checkbox3.isChecked()){
-                    String lighting = checkbox3.getText().toString();
-                    maintenance.setLighting(lighting);
-                }
-            }
-        }
+                                         @Override
+                                         public void onClick(View v){
+                                             if (checkbox3.isChecked()){
+                                                 String lighting = checkbox3.getText().toString();
+                                                 maintenance.setLighting(lighting);
+                                             }
+                                         }
+                                     }
         );
 
 

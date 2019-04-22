@@ -27,7 +27,7 @@ public class Guest {
         this.firstName = firstName;
         this.lastName = lastName;
         this.guestEmail = guestEmail;
-        this.isCheckedIn = true;
+        this.isCheckedIn = false;
         this.accountStatus = true;
         this.checkInDate = "";
         this.checkOutDate = "";

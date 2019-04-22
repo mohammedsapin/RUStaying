@@ -40,9 +40,9 @@ public class ViewRooms extends AppCompatActivity {
         Intent i = getIntent();
         Bundle b = i.getBundleExtra("resInfo");
 
-        String checkIn = b.getString("checkIn");
-        String[] roomTypes = new String[3];
-        roomTypes = b.getStringArray("roomTypes");
+        //String checkIn = b.getString("checkIn");
+        //String[] roomTypes = new String[3];
+        //roomTypes = b.getStringArray("roomTypes");
 
         //Log.d(TAG, checkIn);
         //Log.d(TAG, roomTypes[0]);
