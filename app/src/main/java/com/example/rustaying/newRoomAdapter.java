@@ -186,9 +186,6 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
                     positiveButton.setBackgroundColor(Color.WHITE);
                 }
             });
-
-        }
-
     }
 
     @Override
