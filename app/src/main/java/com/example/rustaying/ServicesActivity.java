@@ -82,7 +82,6 @@ public class ServicesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 if(g.isCheckedIn())
                 {
                     Intent bu = new Intent(ServicesActivity.this, BellboyActivity.class);
@@ -93,7 +92,6 @@ public class ServicesActivity extends AppCompatActivity {
                                     "Request",
                             Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 

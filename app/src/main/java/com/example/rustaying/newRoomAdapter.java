@@ -63,7 +63,21 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference(); //dbRef
         final FirebaseUser user = mAuth.getCurrentUser();
-        userID = user.getUid();
+        //userID = user.getUid();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null){
+                    temp = true;
+                    Log.d(TAG, "onAuthStateChanged: Signed In");
+                }else{
+                    temp = false;
+                    Log.d(TAG, "onAuthStateChanged: Signed out");
+                }
+            }
+        };
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -173,6 +187,7 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
                 }
             });
 
+        }
 
     }
 
