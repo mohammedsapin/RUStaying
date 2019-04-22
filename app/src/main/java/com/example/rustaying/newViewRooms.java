@@ -33,6 +33,7 @@ public class newViewRooms extends AppCompatActivity {
     private DatabaseReference myRef;
     private ResInfo resInfo;
 
+
     RecyclerView recyclerView;
     newRoomAdapter adapter;
 
@@ -47,6 +48,7 @@ public class newViewRooms extends AppCompatActivity {
         //GET DATA from ReservationActivity
         Intent i = getIntent();
         Bundle b = i.getBundleExtra("resInfo");
+
 
         receivedRoomTypes = b.getStringArray("roomTypes");
 
@@ -84,6 +86,7 @@ public class newViewRooms extends AppCompatActivity {
                 if (user != null){
                     Log.d(TAG, "onAuthStateChanged: Signed In");
                 }else{
+
                     Log.d(TAG, "onAuthStateChanged: Signed out");
                 }
             }

@@ -40,7 +40,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
     private static final String TAG = "BellboyActivity";
     private Button back;
     private Button submitButton;
-  
+
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
@@ -68,6 +68,8 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                         startActivity(account);
                         break;
                     case R.id.navigation_home:
+                        Intent home = new Intent(BellboyActivity.this,HomeActivity.class);
+                        startActivity(home);
                         break;
                     case R.id.navigation_services:
                         Intent services = new Intent(BellboyActivity.this,ServicesActivity.class);

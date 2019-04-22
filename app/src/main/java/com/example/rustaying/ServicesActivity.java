@@ -82,21 +82,19 @@ public class ServicesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-                 if(g.isCheckedIn())
-                 {
-                     Intent bu = new Intent(ServicesActivity.this, BellboyActivity.class);
-                     startActivity(bu);
-                 }
-                 else{
-                     Toast.makeText(ServicesActivity.this, "Please Check In to Make a Service " +
-                                     "Request",
-                             Toast.LENGTH_SHORT).show();
-                 }
-
+                if(g.isCheckedIn())
+                {
+                    Intent bu = new Intent(ServicesActivity.this, BellboyActivity.class);
+                    startActivity(bu);
+                }
+                else{
+                    Toast.makeText(ServicesActivity.this, "Please Check In to Make a Service " +
+                                    "Request",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
-      
+
         travelvalet = (Button) findViewById(R.id.travelvaletbtn);
         travelvalet.setOnClickListener(new View.OnClickListener() {
             @Override

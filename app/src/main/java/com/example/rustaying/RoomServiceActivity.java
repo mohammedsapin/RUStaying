@@ -49,7 +49,7 @@ public class RoomServiceActivity extends AppCompatActivity {
     String userID;
 
 
-private EditText answerBox1;
+    private EditText answerBox1;
     CheckBox checkbox1;
     CheckBox checkbox2;
     CheckBox checkbox3;
@@ -70,6 +70,8 @@ private EditText answerBox1;
                         startActivity(account);
                         break;
                     case R.id.navigation_home:
+                        Intent home = new Intent(RoomServiceActivity.this,HomeActivity.class);
+                        startActivity(home);
                         break;
                     case R.id.navigation_services:
                         Intent services = new Intent(RoomServiceActivity.this,
@@ -198,44 +200,44 @@ private EditText answerBox1;
         checkbox4=(CheckBox)findViewById(R.id.checkBox4);
 
         checkbox1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                if (checkbox1.isChecked()){
-                    String towels = checkbox1.getText().toString();
-                    roomservice.setTowels(towels);
-                }
-            }
-        }
+                                         @Override
+                                         public void onClick(View v){
+                                             if (checkbox1.isChecked()){
+                                                 String towels = checkbox1.getText().toString();
+                                                 roomservice.setTowels(towels);
+                                             }
+                                         }
+                                     }
         );
         checkbox2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                if (checkbox2.isChecked()){
-                    String soap = checkbox2.getText().toString();
-                    roomservice.setSoap(soap);
-                }
-            }
-        }
+                                         @Override
+                                         public void onClick(View v){
+                                             if (checkbox2.isChecked()){
+                                                 String soap = checkbox2.getText().toString();
+                                                 roomservice.setSoap(soap);
+                                             }
+                                         }
+                                     }
         );
         checkbox3.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                if (checkbox3.isChecked()){
-                    String bedsheets = checkbox3.getText().toString();
-                    roomservice.setBedsheets(bedsheets);
-                }
-            }
-        }
+                                         @Override
+                                         public void onClick(View v){
+                                             if (checkbox3.isChecked()){
+                                                 String bedsheets = checkbox3.getText().toString();
+                                                 roomservice.setBedsheets(bedsheets);
+                                             }
+                                         }
+                                     }
         );
         checkbox4.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                if (checkbox4.isChecked()){
-                    String cleaningservice = checkbox4.getText().toString();
-                    roomservice.setCleaningservice(cleaningservice);
-                }
-            }
-        }
+                                         @Override
+                                         public void onClick(View v){
+                                             if (checkbox4.isChecked()){
+                                                 String cleaningservice = checkbox4.getText().toString();
+                                                 roomservice.setCleaningservice(cleaningservice);
+                                             }
+                                         }
+                                     }
         );
 
         answerBox1 = (EditText) findViewById(R.id.A1);
@@ -279,17 +281,17 @@ private EditText answerBox1;
                     checkboxes+=" "+cleaningservice;
                 }
 
-                    Service valettravel = new Service(requestType, requestDate, requestedTimeRoomService, answer1, towels, soap, bedsheets, cleaningservice, checkboxes);
+                Service valettravel = new Service(requestType, requestDate, requestedTimeRoomService, answer1, towels, soap, bedsheets, cleaningservice, checkboxes);
 
-                    myRef.child("Service").child(userID).child(request).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(RoomServiceActivity.this, "Request Sent!",Toast.LENGTH_SHORT).show();
-                            Intent submit = new Intent(RoomServiceActivity.this,ServicesActivity.class);
-                            startActivity(submit); //Redirect to main page
-                            finish();
-                        }
-                    });
+                myRef.child("Service").child(userID).child(request).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(RoomServiceActivity.this, "Request Sent!",Toast.LENGTH_SHORT).show();
+                        Intent submit = new Intent(RoomServiceActivity.this,ServicesActivity.class);
+                        startActivity(submit); //Redirect to main page
+                        finish();
+                    }
+                });
 
 
 

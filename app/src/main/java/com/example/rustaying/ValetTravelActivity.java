@@ -73,6 +73,8 @@ public class ValetTravelActivity extends AppCompatActivity {
                         startActivity(account);
                         break;
                     case R.id.navigation_home:
+                        Intent home = new Intent(ValetTravelActivity.this,HomeActivity.class);
+                        startActivity(home);
                         break;
                     case R.id.navigation_services:
                         Intent services = new Intent(ValetTravelActivity.this,ServicesActivity.class);
