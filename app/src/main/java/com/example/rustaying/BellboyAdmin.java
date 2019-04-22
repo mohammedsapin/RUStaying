@@ -51,7 +51,7 @@ public class BellboyAdmin extends AppCompatActivity {
         viewServices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BellboyAdmin.this, RoomServices.class));
+                startActivity(new Intent(BellboyAdmin.this, ViewServices.class));
                 Log.d(TAG, "onClick: button clicked");
             }
         });
