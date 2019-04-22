@@ -3,14 +3,17 @@ package com.example.rustaying;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
@@ -32,13 +35,12 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
 
     Service bellboy = new Service();
 
-    private RadioGroup radiogroup;
-    private RadioButton radiobutton;
+    private EditText answerBox1;
 
     private static final String TAG = "BellboyActivity";
     private Button back;
     private Button submitButton;
-  
+
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
@@ -55,6 +57,28 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bellboy);
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.navigation_account:
+                        Intent account = new Intent(BellboyActivity.this,ProfileActivity.class);
+                        startActivity(account);
+                        break;
+                    case R.id.navigation_home:
+                        Intent home = new Intent(BellboyActivity.this,HomeActivity.class);
+                        startActivity(home);
+                        break;
+                    case R.id.navigation_services:
+                        Intent services = new Intent(BellboyActivity.this,ServicesActivity.class);
+                        startActivity(services);
+                        break;
+                }
+                return false;
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -85,13 +109,28 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
+                final LocalDate currentDate = parseDate(year, (month + 1), day);
                 dateDialog = new DatePickerDialog(BellboyActivity.this, R.style.Theme_AppCompat, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year1, int month1, int dayOfMonth1) {
-                        date1.setText((month1 + 1) + "/" + dayOfMonth1 + "/" + year1);
+
                         requestDate = parseDate(year1, (month1 + 1), dayOfMonth1);
                         String requestDate1=requestDate.toString();
                         bellboy.setRequestDate(requestDate1);
+
+
+                        if(requestDate.compareTo(currentDate) < 0)
+                        {
+                            Toast.makeText(BellboyActivity.this, "Invalid Date",
+                                    Toast.LENGTH_SHORT).show();
+                            requestDate = null;
+                        }
+                        else
+                        {
+                            date1.setText((month1 + 1) + "/" + dayOfMonth1 + "/" + year1);
+                        }
+
+
                     }
                 }, year, month, day);
                 dateDialog.show();
@@ -175,7 +214,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
 
 
 
-
+        answerBox1 = (EditText) findViewById(R.id.A1);
 
 
         submitButton= (Button) findViewById(R.id.submitButton);
@@ -196,10 +235,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                 String requestedTimeBellboy = hourValue + ":" + minuteValue + " " + ampmValue;
                 String requestType = "Bellboy";
                 String requestDate = bellboy.getRequestDate();
-                radiogroup = (RadioGroup) findViewById(R.id.radiogroup);
-                int selectedId =radiogroup.getCheckedRadioButtonId();
-                radiobutton=(RadioButton)findViewById(selectedId);
-                String fromWhere=radiobutton.getText().toString();
+                final String fromWhere = answerBox1.getText().toString().trim();
                 Service service = new Service(requestType,requestDate, numLuggageValue,requestedTimeBellboy, fromWhere);
                 myRef.child("Service").child(userID).child(request).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

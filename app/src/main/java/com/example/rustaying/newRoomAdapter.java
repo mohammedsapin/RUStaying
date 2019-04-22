@@ -41,9 +41,11 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
     private ArrayList<Room> roomList;
     private ResInfo resInfo = new ResInfo();
     private FirebaseDatabase mFirebaseDatabase;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
     private String userID;
+    boolean temp = false;
 
 
     public newRoomAdapter(Context mCtx, ArrayList<Room> roomList, ResInfo resInfo) {
@@ -62,6 +64,20 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
         myRef = mFirebaseDatabase.getReference(); //dbRef
         final FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null){
+                    temp = true;
+                    Log.d(TAG, "onAuthStateChanged: Signed In");
+                }else{
+                    temp = false;
+                    Log.d(TAG, "onAuthStateChanged: Signed out");
+                }
+            }
+        };
 
         //LayoutInflater inflater = LayoutInflater.from(mCtx);
         //View view = inflater.inflate(R.layout.new_rooms, null);
@@ -112,50 +128,51 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
 
         roomViewHolder.imageView.setImageDrawable(myImage);
 
-        roomViewHolder.bookBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(mCtx);
-                alertDialog.setMessage("Confirm Room Booking for Room: " + roomNum + "? \n Check in date is: " +
-                                        resInfo.getCheckIn().toString() + "\n Check out date is: " +
-                                        resInfo.getCheckOut().toString())
-                        //Positive button is Yes, meaning the use wants to logout
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //Confirm booking
-                                //Send data to database
-                                updateInformation();
+            roomViewHolder.bookBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(mCtx);
+                    alertDialog.setMessage("Confirm Room Booking for Room: " + roomNum + "? \n Check in date is: " +
+                            resInfo.getCheckIn().toString() + "\n Check out date is: " +
+                            resInfo.getCheckOut().toString())
+                            //Positive button is Yes, meaning the use wants to logout
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Confirm booking
+                                    //Send data to database
+                                    updateInformation();
 
 
-                                //Confirmation message
-                                Toast.makeText(mCtx, "Booking Confirmed!",Toast.LENGTH_SHORT).show();
+                                    //Confirmation message
+                                    Toast.makeText(mCtx, "Booking Confirmed!",Toast.LENGTH_SHORT).show();
 
-                            }
-                        })
-                        //Negative button is No, meaning user does not want to logout
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel(); //Close dialog box. Nothing happens
-                            }
-                        });
+                                }
+                            })
+                            //Negative button is No, meaning user does not want to logout
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel(); //Close dialog box. Nothing happens
+                                }
+                            });
 
 
-                AlertDialog alert = alertDialog.create();
-                alert.setTitle("Confirm Reservation");
-                alert.show();
+                    AlertDialog alert = alertDialog.create();
+                    alert.setTitle("Confirm Reservation");
+                    alert.show();
 
-                //Changing colors of the Yes and No buttons
-                Button negativeButton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
-                negativeButton.setTextColor(Color.RED);
-                negativeButton.setBackgroundColor(Color.WHITE);
+                    //Changing colors of the Yes and No buttons
+                    Button negativeButton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+                    negativeButton.setTextColor(Color.RED);
+                    negativeButton.setBackgroundColor(Color.WHITE);
 
-                Button positiveButton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
-                positiveButton.setTextColor(Color.RED);
-                positiveButton.setBackgroundColor(Color.WHITE);
-            }
-        });
+                    Button positiveButton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+                    positiveButton.setTextColor(Color.RED);
+                    positiveButton.setBackgroundColor(Color.WHITE);
+                }
+            });
+
 
     }
 

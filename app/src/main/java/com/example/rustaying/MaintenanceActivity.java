@@ -2,9 +2,11 @@ package com.example.rustaying;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -82,6 +84,30 @@ public class MaintenanceActivity extends AppCompatActivity {
         userID = user.getUid();
 
 
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.navigation_account:
+                        Intent account = new Intent(MaintenanceActivity.this,ProfileActivity.class);
+                        startActivity(account);
+                        break;
+                    case R.id.navigation_home:
+                        Intent home = new Intent(MaintenanceActivity.this,HomeActivity.class);
+                        startActivity(home);
+                        break;
+                    case R.id.navigation_services:
+                        Intent services = new Intent(MaintenanceActivity.this,
+                                ServicesActivity.class);
+                        startActivity(services);
+                        break;
+                }
+                return false;
+            }
+        });
+
         back = (Button) findViewById(R.id.backButton);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,15 +148,27 @@ public class MaintenanceActivity extends AppCompatActivity {
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
+                final LocalDate currentDate = parseDate(year, (month + 1), day);
                 dateDialog = new DatePickerDialog(MaintenanceActivity.this, R.style.Theme_AppCompat, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year1, int month1, int dayOfMonth1) {
-                        date1.setText((month1 + 1) + "/" + dayOfMonth1 + "/" + year1);
                         requestDate = parseDate(year1, (month1 + 1), dayOfMonth1);
                         String requestDate1=requestDate.toString();
                         maintenance.setRequestDate(requestDate1);
+
+                        if(requestDate.compareTo(currentDate) < 0)
+                        {
+                            Toast.makeText(MaintenanceActivity.this, "Invalid Date",
+                                    Toast.LENGTH_SHORT).show();
+                            requestDate = null;
+                        }
+                        else
+                        {
+                            date1.setText((month1 + 1) + "/" + dayOfMonth1 + "/" + year1);
+                        }
+
                     }
-                    }, year, month, day);
+                }, year, month, day);
                 dateDialog.show();
             }
         });
@@ -181,35 +219,35 @@ public class MaintenanceActivity extends AppCompatActivity {
         checkbox3=(CheckBox)findViewById(R.id.checkBox3);
 
         checkbox1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                if (checkbox1.isChecked()){
-                    String bathroom = checkbox1.getText().toString();
-                    maintenance.setBathroom(bathroom);
+                                         @Override
+                                         public void onClick(View v){
+                                             if (checkbox1.isChecked()){
+                                                 String bathroom = checkbox1.getText().toString();
+                                                 maintenance.setBathroom(bathroom);
 
-                }
-            }
-        }
+                                             }
+                                         }
+                                     }
         );
         checkbox2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                if (checkbox2.isChecked()){
-                    String electronic = checkbox2.getText().toString();
-                    maintenance.setElectronic(electronic);
-                }
-            }
-        }
+                                         @Override
+                                         public void onClick(View v){
+                                             if (checkbox2.isChecked()){
+                                                 String electronic = checkbox2.getText().toString();
+                                                 maintenance.setElectronic(electronic);
+                                             }
+                                         }
+                                     }
         );
         checkbox3.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                if (checkbox3.isChecked()){
-                    String lighting = checkbox3.getText().toString();
-                    maintenance.setLighting(lighting);
-                }
-            }
-        }
+                                         @Override
+                                         public void onClick(View v){
+                                             if (checkbox3.isChecked()){
+                                                 String lighting = checkbox3.getText().toString();
+                                                 maintenance.setLighting(lighting);
+                                             }
+                                         }
+                                     }
         );
 
 

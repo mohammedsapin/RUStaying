@@ -33,6 +33,28 @@ public class CheckInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkin);
 
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.navigation_account:
+                        Intent account = new Intent(CheckInActivity.this,ProfileActivity.class);
+                        startActivity(account);
+                        break;
+                    case R.id.navigation_home:
+                        Intent home = new Intent(CheckInActivity.this,HomeActivity.class);
+                        startActivity(home);
+                        break;
+                    case R.id.navigation_services:
+                        Intent service = new Intent(CheckInActivity.this, ServicesActivity.class);
+                        startActivity(service);
+                        break;
+                }
+                return false;
+            }
+        });
+
         //Get data from HomeActivity
         Intent i = getIntent();
         Bundle b = i.getBundleExtra("reservationDates");

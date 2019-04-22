@@ -3,8 +3,11 @@ package com.example.rustaying;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -40,6 +43,29 @@ public class ReservationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.navigation_account:
+                        Intent account = new Intent(ReservationActivity.this,ProfileActivity.class);
+                        startActivity(account);
+                        break;
+                    case R.id.navigation_home:
+                        Intent home = new Intent(ReservationActivity.this,HomeActivity.class);
+                        startActivity(home);
+                        break;
+                    case R.id.navigation_services:
+                        Intent service = new Intent(ReservationActivity.this, ServicesActivity.class);
+                        startActivity(service);
+                        break;
+                }
+                return false;
+            }
+        });
+
 
         dateBtn1 = (Button) findViewById(R.id.calendarBtn1);
         dateBtn2 = (Button) findViewById(R.id.calendarBtn2);

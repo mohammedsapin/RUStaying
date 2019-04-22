@@ -62,6 +62,29 @@ public class ValetTravelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_valet_travel);
 
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.navigation_account:
+                        Intent account = new Intent(ValetTravelActivity.this,ProfileActivity.class);
+                        startActivity(account);
+                        break;
+                    case R.id.navigation_home:
+                        Intent home = new Intent(ValetTravelActivity.this,HomeActivity.class);
+                        startActivity(home);
+                        break;
+                    case R.id.navigation_services:
+                        Intent services = new Intent(ValetTravelActivity.this,ServicesActivity.class);
+                        startActivity(services);
+                        break;
+                }
+                return false;
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -90,13 +113,25 @@ public class ValetTravelActivity extends AppCompatActivity {
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
+                final LocalDate currentDate = parseDate(year, (month + 1), day);
                 dateDialog = new DatePickerDialog(ValetTravelActivity.this, R.style.Theme_AppCompat, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year1, int month1, int dayOfMonth1) {
-                        date1.setText((month1 + 1) + "/" + dayOfMonth1 + "/" + year1);
+
                         requestDate = parseDate(year1, (month1 + 1), dayOfMonth1);
                         String requestDate1=requestDate.toString();
                         valettravel.setRequestDate(requestDate1);
+
+                        if(requestDate.compareTo(currentDate) < 0)
+                        {
+                            Toast.makeText(ValetTravelActivity.this, "Invalid Date",
+                                    Toast.LENGTH_SHORT).show();
+                            requestDate = null;
+                        }
+                        else
+                        {
+                            date1.setText((month1 + 1) + "/" + dayOfMonth1 + "/" + year1);
+                        }
                     }
                 }, year, month, day);
                 dateDialog.show();

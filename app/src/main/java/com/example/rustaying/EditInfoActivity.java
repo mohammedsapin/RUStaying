@@ -55,6 +55,8 @@ public class EditInfoActivity extends AppCompatActivity {
                         startActivity(home);
                         break;
                     case R.id.navigation_services:
+                        Intent service = new Intent(EditInfoActivity.this, ServicesActivity.class);
+                        startActivity(service);
                         break;
                 }
                 return false;

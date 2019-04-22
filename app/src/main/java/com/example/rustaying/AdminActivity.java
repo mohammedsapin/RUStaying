@@ -56,7 +56,7 @@ public class AdminActivity extends AppCompatActivity {
         viewRooms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminActivity.this, ViewRooms.class));
+                startActivity(new Intent(AdminActivity.this, newViewRooms.class));
             }
         });
 
