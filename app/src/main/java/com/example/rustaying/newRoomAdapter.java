@@ -63,7 +63,7 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference(); //dbRef
         final FirebaseUser user = mAuth.getCurrentUser();
-        //userID = user.getUid();
+        userID = user.getUid();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
