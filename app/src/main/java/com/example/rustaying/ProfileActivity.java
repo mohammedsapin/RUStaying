@@ -58,6 +58,8 @@ public class ProfileActivity extends AppCompatActivity {
                         startActivity(home);
                         break;
                     case R.id.navigation_services:
+                        Intent services = new Intent(ProfileActivity.this, ServicesActivity.class);
+                        startActivity(services);
                         break;
                 }
                 return false;
