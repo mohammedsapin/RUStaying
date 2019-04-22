@@ -24,7 +24,8 @@ public class MaintenanceServicesAdapter extends RecyclerView.Adapter<Maintenance
 
     @Override
     public ViewHolder onCreateViewHolder( ViewGroup viewGroup, int i){
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_maintenance_services,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_maintenance_services,viewGroup,
+                false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -35,11 +36,11 @@ public class MaintenanceServicesAdapter extends RecyclerView.Adapter<Maintenance
 
         Service info = serviceList.get(i);
 
-        viewHolder.requestTypeM.setText(info.getRequestType());
-        viewHolder.requestTimeM.setText(info.getRequestedTimeMaintenance());
-        viewHolder.requestDateM.setText(info.getRequestDate());
-        viewHolder.checkboxesM.setText(info.getCheckboxes());
-        viewHolder.inputsM.setText(info.getInputs());
+        viewHolder.requestType.setText(info.getRequestType());
+        viewHolder.requestTime.setText(info.getRequestedTimeMaintenance());
+        viewHolder.requestDate.setText(info.getRequestDate());
+        viewHolder.checkboxes.setText(info.getCheckboxes());
+        viewHolder.inputs.setText(info.getInputs());
     }
 
     @Override
@@ -48,15 +49,15 @@ public class MaintenanceServicesAdapter extends RecyclerView.Adapter<Maintenance
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView requestTypeM, requestTimeM, requestDateM, checkboxesM, inputsM;
+        TextView requestType, requestTime, requestDate, checkboxes, inputs;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-            requestTypeM = itemView.findViewById(R.id.requestTypeM);
-            requestTimeM = itemView.findViewById(R.id.requestTimeM);
-            requestDateM = itemView.findViewById(R.id.requestDateM);
-            checkboxesM = itemView.findViewById(R.id.checkboxesM);
-            inputsM = itemView.findViewById(R.id.inputsM);
+            requestType = itemView.findViewById(R.id.requestTypeM);
+            requestTime = itemView.findViewById(R.id.requestTimeM);
+            requestDate = itemView.findViewById(R.id.requestDateM);
+            checkboxes = itemView.findViewById(R.id.checkboxesM);
+            inputs = itemView.findViewById(R.id.inputsM);
         }
     }
 }

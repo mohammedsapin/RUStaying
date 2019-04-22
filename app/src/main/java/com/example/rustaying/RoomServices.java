@@ -102,12 +102,19 @@ public class RoomServices extends AppCompatActivity {
             info.setRequestedTimeRoomService(data.getValue(Service.class).getRequestedTimeRoomService());
             info.setCheckboxes(data.getValue(Service.class).getCheckboxes());
             info.setInputs(data.getValue(Service.class).getInputs());
+            info.setSoap(data.getValue(Service.class).getSoap());
+            info.setTowels(data.getValue(Service.class).getTowels());
+            info.setBedsheets(data.getValue(Service.class).getBedsheets());
+            info.setCleaningservice(data.getValue(Service.class).getCleaningservice());
 
             //add object to array list
             //Room Service
             if (info.getRequestType().equals("RoomService")) {
                 serviceList.add(new Service(info.getRequestType(), info.getRequestDate(),
-                        info.getRequestedTimeRoomService(), info.getCheckboxes(), info.getInputs()));
+                        info.getRequestedTimeRoomService(),  info.getInputs(), info.getTowels(),
+                        info.getSoap(), info.getBedsheets(),
+                        info.getCleaningservice(),
+                        info.getCheckboxes()));
                 //add array list to recycle view
                 createRecycleView();
             }

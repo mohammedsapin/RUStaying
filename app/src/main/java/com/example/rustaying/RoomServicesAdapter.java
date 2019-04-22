@@ -36,10 +36,10 @@ public class RoomServicesAdapter extends RecyclerView.Adapter<RoomServicesAdapte
         Service info = serviceList.get(i);
 
         viewHolder.requestType.setText(info.getRequestType());
-        viewHolder.luggageVal.setText(info.getLuggageValue());
-        viewHolder.requestTime.setText(info.getRequestedTimeBellboy());
-        viewHolder.fromWhere.setText(info.getFromWhere());
         viewHolder.requestDate.setText(info.getRequestDate());
+        viewHolder.requestTime.setText(info.getRequestedTimeRoomService());
+        viewHolder.checkbox.setText(info.getCheckboxes());
+        viewHolder.input.setText(info.getInputs());
     }
 
     @Override
@@ -48,15 +48,15 @@ public class RoomServicesAdapter extends RecyclerView.Adapter<RoomServicesAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView requestType, luggageVal, requestTime, requestDate, fromWhere;
+        TextView requestType, requestDate, requestTime,  checkbox, input;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
             requestType = itemView.findViewById(R.id.requestTypeR);
-            luggageVal = itemView.findViewById(R.id.checkboxesR);
-            requestTime = itemView.findViewById(R.id.requestTimeR);
             requestDate = itemView.findViewById(R.id.requestDateR);
-            fromWhere = itemView.findViewById(R.id.inputsR);
+            requestTime = itemView.findViewById(R.id.requestTimeR);
+            checkbox = itemView.findViewById(R.id.checkboxesR);
+            input = itemView.findViewById(R.id.inputsR);
 
         }
     }

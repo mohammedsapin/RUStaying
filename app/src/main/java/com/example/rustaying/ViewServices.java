@@ -88,7 +88,6 @@ public class ViewServices extends AppCompatActivity{
      RecyclerView recyclerView = findViewById(R.id.viewServicesRecycleView);
      recyclerView.setLayoutManager(new LinearLayoutManager(this));
      ViewServicesAdapter adapter = new ViewServicesAdapter(this,serviceList);
-     recyclerView.setItemAnimator(new DefaultItemAnimator());
      recyclerView.setAdapter(adapter);
     }
 
@@ -105,25 +104,12 @@ public class ViewServices extends AppCompatActivity{
             info.setRequestedTimeBellboy(data.getValue(Service.class).getRequestedTimeBellboy());
             info.setFromWhere(data.getValue(Service.class).getFromWhere());
 
-            Log.d(TAG, "showData: " + info.getRequestedTimeBellboy());
-            //Room Service
-//            info.setRequestedTimeRoomService(data.getValue(Service.class).getRequestedTimeRoomService());
-//            info.setTowels(data.getValue(Service.class).getTowels());
-//            info.setSoap(data.getValue(Service.class).getSoap());
-//            info.setBedsheets(data.getValue(Service.class).getBedsheets());
-//            info.setCleaningservice(data.getValue(Service.class).getBedsheets());
-
+            Log.d(TAG, "ViewServiceClass: " + info.getRequestedTimeBellboy());
 
             //bellboy
             if (info.getRequestType().equals("Bellboy")){
             serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
                     info.getLuggageValue(),info.getRequestedTimeBellboy(),info.getFromWhere()));
-
-//            //Room Service
-//            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
-//                    info.getRequestedTimeRoomService(), info.getInputs(), info.getTowels(),
-//                    info.getSoap(),info.getBedsheets(),info.getCleaningservice(),
-//                    info.getCheckboxes()));
 
             //add array list to recycle view
             createRecycleView();

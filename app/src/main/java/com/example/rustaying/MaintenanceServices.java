@@ -88,7 +88,7 @@ public class MaintenanceServices extends AppCompatActivity {
 
     private void createRecycleView(){
         Log.d(TAG, "createRecycleView: Started view");
-        RecyclerView recyclerView = findViewById(R.id.viewMaintenanceServices);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.viewMaintenanceServicesRecycle);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         MaintenanceServicesAdapter adapter = new MaintenanceServicesAdapter(this,serviceList);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -106,10 +106,17 @@ public class MaintenanceServices extends AppCompatActivity {
             info.setRequestDate(data.getValue(Service.class).getRequestDate());
             info.setCheckboxes(data.getValue(Service.class).getCheckboxes());
             info.setInputs(data.getValue(Service.class).getInputs());
+            info.setBathroom(data.getValue(Service.class).getBathroom());
+            info.setElectronic(data.getValue(Service.class).getElectronic());
+            info.setLighting(data.getValue(Service.class).getLighting());
+
+
 
             if (info.getRequestType().equals("Maintenance")){
-            serviceList.add(new Service(info.getRequestType(),info.getRequestedTimeMaintenance(),
-                    info.getRequestDate(),info.getCheckboxes(),info.getInputs()));
+            serviceList.add(new Service(info.getRequestType(),
+                    info.getRequestDate(), info.getRequestedTimeMaintenance(), info.getInputs(),
+                    info.getBathroom(), info.getElectronic(), info.getLighting(),
+                    info.getCheckboxes()));
 
 
             //add array list to recycle view

@@ -54,11 +54,11 @@ public class ViewServicesAdapter extends RecyclerView.Adapter<ViewServicesAdapte
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-            requestType = itemView.findViewById(R.id.requestTypeR);
+            requestType = itemView.findViewById(R.id.requestTypeB);
             bellboyDate = itemView.findViewById(R.id.bellboyDate);
-            luggageVal = itemView.findViewById(R.id.checkboxesR);
-            requestTime = itemView.findViewById(R.id.requestTimeR);
-            fromWhere = itemView.findViewById(R.id.inputsR);
+            luggageVal = itemView.findViewById(R.id.luggageVal);
+            requestTime = itemView.findViewById(R.id.requestTimeBellboy);
+            fromWhere = itemView.findViewById(R.id.locationB);
         }
     }
 }
