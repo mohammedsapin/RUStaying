@@ -33,31 +33,6 @@ public class Feedback {
     }
 
 
-
-
-
-    public void setRating2(float rating1) {
-        this.rating2 = rating2;
-    }
-
-
-
-
-    public void setRating3(float rating1) {
-        this.rating3 = rating3;
-    }
-
-
-    public void setRating4(float rating1) {
-        this.rating4 = rating4;
-    }
-
-
-    public void setRating5(float rating1) {
-        this.rating5 = rating5;
-    }
-
-
     public String getAnswer1() {
         return answer1;
     }
