@@ -35,13 +35,13 @@ public class ValetServicesAdapter extends RecyclerView.Adapter<ValetServicesAdap
 
         Service info = serviceList.get(i);
 
-        viewHolder.requestType.setText(info.getRequestType());
-        viewHolder.requestDate.setText(info.getRequestDate());
-        viewHolder.requestTime.setText(info.getRequestedTimeValet());
-        viewHolder.startingStreet.setText(info.getStartingStreet());
-        viewHolder.startingCityStateZip.setText(info.getStartingCityStateZip());
-        viewHolder.destinationStreet.setText(info.getDestinationStreet());
-        viewHolder.destinationCityStateZip.setText(info.getDestinationCityStateZip());
+        viewHolder.requestTypeV.setText(info.getRequestType());
+        viewHolder.requestTimeV.setText(info.getRequestedTimeValet());
+        viewHolder.requestDateV.setText(info.getRequestDate());
+        viewHolder.startingStreetV.setText(info.getStartingStreet());
+        viewHolder.startingCityStateZipV.setText(info.getStartingCityStateZip());
+        viewHolder.destinationStreetV.setText(info.getDestinationStreet());
+        viewHolder.destinationCityStateZipV.setText(info.getDestinationCityStateZip());
     }
 
     @Override
@@ -50,18 +50,18 @@ public class ValetServicesAdapter extends RecyclerView.Adapter<ValetServicesAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView requestType, requestDate, requestTime, startingStreet, startingCityStateZip,
-                destinationStreet, destinationCityStateZip;
+        TextView requestTypeV, requestDateV, requestTimeV, startingStreetV, startingCityStateZipV,
+                destinationStreetV, destinationCityStateZipV;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-            requestType = itemView.findViewById(R.id.requestType);
-            requestDate = itemView.findViewById(R.id.requestDate);
-            requestTime = itemView.findViewById(R.id.requestTime);
-            startingStreet = itemView.findViewById(R.id.startingStreet);
-            startingCityStateZip = itemView.findViewById(R.id.startingCityStateZip);
-            destinationStreet = itemView.findViewById(R.id.destinationStreet);
-            destinationCityStateZip = itemView.findViewById(R.id.destinationCityStateZip);
+            requestTypeV = itemView.findViewById(R.id.requestTypeM);
+            requestDateV = itemView.findViewById(R.id.requestDateM);
+            requestTimeV = itemView.findViewById(R.id.requestTimeM);
+            startingStreetV = itemView.findViewById(R.id.checkboxesM);
+            startingCityStateZipV = itemView.findViewById(R.id.startingCityStateZipV);
+            destinationStreetV = itemView.findViewById(R.id.inputsM);
+            destinationCityStateZipV = itemView.findViewById(R.id.destinationCityStateZipV);
 
         }
     }

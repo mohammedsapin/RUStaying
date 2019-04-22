@@ -105,17 +105,7 @@ public class ViewServices extends AppCompatActivity{
             info.setRequestedTimeBellboy(data.getValue(Service.class).getRequestedTimeBellboy());
             info.setFromWhere(data.getValue(Service.class).getFromWhere());
 
-            //Valet
-            //info.setRequestedTimeValet(data.getValue(Service.class).getRequestedTimeValet());
-
-            //Maintenance
-//            info.setRequestedTimeMaintenance(data.getValue(Service.class).getRequestedTimeMaintenance());
-//            info.setInputs(data.getValue(Service.class).getInputs());
-//            info.setBathroom(data.getValue(Service.class).getBathroom());
-//            info.setElectronic(data.getValue(Service.class).getElectronic());
-//            info.setLighting(data.getValue(Service.class).getLighting());
-//            info.setCheckboxes(data.getValue(Service.class).getCheckboxes());
-
+            Log.d(TAG, "showData: " + info.getRequestedTimeBellboy());
             //Room Service
 //            info.setRequestedTimeRoomService(data.getValue(Service.class).getRequestedTimeRoomService());
 //            info.setTowels(data.getValue(Service.class).getTowels());
@@ -129,17 +119,6 @@ public class ViewServices extends AppCompatActivity{
             serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
                     info.getLuggageValue(),info.getRequestedTimeBellboy(),info.getFromWhere()));
 
-
-            //valet (Mandy edited)
-//            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
-//                    info.getRequestedTimeValet(),info.getStartingStreet(),info.getStartingCityStateZip(),
-//                    info.getDestinationStreet(),info.getDestinationCityStateZip()));
-
-            //Maintenance
-//            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
-//                    info.getRequestedTimeMaintenance(),info.getInputs(),info.getBathroom(),
-//                    info.getElectronic(),info.getLighting(),info.getCheckboxes()));
-//
 //            //Room Service
 //            serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
 //                    info.getRequestedTimeRoomService(), info.getInputs(), info.getTowels(),

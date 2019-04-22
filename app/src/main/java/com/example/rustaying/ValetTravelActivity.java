@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +23,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -101,7 +99,7 @@ public class ValetTravelActivity extends AppCompatActivity {
         dateBtn1 = (Button) findViewById(R.id.calendarBtn1);
         viewBtn = (Button) findViewById(R.id.viewRoomsBtn);
 
-        date1 = (TextView) findViewById(R.id.requestDate);
+        date1 = (TextView) findViewById(R.id.requestDateR);
 
 
         dateBtn1.setOnClickListener(new View.OnClickListener() {
@@ -226,7 +224,7 @@ public class ValetTravelActivity extends AppCompatActivity {
                 String requestDate=valettravel.getRequestDate();
 
                 if (!TextUtils.isEmpty(startingStreet) && !TextUtils.isEmpty(startingCityStateZip)&& !TextUtils.isEmpty(destinationCityStateZip)&& !TextUtils.isEmpty(destinationStreet)) {
-                    Service valettravel = new Service(requestType, requestDate, requestedTimeValet, startingStreet, startingCityStateZip, destinationStreet, destinationCityStateZip);
+                    Service valettravel = new Service(requestType,requestedTimeValet, requestDate, startingStreet, destinationStreet, startingCityStateZip, destinationCityStateZip);
 
                     myRef.child("Service").child(userID).child(request).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

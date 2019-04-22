@@ -1,13 +1,11 @@
 package com.example.rustaying;
 
-import android.graphics.Canvas;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,13 +15,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ValetServices extends AppCompatActivity {
+public class RoomServices extends AppCompatActivity {
 
-    private static final String TAG = "ValetServices";
+    private static final String TAG = "RoomServices";
 
     //Services List
     private ArrayList<Service> serviceList = new ArrayList<>();
@@ -38,7 +35,7 @@ public class ValetServices extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_valet_services);
+        setContentView(R.layout.activity_room_services);
 
         createRecycleView();
 
@@ -88,9 +85,9 @@ public class ValetServices extends AppCompatActivity {
 
     private void createRecycleView(){
         Log.d(TAG, "createRecycleView: Started view");
-        RecyclerView recyclerView = findViewById(R.id.viewValetServices);
+        RecyclerView recyclerView = findViewById(R.id.viewRoomServiceRecycle);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ValetServicesAdapter adapter = new ValetServicesAdapter(this,serviceList);
+        RoomServicesAdapter adapter = new RoomServicesAdapter(this,serviceList);
         recyclerView.setAdapter(adapter);
     }
 
@@ -101,20 +98,16 @@ public class ValetServices extends AppCompatActivity {
             Service info = new Service();
 
             info.setRequestType(data.getValue(Service.class).getRequestType());
-            info.setRequestedTimeValet(data.getValue(Service.class).getRequestedTimeValet());
             info.setRequestDate(data.getValue(Service.class).getRequestDate());
-            info.setStartingStreet(data.getValue(Service.class).getStartingStreet());
-            info.setStartingCityStateZip(data.getValue(Service.class).getStartingCityStateZip());
-            info.setDestinationStreet(data.getValue(Service.class).getDestinationStreet());
-            info.setDestinationCityStateZip(data.getValue(Service.class).getDestinationCityStateZip());
+            info.setRequestedTimeRoomService(data.getValue(Service.class).getRequestedTimeRoomService());
+            info.setCheckboxes(data.getValue(Service.class).getCheckboxes());
+            info.setInputs(data.getValue(Service.class).getInputs());
 
             //add object to array list
-            //valet
-            if (info.getRequestType().equals("ValetTravel")) {
-                serviceList.add(new Service(info.getRequestType(), info.getRequestedTimeValet(), info.getRequestDate(),
-                        info.getStartingStreet(), info.getDestinationStreet(),info.getStartingCityStateZip(),
-                         info.getDestinationCityStateZip()));
-
+            //Room Service
+            if (info.getRequestType().equals("RoomService")) {
+                serviceList.add(new Service(info.getRequestType(), info.getRequestDate(),
+                        info.getRequestedTimeRoomService(), info.getCheckboxes(), info.getInputs()));
                 //add array list to recycle view
                 createRecycleView();
             }

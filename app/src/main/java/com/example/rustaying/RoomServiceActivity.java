@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -100,7 +99,7 @@ private EditText answerBox1;
         dateBtn1 = (Button) findViewById(R.id.calendarBtn1);
         viewBtn = (Button) findViewById(R.id.viewRoomsBtn);
 
-        date1 = (TextView) findViewById(R.id.requestDate);
+        date1 = (TextView) findViewById(R.id.requestDateR);
 
 
         dateBtn1.setOnClickListener(new View.OnClickListener() {

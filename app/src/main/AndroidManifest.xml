@@ -11,11 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminServiceList"></activity>
+        <activity android:name=".MaintenanceServices"></activity>
+        <activity android:name=".AdminServiceList" />
         <activity android:name=".EditInfoActivity" />
         <activity android:name=".PasswordActivity" />
         <activity android:name=".ValetServices" />
-        <activity android:name=".BellboyServices" />
+        <activity android:name=".RoomServices" />
         <activity android:name=".RoomServiceAdmin" />
         <activity android:name=".MaintenanceAdmin" />
         <activity android:name=".ValetAdmin" />
@@ -23,7 +24,7 @@
         <activity android:name=".RoomServiceActivity" />
         <activity android:name=".ValetTravelActivity" />
         <activity android:name=".MaintenanceActivity" />
-        <activity android:name=".ViewRooms"></activity>
+        <activity android:name=".ViewRooms" />
         <activity android:name=".ViewGuests" />
         <activity android:name=".ViewServices" />
         <activity android:name=".BellboyActivity" />
@@ -34,13 +35,11 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".FeedbackActivity"/>
+        <activity android:name=".FeedbackActivity" />
         <activity android:name=".ReservationActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".HotelInfo" />
-        <activity android:name=".MainActivity" >
-          
-          
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

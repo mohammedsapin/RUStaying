@@ -53,7 +53,7 @@ public class RoomServiceAdmin extends AppCompatActivity {
         viewServices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(RoomServiceAdmin.this, RoomServices.class));
             }
         });
 

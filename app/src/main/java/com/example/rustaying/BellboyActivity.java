@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,7 +17,6 @@ import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,8 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Random;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelectedListener{
 
@@ -97,7 +93,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
         dateBtn1 = (Button) findViewById(R.id.calendarBtn1);
         viewBtn = (Button) findViewById(R.id.viewRoomsBtn);
 
-        date1 = (TextView) findViewById(R.id.requestDate);
+        date1 = (TextView) findViewById(R.id.requestDateR);
 
 
         dateBtn1.setOnClickListener(new View.OnClickListener() {
