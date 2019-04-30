@@ -15,7 +15,12 @@ public class Guest {
     private String checkOutDate;
 
 
-    private String paymentAmount;
+    private String creditCardNumer;
+    private String CCV;
+    private String nameOnCCard;
+    private String billingAddress;
+    private String expirationDate;
+    private boolean validPayment;
 
     //add more as we keep working on project
 
@@ -34,6 +39,12 @@ public class Guest {
         this.accountStatus = true;
         this.checkInDate = "";
         this.checkOutDate = "";
+        this.creditCardNumer = "";
+        this.CCV="";
+        this.nameOnCCard = "";
+        this.billingAddress="";
+        this.expirationDate="";
+        this.validPayment = false;
     }
 
     public String getFirstName() {
@@ -108,8 +119,27 @@ public class Guest {
         this.checkOutDate = checkOutDate;
     }
 
-    public String getPaymentAmount() { return paymentAmount; }
+    public String getCreditCardNumer() { return creditCardNumer; }
 
-    public void setPaymentAmount(String paymentAmount) { this.paymentAmount = paymentAmount; }
+    public void setCreditCardNumer(String creditCardNumer) { this.creditCardNumer = creditCardNumer; }
 
+    public String getCCV() { return CCV; }
+
+    public void setCCV(String CCV) { this.CCV = CCV; }
+
+    public String getNameOnCCard() { return nameOnCCard; }
+
+    public void setNameOnCCard(String nameOnCCard) { this.nameOnCCard = nameOnCCard; }
+
+    public String getBillingAddress() { return billingAddress; }
+
+    public void setBillingAddress(String billingAddress) { this.billingAddress = billingAddress; }
+
+    public String getExpirationDate() { return expirationDate; }
+
+    public void setExpirationDate(String expirationDate) { this.expirationDate = expirationDate; }
+
+    public boolean isValidPayment() { return validPayment; }
+
+    public void setValidPayment(boolean validPayment) { this.validPayment = validPayment; }
 }
