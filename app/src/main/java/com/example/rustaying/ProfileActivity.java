@@ -83,6 +83,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent editInfo = new Intent(ProfileActivity.this,EditInfoActivity.class);
                 startActivity(editInfo); //Redirect to feedback page
+                finish();
             }
         });
 
