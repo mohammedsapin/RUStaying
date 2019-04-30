@@ -201,4 +201,41 @@ A breakdown of the pricing is below for the current spring season:</string>
     <string name = "info16">Valet and Travel - Complimentary car service to and from anywhere within a 45 minute drive from the hotel</string>
     <string name = "info17">Maintenance - Request one of our staff members to come fix an appliance issue with your room</string>
     <string name = "info18">Room Service - Request cleaning, restocking of room essentials, and more!</string>
+
+    <string name = "payment">Payment</string>
+    <string name = "creditInfo">Please fill in your credit card information:</string>
+    <string name = "num">Card number:</string>
+    <string name = "exDate">Expiration Date: </string>
+    <string name = "creditCName">Name on card: </string>
+    <string name = "billingAdd">Billing Address: </string>
+    <string name = "ccv">CCV: </string>
+    <string name = "street">Street </string>
+    <string name = "City">City</string>
+    <string name = "zip">Zip Code</string>
+    <string name = "confirmPay">Confirm Payment</string>
+
+    <string-array name="months_array">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <string-array name="years_array">
+        <item>2019</item>
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+    </string-array>
+
 </resources>
