@@ -14,6 +14,9 @@ public class Guest {
     private String checkInDate;
     private String checkOutDate;
 
+
+    private String paymentAmount;
+
     //add more as we keep working on project
 
     public Guest() {
@@ -104,5 +107,9 @@ public class Guest {
     public void setCheckOutDate(String checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
+
+    public String getPaymentAmount() { return paymentAmount; }
+
+    public void setPaymentAmount(String paymentAmount) { this.paymentAmount = paymentAmount; }
 
 }
