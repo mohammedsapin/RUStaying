@@ -8,28 +8,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
+public class CreditActivity extends AppCompatActivity {
 
-public class ProfileActivity extends AppCompatActivity {
 
-    private static final String TAG = "ProfileActivity";
-
+    private static final String TAG = "CreditActivity";
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth auth;
     private FirebaseDatabase mFirebaseDatabase;
@@ -40,7 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_credit);
 
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
@@ -49,13 +43,15 @@ public class ProfileActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.navigation_account:
+                        Intent account = new Intent(CreditActivity.this,ProfileActivity.class);
+                        startActivity(account);
                         break;
                     case R.id.navigation_home:
-                        Intent home = new Intent(ProfileActivity.this,HomeActivity.class);
+                        Intent home = new Intent(CreditActivity.this,HomeActivity.class);
                         startActivity(home);
                         break;
                     case R.id.navigation_services:
-                        Intent services = new Intent(ProfileActivity.this, ServicesActivity.class);
+                        Intent services = new Intent(CreditActivity.this, ServicesActivity.class);
                         startActivity(services);
                         break;
                 }
@@ -74,22 +70,12 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
-        Edit = (Button) findViewById(R.id.EditButton);
-        Edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent editInfo = new Intent(ProfileActivity.this,EditInfoActivity.class);
-                startActivity(editInfo); //Redirect to feedback page
-                finish();
-            }
-        });
-
         Edit = (Button) findViewById(R.id.creditInfo);
         Edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent creditInfo = new Intent(ProfileActivity.this,CreditActivity.class);
-                startActivity(creditInfo); //Redirect to credit page
+                Intent creditInfo = new Intent(CreditActivity.this,CreditInfoActivity.class);
+                startActivity(creditInfo); //Redirect to feedback page
                 finish();
             }
         });
@@ -101,7 +87,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user==null){
-                    startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                    startActivity(new Intent(CreditActivity.this, LoginActivity.class));
                     Log.d(TAG, "onAuthStateChanged: Signed out");
                     finish();
                 }else{
@@ -112,17 +98,21 @@ public class ProfileActivity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             showData(dataSnapshot);
 
-                            TextView fname2 = (TextView) findViewById(R.id.fname2);
-                            String firstName = g.getFirstName();
-                            fname2.setText(firstName);
+                            TextView verification = (TextView) findViewById(R.id.CCV);
+                            String verif = g.getCCV();
+                            verification.setText(verif);
 
-                            TextView lname2 = (TextView) findViewById(R.id.lname2);
-                            String lastName = g.getLastName();
-                            lname2.setText(lastName);
+                            TextView number = (TextView) findViewById(R.id.creditCardNumber);
+                            String lastName = g.getCreditCardNumber();
+                            number.setText(lastName);
 
-                            TextView email2 = (TextView) findViewById(R.id.email2);
-                            String email = g.getGuestEmail();
-                            email2.setText(email);
+                            TextView name = (TextView) findViewById(R.id.nameOnCard);
+                            String newName = g.getNameOnCCard();
+                            name.setText(newName);
+
+                            TextView date = (TextView) findViewById(R.id.expDate);
+                            String expDate = g.getExpirationDate();
+                            date.setText(expDate);
                         }
 
                         @Override
@@ -139,9 +129,10 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void showData(DataSnapshot dataSnapshot) {
-        g.setFirstName(dataSnapshot.getValue(Guest.class).getFirstName());
-        g.setLastName(dataSnapshot.getValue(Guest.class).getLastName());
-        g.setGuestEmail(dataSnapshot.getValue(Guest.class).getGuestEmail());
+        g.setExpirationDate(dataSnapshot.getValue(Guest.class).getExpirationDate());
+        g.setNameOnCCard(dataSnapshot.getValue(Guest.class).getNameOnCCard());
+        g.setCCV(dataSnapshot.getValue(Guest.class).getCCV());
+        g.setCreditCardNumber(dataSnapshot.getValue(Guest.class).getCreditCardNumber());
 
     }
 
@@ -158,7 +149,6 @@ public class ProfileActivity extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
-
 
 
 }

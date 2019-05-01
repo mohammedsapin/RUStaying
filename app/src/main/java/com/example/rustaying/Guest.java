@@ -13,8 +13,6 @@ public class Guest {
 
     private String checkInDate;
     private String checkOutDate;
-
-
     private String creditCardNumber;
     private String CCV;
     private String nameOnCCard;
@@ -39,7 +37,6 @@ public class Guest {
         this.accountStatus = true;
         this.checkInDate = "";
         this.checkOutDate = "";
-
         this.creditCardNumber = "";
         this.CCV="";
         this.nameOnCCard = "";
@@ -116,31 +113,23 @@ public class Guest {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(String checkOutDate) {
-        this.checkOutDate = checkOutDate;
-    }
+    public void setCheckOutDate(String checkOutDate) { this.checkOutDate = checkOutDate; }
 
     public String getCreditCardNumber() { return creditCardNumber; }
-
     public void setCreditCardNumber(String creditCardNumber) { this.creditCardNumber = creditCardNumber; }
 
     public String getCCV() { return CCV; }
-
     public void setCCV(String CCV) { this.CCV = CCV; }
 
     public String getNameOnCCard() { return nameOnCCard; }
-
     public void setNameOnCCard(String nameOnCCard) { this.nameOnCCard = nameOnCCard; }
 
     public String getBillingAddress() { return billingAddress; }
-
     public void setBillingAddress(String billingAddress) { this.billingAddress = billingAddress; }
 
     public String getExpirationDate() { return expirationDate; }
-
     public void setExpirationDate(String expirationDate) { this.expirationDate = expirationDate; }
 
     public boolean isValidPayment() { return validPayment; }
-
     public void setValidPayment(boolean validPayment) { this.validPayment = validPayment; }
 }
