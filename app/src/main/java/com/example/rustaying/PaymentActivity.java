@@ -95,9 +95,14 @@ public class PaymentActivity extends AppCompatActivity {
                 //final String spin1 = spinner1.getText().toString().trim();//month
                 //final String spin2 = spinner2.getText().toString().trim();//date
 
-                if (!TextUtils.isEmpty(answer1) && !TextUtils.isEmpty(answer2) && !TextUtils.isEmpty(answer3)){
 
+                if (!TextUtils.isEmpty(answer1) && !TextUtils.isEmpty(answer2) && !TextUtils.isEmpty(answer3)){
                     Map<String,Object> list = new HashMap<>();
+                    /*
+                    if(TextUtils.isEmpty(g.getNameOnCCard())){
+                        list.put("nameOnCCard", answer1);
+                    }*/
+
 
                     if(!answer1.isEmpty()) {
                         list.put("nameOnCCard", answer1);
@@ -111,6 +116,7 @@ public class PaymentActivity extends AppCompatActivity {
                     if(!answer4.isEmpty()) {
                         list.put("billingAddress", answer4 + "," + answer5 + "," +answer6);
                     }
+                    list.put("validPayment", true);
 
                     myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
