@@ -37,6 +37,7 @@ public class Guest {
         this.accountStatus = true;
         this.checkInDate = "";
         this.checkOutDate = "";
+
         this.creditCardNumber = "";
         this.CCV="";
         this.nameOnCCard = "";
