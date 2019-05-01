@@ -181,24 +181,24 @@
     <string name="destination_address">Destination Address</string>
     <string name="starting_address">Starting Address</string>
 
-    <string name = "info1">
+    <string name="info1">
         Guest information about the Varghese Hotel!</string>
-    <string name = "info2"><u>Room Information:</u></string>
-    <string name = "info3">We currently offer single and double bedrooms with queen-sized and king-sized beds being offered at a higher price point.
+    <string name="info2"><u>Room Information:</u></string>
+    <string name="info3">We currently offer single and double bedrooms with queen-sized and king-sized beds being offered at a higher price point.
 A breakdown of the pricing is below for the current spring season:</string>
-    <string name = "info4">Single: $250, Double: $300, Queen: $350, King: $400</string>
+    <string name="info4">Single: $250, Double: $300, Queen: $350, King: $400</string>
 
-    <string name = "info8"><u>Guest Features:</u></string>
-    <string name = "info9">At the Varghese Hotel we offer complimentary gym, pool, and restaurant services on the first floor.
+    <string name="info8"><u>Guest Features:</u></string>
+    <string name="info9">At the Varghese Hotel we offer complimentary gym, pool, and restaurant services on the first floor.
         Please find the hours of availability lease see the the front desk with any questions.</string>
-    <string name = "info10">Gym: Weekdays 8:00 AM - 11 PM, Weekends 8:00 AM - 8 PM</string>
-    <string name = "info11">Pool: Weekdays 8:00 AM - 11 PM, Weekends 8:00 AM - 8 PM</string>
-    <string name = "info12">Restaurant: M-TH 6:00 AM - 10 PM, F-SUN 6:00 AM - 9 PM</string>
+    <string name="info10">Gym: Weekdays 8:00 AM - 11 PM, Weekends 8:00 AM - 8 PM</string>
+    <string name="info11">Pool: Weekdays 8:00 AM - 11 PM, Weekends 8:00 AM - 8 PM</string>
+    <string name="info12">Restaurant: M-TH 6:00 AM - 10 PM, F-SUN 6:00 AM - 9 PM</string>
 
-    <string name = "info13"><u>Services:</u></string>
-    <string name = "info14">Please find a list of our services in our application! We offer the following services for checked-in guests:</string>
-    <string name = "info15">Bellboy - Request a bellboy to pick up your luggage from anywhere in the hotel</string>
-    <string name = "info16">Valet and Travel - Complimentary car service to and from anywhere within a 45 minute drive from the hotel</string>
-    <string name = "info17">Maintenance - Request one of our staff members to come fix an appliance issue with your room</string>
-    <string name = "info18">Room Service - Request cleaning, restocking of room essentials, and more!</string>
+    <string name="info13"><u>Services:</u></string>
+    <string name="info14">Please find a list of our services in our application! We offer the following services for checked-in guests:</string>
+    <string name="info15">Bellboy - Request a bellboy to pick up your luggage from anywhere in the hotel</string>
+    <string name="info16">Valet and Travel - Complimentary car service to and from anywhere within a 45 minute drive from the hotel</string>
+    <string name="info17">Maintenance - Request one of our staff members to come fix an appliance issue with your room</string>
+    <string name="info18">Room Service - Request cleaning, restocking of room essentials, and more!</string>
 </resources>
