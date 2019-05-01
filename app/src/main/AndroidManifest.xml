@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MaintenanceServices"></activity>
+        <activity android:name=".CreditActivity"></activity>
+        <activity android:name=".CreditInfoActivity" />
+        <activity android:name=".HotelData"></activity>
+        <activity android:name=".MaintenanceServices" />
         <activity android:name=".AdminServiceList" />
         <activity android:name=".EditInfoActivity" />
         <activity android:name=".PasswordActivity" />
@@ -28,6 +31,7 @@
         <activity android:name=".ViewGuests" />
         <activity android:name=".ViewServices" />
         <activity android:name=".BellboyActivity" />
+        <activity android:name=".PaymentActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".ServicesActivity" />
         <activity android:name=".CheckInActivity" />

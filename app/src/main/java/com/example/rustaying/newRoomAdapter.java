@@ -144,7 +144,9 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
                                     updateInformation(room.getRoomId());
 
                                     //Confirmation message
-                                    Toast.makeText(mCtx, "Booking Confirmed!",Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(mCtx, "Booking Confirmed!",Toast.LENGTH_SHORT).show();
+                                    Intent payment = new Intent(mCtx, PaymentActivity.class);
+                                    mCtx.startActivity(payment);
 
                                 }
                             })
@@ -255,10 +257,10 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
                 if(task.isSuccessful()){
 
                     //Toast.makeText(mCtx, "Info updated", Toast.LENGTH_SHORT).show();
-                    Intent homeActivity = new Intent(mCtx, HomeActivity.class);
+                    //Intent homeActivity = new Intent(mCtx, HomeActivity.class);
                     //startActivity(homeActivity);
 
-                    mCtx.startActivity(homeActivity);
+                    //mCtx.startActivity(homeActivity);
 
                 }else{
                     //startActivity(new Intent(EditInfoActivity.this, ProfileActivity.class));

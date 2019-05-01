@@ -33,10 +33,7 @@ public class FeedbackActivity extends AppCompatActivity {
     private RatingBar ratingBar1,ratingBar2,ratingBar3,ratingBar4,ratingBar5;
     private CheckBox cBox1, cBox2, cBox3, cBox4;
     private Switch switch1;
-
     private Button submitButton;
-    // private FirebaseDatabase mFirebaseDatabase;
-    //private DatabaseReference feedbackDatabase;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
@@ -83,8 +80,6 @@ public class FeedbackActivity extends AppCompatActivity {
 
         submitButton = (Button) findViewById(R.id.submitButton);
 
-        //feedbackDatabase = FirebaseDatabase.getInstance().getReference();
-
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -95,12 +90,7 @@ public class FeedbackActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //float notNull =0;
-                //boolean notTrue = false;
-
-
                 final String answer1 = answerBox1.getText().toString().trim();
-
                 final String rating1= Float.toString(ratingBar1.getRating());
                 final String rating2= Float.toString(ratingBar2.getRating());
                 final String rating3= Float.toString(ratingBar3.getRating());
@@ -128,6 +118,7 @@ public class FeedbackActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(FeedbackActivity.this,"Please fill out the required fields",Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
     }
