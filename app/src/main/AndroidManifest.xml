@@ -41,6 +41,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".FeedbackActivity" />
         <activity android:name=".ReservationActivity" />
+        <activity android:name=".preLoginReservationActivity" />
+        <activity android:name=".adminViewRooms" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".HotelInfo" />
         <activity android:name=".MainActivity">

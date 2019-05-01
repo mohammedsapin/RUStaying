@@ -23,7 +23,7 @@ import java.time.LocalDate;
 import java.util.Calendar;
 
 
-public class ReservationActivity extends AppCompatActivity {
+public class preLoginReservationActivity extends AppCompatActivity {
 
     private static final String TAG = "ReservationActivity";
 
@@ -69,7 +69,7 @@ public class ReservationActivity extends AppCompatActivity {
 
                 currentDate = parseDate(year,(month+1), day); //Current date of LocalDate object
 
-                checkInDialog = new DatePickerDialog(ReservationActivity.this, R.style.Theme_AppCompat, new DatePickerDialog.OnDateSetListener()
+                checkInDialog = new DatePickerDialog(preLoginReservationActivity.this, R.style.Theme_AppCompat, new DatePickerDialog.OnDateSetListener()
                 {
                     @Override
                     public void onDateSet(DatePicker view, int year1, int month1, int dayOfMonth1)
@@ -77,7 +77,7 @@ public class ReservationActivity extends AppCompatActivity {
                         checkInDate = parseDate(year1, (month1+1), dayOfMonth1);
                         if(checkInDate.compareTo(currentDate) < 0)
                         {
-                            Toast.makeText(ReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(preLoginReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
                             checkInDate = null;
                         }
                         else
@@ -102,32 +102,32 @@ public class ReservationActivity extends AppCompatActivity {
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
-                checkOutDialog = new DatePickerDialog(ReservationActivity.this,
-                                                        R.style.Theme_AppCompat,
-                                                        new DatePickerDialog.OnDateSetListener()
-                {
-                    @Override
-                    public void onDateSet(DatePicker view, int year1, int month1, int dayOfMonth1)
-                    {
-                        checkOutDate = parseDate(year1, (month1+1), dayOfMonth1);
+                checkOutDialog = new DatePickerDialog(preLoginReservationActivity.this,
+                        R.style.Theme_AppCompat,
+                        new DatePickerDialog.OnDateSetListener()
+                        {
+                            @Override
+                            public void onDateSet(DatePicker view, int year1, int month1, int dayOfMonth1)
+                            {
+                                checkOutDate = parseDate(year1, (month1+1), dayOfMonth1);
 
-                        if(checkOutDate.compareTo(currentDate) < 0)
-                        {
-                            Toast.makeText(ReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
-                            checkOutDate = null;
-                        }
-                        else if(checkOutDate.compareTo(checkInDate) < 1)
-                        {
-                            Toast.makeText(ReservationActivity.this, "Check out date cannot be before check in date",Toast.LENGTH_LONG).show();
-                            checkOutDate = null;
-                        }
-                        else
-                        {
-                            date2.setText((month1 + 1) + "/" +  dayOfMonth1 + "/" + year1);
-                        }
+                                if(checkOutDate.compareTo(currentDate) < 0)
+                                {
+                                    Toast.makeText(preLoginReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
+                                    checkOutDate = null;
+                                }
+                                else if(checkOutDate.compareTo(checkInDate) < 1)
+                                {
+                                    Toast.makeText(preLoginReservationActivity.this, "Check out date cannot be before check in date",Toast.LENGTH_LONG).show();
+                                    checkOutDate = null;
+                                }
+                                else
+                                {
+                                    date2.setText((month1 + 1) + "/" +  dayOfMonth1 + "/" + year1);
+                                }
 
-                    }
-                }, year, month, (day+1));
+                            }
+                        }, year, month, (day+1));
 
                 checkOutDialog.show();
             }
@@ -164,7 +164,7 @@ public class ReservationActivity extends AppCompatActivity {
                     info = new ResInfo(checkInDate, checkOutDate, roomTypes);
 
 
-                    Intent viewRooms = new Intent(ReservationActivity.this, newViewRooms.class);
+                    Intent viewRooms = new Intent(preLoginReservationActivity.this, adminViewRooms.class);
 
                     Bundle b = new Bundle();
 
@@ -186,7 +186,7 @@ public class ReservationActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(ReservationActivity.this, "Please choose valid dates",Toast.LENGTH_SHORT);
+                    Toast.makeText(preLoginReservationActivity.this, "Please choose valid dates",Toast.LENGTH_SHORT);
                 }
             }
         });

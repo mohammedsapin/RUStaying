@@ -11,6 +11,7 @@ public class Guest {
     private int luggage;
     private boolean isCheckedIn;
 
+    String roomNum;
     private String checkInDate;
     private String checkOutDate;
     private String creditCardNumber;
@@ -25,6 +26,9 @@ public class Guest {
     public Guest() {
         //this.checkInDate = null;
         //this.checkOutDate = null;
+        this.checkInDate = "";
+        this.checkOutDate = "";
+        this.roomNum = "";
         // Default constructor need for DataSnapshot on firebase
     }
 
@@ -37,6 +41,7 @@ public class Guest {
         this.accountStatus = true;
         this.checkInDate = "";
         this.checkOutDate = "";
+        this.roomNum = "";
 
         this.creditCardNumber = "";
         this.CCV="";
@@ -44,6 +49,7 @@ public class Guest {
         this.billingAddress="";
         this.expirationDate="";
         this.validPayment = false;
+
     }
 
     public String getFirstName() {
@@ -131,6 +137,14 @@ public class Guest {
     public String getExpirationDate() { return expirationDate; }
     public void setExpirationDate(String expirationDate) { this.expirationDate = expirationDate; }
 
+    public String getRoomNum() {
+        return roomNum;
+    }
+
+    public void setRoomNum(String roomNum) {
+        this.roomNum = roomNum;
+    }
     public boolean isValidPayment() { return validPayment; }
     public void setValidPayment(boolean validPayment) { this.validPayment = validPayment; }
+
 }

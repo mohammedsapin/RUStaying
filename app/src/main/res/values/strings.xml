@@ -191,6 +191,8 @@ A breakdown of the pricing is below for the current spring season:</string>
     <string name="info8"><u>Guest Features:</u></string>
     <string name="info9">At the Varghese Hotel we offer complimentary gym, pool, and restaurant services on the first floor.
         Please find the hours of availability lease see the the front desk with any questions.</string>
+
+    <string name="check_out">Check Out</string>
     <string name="info10">Gym: Weekdays 8:00 AM - 11 PM, Weekends 8:00 AM - 8 PM</string>
     <string name="info11">Pool: Weekdays 8:00 AM - 11 PM, Weekends 8:00 AM - 8 PM</string>
     <string name="info12">Restaurant: M-TH 6:00 AM - 10 PM, F-SUN 6:00 AM - 9 PM</string>

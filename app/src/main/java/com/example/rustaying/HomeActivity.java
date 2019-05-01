@@ -188,6 +188,8 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v)
             {
 
+                Log.d(TAG, "onClick: " + g.getCheckInDate());
+
                 //On button click, check the check in and check out dates
                 if(g.getCheckInDate().equals("") || g.getCheckInDate() == null
                         || g.getCheckOutDate().equals("") || g.getCheckOutDate() == null) //Means no reservation made
@@ -229,7 +231,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void logout(){
         Toast.makeText(HomeActivity.this,"Logged Out",Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+        startActivity(new Intent(HomeActivity.this, MainActivity.class));
         finish();
         auth.signOut();
     }
