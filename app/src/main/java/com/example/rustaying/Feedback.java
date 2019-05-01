@@ -1,8 +1,5 @@
 package com.example.rustaying;
 
-import android.widget.EditText;
-import android.widget.RatingBar;
-
 public class Feedback {
 
     private String rating1;
@@ -32,38 +29,45 @@ public class Feedback {
         this.sw1= sw1;
     }
 
+    public String getRating1() {
+        return rating1;
+    }
 
 
+    public void setRating1(String rating1) {
+        this.rating1 = rating1;
+    }
 
+    public String getRating2() {
+        return rating2;
+    }
 
-    public void setRating2(float rating1) {
+    public void setRating2(String rating2) {
         this.rating2 = rating2;
     }
 
+    public String getRating3() {
+        return rating3;
+    }
 
-
-
-    public void setRating3(float rating1) {
+    public void setRating3(String rating3) {
         this.rating3 = rating3;
     }
 
+    public String getRating4() {
+        return rating4;
+    }
 
-    public void setRating4(float rating1) {
+    public void setRating4(String rating4) {
         this.rating4 = rating4;
     }
 
+    public String getRating5() {
+        return rating5;
+    }
 
-    public void setRating5(float rating1) {
+    public void setRating5(String rating5) {
         this.rating5 = rating5;
-    }
-
-
-    public String getAnswer1() {
-        return answer1;
-    }
-
-    public void setAnswer1(String answer1) {
-        this.answer1 = answer1;
     }
 
     public boolean isCb1() {
@@ -105,43 +109,12 @@ public class Feedback {
     public void setSw1(boolean sw1) {
         this.sw1 = sw1;
     }
-    public String getRating1() {
-        return rating1;
+
+    public String getAnswer1() {
+        return answer1;
     }
 
-    public void setRating1(String rating1) {
-        this.rating1 = rating1;
-    }
-
-    public String getRating2() {
-        return rating2;
-    }
-
-    public void setRating2(String rating2) {
-        this.rating2 = rating2;
-    }
-
-    public String getRating3() {
-        return rating3;
-    }
-
-    public void setRating3(String rating3) {
-        this.rating3 = rating3;
-    }
-
-    public String getRating4() {
-        return rating4;
-    }
-
-    public void setRating4(String rating4) {
-        this.rating4 = rating4;
-    }
-
-    public String getRating5() {
-        return rating5;
-    }
-
-    public void setRating5(String rating5) {
-        this.rating5 = rating5;
+    public void setAnswer1(String answer1) {
+        this.answer1 = answer1;
     }
 }

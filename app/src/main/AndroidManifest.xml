@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".FoodServiceActivity"></activity>
+        <activity android:name=".CreditActivity"></activity>
+        <activity android:name=".CreditInfoActivity" />
+        <activity android:name=".HotelData"></activity>
         <activity android:name=".MaintenanceServices" />
         <activity android:name=".AdminServiceList" />
         <activity android:name=".EditInfoActivity" />
@@ -29,6 +32,7 @@
         <activity android:name=".ViewGuests" />
         <activity android:name=".ViewServices" />
         <activity android:name=".BellboyActivity" />
+        <activity android:name=".PaymentActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".ServicesActivity" />
         <activity android:name=".CheckInActivity" />
@@ -38,6 +42,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".FeedbackActivity" />
         <activity android:name=".ReservationActivity" />
+        <activity android:name=".preLoginReservationActivity" />
+        <activity android:name=".adminViewRooms" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".HotelInfo" />
         <activity android:name=".MainActivity">

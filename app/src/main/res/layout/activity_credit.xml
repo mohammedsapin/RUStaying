@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".HomeActivity">
+    tools:context=".CreditActivity">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/linearLayout2"
@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="52dp"
             android:layout_marginTop="24dp"
-            android:text="@string/guest_information"
+            android:text="@string/credit_card_information"
             android:textAlignment="center"
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,13 +26,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/fname1"
-            android:layout_width="150dp"
-            android:layout_height="36dp"
+            android:id="@+id/t1"
+            android:layout_width="331dp"
+            android:layout_height="38dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/first_name"
+            android:text="@string/name_on_card"
             android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -40,35 +40,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <TextView
-            android:id="@+id/fname2"
-            android:layout_width="370dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/textview"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fname1" />
-
-        <TextView
-            android:id="@+id/lname1"
-            android:layout_width="150dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/last_name"
-            android:textSize="28sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.009"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fname2" />
-
-        <TextView
-            android:id="@+id/lname2"
+            android:id="@+id/CCV"
             android:layout_width="370dp"
             android:layout_height="30dp"
             android:layout_marginStart="32dp"
@@ -79,24 +51,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lname1" />
+            app:layout_constraintTop_toBottomOf="@+id/t3" />
 
         <TextView
-            android:id="@+id/email1"
-            android:layout_width="150dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/email"
-            android:textSize="28sp"
-            app:layout_constraintEnd_toStartOf="@+id/email2"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lname2" />
-
-        <TextView
-            android:id="@+id/email2"
+            android:id="@+id/nameOnCard"
             android:layout_width="370dp"
             android:layout_height="30dp"
             android:layout_marginStart="32dp"
@@ -107,39 +65,93 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email1" />
+            app:layout_constraintTop_toBottomOf="@+id/t1" />
 
-        <Button
-            android:id="@+id/EditButton"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="26dp"
+        <TextView
+            android:id="@+id/t2"
+            android:layout_width="338dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/edit_info"
-            android:textAllCaps="true"
-            android:textColor="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/credit_card_number"
+            android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.518"
-            app:layout_constraintStart_toEndOf="@+id/creditInfo"
-            app:layout_constraintTop_toBottomOf="@+id/email2"
-            app:layout_constraintVertical_bias="0.06999999" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameOnCard" />
+
+        <TextView
+            android:id="@+id/t4"
+            android:layout_width="338dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/expiration_date"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CCV" />
+
+        <TextView
+            android:id="@+id/creditCardNumber"
+            android:layout_width="370dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/textview"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/t2" />
+
+        <TextView
+            android:id="@+id/expDate"
+            android:layout_width="370dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/textview"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/t4" />
+
+        <TextView
+            android:id="@+id/t3"
+            android:layout_width="150dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ccv"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.009"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/creditCardNumber" />
 
         <Button
             android:id="@+id/creditInfo"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/view_credit_info"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="76dp"
+            android:text="@string/edit_credit_info"
             android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.508"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email2"
-            app:layout_constraintVertical_bias="0.058" />
+            app:layout_constraintTop_toBottomOf="@+id/expDate" />
 
     </android.support.constraint.ConstraintLayout>
 

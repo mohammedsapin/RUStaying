@@ -49,14 +49,17 @@ public class EditInfoActivity extends AppCompatActivity {
                     case R.id.navigation_account:
                         Intent account = new Intent(EditInfoActivity.this,ProfileActivity.class);
                         startActivity(account);
+                        finish();
                         break;
                     case R.id.navigation_home:
                         Intent home = new Intent(EditInfoActivity.this,HomeActivity.class);
                         startActivity(home);
+                        finish();
                         break;
                     case R.id.navigation_services:
                         Intent service = new Intent(EditInfoActivity.this, ServicesActivity.class);
                         startActivity(service);
+                        finish();
                         break;
                 }
                 return false;

@@ -24,10 +24,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,11 +43,14 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
     private ResInfo resInfo = new ResInfo();
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser user;
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
     private String userID;
-    boolean temp = false;
+    private String inDates, outDates;
 
+    ArrayList roomIds = new ArrayList();
+    boolean concatDates = false;
 
     public newRoomAdapter(Context mCtx, ArrayList<Room> roomList, ResInfo resInfo) {
         this.mCtx = mCtx;
@@ -62,37 +66,23 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
         mAuth = FirebaseAuth.getInstance(); //mAuth
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference(); //dbRef
-        final FirebaseUser user = mAuth.getCurrentUser();
+        user = mAuth.getCurrentUser();
         userID = user.getUid();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null){
-                    temp = true;
+                    userID = user.getUid();
                     Log.d(TAG, "onAuthStateChanged: Signed In");
                 }else{
-                    temp = false;
+
                     Log.d(TAG, "onAuthStateChanged: Signed out");
                 }
             }
         };
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null){
-                    temp = true;
-                    Log.d(TAG, "onAuthStateChanged: Signed In");
-                }else{
-                    temp = false;
-                    Log.d(TAG, "onAuthStateChanged: Signed out");
-                }
-            }
-        };
-
+        
         //LayoutInflater inflater = LayoutInflater.from(mCtx);
         //View view = inflater.inflate(R.layout.new_rooms, null);
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.new_rooms, viewGroup, false);
@@ -104,12 +94,9 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
 
     @Override
     public void onBindViewHolder(@NonNull RoomViewHolder roomViewHolder, int i) {
-        Room room = roomList.get(i);
+
+        final Room room = roomList.get(i);
         Log.i(TAG, room.getRoomType());
-        final int roomNum = i+1;
-        roomViewHolder.roomType.setText(room.getRoomType());
-        roomViewHolder.roomNum.setText(room.getRoomId());
-        roomViewHolder.price.setText("$250");
 
         roomViewHolder.roomType.setText(room.getRoomType());
         roomViewHolder.roomNum.setText(room.getRoomId());
@@ -139,14 +126,13 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
 
         }
 
-
         roomViewHolder.imageView.setImageDrawable(myImage);
 
             roomViewHolder.bookBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(mCtx);
-                    alertDialog.setMessage("Confirm Room Booking for Room: " + roomNum + "? \n Check in date is: " +
+                    alertDialog.setMessage("Confirm Room Booking for Room: " + room.getRoomId() + "? \n Check in date is: " +
                             resInfo.getCheckIn().toString() + "\n Check out date is: " +
                             resInfo.getCheckOut().toString())
                             //Positive button is Yes, meaning the use wants to logout
@@ -155,11 +141,12 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
                                 public void onClick(DialogInterface dialog, int which) {
                                     //Confirm booking
                                     //Send data to database
-                                    updateInformation();
-
+                                    updateInformation(room.getRoomId());
 
                                     //Confirmation message
-                                    Toast.makeText(mCtx, "Booking Confirmed!",Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(mCtx, "Booking Confirmed!",Toast.LENGTH_SHORT).show();
+                                    Intent payment = new Intent(mCtx, PaymentActivity.class);
+                                    mCtx.startActivity(payment);
 
                                 }
                             })
@@ -193,8 +180,72 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
         return roomList.size();
     }
 
-    public void updateInformation()
+    public void updateInformation(String roomNum)
     {
+        //Create string of room number (ex: Room 01 or Room 12)
+        String temp;
+        int roomInt = Integer.parseInt(roomNum);
+        if(roomInt <= 9)
+        {
+            temp = "Room 0" + roomNum;
+        }
+        else
+        {
+            temp = "Room " + roomNum;
+        }
+
+        //Get the current dates of reservation for the room
+        myRef.child("Rooms").child(temp).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                inDates = dataSnapshot.getValue(Room.class).getCheckInDate();
+                outDates = dataSnapshot.getValue(Room.class).getCheckOutDate();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        if(concatDates) //A reservation exists, concatenate to the end of it
+        {
+            //String concatenatedInDates = inDates + ", " + resInfo.getCheckIn().toString();
+            //String concatenatedOutDates = inDates + ", " + resInfo.getCheckIn().toString();
+
+            //inDates = inDates + " rrrr";
+            //inDates += ", " + resInfo.getCheckIn().toString();
+            //outDates += ", " + resInfo.getCheckOut().toString();
+        }
+
+        //Log.d(TAG, "onDataChange: " + inDates);
+
+        Map<String,Object> roomList = new HashMap<>();
+        roomList.put("checkInDate",resInfo.getCheckIn().toString());
+        roomList.put("checkOutDate",resInfo.getCheckOut().toString());
+        roomList.put("checkedIn", false);
+        roomList.put("isAvailable", false);
+
+
+        myRef.child("Rooms").child(temp).updateChildren(roomList).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+
+                    Toast.makeText(mCtx, "Room info updated", Toast.LENGTH_SHORT).show();
+                    //Intent homeActivity = new Intent(mCtx, HomeActivity.class);
+                    //startActivity(homeActivity);
+
+                    //mCtx.startActivity(homeActivity);
+
+                }else{
+                    Toast.makeText(mCtx, "Error updating info", Toast.LENGTH_SHORT).show();
+                    //startActivity(new Intent(EditInfoActivity.this, ProfileActivity.class));
+                    //finish();
+                }
+            }
+        });
+
         Map<String,Object> list = new HashMap<>();
         list.put("checkInDate",resInfo.getCheckIn().toString());
         list.put("checkOutDate",resInfo.getCheckOut().toString());
@@ -206,17 +257,18 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
                 if(task.isSuccessful()){
 
                     //Toast.makeText(mCtx, "Info updated", Toast.LENGTH_SHORT).show();
-                    Intent homeActivity = new Intent(mCtx, HomeActivity.class);
+                    //Intent homeActivity = new Intent(mCtx, HomeActivity.class);
                     //startActivity(homeActivity);
 
-                    mCtx.startActivity(homeActivity);
+                    //mCtx.startActivity(homeActivity);
 
                 }else{
                     //startActivity(new Intent(EditInfoActivity.this, ProfileActivity.class));
                     //finish();
                 }
             }
-        });    }
+        });
+    }
 
     class RoomViewHolder extends RecyclerView.ViewHolder
     {

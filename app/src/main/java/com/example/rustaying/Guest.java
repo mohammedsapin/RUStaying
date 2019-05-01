@@ -11,14 +11,24 @@ public class Guest {
     private int luggage;
     private boolean isCheckedIn;
 
+    String roomNum;
     private String checkInDate;
     private String checkOutDate;
+    private String creditCardNumber;
+    private String CCV;
+    private String nameOnCCard;
+    private String billingAddress;
+    private String expirationDate;
+    private boolean validPayment;
 
     //add more as we keep working on project
 
     public Guest() {
         //this.checkInDate = null;
         //this.checkOutDate = null;
+        this.checkInDate = "";
+        this.checkOutDate = "";
+        this.roomNum = "";
         // Default constructor need for DataSnapshot on firebase
     }
 
@@ -31,6 +41,15 @@ public class Guest {
         this.accountStatus = true;
         this.checkInDate = "";
         this.checkOutDate = "";
+        this.roomNum = "";
+
+        this.creditCardNumber = "";
+        this.CCV="";
+        this.nameOnCCard = "";
+        this.billingAddress="";
+        this.expirationDate="";
+        this.validPayment = false;
+
     }
 
     public String getFirstName() {
@@ -101,8 +120,31 @@ public class Guest {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(String checkOutDate) {
-        this.checkOutDate = checkOutDate;
+    public void setCheckOutDate(String checkOutDate) { this.checkOutDate = checkOutDate; }
+
+    public String getCreditCardNumber() { return creditCardNumber; }
+    public void setCreditCardNumber(String creditCardNumber) { this.creditCardNumber = creditCardNumber; }
+
+    public String getCCV() { return CCV; }
+    public void setCCV(String CCV) { this.CCV = CCV; }
+
+    public String getNameOnCCard() { return nameOnCCard; }
+    public void setNameOnCCard(String nameOnCCard) { this.nameOnCCard = nameOnCCard; }
+
+    public String getBillingAddress() { return billingAddress; }
+    public void setBillingAddress(String billingAddress) { this.billingAddress = billingAddress; }
+
+    public String getExpirationDate() { return expirationDate; }
+    public void setExpirationDate(String expirationDate) { this.expirationDate = expirationDate; }
+
+    public String getRoomNum() {
+        return roomNum;
     }
+
+    public void setRoomNum(String roomNum) {
+        this.roomNum = roomNum;
+    }
+    public boolean isValidPayment() { return validPayment; }
+    public void setValidPayment(boolean validPayment) { this.validPayment = validPayment; }
 
 }
