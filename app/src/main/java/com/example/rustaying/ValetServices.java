@@ -113,7 +113,7 @@ public class ValetServices extends AppCompatActivity {
             if (info.getRequestType().equals("ValetTravel")) {
                 serviceList.add(new Service(info.getRequestType(), info.getRequestedTimeValet(), info.getRequestDate(),
                         info.getStartingStreet(), info.getDestinationStreet(),info.getStartingCityStateZip(),
-                         info.getDestinationCityStateZip()));
+                         info.getDestinationCityStateZip(),info.getNumberTraveling()));
 
                 //add array list to recycle view
                 createRecycleView();

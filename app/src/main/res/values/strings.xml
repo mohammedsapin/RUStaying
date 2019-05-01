@@ -145,18 +145,18 @@
     <string name="maintenance_input">Please provide a brief description of the problem:</string>
 
     <string name="valet_title">CALL VALET OR TRAVEL</string>
-    <string name="startingAddress">Starting Address:</string>
-    <string name="destAddress">Destination Address:</string>
+    <string name="startingAddress">Starting Street:</string>
+    <string name="destAddress">Destination Street:</string>
     <string name="startingCity">City, State Zip:</string>
     <string name="destCity">City, State Zip:</string>
     <string name="startTitle">Starting Address:</string>
     <string name="destTitle">Destination Address:</string>
     <string name="request_travelvalet">REQUEST TRAVEL AND VALET</string>
     <string name="request_maintenance">REQUEST MAINTENANCE</string>
-    <string name="request_roomservice">REQUEST ROOM SERVICE</string>
+    <string name="request_roomservice">REQUEST CLEANING SERVICE</string>
     <string name="calendarServices">Select Date</string>
     <string name="dateServices">Date</string>
-    <string name="roomserivce_title">CALL ROOM SERVICE</string>
+    <string name="roomserivce_title">CALL CLEANING SERVICE</string>
     <string name="fromLocation">Where should we pick up your luggage?</string>
     <string name="feedbk">Feedback Form</string>
     <string name="Q1">Please rate your experience</string>
@@ -191,7 +191,119 @@ A breakdown of the pricing is below for the current spring season:</string>
     <string name="info8"><u>Guest Features:</u></string>
     <string name="info9">At the Varghese Hotel we offer complimentary gym, pool, and restaurant services on the first floor.
         Please find the hours of availability lease see the the front desk with any questions.</string>
+    <string name="request_foodservice">REQUEST FOOD SERVICE</string>
+    <string name="numberTraveling">Total number of people traveling:</string>
+    <string-array name="numberTravelingSpinner">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string name="foodservice_title">CALL FOOD SERVICE</string>
+    <string-array name="app1S">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="app2S">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
 
+    <string-array name="main1S">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="main2S">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="main3S">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="main4S">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
+    <string-array name="des1S">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="des2S">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="drink1S">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="drink2S">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="drink3S">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+  
     <string name="check_out">Check Out</string>
     <string name="info10">Gym: Weekdays 8:00 AM - 11 PM, Weekends 8:00 AM - 8 PM</string>
     <string name="info11">Pool: Weekdays 8:00 AM - 11 PM, Weekends 8:00 AM - 8 PM</string>

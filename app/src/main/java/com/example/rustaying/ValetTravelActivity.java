@@ -191,6 +191,30 @@ public class ValetTravelActivity extends AppCompatActivity {
 
             }
         });
+
+        Spinner numberTraveling = (Spinner) findViewById(R.id.numberTravelingSpinner);
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.numberTravelingSpinner));
+        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        numberTraveling.setAdapter(adapter4);
+
+        numberTraveling.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String numberTraveling1 = parent.getItemAtPosition(position).toString();
+                Integer numberTraveling2=Integer.valueOf(numberTraveling1);
+                valettravel.setNumberTraveling(numberTraveling2);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // String numberTraveling1="-1";
+                // valettravel.setNumberTraveling(numberTraveling1);
+
+            }
+        });
+
+
         answerBox1 = (EditText) findViewById(R.id.A1);
         answerBox2 = (EditText) findViewById(R.id.A2);
         answerBox3 = (EditText) findViewById(R.id.A3);
@@ -224,9 +248,11 @@ public class ValetTravelActivity extends AppCompatActivity {
                 String requestedTimeValet = hourValue + ":" + minuteValue + " " + ampmValue;
                 String requestType = "ValetTravel";
                 String requestDate=valettravel.getRequestDate();
+                Integer numberTraveling1=valettravel.getNumberTraveling();
 
                 if (!TextUtils.isEmpty(startingStreet) && !TextUtils.isEmpty(startingCityStateZip)&& !TextUtils.isEmpty(destinationCityStateZip)&& !TextUtils.isEmpty(destinationStreet)) {
-                    Service valettravel = new Service(requestType,requestedTimeValet, requestDate, startingStreet, destinationStreet, startingCityStateZip, destinationCityStateZip);
+                    Service valettravel = new Service(requestType,requestedTimeValet, requestDate, startingStreet,
+                            destinationStreet, startingCityStateZip, destinationCityStateZip, numberTraveling1);
 
                     myRef.child("Service").child(userID).child(request).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

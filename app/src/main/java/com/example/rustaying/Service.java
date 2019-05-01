@@ -28,6 +28,138 @@ public class Service {
     private String startingCityStateZip;
     private String destinationStreet;
     private String destinationCityStateZip;
+    private Integer numberTraveling;
+
+    private String requestedTimeFoodService;
+    private String gardenSalad;
+    private String tomatoSoup;
+    private String friedChicken;
+    private String cheesePizza;
+    private String spaghetti;
+    private String macAndCheese;
+    private String vanillaIceCream;
+    private String fruitCake;
+    private String coke;
+    private String sprite;
+    private String appleJuice;
+    private Integer foodPrice;
+
+    private Integer a1;
+    private Integer a2;
+    private Integer m1;
+    private Integer m2;
+    private Integer m3;
+    private Integer m4;
+    private Integer d1;
+    private Integer d2;
+    private Integer dr1;
+    private Integer dr2;
+    private Integer dr3;
+
+
+    //live price calculation
+    public Service(Integer a1, Integer a2, Integer m1, Integer m2, Integer m3, Integer m4,
+                   Integer d1, Integer d2, Integer dr1, Integer dr2, Integer dr3) {
+        this.a1 = a1;
+        this.a2 = a2;
+        this.m1 = m1;
+        this.m2 = m2;
+        this.m3 = m3;
+        this.m4 = m4;
+        this.d1 = d1;
+        this.d2 = d2;
+        this.dr1 = dr1;
+        this.dr2 = dr2;
+        this.dr3 = dr3;
+    }
+
+    public Integer getA1() {
+        return a1;
+    }
+
+    public void setA1(Integer a1) {
+        this.a1 = a1;
+    }
+
+    public Integer getA2() {
+        return a2;
+    }
+
+    public void setA2(Integer a2) {
+        this.a2 = a2;
+    }
+
+    public Integer getM1() {
+        return m1;
+    }
+
+    public void setM1(Integer m1) {
+        this.m1 = m1;
+    }
+
+    public Integer getM2() {
+        return m2;
+    }
+
+    public void setM2(Integer m2) {
+        this.m2 = m2;
+    }
+
+    public Integer getM3() {
+        return m3;
+    }
+
+    public void setM3(Integer m3) {
+        this.m3 = m3;
+    }
+
+    public Integer getM4() {
+        return m4;
+    }
+
+    public void setM4(Integer m4) {
+        this.m4 = m4;
+    }
+
+    public Integer getD1() {
+        return d1;
+    }
+
+    public void setD1(Integer d1) {
+        this.d1 = d1;
+    }
+
+    public Integer getD2() {
+        return d2;
+    }
+
+    public void setD2(Integer d2) {
+        this.d2 = d2;
+    }
+
+    public Integer getDr1() {
+        return dr1;
+    }
+
+    public void setDr1(Integer dr1) {
+        this.dr1 = dr1;
+    }
+
+    public Integer getDr2() {
+        return dr2;
+    }
+
+    public void setDr2(Integer dr2) {
+        this.dr2 = dr2;
+    }
+
+    public Integer getDr3() {
+        return dr3;
+    }
+
+    public void setDr3(Integer dr3) {
+        this.dr3 = dr3;}
+
 
     public Service(String requestType, String requestDate, String luggageValue,
                    String requestedTimeBellboy, String fromWhere) {
@@ -71,7 +203,7 @@ public class Service {
     }
 
     public Service(String requestType, String requestedTimeValet, String requestDate, String answer1, String answer2,
-                   String answer3, String answer4) {
+                   String answer3, String answer4, Integer numberTraveling) {
         this.requestType = requestType;
         this.requestedTimeValet = requestedTimeValet;
         this.requestDate = requestDate;
@@ -79,6 +211,7 @@ public class Service {
         this.destinationStreet = answer2;
         this.startingCityStateZip = answer3;
         this.destinationCityStateZip = answer4;
+        this.numberTraveling=numberTraveling;
     }
 
     public Service(String requestType, String requestDate, String requestedTimeMaintenance, String inputs, String bathroom,
@@ -105,6 +238,144 @@ public class Service {
         this.cleaningservice = cleaningservice;
         this.requestedTimeRoomService = requestedTimeRoomService;
     }
+
+    //foodservice
+
+
+    public Service(String requestType, String requestDate, String requestedTimeFoodService, String inputs,
+                   String gardenSalad, String tomatoSoup, String friedChicken, String cheesePizza,
+                   String spaghetti, String macAndCheese, String vanillaIceCream, String fruitCake,
+                   String coke, String sprite, String appleJuice, Integer foodPrice) {
+        this.requestType = requestType;
+        this.requestDate = requestDate;
+        this.inputs = inputs;
+        this.requestedTimeFoodService = requestedTimeFoodService;
+        this.gardenSalad = gardenSalad;
+        this.tomatoSoup = tomatoSoup;
+        this.friedChicken = friedChicken;
+        this.cheesePizza = cheesePizza;
+        this.spaghetti = spaghetti;
+        this.macAndCheese = macAndCheese;
+        this.vanillaIceCream = vanillaIceCream;
+        this.fruitCake = fruitCake;
+        this.coke = coke;
+        this.sprite = sprite;
+        this.appleJuice = appleJuice;
+        this.foodPrice = foodPrice;
+    }
+
+
+    public Integer getNumberTraveling() {
+        return numberTraveling;
+    }
+
+    public void setNumberTraveling(Integer numberTraveling) {
+        this.numberTraveling = numberTraveling;
+    }
+
+    public Integer getFoodPrice() {
+        return foodPrice;
+    }
+
+    public void setFoodPrice(Integer foodPrice) {
+        this.foodPrice = foodPrice;
+    }
+
+    public String getRequestedTimeFoodService() {
+        return requestedTimeFoodService;
+    }
+
+    public void setRequestedTimeFoodService(String requestedTimeFoodService) {
+        this.requestedTimeFoodService = requestedTimeFoodService;
+    }
+
+    public String getGardenSalad() {
+        return gardenSalad;
+    }
+
+    public void setGardenSalad(String gardenSalad) {
+        this.gardenSalad = gardenSalad;
+    }
+
+    public String getTomatoSoup() {
+        return tomatoSoup;
+    }
+
+    public void setTomatoSoup(String tomatoSoup) {
+        this.tomatoSoup = tomatoSoup;
+    }
+
+    public String getFriedChicken() {
+        return friedChicken;
+    }
+
+    public void setFriedChicken(String friedChicken) {
+        this.friedChicken = friedChicken;
+    }
+
+    public String getCheesePizza() {
+        return cheesePizza;
+    }
+
+    public void setCheesePizza(String cheesePizza) {
+        this.cheesePizza = cheesePizza;
+    }
+
+    public String getSpaghetti() {
+        return spaghetti;
+    }
+
+    public void setSpaghetti(String spaghetti) {
+        this.spaghetti = spaghetti;
+    }
+
+    public String getMacAndCheese() {
+        return macAndCheese;
+    }
+
+    public void setMacAndCheese(String macAndCheese) {
+        this.macAndCheese = macAndCheese;
+    }
+
+    public String getVanillaIceCream() {
+        return vanillaIceCream;
+    }
+
+    public void setVanillaIceCream(String vanillaIceCream) {
+        this.vanillaIceCream = vanillaIceCream;
+    }
+
+    public String getFruitCake() {
+        return fruitCake;
+    }
+
+    public void setFruitCake(String fruitCake) {
+        this.fruitCake = fruitCake;
+    }
+
+    public String getCoke() {
+        return coke;
+    }
+
+    public void setCoke(String coke) {
+        this.coke = coke;
+    }
+
+    public String getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(String sprite) {
+        this.sprite = sprite;
+    }
+
+    public String getAppleJuice() {
+        return appleJuice;
+    }
+
+    public void setAppleJuice(String appleJuice) {
+        this.appleJuice = appleJuice;}
+
 
     public long getRequestID() {
         return requestID;

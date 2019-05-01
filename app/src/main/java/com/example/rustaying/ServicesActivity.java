@@ -28,6 +28,7 @@ public class ServicesActivity extends AppCompatActivity {
     Button travelvalet;
     Button maintenance;
     Button roomSerivce;
+    Button foodSerivce;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
@@ -139,6 +140,24 @@ public class ServicesActivity extends AppCompatActivity {
                 if(g.isCheckedIn())
                 {
                     Intent bu = new Intent(ServicesActivity.this, RoomServiceActivity.class);
+                    startActivity(bu);
+                }
+                else{
+                    Toast.makeText(ServicesActivity.this, "Please Check In to Make a Service " +
+                                    "Request",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        foodSerivce = (Button) findViewById(R.id.foodServicebtn);
+        foodSerivce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(g.isCheckedIn())
+                {
+                    Intent bu = new Intent(ServicesActivity.this, FoodServiceActivity.class);
                     startActivity(bu);
                 }
                 else{

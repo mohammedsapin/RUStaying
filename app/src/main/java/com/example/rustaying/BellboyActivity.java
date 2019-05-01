@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -232,16 +233,25 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                 String requestType = "Bellboy";
                 String requestDate = bellboy.getRequestDate();
                 final String fromWhere = answerBox1.getText().toString().trim();
-                Service service = new Service(requestType,requestDate, numLuggageValue,requestedTimeBellboy, fromWhere);
-                myRef.child("Service").child(userID).child(request).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(BellboyActivity.this, "Request Sent!",Toast.LENGTH_SHORT).show();
-                        Intent submit = new Intent(BellboyActivity.this,ServicesActivity.class);
-                        startActivity(submit); //Redirect to main page
-                        finish();
-                    }
-                });
+
+                if (!TextUtils.isEmpty(fromWhere)) {
+
+                    Service service = new Service(requestType, requestDate, numLuggageValue, requestedTimeBellboy, fromWhere);
+                    myRef.child("Service").child(userID).child(request).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(BellboyActivity.this, "Request Sent!", Toast.LENGTH_SHORT).show();
+                            Intent submit = new Intent(BellboyActivity.this, ServicesActivity.class);
+                            startActivity(submit); //Redirect to main page
+                            finish();
+                        }
+                    });
+                }
+
+                else{
+                    Toast.makeText(BellboyActivity.this,"Please fill out the required fields",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
