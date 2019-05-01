@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -274,16 +275,22 @@ public class MaintenanceActivity extends AppCompatActivity {
                 if(lighting!=null){
                     checkboxes+=" "+lighting;
                 }
-                Service service= new Service(requestType, requestDate, requestedTimeMaintenance, answer1, bathroom, electronic, lighting, checkboxes);
-                myRef.child("Service").child(userID).child(request).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(MaintenanceActivity.this, "Request Sent!",Toast.LENGTH_SHORT).show();
-                        Intent submit = new Intent(MaintenanceActivity.this,ServicesActivity.class);
-                        startActivity(submit); //Redirect to main page
-                        finish();
-                    }
-                });
+                if (checkboxes!=""||!TextUtils.isEmpty(answer1)) {
+                    Service service = new Service(requestType, requestDate, requestedTimeMaintenance, answer1, bathroom, electronic, lighting, checkboxes);
+                    myRef.child("Service").child(userID).child(request).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(MaintenanceActivity.this, "Request Sent!", Toast.LENGTH_SHORT).show();
+                            Intent submit = new Intent(MaintenanceActivity.this, ServicesActivity.class);
+                            startActivity(submit); //Redirect to main page
+                            finish();
+                        }
+                    });
+                }
+                else{
+                    Toast.makeText(MaintenanceActivity.this,"Please fill out the required fields",Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
