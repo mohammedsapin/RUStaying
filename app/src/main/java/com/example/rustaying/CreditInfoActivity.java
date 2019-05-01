@@ -42,8 +42,10 @@ public class CreditInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_credit_info);
 
 //SPINNERS POPULATED HERE
-        for(int x = 2019;x<2059;x++){
-            this.arraySpinnerYear[x]=""+x;
+        int count = 0;
+        for(int x = 2019;x<2069;x++){
+            this.arraySpinnerYear[count]=""+x;
+            count++;
         }
         Spinner spinnerYear= (Spinner)findViewById(R.id.date_year);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,arraySpinnerYear);
