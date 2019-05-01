@@ -119,13 +119,26 @@
             android:layout_marginBottom="8dp"
             android:text="@string/edit_info"
             android:textAllCaps="true"
-            android:textColor="@color/colorBackground"
+            android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.971"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/creditInfo"
             app:layout_constraintTop_toBottomOf="@+id/email2"
             app:layout_constraintVertical_bias="0.344" />
+
+        <Button
+            android:id="@+id/creditInfo"
+            android:layout_width="133dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/view_credit_info"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email2"
+            app:layout_constraintVertical_bias="0.0" />
 
     </android.support.constraint.ConstraintLayout>
 

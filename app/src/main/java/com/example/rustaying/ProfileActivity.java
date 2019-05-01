@@ -37,6 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
     private String userID;
     private Guest g = new Guest();
     private Button Edit;
+    private Button CrEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,8 +85,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        Edit = (Button) findViewById(R.id.creditInfo);
-        Edit.setOnClickListener(new View.OnClickListener() {
+        CrEdit = (Button) findViewById(R.id.creditInfo);
+        CrEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent creditInfo = new Intent(ProfileActivity.this,CreditActivity.class);
