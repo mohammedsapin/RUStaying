@@ -49,8 +49,6 @@ public class ProfileActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.navigation_account:
-                        Intent account = new Intent(ProfileActivity.this,ProfileActivity.class);
-                        startActivity(account);
                         break;
                     case R.id.navigation_home:
                         Intent home = new Intent(ProfileActivity.this,HomeActivity.class);
