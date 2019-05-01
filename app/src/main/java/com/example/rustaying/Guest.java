@@ -11,6 +11,7 @@ public class Guest {
     private int luggage;
     private boolean isCheckedIn;
 
+    String roomNum;
     private String checkInDate;
     private String checkOutDate;
 
@@ -21,7 +22,7 @@ public class Guest {
         //this.checkOutDate = null;
         this.checkInDate = "";
         this.checkOutDate = "";
-
+        this.roomNum = "";
         // Default constructor need for DataSnapshot on firebase
     }
 
@@ -34,6 +35,7 @@ public class Guest {
         this.accountStatus = true;
         this.checkInDate = "";
         this.checkOutDate = "";
+        this.roomNum = "";
     }
 
     public String getFirstName() {
@@ -106,6 +108,14 @@ public class Guest {
 
     public void setCheckOutDate(String checkOutDate) {
         this.checkOutDate = checkOutDate;
+    }
+
+    public String getRoomNum() {
+        return roomNum;
+    }
+
+    public void setRoomNum(String roomNum) {
+        this.roomNum = roomNum;
     }
 
 }

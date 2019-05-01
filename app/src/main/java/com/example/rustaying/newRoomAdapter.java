@@ -198,18 +198,6 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 inDates = dataSnapshot.getValue(Room.class).getCheckInDate();
                 outDates = dataSnapshot.getValue(Room.class).getCheckOutDate();
-
-                //Log.d(TAG, "onDataChangeeee: " + inDates);
-                /*
-                if(inDates.equals("") || inDates == null)
-                {
-                    concatDates = false;
-                }
-                else
-                {
-                    concatDates = true;
-                }
-                */
             }
 
             @Override

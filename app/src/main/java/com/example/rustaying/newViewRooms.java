@@ -182,7 +182,13 @@ public class newViewRooms extends AppCompatActivity {
             }
             else if(resInfo.getCheckIn().compareTo(inDateTok) == 0)
             {
-
+                //If the new checkIn date is the same as existing checkIn date, conflict
+                continue;
+            }
+            else if(resInfo.getCheckOut().compareTo(outDateTok) == 0)
+            {
+                //The the checkOut dates are equal, conflict
+                continue;
             }
             else if(resInfo.getCheckIn().compareTo(outDateTok) > 0)
             {

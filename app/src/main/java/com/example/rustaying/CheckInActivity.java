@@ -19,8 +19,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -216,6 +219,20 @@ public class CheckInActivity extends AppCompatActivity {
     }
 
     private void checkOutUpdate(){
+        //Get guest information and initialize object
+        String userID = user.getUid();
+        myRef.child("Guest").child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                initGuestObject(dataSnapshot); //Initializing Object works
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         //Update room and guest information when user checks out
 
         //Guest has checked out so reset appropriate fields
@@ -230,9 +247,9 @@ public class CheckInActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
 
                     Toast.makeText(CheckInActivity.this, "Guest updated", Toast.LENGTH_SHORT).show();
-                    Intent homeActivity = new Intent(CheckInActivity.this, HomeActivity.class);
-                    startActivity(homeActivity);
-                    finish();
+                    //Intent homeActivity = new Intent(CheckInActivity.this, HomeActivity.class);
+                    //startActivity(homeActivity);
+                    //finish();
 
                 }else{
                     //startActivity(new Intent(EditInfoActivity.this, ProfileActivity.class));
@@ -241,7 +258,60 @@ public class CheckInActivity extends AppCompatActivity {
             }
         });
 
+
+        String temp;
+        int roomInt = Integer.parseInt(g.getRoomNum());
+        if(roomInt <= 9)
+        {
+            temp = "Room 0" + g.getRoomNum();
+        }
+        else
+        {
+            temp = "Room " + g.getRoomNum();
+        }
+
+        Map<String,Object> roomList = new HashMap<>();
+        roomList.put("checkInDate", "");
+        roomList.put("checkOutDate", "");
+        roomList.put("checkedIn", false);
+        roomList.put("isAvailable", true);
+
+        //Updating room object information
+        myRef.child("Rooms").child(temp).updateChildren(roomList).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+
+                    Toast.makeText(CheckInActivity.this, "Room info updated", Toast.LENGTH_SHORT).show();
+                    //Intent homeActivity = new Intent(mCtx, HomeActivity.class);
+                    //startActivity(homeActivity);
+
+                    //mCtx.startActivity(homeActivity);
+
+                }else{
+                    Toast.makeText(CheckInActivity.this, "Error updating info", Toast.LENGTH_SHORT).show();
+                    //startActivity(new Intent(EditInfoActivity.this, ProfileActivity.class));
+                    //finish();
+                }
+            }
+        });
+
+
     }
+
+    private void initGuestObject(DataSnapshot dataSnapshot)
+    {
+        //Setting fields of guest object
+        g.setFirstName(dataSnapshot.getValue(Guest.class).getFirstName());
+        g.setLastName(dataSnapshot.getValue(Guest.class).getLastName());
+        g.setCheckedIn(dataSnapshot.getValue(Guest.class).isCheckedIn());
+        g.setAccountStatus(dataSnapshot.getValue(Guest.class).isAccountStatus());
+        g.setLuggage(dataSnapshot.getValue(Guest.class).getLuggage());
+        g.setCheckInDate(dataSnapshot.getValue(Guest.class).getCheckInDate());
+        g.setCheckOutDate(dataSnapshot.getValue(Guest.class).getCheckOutDate());
+
+    }
+
     private LocalDate parseStringDate(String s)
     {
         String[] output = s.split("-");
