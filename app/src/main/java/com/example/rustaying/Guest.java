@@ -19,6 +19,9 @@ public class Guest {
     public Guest() {
         //this.checkInDate = null;
         //this.checkOutDate = null;
+        this.checkInDate = "";
+        this.checkOutDate = "";
+
         // Default constructor need for DataSnapshot on firebase
     }
 

@@ -201,4 +201,7 @@ A breakdown of the pricing is below for the current spring season:</string>
     <string name = "info16">Valet and Travel - Complimentary car service to and from anywhere within a 45 minute drive from the hotel</string>
     <string name = "info17">Maintenance - Request one of our staff members to come fix an appliance issue with your room</string>
     <string name = "info18">Room Service - Request cleaning, restocking of room essentials, and more!</string>
+
+
+    <string name="check_out">Check Out</string>
 </resources>

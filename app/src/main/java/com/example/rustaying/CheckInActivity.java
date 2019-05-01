@@ -1,32 +1,48 @@
 package com.example.rustaying;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.regex.Pattern;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CheckInActivity extends AppCompatActivity {
 
     private static final String TAG = "CheckInActivity";
     private TextView inDate, outDate;
-    private Button checkInBtn;
+    private Button checkInBtn, checkOutBtn;
     Calendar c;
     LocalDate currentDate, checkInDate, checkOutDate;
+    Guest g = new Guest();
+
+    private FirebaseDatabase mFirebaseDatabase;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser user;
+    private DatabaseReference myRef;
+    private FirebaseAuth mAuth;
+    private String userID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +71,25 @@ public class CheckInActivity extends AppCompatActivity {
             }
         });
 
+        mAuth = FirebaseAuth.getInstance(); //mAuth
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference(); //dbRef
+        user = mAuth.getCurrentUser();
+        userID = user.getUid();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (user != null){
+                    userID = user.getUid();
+                    //Log.d(TAG, "onAuthStateChanged: Signed In");
+                }else{
+
+                    //Log.d(TAG, "onAuthStateChanged: Signed out");
+                }
+            }
+        };
+
         //Get data from HomeActivity
         Intent i = getIntent();
         Bundle b = i.getBundleExtra("reservationDates");
@@ -63,7 +98,8 @@ public class CheckInActivity extends AppCompatActivity {
 
         inDate = (TextView) findViewById(R.id.inDate);
         outDate = (TextView) findViewById(R.id.outDate);
-        checkInBtn = (Button) findViewById(R.id.guestCheckInBtn);
+        checkInBtn = (Button) findViewById(R.id.guestCheckInBtn2);
+        checkOutBtn = (Button) findViewById(R.id.guestCheckOutBtn);
 
         inDate.setText(in);
         outDate.setText(out);
@@ -80,15 +116,96 @@ public class CheckInActivity extends AppCompatActivity {
                 currentDate = parseDate(year, (month + 1), day); //Current date of LocalDate object
                 checkInDate = parseStringDate(in);
 
+                checkOutDate = parseStringDate(out);
+
                 if(checkInDate.equals(currentDate))
                 {
                     //Allow them to check in
                     Toast.makeText(CheckInActivity.this, "Checked In!", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(CheckInActivity.this, HomeActivity.class);
+                    startActivity(i);
+                    finish();
                 }
                 else
                 {
                     Toast.makeText(CheckInActivity.this, "You can check in on: " + in, Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+
+        checkOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(CheckInActivity.this);
+
+                //Check current date with check out date
+                c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+
+                LocalDate cDate = parseDate(year, (month+1), day);
+
+                checkOutDate = parseStringDate(out);
+
+                if(cDate.equals(checkOutDate)) //if current date is equal the check out date
+                {
+                    alertDialog.setMessage("Do you want to check out of the hotel?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Toast.makeText(CheckInActivity.this, "Checked out!",Toast.LENGTH_SHORT).show();
+                                    checkOutUpdate();
+                                    //Intent i = new Intent(CheckInActivity.this, HomeActivity.class);
+                                    //startActivity(i);
+                                    //finish();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                }
+
+                else
+                { //if current date is before to check out date
+
+                    alertDialog.setMessage("Do you want to check out early of the hotel? (Your reservation is until " + checkOutDate.toString() + ")")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Toast.makeText(CheckInActivity.this, "Checked out early!",Toast.LENGTH_SHORT).show();
+                                    //Intent i = new Intent(CheckInActivity.this, HomeActivity.class);
+                                    //startActivity(i);
+                                    //finish();
+                                    checkOutUpdate();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                }
+
+                AlertDialog alert = alertDialog.create();
+                alert.setTitle("Check Out Confirmation");
+                alert.show();
+
+                //Changing colors of the Yes and No buttons
+                Button negativeButton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+                negativeButton.setTextColor(Color.RED);
+                negativeButton.setBackgroundColor(Color.WHITE);
+
+                Button positiveButton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+                positiveButton.setTextColor(Color.RED);
+                positiveButton.setBackgroundColor(Color.WHITE);
             }
         });
     }
@@ -98,6 +215,33 @@ public class CheckInActivity extends AppCompatActivity {
         return LocalDate.of(year, month, date);
     }
 
+    private void checkOutUpdate(){
+        //Update room and guest information when user checks out
+
+        //Guest has checked out so reset appropriate fields
+        Map<String,Object> list = new HashMap<>();
+        list.put("checkedIn", false);
+        list.put("checkInDate", "");
+        list.put("checkOutDate", "");
+
+        myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+
+                    Toast.makeText(CheckInActivity.this, "Guest updated", Toast.LENGTH_SHORT).show();
+                    Intent homeActivity = new Intent(CheckInActivity.this, HomeActivity.class);
+                    startActivity(homeActivity);
+                    finish();
+
+                }else{
+                    //startActivity(new Intent(EditInfoActivity.this, ProfileActivity.class));
+                    //finish();
+                }
+            }
+        });
+
+    }
     private LocalDate parseStringDate(String s)
     {
         String[] output = s.split("-");
