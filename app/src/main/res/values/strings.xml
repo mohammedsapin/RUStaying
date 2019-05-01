@@ -206,7 +206,7 @@ A breakdown of the pricing is below for the current spring season:</string>
     <string name = "creditInfo">Please fill in your credit card information:</string>
     <string name = "num">Card number:</string>
     <string name = "exDate">Expiration Date: </string>
-    <string name = "creditCName">Name on card: </string>
+    <string name = "creditCName">Full Name on card: </string>
     <string name = "billingAdd">Billing Address: </string>
     <string name = "ccv">CCV: </string>
     <string name = "street">Street </string>

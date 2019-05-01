@@ -28,6 +28,7 @@
         <activity android:name=".ViewGuests" />
         <activity android:name=".ViewServices" />
         <activity android:name=".BellboyActivity" />
+        <activity android:name=".PaymentActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".ServicesActivity" />
         <activity android:name=".CheckInActivity" />
