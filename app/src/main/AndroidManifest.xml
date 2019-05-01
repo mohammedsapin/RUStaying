@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".CreditActivity"></activity>
         <activity android:name=".CreditInfoActivity" />
+        <activity android:name=".HotelData"></activity>
         <activity android:name=".MaintenanceServices" />
         <activity android:name=".AdminServiceList" />
         <activity android:name=".EditInfoActivity" />

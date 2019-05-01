@@ -194,15 +194,12 @@ A breakdown of the pricing is below for the current spring season:</string>
     <string name="info10">Gym: Weekdays 8:00 AM - 11 PM, Weekends 8:00 AM - 8 PM</string>
     <string name="info11">Pool: Weekdays 8:00 AM - 11 PM, Weekends 8:00 AM - 8 PM</string>
     <string name="info12">Restaurant: M-TH 6:00 AM - 10 PM, F-SUN 6:00 AM - 9 PM</string>
-
     <string name="info13"><u>Services:</u></string>
     <string name="info14">Please find a list of our services in our application! We offer the following services for checked-in guests:</string>
     <string name="info15">Bellboy - Request a bellboy to pick up your luggage from anywhere in the hotel</string>
     <string name="info16">Valet and Travel - Complimentary car service to and from anywhere within a 45 minute drive from the hotel</string>
     <string name="info17">Maintenance - Request one of our staff members to come fix an appliance issue with your room</string>
     <string name="info18">Room Service - Request cleaning, restocking of room essentials, and more!</string>
-
-
     <string name = "payment">Payment</string>
     <string name = "creditInfo">Please fill in your credit card information:</string>
     <string name = "num">Card number:</string>
@@ -228,8 +225,6 @@ A breakdown of the pricing is below for the current spring season:</string>
     <string name="edit_credit_info">Edit Credit Info?</string>
     <string name="expiration_date">Expiration Date</string>
     <string name="credit_card_information">Credit Card Information</string>
-
-
     <string-array name="months_array">
         <item>January</item>
         <item>February</item>
@@ -244,7 +239,6 @@ A breakdown of the pricing is below for the current spring season:</string>
         <item>November</item>
         <item>December</item>
     </string-array>
-
     <string-array name="years_array">
         <item>2019</item>
         <item>2020</item>
@@ -253,5 +247,4 @@ A breakdown of the pricing is below for the current spring season:</string>
         <item>2023</item>
         <item>2024</item>
     </string-array>
-
 </resources>
