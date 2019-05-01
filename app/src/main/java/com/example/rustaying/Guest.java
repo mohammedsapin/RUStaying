@@ -15,7 +15,7 @@ public class Guest {
     private String checkOutDate;
 
 
-    private String creditCardNumer;
+    private String creditCardNumber;
     private String CCV;
     private String nameOnCCard;
     private String billingAddress;
@@ -39,7 +39,7 @@ public class Guest {
         this.accountStatus = true;
         this.checkInDate = "";
         this.checkOutDate = "";
-        this.creditCardNumer = "";
+        this.creditCardNumber = "";
         this.CCV="";
         this.nameOnCCard = "";
         this.billingAddress="";
@@ -119,9 +119,9 @@ public class Guest {
         this.checkOutDate = checkOutDate;
     }
 
-    public String getCreditCardNumer() { return creditCardNumer; }
+    public String getCreditCardNumber() { return creditCardNumber; }
 
-    public void setCreditCardNumer(String creditCardNumer) { this.creditCardNumer = creditCardNumer; }
+    public void setCreditCardNumber(String creditCardNumer) { this.creditCardNumber = creditCardNumer; }
 
     public String getCCV() { return CCV; }
 
