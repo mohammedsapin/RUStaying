@@ -1,8 +1,5 @@
 package com.example.rustaying;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 public class Guest {
 
     private String firstName, lastName, guestEmail;

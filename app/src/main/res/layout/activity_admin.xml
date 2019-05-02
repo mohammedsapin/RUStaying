@@ -8,17 +8,26 @@
     tools:context=".HomeActivity">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/welcome_admin"
             android:textAlignment="center"
             android:textSize="48sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+
 
         <!--<Button-->
             <!--android:id="@+id/viewRoomBtn"-->
@@ -32,43 +41,56 @@
 
         <Button
             android:id="@+id/viewGuestsBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/topborderwhite"
+            style="@android:style/TextAppearance.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_people_black_24dp"
+            android:drawablePadding="10dp"
+            android:padding="16dp"
+            android:background="@color/colorAccent"
             android:text="@string/view_guests"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/viewServicesBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/topborderwhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@drawable/ic_build_black_24dp"
+            android:drawablePadding="10dp"
+            android:padding="16dp"
+            android:background="@color/colorAccent"
             android:text="@string/view_services"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/viewDataBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/topborderwhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@drawable/ic_assessment_black_24dp"
+            android:drawablePadding="10dp"
+            android:padding="16dp"
+            android:background="@color/colorAccent"
             android:text="@string/view_hotel_data"
-            android:textAlignment="center"
-            android:textSize="18sp" />
-
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
         <Button
             android:id="@+id/adminLogout"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/topborderwhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
+            android:drawablePadding="10dp"
+            android:padding="16dp"
+            android:background="@color/colorAccent"
             android:text="@string/logout"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -93,12 +93,7 @@ public class BellboyAdmin extends AppCompatActivity {
                 positiveButton.setBackgroundColor(Color.WHITE);
             }
         });
-
-
-
-
-
-        }
+    }
 
     @Override
     protected void onStart() {
