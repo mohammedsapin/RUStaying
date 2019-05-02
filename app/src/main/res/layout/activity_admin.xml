@@ -39,18 +39,17 @@
             <!--android:textAlignment="center"-->
             <!--android:textSize="18sp" />-->
 
-        <Button
-            android:id="@+id/viewGuestsBtn"
-            style="@android:style/TextAppearance.Small"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_people_black_24dp"
-            android:drawablePadding="10dp"
-            android:padding="16dp"
-            android:background="@color/colorAccent"
-            android:text="@string/view_guests"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
+            <Button
+                android:id="@+id/viewGuestsBtn"
+                style="@android:style/TextAppearance.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:drawableStart="@drawable/ic_people_black_24dp"
+                android:padding="16dp"
+                android:text="@string/view_guests"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
 
         <Button
             android:id="@+id/viewServicesBtn"
@@ -58,7 +57,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:drawableStart="@drawable/ic_build_black_24dp"
-            android:drawablePadding="10dp"
             android:padding="16dp"
             android:background="@color/colorAccent"
             android:text="@string/view_services"
@@ -71,7 +69,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:drawableStart="@drawable/ic_assessment_black_24dp"
-            android:drawablePadding="10dp"
             android:padding="16dp"
             android:background="@color/colorAccent"
             android:text="@string/view_hotel_data"
@@ -83,7 +80,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
-            android:drawablePadding="10dp"
             android:padding="16dp"
             android:background="@color/colorAccent"
             android:text="@string/logout"
