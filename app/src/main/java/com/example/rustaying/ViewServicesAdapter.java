@@ -24,7 +24,7 @@ public class ViewServicesAdapter extends RecyclerView.Adapter<ViewServicesAdapte
 
     @Override
     public ViewHolder onCreateViewHolder( ViewGroup viewGroup, int i){
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_services,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_bellboy,viewGroup,false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }

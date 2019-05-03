@@ -4,10 +4,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,9 +17,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 
-public class ViewServices extends AppCompatActivity{
+public class BellboyServices extends AppCompatActivity{
 
-    private static final String TAG = "ViewServices";
+    private static final String TAG = "BellboyServices";
 
     //Services List
     private ArrayList<Service> serviceList = new ArrayList<>();
@@ -35,7 +33,7 @@ public class ViewServices extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_services);
+        setContentView(R.layout.activity_bellboy_services);
 
         createRecycleView();
 

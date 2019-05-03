@@ -151,7 +151,6 @@ public class HomeActivity extends AppCompatActivity {
         }
         );
 
-
         feedbackBtn = (Button)findViewById(R.id.feedbackBtn);
         String userID = user.getUid();
 
