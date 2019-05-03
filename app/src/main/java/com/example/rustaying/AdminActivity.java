@@ -25,7 +25,8 @@ public class AdminActivity extends AppCompatActivity {
 
     //XML Attributes
     Button viewGuests, viewServices, viewData, log_out;
-//    Button viewRooms;
+    Button viewRooms;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,18 +48,18 @@ public class AdminActivity extends AppCompatActivity {
         };
 
         //XML Objects and Methods
-        //viewRooms = (Button) findViewById(R.id.viewRoomBtn);
+        viewRooms = (Button) findViewById(R.id.viewRoomBtn);
         viewGuests = (Button) findViewById(R.id.viewGuestsBtn);
         viewServices = (Button) findViewById(R.id.viewServicesBtn);
         viewData = (Button) findViewById(R.id.viewDataBtn);
         log_out = (Button) findViewById(R.id.adminLogout);
 
-//        viewRooms.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(AdminActivity.this, newViewRooms.class));
-//            }
-//        });
+        viewRooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminActivity.this, preLoginReservationActivity.class));
+            }
+        });
 
         viewGuests.setOnClickListener(new View.OnClickListener() {
             @Override

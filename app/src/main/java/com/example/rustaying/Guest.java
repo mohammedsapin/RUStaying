@@ -21,6 +21,8 @@ public class Guest {
     private String expirationDate;
     private boolean validPayment;
 
+    private boolean reservationMade;
+
     //add more as we keep working on project
 
     public Guest() {
@@ -29,6 +31,7 @@ public class Guest {
         this.checkInDate = "";
         this.checkOutDate = "";
         this.roomNum = "";
+        this.reservationMade = false;
         // Default constructor need for DataSnapshot on firebase
     }
 
@@ -49,6 +52,8 @@ public class Guest {
         this.billingAddress="";
         this.expirationDate="";
         this.validPayment = false;
+
+        this.reservationMade = false;
 
     }
 
@@ -146,5 +151,13 @@ public class Guest {
     }
     public boolean isValidPayment() { return validPayment; }
     public void setValidPayment(boolean validPayment) { this.validPayment = validPayment; }
+
+    public boolean isReservationMade() {
+        return reservationMade;
+    }
+
+    public void setReservationMade(boolean reservationMade) {
+        this.reservationMade = reservationMade;
+    }
 
 }

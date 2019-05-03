@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
@@ -141,11 +142,20 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
                                 public void onClick(DialogInterface dialog, int which) {
                                     //Confirm booking
                                     //Send data to database
-                                    updateInformation(room.getRoomId());
+                                    //updateInformation(room.getRoomId());
 
                                     //Confirmation message
                                     //Toast.makeText(mCtx, "Booking Confirmed!",Toast.LENGTH_SHORT).show();
+
+                                    //Set up bundle to send resInfo
                                     Intent payment = new Intent(mCtx, PaymentActivity.class);
+
+                                    Bundle b = new Bundle();
+                                    b.putString("checkInDate", resInfo.getCheckIn().toString());
+                                    b.putString("checkOutDate", resInfo.getCheckOut().toString());
+                                    b.putString("roomId", room.getRoomId());
+                                    payment.putExtra("resInfo", b);
+
                                     mCtx.startActivity(payment);
 
                                 }
@@ -180,95 +190,7 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
         return roomList.size();
     }
 
-    public void updateInformation(String roomNum)
-    {
-        //Create string of room number (ex: Room 01 or Room 12)
-        String temp;
-        int roomInt = Integer.parseInt(roomNum);
-        if(roomInt <= 9)
-        {
-            temp = "Room 0" + roomNum;
-        }
-        else
-        {
-            temp = "Room " + roomNum;
-        }
 
-        //Get the current dates of reservation for the room
-        myRef.child("Rooms").child(temp).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                inDates = dataSnapshot.getValue(Room.class).getCheckInDate();
-                outDates = dataSnapshot.getValue(Room.class).getCheckOutDate();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        if(concatDates) //A reservation exists, concatenate to the end of it
-        {
-            //String concatenatedInDates = inDates + ", " + resInfo.getCheckIn().toString();
-            //String concatenatedOutDates = inDates + ", " + resInfo.getCheckIn().toString();
-
-            //inDates = inDates + " rrrr";
-            //inDates += ", " + resInfo.getCheckIn().toString();
-            //outDates += ", " + resInfo.getCheckOut().toString();
-        }
-
-        //Log.d(TAG, "onDataChange: " + inDates);
-
-        Map<String,Object> roomList = new HashMap<>();
-        roomList.put("checkInDate",resInfo.getCheckIn().toString());
-        roomList.put("checkOutDate",resInfo.getCheckOut().toString());
-        roomList.put("checkedIn", false);
-        roomList.put("isAvailable", false);
-
-
-        myRef.child("Rooms").child(temp).updateChildren(roomList).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-
-                    Toast.makeText(mCtx, "Room info updated", Toast.LENGTH_SHORT).show();
-                    //Intent homeActivity = new Intent(mCtx, HomeActivity.class);
-                    //startActivity(homeActivity);
-
-                    //mCtx.startActivity(homeActivity);
-
-                }else{
-                    Toast.makeText(mCtx, "Error updating info", Toast.LENGTH_SHORT).show();
-                    //startActivity(new Intent(EditInfoActivity.this, ProfileActivity.class));
-                    //finish();
-                }
-            }
-        });
-
-        Map<String,Object> list = new HashMap<>();
-        list.put("checkInDate",resInfo.getCheckIn().toString());
-        list.put("checkOutDate",resInfo.getCheckOut().toString());
-        list.put("checkedIn", true);
-
-        myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-
-                    //Toast.makeText(mCtx, "Info updated", Toast.LENGTH_SHORT).show();
-                    //Intent homeActivity = new Intent(mCtx, HomeActivity.class);
-                    //startActivity(homeActivity);
-
-                    //mCtx.startActivity(homeActivity);
-
-                }else{
-                    //startActivity(new Intent(EditInfoActivity.this, ProfileActivity.class));
-                    //finish();
-                }
-            }
-        });
-    }
 
     class RoomViewHolder extends RecyclerView.ViewHolder
     {
