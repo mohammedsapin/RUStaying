@@ -93,6 +93,20 @@ public class CheckInActivity extends AppCompatActivity {
             }
         };
 
+        //Get guest information and initialize object
+        String userID = user.getUid();
+        myRef.child("Guest").child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                initGuestObject(dataSnapshot); //Initializing Object works
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         //Get data from HomeActivity
         Intent i = getIntent();
         Bundle b = i.getBundleExtra("reservationDates");
@@ -124,6 +138,7 @@ public class CheckInActivity extends AppCompatActivity {
                 if(checkInDate.equals(currentDate))
                 {
                     //Allow them to check in
+                    updateCheckIn();
                     Toast.makeText(CheckInActivity.this, "Checked In!", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(CheckInActivity.this, HomeActivity.class);
                     startActivity(i);
@@ -154,17 +169,38 @@ public class CheckInActivity extends AppCompatActivity {
 
                 checkOutDate = parseStringDate(out);
 
-                if(cDate.equals(checkOutDate)) //if current date is equal the check out date
+
+                if(g.isCheckedIn() == false)
+                {
+                    alertDialog.setMessage("You have not checked in, do you want to cancel your reservation and check out?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    checkOutUpdate();
+                                    Toast.makeText(CheckInActivity.this, "Reservation Cancelled",Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(CheckInActivity.this, HomeActivity.class);
+                                    startActivity(i);
+                                    finish();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                }
+                else if(cDate.equals(checkOutDate)) //if current date is equal the check out date
                 {
                     alertDialog.setMessage("Do you want to check out of the hotel?")
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    //Toast.makeText(CheckInActivity.this, "Checked out!",Toast.LENGTH_SHORT).show();
                                     checkOutUpdate();
-                                    //Intent i = new Intent(CheckInActivity.this, HomeActivity.class);
-                                    //startActivity(i);
-                                    //finish();
+                                    Toast.makeText(CheckInActivity.this, "Checked out!",Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(CheckInActivity.this, HomeActivity.class);
+                                    startActivity(i);
+                                    finish();
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -182,11 +218,12 @@ public class CheckInActivity extends AppCompatActivity {
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    //Toast.makeText(CheckInActivity.this, "Checked out early!",Toast.LENGTH_SHORT).show();
-                                    //Intent i = new Intent(CheckInActivity.this, HomeActivity.class);
-                                    //startActivity(i);
-                                    //finish();
                                     checkOutUpdate();
+                                    //Toast.makeText(CheckInActivity.this, "Checked out early!",Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(CheckInActivity.this, HomeActivity.class);
+                                    startActivity(i);
+                                    finish();
+
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -219,19 +256,6 @@ public class CheckInActivity extends AppCompatActivity {
     }
 
     private void checkOutUpdate(){
-        //Get guest information and initialize object
-        String userID = user.getUid();
-        myRef.child("Guest").child(userID).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                initGuestObject(dataSnapshot); //Initializing Object works
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         //Update room and guest information when user checks out
 
@@ -240,13 +264,14 @@ public class CheckInActivity extends AppCompatActivity {
         list.put("checkedIn", false);
         list.put("checkInDate", "");
         list.put("checkOutDate", "");
+        list.put("roomNum", "");
 
         myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
 
-                    Toast.makeText(CheckInActivity.this, "Guest updated", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(CheckInActivity.this, "Guest updated", Toast.LENGTH_SHORT).show();
                     //Intent homeActivity = new Intent(CheckInActivity.this, HomeActivity.class);
                     //startActivity(homeActivity);
                     //finish();
@@ -282,7 +307,7 @@ public class CheckInActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
 
-                    Toast.makeText(CheckInActivity.this, "Room info updated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CheckInActivity.this, "Checked out!", Toast.LENGTH_SHORT).show();
                     //Intent homeActivity = new Intent(mCtx, HomeActivity.class);
                     //startActivity(homeActivity);
 
@@ -299,6 +324,28 @@ public class CheckInActivity extends AppCompatActivity {
 
     }
 
+    private void updateCheckIn()
+    {
+        Map<String,Object> list = new HashMap<>();
+        list.put("checkedIn", true);
+
+        myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+
+                    Toast.makeText(CheckInActivity.this, "Guest updated", Toast.LENGTH_SHORT).show();
+                    //Intent homeActivity = new Intent(CheckInActivity.this, HomeActivity.class);
+                    //startActivity(homeActivity);
+                    //finish();
+
+                }else{
+                    //startActivity(new Intent(EditInfoActivity.this, ProfileActivity.class));
+                    //finish();
+                }
+            }
+        });
+    }
     private void initGuestObject(DataSnapshot dataSnapshot)
     {
         //Setting fields of guest object
@@ -309,7 +356,8 @@ public class CheckInActivity extends AppCompatActivity {
         g.setLuggage(dataSnapshot.getValue(Guest.class).getLuggage());
         g.setCheckInDate(dataSnapshot.getValue(Guest.class).getCheckInDate());
         g.setCheckOutDate(dataSnapshot.getValue(Guest.class).getCheckOutDate());
-
+        g.setRoomNum(dataSnapshot.getValue(Guest.class).getRoomNum());
+        g.setReservationMade(dataSnapshot.getValue(Guest.class).isReservationMade());
     }
 
     private LocalDate parseStringDate(String s)

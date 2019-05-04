@@ -25,7 +25,7 @@ public class AdminServiceList extends AppCompatActivity {
         bellboy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminServiceList.this, ViewServices.class));
+                startActivity(new Intent(AdminServiceList.this, BellboyServices.class));
             }
         });
 

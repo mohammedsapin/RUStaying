@@ -33,7 +33,7 @@
         <activity android:name=".MaintenanceActivity" />
         <activity android:name=".ViewRooms" />
         <activity android:name=".ViewGuests" />
-        <activity android:name=".ViewServices" />
+        <activity android:name=".BellboyServices" />
         <activity android:name=".BellboyActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".AdminActivity" />

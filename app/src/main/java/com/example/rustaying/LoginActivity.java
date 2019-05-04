@@ -22,7 +22,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText emInput, passInput;
     private Button loginBtn;
-    private TextView registerBtn;
     private FirebaseAuth auth;
     private TextView forgotPassword;
 
@@ -37,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         passInput = (EditText) findViewById(R.id.passInput);
         loginBtn = (Button) findViewById(R.id.loginBtn);
         forgotPassword = (TextView)findViewById(R.id.resetPassword);
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                                             Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
                                             Intent homePage = new Intent(LoginActivity.this, HomeActivity.class);
                                             startActivity(homePage);
+                                            finish();
                                         }
                                     } else {
                                         Toast.makeText(LoginActivity.this, "Login Failed",Toast.LENGTH_SHORT).show();
@@ -105,7 +106,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this,PasswordActivity.class));
             }
         });
-
     }
 }
 
