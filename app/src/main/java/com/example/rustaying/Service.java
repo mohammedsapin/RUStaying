@@ -105,6 +105,10 @@ public class Service {
         this.cleaningservice = cleaningservice;
         this.requestedTimeRoomService = requestedTimeRoomService;
     }
+    public Service(String requestType, String status){
+        this.requestType = requestType;
+        this.status=status;
+    }
 
     public long getRequestID() {
         return requestID;

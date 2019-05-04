@@ -121,6 +121,8 @@
             android:layout_width="124dp"
             android:layout_height="38dp"
             android:layout_marginStart="24dp"
+            android:visibility="visible"
+            android:popupBackground="@drawable/appbackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
@@ -130,6 +132,7 @@
             android:layout_height="39dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:popupBackground="@drawable/appbackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toEndOf="@+id/spinner1"

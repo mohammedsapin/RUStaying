@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     private Guest g = new Guest();
     private static final String TAG = "HomeActivity";
 
-    private Button logout, bkRmBtn, feedbackBtn, checkInBtn;
+    private Button logout, bkRmBtn, feedbackBtn, checkInBtn, inboxBtn;
 
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth auth;
@@ -151,6 +151,17 @@ public class HomeActivity extends AppCompatActivity {
         }
         );
 
+        inboxBtn = (Button)findViewById(R.id.inboxBtn);
+        inboxBtn.setOnClickListener(new View.OnClickListener()
+             {
+                 @Override
+                 public void onClick(View v)
+                 {
+                     Intent InboxPage = new Intent(HomeActivity.this, InboxActivity.class);
+                     startActivity(InboxPage); //Redirect to list of all rooms
+                 }
+             }
+        );
 
         feedbackBtn = (Button)findViewById(R.id.feedbackBtn);
         String userID = user.getUid();

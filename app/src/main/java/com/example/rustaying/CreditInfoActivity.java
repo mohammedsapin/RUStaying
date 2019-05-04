@@ -41,7 +41,7 @@ public class CreditInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credit_info);
 
-//SPINNERS POPULATED HERE
+        //SPINNERS POPULATED HERE
         int count = 0;
         for(int x = 2019;x<2069;x++){
             this.arraySpinnerYear[count]=""+x;
@@ -58,7 +58,7 @@ public class CreditInfoActivity extends AppCompatActivity {
         Spinner spinnerMonth= (Spinner)findViewById(R.id.date_month);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,arraySpinnerMonth);
         spinnerMonth.setAdapter(adapter2);
-//END OF SPINNER POPULATION
+        //END OF SPINNER POPULATION
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
