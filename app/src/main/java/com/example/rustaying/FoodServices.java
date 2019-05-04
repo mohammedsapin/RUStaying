@@ -1,13 +1,11 @@
 package com.example.rustaying;
 
-import android.graphics.Canvas;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,17 +15,15 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ValetServices extends AppCompatActivity {
+public class FoodServices extends AppCompatActivity {
 
-    private static final String TAG = "ValetServices";
+    private static final String TAG = "FoodServices";
 
     //Services List
     private ArrayList<Service> serviceList = new ArrayList<>();
-
 
     //Firebase
     private FirebaseDatabase mFirebaseDatabase;
@@ -38,7 +34,7 @@ public class ValetServices extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_valet_services);
+        setContentView(R.layout.activity_food_services);
 
         createRecycleView();
 
@@ -88,9 +84,9 @@ public class ValetServices extends AppCompatActivity {
 
     private void createRecycleView(){
         Log.d(TAG, "createRecycleView: Started view");
-        RecyclerView recyclerView = findViewById(R.id.viewValetServices);
+        RecyclerView recyclerView = findViewById(R.id.viewFoodServices);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ValetServicesAdapter adapter = new ValetServicesAdapter(this,serviceList);
+        FoodServiceAdapter adapter = new FoodServiceAdapter(this,serviceList);
         recyclerView.setAdapter(adapter);
     }
 
@@ -101,21 +97,42 @@ public class ValetServices extends AppCompatActivity {
             Service info = new Service();
 
             info.setRequestType(data.getValue(Service.class).getRequestType());
-            info.setRequestedTimeValet(data.getValue(Service.class).getRequestedTimeValet());
             info.setRequestDate(data.getValue(Service.class).getRequestDate());
-            info.setStartingStreet(data.getValue(Service.class).getStartingStreet());
-            info.setStartingCityStateZip(data.getValue(Service.class).getStartingCityStateZip());
-            info.setDestinationStreet(data.getValue(Service.class).getDestinationStreet());
-            info.setDestinationCityStateZip(data.getValue(Service.class).getDestinationCityStateZip());
-            info.setNumberTraveling(data.getValue(Service.class).getNumberTraveling());
+            info.setRequestedTimeFoodService(data.getValue(Service.class).getRequestedTimeFoodService());
+            info.setInputs(data.getValue(Service.class).getInputs());
+            info.setGardenSalad(data.getValue(Service.class).getGardenSalad());
+            info.setTomatoSoup(data.getValue(Service.class).getTomatoSoup());
+            info.setFriedChicken(data.getValue(Service.class).getFriedChicken());
+            info.setCheesePizza(data.getValue(Service.class).getCheesePizza());
+            info.setSpaghetti(data.getValue(Service.class).getSpaghetti());
+            info.setMacAndCheese(data.getValue(Service.class).getMacAndCheese());
+            info.setVanillaIceCream(data.getValue(Service.class).getVanillaIceCream());
+            info.setFruitCake(data.getValue(Service.class).getFruitCake());
+            info.setCoke(data.getValue(Service.class).getCoke());
+            info.setSprite(data.getValue(Service.class).getSprite());
+            info.setAppleJuice(data.getValue(Service.class).getAppleJuice());
+            info.setFoodPrice(data.getValue(Service.class).getFoodPrice());
 
             //add object to array list
-            //valet
-            if (info.getRequestType().equals("ValetTravel")) {
-                serviceList.add(new Service(info.getRequestType(), info.getRequestedTimeValet(), info.getRequestDate(),
-                        info.getStartingStreet(), info.getDestinationStreet(),info.getStartingCityStateZip(),
-                         info.getDestinationCityStateZip(),info.getNumberTraveling()));
-
+            //Food Service
+            if (info.getRequestType().equals("FoodService")) {
+                serviceList.add(new Service(
+                        info.getRequestType(),
+                        info.getRequestDate(),
+                        info.getRequestedTimeFoodService(),
+                        info.getInputs(),
+                        info.getGardenSalad(),
+                        info.getTomatoSoup(),
+                        info.getFriedChicken(),
+                        info.getCheesePizza(),
+                        info.getSpaghetti(),
+                        info.getMacAndCheese(),
+                        info.getVanillaIceCream(),
+                        info.getFruitCake(),
+                        info.getCoke(),
+                        info.getSprite(),
+                        info.getAppleJuice(),
+                        info.getFoodPrice()));
                 //add array list to recycle view
                 createRecycleView();
             }
@@ -135,6 +152,4 @@ public class ValetServices extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-
-
 }

@@ -11,7 +11,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/colorPrimary"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/title"
@@ -21,77 +22,104 @@
             android:textAlignment="center"
             android:textSize="48sp" />
 
-
         <Button
             android:id="@+id/bkRmBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/topborderwhite"
-            android:drawableStart="@drawable/outline_hotel_white_36"
-            android:drawablePadding="5dp"
-            android:padding="8dp"
+            android:drawableStart="@drawable/ic_hotel_black_24dp"
             android:text="@string/book_a_room"
-            android:textAlignment="viewStart"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:drawablePadding="-10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
             android:textSize="18sp" />
 
         <Button
             android:id="@+id/checkInBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/topborderwhite"
-            android:drawableStart="@drawable/outline_event_available_white_36"
-            android:drawablePadding="5dp"
-            android:padding="8dp"
             android:text="@string/check_in"
-            android:textAlignment="viewStart"
-            android:textSize="18sp" />
+            android:drawableStart="@drawable/ic_event_available_black_24dp"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:drawablePadding="-10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+
+            android:textSize="18sp"
+ />
 
         <Button
             android:id="@+id/inboxBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/topborderwhite"
-            android:drawableStart="@drawable/outline_all_inbox_white_36"
-            android:drawablePadding="5dp"
-            android:padding="8dp"
             android:text="@string/inbox"
-            android:textAlignment="viewStart"
-            android:textSize="18sp" />
+            android:drawableStart="@drawable/ic_mail_outline_black_24dp"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:drawablePadding="-10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+
+            android:textSize="18sp"
+/>
 
         <Button
             android:id="@+id/keyCardBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/topborderwhite"
-            android:drawableStart="@drawable/outline_vpn_key_white_36"
-            android:drawablePadding="5dp"
-            android:padding="8dp"
+            android:drawableStart="@drawable/ic_vpn_key_black_24dp"
             android:text="@string/key_card"
-            android:textAlignment="viewStart"
-            android:textSize="18sp" />
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:drawablePadding="-10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+
+            android:textSize="18sp"
+/>
 
         <Button
             android:id="@+id/feedbackBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttonborder"
-            android:drawableStart="@drawable/outline_file_copy_white_48dp"
-            android:drawablePadding="5dp"
-            android:padding="8dp"
+            android:drawableStart="@drawable/ic_insert_drive_file_black_24dp"
             android:text="@string/feedback"
-            android:textAlignment="viewStart"
-            android:textSize="18sp" />
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:drawablePadding="-10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+
+            android:textSize="18sp"
+/>
         <Button
             android:id="@+id/logoutBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttonborder"
-            android:drawableStart="@drawable/outline_exit_to_app_white_36"
-            android:drawablePadding="5dp"
-            android:padding="8dp"
+            android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
             android:text="@string/logout"
-            android:textAlignment="viewStart"
-            android:textSize="18sp" />
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:drawablePadding="-10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+
+            android:textSize="18sp"
+ />
 
     </LinearLayout>
 

@@ -9,7 +9,7 @@ import android.widget.Button;
 public class AdminServiceList extends AppCompatActivity {
 
     private static final String TAG = "AdminServiceList";
-    private Button bellboy, valet, maint, roomService;
+    private Button bellboy, valet, maint, roomService, foodService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,7 @@ public class AdminServiceList extends AppCompatActivity {
         valet = (Button) findViewById(R.id.valet_travel);
         maint = (Button) findViewById(R.id.maintenance_request);
         roomService = (Button) findViewById(R.id.room_Service);
+        foodService = (Button) findViewById(R.id.food_Service);
 
         bellboy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +47,13 @@ public class AdminServiceList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AdminServiceList.this, RoomServices.class));
+            }
+        });
+
+        foodService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminServiceList.this, FoodServices.class));
             }
         });
     }

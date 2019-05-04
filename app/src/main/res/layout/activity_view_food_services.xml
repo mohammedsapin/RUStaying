@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:id="@+id/requestTypeF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Request Type"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/requestTimeF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11:00 AM"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/requestDateF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2019-04-06"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subtotal: "
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/foodtotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Garden Salad"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/numbGardenSalad"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textSize="16sp"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary" />
+
+            <TextView
+                android:id="@+id/tomatoSoup"
+                android:layout_width="215dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/design_default_color_primary"
+                android:text="Tomato Soup"
+                android:textAlignment="textEnd" />
+
+            <TextView
+                android:id="@+id/numbTomatoSoup"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textSize="16sp"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/checkboxesM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fried Chicken"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/numbFriedChicken"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp"
+                android:text="0"
+                android:textAlignment="textEnd"
+                />
+
+            <TextView
+                android:id="@+id/textView35"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cheese Pizza"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/numbCheesePizza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textSize="16sp"
+                android:textColor="@color/design_default_color_primary"
+                android:textAlignment="textEnd"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView37"
+                android:layout_width="98dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Spaghetti"
+                android:textAlignment="textStart"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/numbSpaghetti"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="textStart"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView38"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mac and Cheese"
+                android:textAlignment="textStart"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/numbMacAndCheese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vanilla Ice Cream"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/numbVanillaIceCream"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView45"
+                android:layout_width="194dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fruit Cake"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/numbFruitCake"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView47"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Coke"
+                android:textAlignment="textStart"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/numbCoke"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Sprite"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/numbSprite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Apple Juice"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/numbAppleJuice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/inputsFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="No Comments"
+                android:textAlignment="textStart"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

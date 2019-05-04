@@ -77,6 +77,12 @@ public class LoginActivity extends AppCompatActivity {
                                                     RoomServiceAdmin.class);
                                             startActivity(adminPage);
                                         }
+                                        else if (email.equals("foodadmin@mail.com")) {
+                                            Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
+                                            Intent adminPage = new Intent(LoginActivity.this,
+                                                    FoodServiceAdmin.class);
+                                            startActivity(adminPage);
+                                        }
                                         else {
                                             Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
                                             Intent homePage = new Intent(LoginActivity.this, HomeActivity.class);

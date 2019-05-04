@@ -303,7 +303,7 @@ A breakdown of the pricing is below for the current spring season:</string>
         <item>5</item>
         <item>6</item>
     </string-array>
-  
+
     <string name="check_out">Check Out</string>
     <string name="info10">Gym: Weekdays 8:00 AM - 11 PM, Weekends 8:00 AM - 8 PM</string>
     <string name="info11">Pool: Weekdays 8:00 AM - 11 PM, Weekends 8:00 AM - 8 PM</string>
@@ -314,17 +314,17 @@ A breakdown of the pricing is below for the current spring season:</string>
     <string name="info16">Valet and Travel - Complimentary car service to and from anywhere within a 45 minute drive from the hotel</string>
     <string name="info17">Maintenance - Request one of our staff members to come fix an appliance issue with your room</string>
     <string name="info18">Room Service - Request cleaning, restocking of room essentials, and more!</string>
-    <string name = "payment">Payment</string>
-    <string name = "creditInfo">Please fill in your credit card information:</string>
-    <string name = "num">Card number:</string>
-    <string name = "exDate">Expiration Date: </string>
-    <string name = "creditCName">Full Name on card: </string>
-    <string name = "billingAdd">Billing Address: </string>
-    <string name = "ccv">CCV: </string>
-    <string name = "street">Street </string>
-    <string name = "City">City</string>
-    <string name = "zip">Zip Code</string>
-    <string name = "confirmPay">Confirm Payment</string>
+    <string name="payment">Payment</string>
+    <string name="creditInfo">Please fill in your credit card information:</string>
+    <string name="num">Card number:</string>
+    <string name="exDate">Expiration Date: </string>
+    <string name="creditCName">Full Name on card: </string>
+    <string name="billingAdd">Billing Address: </string>
+    <string name="ccv">CCV: </string>
+    <string name="street">Street </string>
+    <string name="City">City</string>
+    <string name="zip">Zip Code</string>
+    <string name="confirmPay">Confirm Payment</string>
     <string name="view_credit_info">View Credit info</string>
     <string name="edit_your_credit_card_info">Edit your credit card info</string>
     <string name="enter_new_ccv">Enter new CCV</string>

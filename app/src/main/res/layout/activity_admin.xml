@@ -11,7 +11,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/colorPrimary"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:layout_width="fill_parent"
@@ -32,43 +33,59 @@
 
         <Button
             android:id="@+id/viewGuestsBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/topborderwhite"
             android:text="@string/view_guests"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+            android:drawableStart="@drawable/ic_people_black_24dp"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:drawablePadding="-10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/viewServicesBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/topborderwhite"
             android:text="@string/view_services"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+            android:drawableStart="@drawable/ic_room_service_black_24dp"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:drawablePadding="-10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/viewDataBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/topborderwhite"
             android:text="@string/view_hotel_data"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+            android:drawableStart="@drawable/ic_blur_on_black_24dp"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:drawablePadding="-10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/adminLogout"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/topborderwhite"
             android:text="@string/logout"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+            android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:drawablePadding="-10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
