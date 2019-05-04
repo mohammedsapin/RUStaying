@@ -11,10 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FoodServiceActivity"></activity>
-        <activity android:name=".CreditActivity"></activity>
+        <activity android:name=".FoodServiceAdapter" />
+        <activity android:name=".FoodServices" />
+        <activity android:name=".FoodServiceAdmin" />
+        <activity android:name=".FoodServiceActivity" />
+        <activity android:name=".CreditActivity" />
         <activity android:name=".CreditInfoActivity" />
-        <activity android:name=".HotelData"></activity>
+        <activity android:name=".HotelData" />
         <activity android:name=".MaintenanceServices" />
         <activity android:name=".AdminServiceList" />
         <activity android:name=".EditInfoActivity" />

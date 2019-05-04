@@ -248,7 +248,7 @@ public class ValetTravelActivity extends AppCompatActivity {
                 String requestedTimeValet = hourValue + ":" + minuteValue + " " + ampmValue;
                 String requestType = "ValetTravel";
                 String requestDate=valettravel.getRequestDate();
-                Integer numberTraveling1=valettravel.getNumberTraveling();
+                long numberTraveling1=valettravel.getNumberTraveling();
 
                 if (!TextUtils.isEmpty(startingStreet) && !TextUtils.isEmpty(startingCityStateZip)&& !TextUtils.isEmpty(destinationCityStateZip)&& !TextUtils.isEmpty(destinationStreet)) {
                     Service valettravel = new Service(requestType,requestedTimeValet, requestDate, startingStreet,

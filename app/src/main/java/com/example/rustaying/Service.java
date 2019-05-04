@@ -28,7 +28,7 @@ public class Service {
     private String startingCityStateZip;
     private String destinationStreet;
     private String destinationCityStateZip;
-    private Integer numberTraveling;
+    private long numberTraveling;
 
     private String requestedTimeFoodService;
     private String gardenSalad;
@@ -42,7 +42,7 @@ public class Service {
     private String coke;
     private String sprite;
     private String appleJuice;
-    private Integer foodPrice;
+    private long foodPrice;
 
     private Integer a1;
     private Integer a2;
@@ -203,7 +203,7 @@ public class Service {
     }
 
     public Service(String requestType, String requestedTimeValet, String requestDate, String answer1, String answer2,
-                   String answer3, String answer4, Integer numberTraveling) {
+                   String answer3, String answer4, long numberTraveling) {
         this.requestType = requestType;
         this.requestedTimeValet = requestedTimeValet;
         this.requestDate = requestDate;
@@ -242,10 +242,22 @@ public class Service {
     //foodservice
 
 
-    public Service(String requestType, String requestDate, String requestedTimeFoodService, String inputs,
-                   String gardenSalad, String tomatoSoup, String friedChicken, String cheesePizza,
-                   String spaghetti, String macAndCheese, String vanillaIceCream, String fruitCake,
-                   String coke, String sprite, String appleJuice, Integer foodPrice) {
+    public Service(String requestType,
+                   String requestDate,
+                   String requestedTimeFoodService,
+                   String inputs,
+                   String gardenSalad,
+                   String tomatoSoup,
+                   String friedChicken,
+                   String cheesePizza,
+                   String spaghetti,
+                   String macAndCheese,
+                   String vanillaIceCream,
+                   String fruitCake,
+                   String coke,
+                   String sprite,
+                   String appleJuice,
+                   long foodPrice) {
         this.requestType = requestType;
         this.requestDate = requestDate;
         this.inputs = inputs;
@@ -265,19 +277,19 @@ public class Service {
     }
 
 
-    public Integer getNumberTraveling() {
+    public long getNumberTraveling() {
         return numberTraveling;
     }
 
-    public void setNumberTraveling(Integer numberTraveling) {
+    public void setNumberTraveling(long numberTraveling) {
         this.numberTraveling = numberTraveling;
     }
 
-    public Integer getFoodPrice() {
+    public long getFoodPrice() {
         return foodPrice;
     }
 
-    public void setFoodPrice(Integer foodPrice) {
+    public void setFoodPrice(long foodPrice) {
         this.foodPrice = foodPrice;
     }
 

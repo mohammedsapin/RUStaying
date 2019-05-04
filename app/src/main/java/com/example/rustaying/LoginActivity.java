@@ -52,28 +52,39 @@ public class LoginActivity extends AppCompatActivity {
                                         //admin email == admin@mail.com
                                         //admin password == admin12345
                                         if (email.equals("admin@mail.com")) {
-                                            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(LoginActivity.this, AdminActivity.class));
-                                            finish();
-                                        } else if (email.equals("bellboyadmin@mail.com")) {
-                                            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(LoginActivity.this, BellboyAdmin.class));
-                                            finish();
-                                        } else if (email.equals("valetadmin@mail.com")) {
-                                            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(LoginActivity.this, ValetAdmin.class));
-                                            finish();
-                                        } else if (email.equals("maintenanceadmin@mail.com")) {
-                                            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(LoginActivity.this, MaintenanceAdmin.class));
-                                            finish();
-                                        } else if (email.equals("roomservicesadmin@mail.com")) {
-                                            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(LoginActivity.this, RoomServiceAdmin.class));
-                                            finish();
-
-                                        } else {
-                                            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
+                                            Intent adminPage = new Intent(LoginActivity.this, AdminActivity.class);
+                                            startActivity(adminPage);
+                                        }
+                                        else if (email.equals("bellboyadmin@mail.com")) {
+                                            Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
+                                            Intent adminPage = new Intent(LoginActivity.this, BellboyAdmin.class);
+                                            startActivity(adminPage);
+                                        }
+                                        else if (email.equals("valetadmin@mail.com")) {
+                                            Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
+                                            Intent adminPage = new Intent(LoginActivity.this, ValetAdmin.class);
+                                            startActivity(adminPage);
+                                        }
+                                        else if (email.equals("maintenanceadmin@mail.com")) {
+                                            Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
+                                            Intent adminPage = new Intent(LoginActivity.this, MaintenanceAdmin.class);
+                                            startActivity(adminPage);
+                                        }
+                                        else if (email.equals("roomservicesadmin@mail.com")) {
+                                            Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
+                                            Intent adminPage = new Intent(LoginActivity.this,
+                                                    RoomServiceAdmin.class);
+                                            startActivity(adminPage);
+                                        }
+                                        else if (email.equals("foodadmin@mail.com")) {
+                                            Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
+                                            Intent adminPage = new Intent(LoginActivity.this,
+                                                    FoodServiceAdmin.class);
+                                            startActivity(adminPage);
+                                        }
+                                        else {
+                                            Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
                                             Intent homePage = new Intent(LoginActivity.this, HomeActivity.class);
                                             startActivity(homePage);
                                             finish();

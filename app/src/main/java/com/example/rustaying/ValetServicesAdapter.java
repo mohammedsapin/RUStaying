@@ -42,6 +42,7 @@ public class ValetServicesAdapter extends RecyclerView.Adapter<ValetServicesAdap
         viewHolder.startingCityStateZipV.setText(info.getStartingCityStateZip());
         viewHolder.destinationStreetV.setText(info.getDestinationStreet());
         viewHolder.destinationCityStateZipV.setText(info.getDestinationCityStateZip());
+        viewHolder.travelNumber.setText(String.valueOf(info.getNumberTraveling()));
     }
 
     @Override
@@ -51,7 +52,7 @@ public class ValetServicesAdapter extends RecyclerView.Adapter<ValetServicesAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView requestTypeV, requestDateV, requestTimeV, startingStreetV, startingCityStateZipV,
-                destinationStreetV, destinationCityStateZipV;
+                destinationStreetV, destinationCityStateZipV, travelNumber;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -62,6 +63,8 @@ public class ValetServicesAdapter extends RecyclerView.Adapter<ValetServicesAdap
             startingCityStateZipV = itemView.findViewById(R.id.startingCityStateZipV);
             destinationStreetV = itemView.findViewById(R.id.inputsM);
             destinationCityStateZipV = itemView.findViewById(R.id.destinationCityStateZipV);
+            travelNumber=itemView.findViewById(R.id.travelNumber);
+
 
         }
     }
