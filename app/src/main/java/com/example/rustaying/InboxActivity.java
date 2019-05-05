@@ -16,6 +16,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 
@@ -60,6 +62,18 @@ public class InboxActivity extends AppCompatActivity{
             }
         };
 
+        myRef.child("Service").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                showData(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        /*
         myRef.child("Service").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -86,6 +100,7 @@ public class InboxActivity extends AppCompatActivity{
 
             }
         });
+        */
     }
 
     private void createRecycleView(){
@@ -102,12 +117,24 @@ public class InboxActivity extends AppCompatActivity{
             Service info = new Service();
 
             //info.setServiceID(data.getValue(Service.class).getServiceID());
-           String serviceID = myRef.child("Service").child(userID).getKey();
+           //String serviceID = myRef.child("Service").child(userID).getKey();
+            String serviceID = data.getKey();
+
            //data.getValue(Service.class).getServiceID();
+
+            //Check the logcat debug. It is comparing the correct values
+            Log.d(TAG, "showData: " + userID);
+            Log.d(TAG, "showData: "+ serviceID);
+
+
             info.setRequestType(data.getValue(Service.class).getRequestType());
             info.setStatus(data.getValue(Service.class).getStatus());
 
+            //Basically need to do this
+            //info.setRequestType(data.child(9 DIGIT ID).getValue(Service.class).getRequestType());
 
+            //It properly compares the userID with the serviceID
+            //But you'll need another for loop to iterate through all the requests under the user and to get that data
             if(userID.equals(serviceID)){
                 serviceList.add(new Service(info.getRequestType(),info.getStatus()));
                 createRecycleView();
