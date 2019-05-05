@@ -1,13 +1,11 @@
 package com.example.rustaying;
 
-import android.graphics.Canvas;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,7 +15,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -27,7 +24,6 @@ public class ValetServices extends AppCompatActivity {
 
     //Services List
     private ArrayList<Service> serviceList = new ArrayList<>();
-
 
     //Firebase
     private FirebaseDatabase mFirebaseDatabase;
@@ -114,7 +110,7 @@ public class ValetServices extends AppCompatActivity {
             if (info.getRequestType().equals("ValetTravel")) {
                 serviceList.add(new Service(info.getRequestType(), info.getRequestedTimeValet(), info.getRequestDate(),
                         info.getStartingStreet(), info.getDestinationStreet(),info.getStartingCityStateZip(),
-                         info.getDestinationCityStateZip(),info.getNumberTraveling()));
+                         info.getDestinationCityStateZip(),info.getNumberTraveling(),info.getTemp1(),info.getTemp2()));
 
                 //add array list to recycle view
                 createRecycleView();

@@ -115,7 +115,7 @@ public class FoodServices extends AppCompatActivity {
 
             //add object to array list
             //Food Service
-            if (info.getRequestType().equals("FoodService")) {
+            if (info.getRequestType().equals("Food Service")) {
                 serviceList.add(new Service(
                         info.getRequestType(),
                         info.getRequestDate(),

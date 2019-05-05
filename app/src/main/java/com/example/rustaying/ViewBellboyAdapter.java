@@ -42,7 +42,6 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
         viewHolder.bellboyDate.setText(info.getRequestDate());
         viewHolder.luggageVal.setText(info.getLuggageValue());
         viewHolder.requestTime.setText(info.getRequestedTimeBellboy());
-        Log.d(TAG, "onBindViewHolder: " + info.getRequestedTimeBellboy());
         viewHolder.fromWhere.setText(info.getFromWhere());
 
         viewHolder.card.setOnClickListener(new View.OnClickListener() {
