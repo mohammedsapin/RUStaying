@@ -98,14 +98,16 @@ public class InboxActivity extends AppCompatActivity{
 
 
     private void showData(DataSnapshot dataSnapshot) {
-        for (DataSnapshot data : dataSnapshot.getChildren()) {
+        for (DataSnapshot data : dataSnapshot.getChildren()){
             Service info = new Service();
-            String serviceID = myRef.child("Service").child(userID).toString();
-
+            //info.setServiceID(data.getValue(Service.class).getServiceID());
+            String serviceID = myRef.push().getKey();
+                    //data.getValue(Service.class).getServiceID();
             info.setRequestType(data.getValue(Service.class).getRequestType());
             info.setStatus(data.getValue(Service.class).getStatus());
 
-            if(userID == serviceID){
+
+            if(userID.equals(serviceID)){
                 serviceList.add(new Service(info.getRequestType(),info.getStatus()));
                 createRecycleView();
             }

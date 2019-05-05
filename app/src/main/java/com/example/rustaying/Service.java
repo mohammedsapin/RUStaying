@@ -28,6 +28,7 @@ public class Service {
     private String startingCityStateZip;
     private String destinationStreet;
     private String destinationCityStateZip;
+    private String serviceID;
 
     public Service(String requestType, String requestDate, String luggageValue,
                    String requestedTimeBellboy, String fromWhere) {
@@ -37,7 +38,13 @@ public class Service {
         this.requestedTimeBellboy = requestedTimeBellboy;
         this.fromWhere = fromWhere;
     }
+    public String getServiceID() {
+        return serviceID;
+    }
 
+    public void setServiceID(String serviceID) {
+        this.serviceID = serviceID;
+    }
     public String getStartingStreet() {
         return startingStreet;
     }
