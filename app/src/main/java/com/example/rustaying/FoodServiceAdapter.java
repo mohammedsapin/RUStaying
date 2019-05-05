@@ -24,7 +24,7 @@ public class FoodServiceAdapter extends RecyclerView.Adapter<FoodServiceAdapter.
 
     @Override
     public ViewHolder onCreateViewHolder( ViewGroup viewGroup, int i){
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_view_food_services,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_food,viewGroup,false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -38,7 +38,7 @@ public class FoodServiceAdapter extends RecyclerView.Adapter<FoodServiceAdapter.
         viewHolder.requestType.setText(info.getRequestType());
         viewHolder.requestDate.setText(info.getRequestDate());
         viewHolder.requestTime.setText(info.getRequestedTimeFoodService());
-        viewHolder.foodPrice.setText(String.valueOf(info.getFoodPrice()));
+        viewHolder.foodPrice.setText(info.getFoodPrice());
         viewHolder.gardenSalad.setText(info.getGardenSalad());
         viewHolder.tomatoSoup.setText(info.getTomatoSoup());
         viewHolder.friedChicken.setText(info.getFriedChicken());
@@ -68,7 +68,7 @@ public class FoodServiceAdapter extends RecyclerView.Adapter<FoodServiceAdapter.
             requestType = itemView.findViewById(R.id.requestTypeF);
             requestDate = itemView.findViewById(R.id.requestDateF);
             requestTime = itemView.findViewById(R.id.requestTimeF);
-            foodPrice = itemView.findViewById(R.id.foodprice);
+            foodPrice = itemView.findViewById(R.id.foodtotal);
             gardenSalad= itemView.findViewById(R.id.numbGardenSalad);
             tomatoSoup=itemView.findViewById(R.id.numbTomatoSoup);
             friedChicken=itemView.findViewById(R.id.numbFriedChicken);
@@ -80,7 +80,7 @@ public class FoodServiceAdapter extends RecyclerView.Adapter<FoodServiceAdapter.
             coke=itemView.findViewById(R.id.numbCoke);
             sprite=itemView.findViewById(R.id.numbSprite);
             appleJuice=itemView.findViewById(R.id.numbAppleJuice);
-            input = itemView.findViewById(R.id.inputsR);
+            input = itemView.findViewById(R.id.inputsFood);
         }
     }
 }

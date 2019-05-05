@@ -39,7 +39,6 @@ public class ViewServicesAdapter extends RecyclerView.Adapter<ViewServicesAdapte
         viewHolder.bellboyDate.setText(info.getRequestDate());
         viewHolder.luggageVal.setText(info.getLuggageValue());
         viewHolder.requestTime.setText(info.getRequestedTimeBellboy());
-        Log.d(TAG, "onBindViewHolder: " + info.getRequestedTimeBellboy());
         viewHolder.fromWhere.setText(info.getFromWhere());
     }
 

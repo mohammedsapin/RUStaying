@@ -203,7 +203,7 @@ public class ValetTravelActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String numberTraveling1 = parent.getItemAtPosition(position).toString();
                 Integer numberTraveling2=Integer.valueOf(numberTraveling1);
-                valettravel.setNumberTraveling(numberTraveling2);
+                valettravel.setNumberTraveling(String.valueOf(numberTraveling2));
             }
 
             @Override
@@ -248,11 +248,16 @@ public class ValetTravelActivity extends AppCompatActivity {
                 String requestedTimeValet = hourValue + ":" + minuteValue + " " + ampmValue;
                 String requestType = "ValetTravel";
                 String requestDate=valettravel.getRequestDate();
-                long numberTraveling1=valettravel.getNumberTraveling();
+                String numberTraveling1=valettravel.getNumberTraveling();
+
+                String temp1 = valettravel.getTemp1();
+                String temp2=valettravel.getTemp2();
+
 
                 if (!TextUtils.isEmpty(startingStreet) && !TextUtils.isEmpty(startingCityStateZip)&& !TextUtils.isEmpty(destinationCityStateZip)&& !TextUtils.isEmpty(destinationStreet)) {
                     Service valettravel = new Service(requestType,requestedTimeValet, requestDate, startingStreet,
-                            destinationStreet, startingCityStateZip, destinationCityStateZip, numberTraveling1);
+                            destinationStreet, startingCityStateZip, destinationCityStateZip, numberTraveling1,
+                    temp1, temp2);
 
                     myRef.child("Service").child(userID).child(request).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

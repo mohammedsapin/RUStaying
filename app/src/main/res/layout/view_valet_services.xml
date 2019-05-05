@@ -22,7 +22,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/requestTypeM"
+                android:id="@+id/requestTypeV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Request Type"
@@ -37,7 +37,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/requestTimeM"
+                android:id="@+id/requestTimeV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="11:00 AM"
@@ -45,7 +45,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/requestDateM"
+                android:id="@+id/requestDateV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="2019-04-06"
@@ -98,7 +98,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/checkboxesM"
+                android:id="@+id/StartingStreetV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6256 BPO Way"
@@ -144,7 +144,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/inputsM"
+                android:id="@+id/destinationStreetV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Busch"

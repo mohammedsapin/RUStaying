@@ -28,7 +28,9 @@ public class Service {
     private String startingCityStateZip;
     private String destinationStreet;
     private String destinationCityStateZip;
-    private long numberTraveling;
+    private String numberTraveling;
+    private String temp1;
+    private String temp2;
 
     private String requestedTimeFoodService;
     private String gardenSalad;
@@ -42,7 +44,7 @@ public class Service {
     private String coke;
     private String sprite;
     private String appleJuice;
-    private long foodPrice;
+    private String foodPrice;
 
     private Integer a1;
     private Integer a2;
@@ -203,7 +205,7 @@ public class Service {
     }
 
     public Service(String requestType, String requestedTimeValet, String requestDate, String answer1, String answer2,
-                   String answer3, String answer4, long numberTraveling) {
+                   String answer3, String answer4, String numberTraveling, String temp1, String temp2) {
         this.requestType = requestType;
         this.requestedTimeValet = requestedTimeValet;
         this.requestDate = requestDate;
@@ -257,7 +259,7 @@ public class Service {
                    String coke,
                    String sprite,
                    String appleJuice,
-                   long foodPrice) {
+                   String foodPrice) {
         this.requestType = requestType;
         this.requestDate = requestDate;
         this.inputs = inputs;
@@ -277,19 +279,37 @@ public class Service {
     }
 
 
-    public long getNumberTraveling() {
+    public String getTemp1() {
+        return temp1;
+    }
+
+    public void setTemp1(String temp1) {
+        this.temp1 = temp1;
+    }
+
+    public String getTemp2() {
+        return temp2;
+    }
+
+    public void setTemp2(String temp2) {
+        this.temp2 = temp2;
+    }
+
+
+
+    public String getNumberTraveling() {
         return numberTraveling;
     }
 
-    public void setNumberTraveling(long numberTraveling) {
+    public void setNumberTraveling(String numberTraveling) {
         this.numberTraveling = numberTraveling;
     }
 
-    public long getFoodPrice() {
+    public String getFoodPrice() {
         return foodPrice;
     }
 
-    public void setFoodPrice(long foodPrice) {
+    public void setFoodPrice(String foodPrice) {
         this.foodPrice = foodPrice;
     }
 

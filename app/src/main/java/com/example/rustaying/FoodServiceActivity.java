@@ -195,7 +195,7 @@ public class FoodServiceActivity extends AppCompatActivity {
             }
         });
 
-        foodservice.setFoodPrice(0);
+        foodservice.setFoodPrice("0");
         foodservice.setA1(0);
         foodservice.setA2(0);
         foodservice.setM1(0);
@@ -218,14 +218,14 @@ public class FoodServiceActivity extends AppCompatActivity {
         app1S.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                long calc1 = foodservice.getFoodPrice();
+                long calc1 = Integer.parseInt(foodservice.getFoodPrice());
                 if (foodservice.getA1()>position){ //ordering less than original
-                    Integer change = foodservice.getA1()-position;
-                    foodservice.setFoodPrice(calc1-change*3);
+                    Integer change = (foodservice.getA1()-position);
+                    foodservice.setFoodPrice(String.valueOf(calc1-change*3));
                 }
                 else{
                     Integer change = position-foodservice.getA1();
-                    foodservice.setFoodPrice(calc1+change*3);
+                    foodservice.setFoodPrice(String.valueOf(calc1+change*3));
                 }
                 foodservice.setA1(position);
                 EditText editText= (EditText) findViewById(R.id.foodprice);
@@ -251,14 +251,14 @@ public class FoodServiceActivity extends AppCompatActivity {
         app2S.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                long calc1 = foodservice.getFoodPrice();
+                long calc1 = Integer.parseInt(foodservice.getFoodPrice());
                 if (foodservice.getA2()>position){ //ordering less than original
                     Integer change = foodservice.getA2()-position;
-                    foodservice.setFoodPrice(calc1-change*3);
+                    foodservice.setFoodPrice(String.valueOf(calc1-change*3));
                 }
                 else{
                     Integer change = position-foodservice.getA2();
-                    foodservice.setFoodPrice(calc1+change*3);
+                    foodservice.setFoodPrice(String.valueOf(calc1+change*3));
                 }
                 foodservice.setA2(position);
                 EditText editText= (EditText) findViewById(R.id.foodprice);
@@ -285,14 +285,14 @@ public class FoodServiceActivity extends AppCompatActivity {
         main1S.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                long calc1 = foodservice.getFoodPrice();
+                long calc1 = Integer.parseInt(foodservice.getFoodPrice());
                 if (foodservice.getM1()>position){ //ordering less than original
                     Integer change = foodservice.getM1()-position;
-                    foodservice.setFoodPrice(calc1-change*5);
+                    foodservice.setFoodPrice(String.valueOf(calc1-change*5));
                 }
                 else{
                     Integer change = position-foodservice.getM1();
-                    foodservice.setFoodPrice(calc1+change*5);
+                    foodservice.setFoodPrice(String.valueOf(calc1+change*5));
                 }
                 foodservice.setM1(position);
                 EditText editText= (EditText) findViewById(R.id.foodprice);
@@ -319,15 +319,15 @@ public class FoodServiceActivity extends AppCompatActivity {
         main2S.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                long calc1 = foodservice.getFoodPrice();
+                long calc1 = Integer.parseInt(foodservice.getFoodPrice());
 
                 if (foodservice.getM2()>position){ //ordering less than original
                     Integer change = foodservice.getM2()-position;
-                    foodservice.setFoodPrice(calc1-change*5);
+                    foodservice.setFoodPrice(String.valueOf(calc1-change*5));
                 }
                 else{
                     Integer change = position-foodservice.getM2();
-                    foodservice.setFoodPrice(calc1+change*5);
+                    foodservice.setFoodPrice(String.valueOf(calc1+change*5));
                 }
                 foodservice.setM2(position);
                 EditText editText= (EditText) findViewById(R.id.foodprice);
@@ -353,15 +353,15 @@ public class FoodServiceActivity extends AppCompatActivity {
         main3S.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                long calc1 = foodservice.getFoodPrice();
+                long calc1 = Integer.parseInt(foodservice.getFoodPrice());
 
                 if (foodservice.getM3()>position){ //ordering less than original
                     Integer change = foodservice.getM3()-position;
-                    foodservice.setFoodPrice(calc1-change*5);
+                    foodservice.setFoodPrice(String.valueOf(calc1-change*5));
                 }
                 else{
                     Integer change = position-foodservice.getM3();
-                    foodservice.setFoodPrice(calc1+change*5);
+                    foodservice.setFoodPrice(String.valueOf(calc1+change*5));
                 }
                 foodservice.setM3(position);
                 EditText editText= (EditText) findViewById(R.id.foodprice);
@@ -387,15 +387,15 @@ public class FoodServiceActivity extends AppCompatActivity {
         main4S.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                long calc1 = foodservice.getFoodPrice();
+                long calc1 = Integer.parseInt(foodservice.getFoodPrice());
 
                 if (foodservice.getM4()>position){ //ordering less than original
                     Integer change = foodservice.getM4()-position;
-                    foodservice.setFoodPrice(calc1-change*5);
+                    foodservice.setFoodPrice(String.valueOf(calc1-change*5));
                 }
                 else{
                     Integer change = position-foodservice.getM4();
-                    foodservice.setFoodPrice(calc1+change*5);
+                    foodservice.setFoodPrice(String.valueOf(calc1+change*5));
                 }
                 foodservice.setM4(position);
                 EditText editText= (EditText) findViewById(R.id.foodprice);
@@ -421,15 +421,15 @@ public class FoodServiceActivity extends AppCompatActivity {
         des1S.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                long calc1 = foodservice.getFoodPrice();
+                long calc1 = Integer.parseInt(foodservice.getFoodPrice());
 
                 if (foodservice.getD1()>position){ //ordering less than original
                     Integer change = foodservice.getD1()-position;
-                    foodservice.setFoodPrice(calc1-change*2);
+                    foodservice.setFoodPrice(String.valueOf(calc1-change*2));
                 }
                 else{
                     Integer change = position-foodservice.getD1();
-                    foodservice.setFoodPrice(calc1+change*2);
+                    foodservice.setFoodPrice(String.valueOf(calc1+change*2));
                 }
                 foodservice.setD1(position);
                 EditText editText= (EditText) findViewById(R.id.foodprice);
@@ -455,15 +455,15 @@ public class FoodServiceActivity extends AppCompatActivity {
         des2S.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                long calc1 = foodservice.getFoodPrice();
+                long calc1 = Integer.parseInt(foodservice.getFoodPrice());
 
                 if (foodservice.getD2()>position){ //ordering less than original
                     Integer change = foodservice.getD2()-position;
-                    foodservice.setFoodPrice(calc1-change*2);
+                    foodservice.setFoodPrice(String.valueOf(calc1-change*2));
                 }
                 else{
                     Integer change = position-foodservice.getD2();
-                    foodservice.setFoodPrice(calc1+change*2);
+                    foodservice.setFoodPrice(String.valueOf(calc1+change*2));
                 }
                 foodservice.setD2(position);
                 EditText editText= (EditText) findViewById(R.id.foodprice);
@@ -490,15 +490,15 @@ public class FoodServiceActivity extends AppCompatActivity {
         drink1S.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                long calc1 = foodservice.getFoodPrice();
+                long calc1 = Integer.parseInt(foodservice.getFoodPrice());
 
                 if (foodservice.getDr1()>position){ //ordering less than original
                     Integer change = foodservice.getDr1()-position;
-                    foodservice.setFoodPrice(calc1-change*1);
+                    foodservice.setFoodPrice(String.valueOf(calc1-change*1));
                 }
                 else{
                     Integer change = position-foodservice.getDr1();
-                    foodservice.setFoodPrice(calc1+change*1);
+                    foodservice.setFoodPrice(String.valueOf(calc1+change*1));
                 }
                 foodservice.setDr1(position);
                 EditText editText= (EditText) findViewById(R.id.foodprice);
@@ -524,15 +524,15 @@ public class FoodServiceActivity extends AppCompatActivity {
         drink2S.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                long calc1 = foodservice.getFoodPrice();
+                long calc1 = Integer.parseInt(foodservice.getFoodPrice());
 
                 if (foodservice.getDr2()>position){ //ordering less than original
                     Integer change = foodservice.getDr2()-position;
-                    foodservice.setFoodPrice(calc1-change*1);
+                    foodservice.setFoodPrice(String.valueOf(calc1-change*1));
                 }
                 else{
                     Integer change = position-foodservice.getDr2();
-                    foodservice.setFoodPrice(calc1+change*1);
+                    foodservice.setFoodPrice(String.valueOf(calc1+change*1));
                 }
                 foodservice.setDr2(position);
                 EditText editText= (EditText) findViewById(R.id.foodprice);
@@ -558,15 +558,15 @@ public class FoodServiceActivity extends AppCompatActivity {
         drink3S.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                long calc1 = foodservice.getFoodPrice();
+                long calc1 = Integer.parseInt(foodservice.getFoodPrice());
 
                 if (foodservice.getDr3()>position){ //ordering less than original
                     Integer change = foodservice.getDr3()-position;
-                    foodservice.setFoodPrice(calc1-change*1);
+                    foodservice.setFoodPrice(String.valueOf(calc1-change*1));
                 }
                 else{
                     Integer change = position-foodservice.getDr3();
-                    foodservice.setFoodPrice(calc1+change*1);
+                    foodservice.setFoodPrice(String.valueOf(calc1+change*1));
                 }
                 foodservice.setDr3(position);
                 EditText editText= (EditText) findViewById(R.id.foodprice);
@@ -617,7 +617,7 @@ public class FoodServiceActivity extends AppCompatActivity {
                 final  String drink2 = foodservice.getSprite();
                 final  String drink3 = foodservice.getAppleJuice();
 
-                final  long foodPrice = foodservice.getFoodPrice();
+                final  String foodPrice = foodservice.getFoodPrice();
 
                 if (Integer.parseInt(app1) == 0 && Integer.parseInt(app2) == 0 && Integer.parseInt(main1) == 0 &&
                         Integer.parseInt(main2) == 0 && Integer.parseInt(main3) == 0 && Integer.parseInt(main4) == 0 &&
