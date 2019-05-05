@@ -11,37 +11,43 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/colorPrimary"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="30dp">
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="200dp"
+            android:layout_marginBottom="150dp"
             android:text="Welcome Food Services"
             android:textAlignment="center"
             android:textSize="48sp" />
 
         <Button
             android:id="@+id/viewServicesFoodService"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:layout_marginStart="140dp"
             android:text="@string/view_services"
-            android:textAlignment="center"
-            android:layout_marginBottom="32dp"
+            style="?android:textAppearanceSmall"
+            android:drawableStart="@drawable/ic_local_dining_black_48dp"
+            android:drawablePadding="-10dp"
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:background="@color/colorAccent"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />/>
+            android:textStyle="bold"/>/>
         <Button
             android:id="@+id/foodServiceLogout"
-            android:layout_width="150dp"
-            android:layout_marginStart="140dp"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
             android:text="@string/logout"
-            android:textAlignment="center"
+            style="?android:textAppearanceSmall"
+            android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
+            android:drawablePadding="-10dp"
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:background="@color/colorAccent"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
