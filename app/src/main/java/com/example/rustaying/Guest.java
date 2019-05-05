@@ -18,6 +18,8 @@ public class Guest {
     private String expirationDate;
     private boolean validPayment;
 
+    private String keyCode;
+
     private boolean reservationMade;
 
     //add more as we keep working on project
@@ -51,6 +53,8 @@ public class Guest {
         this.validPayment = false;
 
         this.reservationMade = false;
+
+        this.keyCode = "-1";
 
     }
 
@@ -157,4 +161,11 @@ public class Guest {
         this.reservationMade = reservationMade;
     }
 
+    public String getKeyCode() {
+        return keyCode;
+    }
+
+    public void setKeyCode(String keyCode) {
+        this.keyCode = keyCode;
+    }
 }
