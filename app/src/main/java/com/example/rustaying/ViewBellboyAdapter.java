@@ -3,6 +3,7 @@ package com.example.rustaying;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -54,7 +56,8 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
                             public void onClick(DialogInterface dialog, int which) {
                                 info.setStatus("Completed");
                             }
-                        }).setNegativeButton("In Progress", new DialogInterface.OnClickListener() {
+                        }).setNegativeButton("In Progress  ",
+                        new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         info.setStatus("In Progress");
@@ -63,6 +66,14 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
                 AlertDialog alert = alertDialog.create();
                 alert.setTitle("Status Update");
                 alert.show();
+
+                Button negativeButton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+                negativeButton.setTextColor(Color.RED);
+                negativeButton.setBackgroundColor(Color.WHITE);
+
+                Button positiveButton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+                positiveButton.setTextColor(Color.GREEN);
+                positiveButton.setBackgroundColor(Color.WHITE);
             }
         });
 
