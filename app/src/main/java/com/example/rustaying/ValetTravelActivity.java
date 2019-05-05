@@ -247,6 +247,7 @@ public class ValetTravelActivity extends AppCompatActivity {
                 String ampmValue = valettravel.getAmpmValue();
                 String requestedTimeValet = hourValue + ":" + minuteValue + " " + ampmValue;
                 String requestType = "ValetTravel";
+                String status = "Incomplete";
                 String requestDate=valettravel.getRequestDate();
                 String numberTraveling1=valettravel.getNumberTraveling();
 
@@ -256,8 +257,8 @@ public class ValetTravelActivity extends AppCompatActivity {
 
                 if (!TextUtils.isEmpty(startingStreet) && !TextUtils.isEmpty(startingCityStateZip)&& !TextUtils.isEmpty(destinationCityStateZip)&& !TextUtils.isEmpty(destinationStreet)) {
                     Service valettravel = new Service(requestType,requestedTimeValet, requestDate, startingStreet,
-                            destinationStreet, startingCityStateZip, destinationCityStateZip, numberTraveling1,
-                    temp1, temp2);
+                            destinationStreet, startingCityStateZip, destinationCityStateZip,
+                            numberTraveling1, status, temp1, temp2);
 
                     myRef.child("Service").child(userID).child(request).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

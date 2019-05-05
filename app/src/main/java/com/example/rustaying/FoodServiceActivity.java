@@ -602,6 +602,7 @@ public class FoodServiceActivity extends AppCompatActivity {
                 String ampmValue = foodservice.getAmpmValue();
                 final String requestedTimeFoodService = hourValue + ":" + minuteValue + " " + ampmValue;
                 final String requestType = "Food Service";
+                final String status = "Incomplete";
                 final String requestDate = foodservice.getRequestDate();
 
 
@@ -635,7 +636,8 @@ public class FoodServiceActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
 
                                     Service service = new Service(requestType, requestDate, requestedTimeFoodService, answer1,
-                                            app1, app2, main1, main2, main3, main4, des1, des2, drink1, drink2, drink3, foodPrice);
+                                            app1, app2, main1, main2, main3, main4, des1, des2,
+                                            drink1, drink2, drink3, foodPrice,status);
                                     myRef.child("Service").child(userID).child(request).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {

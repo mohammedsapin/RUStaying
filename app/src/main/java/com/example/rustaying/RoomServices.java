@@ -114,7 +114,7 @@ public class RoomServices extends AppCompatActivity {
                         info.getRequestedTimeRoomService(),  info.getInputs(), info.getTowels(),
                         info.getSoap(), info.getBedsheets(),
                         info.getCleaningservice(),
-                        info.getCheckboxes()));
+                        info.getCheckboxes(),info.getStatus()));
                 //add array list to recycle view
                 createRecycleView();
             }

@@ -164,12 +164,13 @@ public class Service {
 
 
     public Service(String requestType, String requestDate, String luggageValue,
-                   String requestedTimeBellboy, String fromWhere) {
+                   String requestedTimeBellboy, String fromWhere, String status) {
         this.requestType = requestType;
         this.requestDate = requestDate;
         this.luggageValue = luggageValue;
         this.requestedTimeBellboy = requestedTimeBellboy;
         this.fromWhere = fromWhere;
+        this.status = status;
     }
 
     public String getStartingStreet() {
@@ -205,7 +206,9 @@ public class Service {
     }
 
     public Service(String requestType, String requestedTimeValet, String requestDate, String answer1, String answer2,
-                   String answer3, String answer4, String numberTraveling, String temp1, String temp2) {
+                   String answer3, String answer4, String numberTraveling, String status,
+                   String temp1,
+                   String temp2) {
         this.requestType = requestType;
         this.requestedTimeValet = requestedTimeValet;
         this.requestDate = requestDate;
@@ -214,10 +217,11 @@ public class Service {
         this.startingCityStateZip = answer3;
         this.destinationCityStateZip = answer4;
         this.numberTraveling=numberTraveling;
+        this.status = status;
     }
 
     public Service(String requestType, String requestDate, String requestedTimeMaintenance, String inputs, String bathroom,
-                   String electronic, String lighting, String checkboxes) {
+                   String electronic, String lighting, String checkboxes, String status) {
         this.requestType = requestType;
         this.requestDate = requestDate;
         this.inputs = inputs;
@@ -226,10 +230,12 @@ public class Service {
         this.lighting = lighting;
         this.checkboxes = checkboxes;
         this.requestedTimeMaintenance = requestedTimeMaintenance;
+        this.status = status;
     }
 
     public Service(String requestType, String requestDate, String requestedTimeRoomService, String inputs,
-                   String towels, String soap, String bedsheets, String cleaningservice, String checkboxes) {
+                   String towels, String soap, String bedsheets, String cleaningservice,
+                   String checkboxes, String status) {
         this.requestType = requestType;
         this.requestDate = requestDate;
         this.inputs = inputs;
@@ -239,6 +245,7 @@ public class Service {
         this.bedsheets = bedsheets;
         this.cleaningservice = cleaningservice;
         this.requestedTimeRoomService = requestedTimeRoomService;
+        this.status = status;
     }
 
     //foodservice
@@ -259,7 +266,8 @@ public class Service {
                    String coke,
                    String sprite,
                    String appleJuice,
-                   String foodPrice) {
+                   String foodPrice,
+                   String status) {
         this.requestType = requestType;
         this.requestDate = requestDate;
         this.inputs = inputs;
@@ -276,6 +284,7 @@ public class Service {
         this.sprite = sprite;
         this.appleJuice = appleJuice;
         this.foodPrice = foodPrice;
+        this.status = status;
     }
 
 
@@ -294,8 +303,6 @@ public class Service {
     public void setTemp2(String temp2) {
         this.temp2 = temp2;
     }
-
-
 
     public String getNumberTraveling() {
         return numberTraveling;
@@ -407,7 +414,6 @@ public class Service {
 
     public void setAppleJuice(String appleJuice) {
         this.appleJuice = appleJuice;}
-
 
     public long getRequestID() {
         return requestID;
