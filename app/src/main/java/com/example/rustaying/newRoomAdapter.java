@@ -31,6 +31,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.DayOfWeek;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -107,22 +109,105 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
 
         if(room.getRoomType().equals("Single"))
         {
-            roomViewHolder.price.setText("$250");
+            int pr = 250;
+
+            //check for peak months
+            if(resInfo.getCheckIn().getMonth()== Month.DECEMBER //Christmas
+                    || resInfo.getCheckIn().getMonth()== Month.MARCH //Spring Break
+                    || resInfo.getCheckIn().getMonth()== Month.JUNE //summer
+                    || resInfo.getCheckIn().getMonth()== Month.JULY //summer
+                    || resInfo.getCheckIn().getMonth()== Month.AUGUST //summer
+            )
+            {
+                pr+=150;
+            }
+            //check if weekend
+            if(resInfo.getCheckIn().getDayOfWeek()==DayOfWeek.FRIDAY
+                    || resInfo.getCheckIn().getDayOfWeek()== DayOfWeek.SATURDAY)
+            {
+                pr+=100;
+            }
+
+            String pri = "$" + pr;
+            roomViewHolder.price.setText(pri);
             myImage = ResourcesCompat.getDrawable(res, R.drawable.singleroom, null);
         }
         else if(room.getRoomType().equals("Double"))
         {
-            roomViewHolder.price.setText("$300");
+            int pr = 300;
+
+            //check for peak months
+            if(resInfo.getCheckIn().getMonth()== Month.DECEMBER //Christmas
+                    || resInfo.getCheckIn().getMonth()== Month.MARCH //Spring Break
+                    || resInfo.getCheckIn().getMonth()== Month.JUNE //summer
+                    || resInfo.getCheckIn().getMonth()== Month.JULY //summer
+                    || resInfo.getCheckIn().getMonth()== Month.AUGUST //summer
+            )
+            {
+                pr+=150;
+            }
+
+            //check if weekend
+            if(resInfo.getCheckIn().getDayOfWeek()==DayOfWeek.FRIDAY
+                    || resInfo.getCheckIn().getDayOfWeek()==DayOfWeek.SATURDAY)
+            {
+                pr+=100;
+            }
+
+            String pri = "$" + pr;
+            roomViewHolder.price.setText(pri);
             myImage = ResourcesCompat.getDrawable(res, R.drawable.doubleroom, null);
         }
         else if(room.getRoomType().equals("Queen"))
         {
-            roomViewHolder.price.setText("$350");
+            int pr = 350;
+
+            //check for peak months
+            if(resInfo.getCheckIn().getMonth()== Month.DECEMBER //Christmas
+                    || resInfo.getCheckIn().getMonth()== Month.MARCH //Spring Break
+                    || resInfo.getCheckIn().getMonth()== Month.JUNE //summer
+                    || resInfo.getCheckIn().getMonth()== Month.JULY //summer
+                    || resInfo.getCheckIn().getMonth()== Month.AUGUST //summer
+            )
+            {
+                pr+=150;
+            }
+
+            //check if weekend
+            if(resInfo.getCheckIn().getDayOfWeek()==DayOfWeek.FRIDAY
+                    || resInfo.getCheckIn().getDayOfWeek()==DayOfWeek.SATURDAY)
+            {
+                pr+=100;
+            }
+
+            String pri = "$" + pr;
+            roomViewHolder.price.setText(pri);
             myImage = ResourcesCompat.getDrawable(res, R.drawable.queenroom, null);
         }
         else if(room.getRoomType().equals("King"))
         {
-            roomViewHolder.price.setText("$400");
+            int pr = 450;
+
+            //check for peak months
+            if(resInfo.getCheckIn().getMonth()== Month.DECEMBER //Christmas
+                    || resInfo.getCheckIn().getMonth()== Month.MARCH //Spring Break
+                    || resInfo.getCheckIn().getMonth()== Month.JUNE //summer
+                    || resInfo.getCheckIn().getMonth()== Month.JULY //summer
+                    || resInfo.getCheckIn().getMonth()== Month.AUGUST //summer
+            )
+            {
+                pr+=150;
+            }
+
+            //check if weekend
+            if(resInfo.getCheckIn().getDayOfWeek()==DayOfWeek.FRIDAY
+                    || resInfo.getCheckIn().getDayOfWeek()==DayOfWeek.SATURDAY)
+            {
+                pr+=100;
+            }
+
+            String pri = "$" + pr;
+            roomViewHolder.price.setText(pri);
             myImage = ResourcesCompat.getDrawable(res, R.drawable.hotelroom, null);
 
         }

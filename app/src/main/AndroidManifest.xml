@@ -22,6 +22,7 @@
         <activity android:name=".AdminServiceList" />
         <activity android:name=".EditInfoActivity" />
         <activity android:name=".PasswordActivity" />
+        <activity android:name=".KeyCardActivity" />
         <activity android:name=".ValetServices" />
         <activity android:name=".RoomServices" />
         <activity android:name=".RoomServiceAdmin" />

@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     private Guest g = new Guest();
     private static final String TAG = "HomeActivity";
 
-    private Button logout, bkRmBtn, feedbackBtn, checkInBtn;
+    private Button logout, bkRmBtn, feedbackBtn, checkInBtn, keyBtn;
 
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth auth;
@@ -151,6 +151,37 @@ public class HomeActivity extends AppCompatActivity {
         }
         );
 
+        keyBtn = (Button) findViewById(R.id.keyCardBtn);
+        keyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(g.getCheckInDate().equals("") || g.getCheckInDate() == null
+                        || g.getCheckOutDate().equals("") || g.getCheckOutDate() == null) //Means no reservation made
+                {
+                    Toast.makeText(HomeActivity.this, "You have no reservations",Toast.LENGTH_SHORT).show();
+                }
+                else //If there is reservation, setup intent and send checkIn and checkOut date to new activity
+                {
+                    Intent keyPage = new Intent(HomeActivity.this, KeyCardActivity.class);
+                    keyPage.putExtra("checkedIn", g.isCheckedIn());
+                    startActivity(keyPage);
+                }
+
+
+
+                Intent keyPage = new Intent(HomeActivity.this, KeyCardActivity.class);
+
+
+                //b.putBoolean("checkedIn", g.isCheckedIn());
+                //b.putString("keyCode", g.getKeyCode());
+                //keyPage.putExtras(b);
+               // keyPage.putExtra("checkedIn", g.isCheckedIn());
+                //keyPage.putExtra("keyCode",  g.getKeyCode());
+                //startActivity(keyPage);
+            }
+        });
+
         feedbackBtn = (Button)findViewById(R.id.feedbackBtn);
         String userID = user.getUid();
 
@@ -225,6 +256,7 @@ public class HomeActivity extends AppCompatActivity {
             g.setLuggage(dataSnapshot.getValue(Guest.class).getLuggage());
             g.setCheckInDate(dataSnapshot.getValue(Guest.class).getCheckInDate());
             g.setCheckOutDate(dataSnapshot.getValue(Guest.class).getCheckOutDate());
+            g.setKeyCode(dataSnapshot.getValue(Guest.class).getKeyCode());
 
     }
 
