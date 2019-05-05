@@ -29,20 +29,24 @@ public class InboxActivity extends AppCompatActivity{
     //Firebase
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
+    private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
+    private String userID;
+    private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_services);
+        setContentView(R.layout.activity_inbox);
 
         createRecycleView();
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
-
+        FirebaseUser user = mAuth.getCurrentUser();
+        userID = user.getUid();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -85,9 +89,9 @@ public class InboxActivity extends AppCompatActivity{
 
     private void createRecycleView(){
         Log.d(TAG, "createRecycleView: Started view");
-        RecyclerView recyclerView = findViewById(R.id.viewServicesRecycleView);
+        RecyclerView recyclerView = findViewById(R.id.inboxActivityRecycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ViewServicesAdapter adapter = new ViewServicesAdapter(this,serviceList);
+        InboxActivityAdapter adapter = new InboxActivityAdapter(this,serviceList);
         recyclerView.setAdapter(adapter);
     }
 
@@ -95,15 +99,16 @@ public class InboxActivity extends AppCompatActivity{
     private void showData(DataSnapshot dataSnapshot) {
         for (DataSnapshot data : dataSnapshot.getChildren()) {
 
+            String serviceID = myRef.child("Service").child(userID).toString();
             Service info = new Service();
 
             info.setRequestType(data.getValue(Service.class).getRequestType());
             info.setStatus(data.getValue(Service.class).getStatus());
-            serviceList.add(new Service(info.getRequestType(),info.getStatus()));
-            createRecycleView();
-            /*bellboy
-            if (info.getRequestType().equals("Bellboy")){
-            }*/
+
+            if(userID == serviceID){
+                serviceList.add(new Service(info.getRequestType(),info.getStatus()));
+                createRecycleView();
+            }
         }
     }
 
