@@ -163,8 +163,8 @@ public class ReservationActivity extends AppCompatActivity {
                     roomTypes[3] = "King";
                 }
 
-                if(checkInDate != null && checkOutDate != null
-                && (single.isChecked() || double1.isChecked() || queen.isChecked() || king.isChecked()))
+                if(checkInDate != null && checkOutDate != null &&
+                        (single.isChecked() || double1.isChecked() || queen.isChecked() || king.isChecked()))
                 {
                     //Check checkIn and checkOut dates to make sure they are not null
 
@@ -194,7 +194,7 @@ public class ReservationActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(ReservationActivity.this, "Please fill in all fields",Toast.LENGTH_SHORT);
+                    Toast.makeText(ReservationActivity.this, "Please fill in valid options",Toast.LENGTH_SHORT);
                 }
             }
         });

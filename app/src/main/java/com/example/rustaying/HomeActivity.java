@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -22,6 +24,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.StringTokenizer;
 
 public class HomeActivity extends AppCompatActivity {
     private Guest g = new Guest();
@@ -33,6 +42,25 @@ public class HomeActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
+    String userID;
+
+    int year0Tok;
+    int month0Tok;
+    int day0Tok;
+    LocalDate inDateTok;
+
+    int year1Tok;
+    int month1Tok;
+    int day1Tok;
+    LocalDate outDateTok;
+
+    int year2Tok;
+    int month2Tok;
+    int day2Tok;
+    LocalDate outDateTok1;
+
+    Calendar c;
+    LocalDate currentDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +87,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        currentDate = parseDate(year,(month+1), day);
+
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
 
@@ -80,7 +115,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    String userID = user.getUid();
+                    userID = user.getUid();
                     myRef.child("Guest").child(userID).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -97,6 +132,8 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         };
+
+        updateDataForToday(); //Update room and guest information based on current date
 
         logout = (Button) findViewById(R.id.logoutBtn);
 
@@ -283,4 +320,161 @@ public class HomeActivity extends AppCompatActivity {
     private void showData(DataSnapshot dataSnapshot) {
         g.setCheckedIn(dataSnapshot.getValue(Guest.class).isCheckedIn());
     }
+
+    private void updateDataForToday() //Method to check current date and update room and guest information
+    {
+        myRef.child("Rooms").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                updateRoomInfo(dataSnapshot);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        updateGuestInformation();
+
+
+    }
+
+    private void updateGuestInformation()
+    {
+        if(g.getCheckOutDate().equals("") || g.getCheckOutDate() ==  null)
+        {
+            return; //No checkout date set for guest. Means they aren't checked in
+        }
+        StringTokenizer st0 = new StringTokenizer(g.getCheckOutDate(),"-");
+
+        if(st0.hasMoreTokens())
+        {
+            year2Tok = Integer.parseInt(st0.nextToken());
+            month2Tok = Integer.parseInt(st0.nextToken());
+            day2Tok = Integer.parseInt(st0.nextToken());
+            outDateTok1 = parseDate(year2Tok, month2Tok, day2Tok);
+        }
+
+        if(currentDate.compareTo(outDateTok1) > 0) //If currentDate is past checkout date of guest
+        {
+            g.setCheckedIn(false);
+            g.setCheckInDate("");
+            g.setCheckOutDate("");
+            g.setRoomNum("");
+
+            Map<String,Object> guestUpdate = new HashMap<>();
+            guestUpdate.put("checkOutDate", "");
+            guestUpdate.put("checkInDate", "");
+            guestUpdate.put("roomNum", "");
+            guestUpdate.put("checkedIn", false);
+
+
+
+            myRef.child("Guest").child(userID).updateChildren(guestUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(HomeActivity.this, "Guest Info updated", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+                        finish();
+
+                    }else{
+                        startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+                        finish();
+                    }
+                }
+            });
+        }
+    }
+    private void updateRoomInfo(DataSnapshot dataSnapshot) {
+
+        for (DataSnapshot data : dataSnapshot.getChildren()) {
+
+            //Log.d(TAG, "showData: " + data.getValue(Room.class).getRoomType());
+
+            Room room = new Room(); // create new object
+
+            room.setRoomId(data.getValue(Room.class).getRoomId());
+            room.setRoomType(data.getValue(Room.class).getRoomType());
+            room.setIsAvailable(data.getValue(Room.class).getIsAvailable());
+            room.setCheckInDate(data.getValue(Room.class).getCheckInDate());
+            room.setCheckOutDate(data.getValue(Room.class).getCheckOutDate());
+
+            //Create LocalDates objects of the dates for comparison
+            StringTokenizer st0 = new StringTokenizer(room.getCheckInDate(),"-");
+
+            if(st0.hasMoreTokens())
+            {
+                year0Tok = Integer.parseInt(st0.nextToken());
+                month0Tok = Integer.parseInt(st0.nextToken());
+                day0Tok = Integer.parseInt(st0.nextToken());
+                inDateTok = parseDate(year0Tok, month0Tok, day0Tok);
+            }
+
+            StringTokenizer st1 = new StringTokenizer(room.getCheckOutDate(),"-");
+
+            if(st1.hasMoreTokens())
+            {
+                year1Tok = Integer.parseInt(st1.nextToken());
+                month1Tok = Integer.parseInt(st1.nextToken());
+                day1Tok = Integer.parseInt(st1.nextToken());
+                outDateTok = parseDate(year1Tok, month1Tok, day1Tok);
+            }
+
+            if(currentDate.compareTo(outDateTok) > 0) //If current date is past check out date
+            {
+                //Update room object information and update in database
+                room.setCheckOutDate("");
+                room.setCheckInDate("");
+                room.setIsAvailable(true);
+
+                if(g.getRoomNum().equals("") || g.getRoomNum() == null)
+                {
+                    return; //Means the guest is not assigned to a room
+                }
+
+                String temp;
+                int roomInt = Integer.parseInt(g.getRoomNum());
+                if(roomInt <= 9)
+                {
+                    temp = "Room 0" + g.getRoomNum();
+                }
+                else
+                {
+                    temp = "Room " + g.getRoomNum();
+                }
+
+                Map<String,Object> roomList = new HashMap<>();
+                roomList.put("checkOutDate", "");
+                roomList.put("checkInDate", "");
+                roomList.put("isAvailable", true);
+                roomList.put("checkedIn", false);
+
+                myRef.child("Room").child(temp).updateChildren(roomList).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(HomeActivity.this, "Room Info updated", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+                            finish();
+
+                        }else{
+                            startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+                            finish();
+                        }
+                    }
+                });
+            }
+
+        }
+    }
+
+    private LocalDate parseDate(int year, int month, int date)
+    {
+        return LocalDate.of(year, month, date);
+    }
+
+
 }
