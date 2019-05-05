@@ -231,12 +231,14 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                 String numLuggageValue = bellboy.getLuggageValue();
                 String requestedTimeBellboy = hourValue + ":" + minuteValue + " " + ampmValue;
                 String requestType = "Bellboy";
+                String status = "Incomplete";
                 String requestDate = bellboy.getRequestDate();
                 final String fromWhere = answerBox1.getText().toString().trim();
 
                 if (!TextUtils.isEmpty(fromWhere)) {
 
-                    Service service = new Service(requestType, requestDate, numLuggageValue, requestedTimeBellboy, fromWhere);
+                    Service service = new Service(requestType, requestDate, numLuggageValue,
+                            requestedTimeBellboy, fromWhere,status);
                     myRef.child("Service").child(userID).child(request).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

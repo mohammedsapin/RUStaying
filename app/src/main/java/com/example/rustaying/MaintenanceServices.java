@@ -116,7 +116,7 @@ public class MaintenanceServices extends AppCompatActivity {
             serviceList.add(new Service(info.getRequestType(),
                     info.getRequestDate(), info.getRequestedTimeMaintenance(), info.getInputs(),
                     info.getBathroom(), info.getElectronic(), info.getLighting(),
-                    info.getCheckboxes()));
+                    info.getCheckboxes(),info.getStatus()));
 
 
             //add array list to recycle view

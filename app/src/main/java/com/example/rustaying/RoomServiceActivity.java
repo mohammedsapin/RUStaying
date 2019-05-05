@@ -260,6 +260,7 @@ public class RoomServiceActivity extends AppCompatActivity {
                 String ampmValue = roomservice.getAmpmValue();
                 String requestedTimeRoomService = hourValue + ":" + minuteValue + " " + ampmValue;
                 String requestType = "RoomService";
+                String status = "Incomplete";
                 String requestDate=roomservice.getRequestDate();
                 String towels=roomservice.getTowels();
                 String soap=roomservice.getSoap();
@@ -284,7 +285,9 @@ public class RoomServiceActivity extends AppCompatActivity {
 
                 if (checkboxes!=""||!TextUtils.isEmpty(answer1)) {
 
-                    Service valettravel = new Service(requestType, requestDate, requestedTimeRoomService, answer1, towels, soap, bedsheets, cleaningservice, checkboxes);
+                    Service valettravel = new Service(requestType, requestDate,
+                            requestedTimeRoomService, answer1, towels, soap, bedsheets,
+                            cleaningservice, checkboxes,status);
 
                     myRef.child("Service").child(userID).child(request).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

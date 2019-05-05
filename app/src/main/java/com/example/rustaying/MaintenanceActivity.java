@@ -260,6 +260,7 @@ public class MaintenanceActivity extends AppCompatActivity {
                 String ampmValue = maintenance.getAmpmValue();
                 String requestedTimeMaintenance = hourValue + ":" + minuteValue + " " + ampmValue;
                 String requestType = "Maintenance";
+                String status = "Incomplete";
                 String requestDate = maintenance.getRequestDate();
                 String bathroom=maintenance.getBathroom();
                 String electronic=maintenance.getElectronic();
@@ -276,7 +277,9 @@ public class MaintenanceActivity extends AppCompatActivity {
                     checkboxes+=" "+lighting;
                 }
                 if (checkboxes!=""||!TextUtils.isEmpty(answer1)) {
-                    Service service = new Service(requestType, requestDate, requestedTimeMaintenance, answer1, bathroom, electronic, lighting, checkboxes);
+                    Service service = new Service(requestType, requestDate,
+                            requestedTimeMaintenance, answer1, bathroom, electronic, lighting,
+                            checkboxes, status);
                     myRef.child("Service").child(userID).child(request).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

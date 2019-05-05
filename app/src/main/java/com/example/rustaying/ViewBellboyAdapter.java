@@ -14,12 +14,24 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.ViewHolder> {
     private static final String TAG = "ViewBellboyAdapter";
 
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
+
+
+
     private ArrayList<Service> serviceList;
+    Service bellboy = new Service();
     private Context mContext;
 
     public ViewBellboyAdapter(Context mContext, ArrayList<Service> serviceList){
@@ -35,7 +47,7 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i){
+    public void onBindViewHolder(final ViewHolder viewHolder, int i){
         Log.d(TAG, "onBindViewHolder: Called");
 
         final Service info = serviceList.get(i);
@@ -54,15 +66,16 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                info.setStatus("Completed");
+                                viewHolder.status.setText("Completed");
                             }
                         }).setNegativeButton("In Progress  ",
                         new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        info.setStatus("In Progress");
-                    }
-                });
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                viewHolder.status.setText("In Progress");
+                            }
+                        });
+
                 AlertDialog alert = alertDialog.create();
                 alert.setTitle("Status Update");
                 alert.show();
@@ -76,7 +89,6 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
                 positiveButton.setBackgroundColor(Color.WHITE);
             }
         });
-
     }
 
     @Override
@@ -87,7 +99,7 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         CardView card;
-        TextView requestType, luggageVal, requestTime, bellboyDate, fromWhere;
+        TextView requestType, luggageVal, requestTime, bellboyDate, fromWhere, status;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -97,6 +109,7 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
             luggageVal = itemView.findViewById(R.id.luggageVal);
             requestTime = itemView.findViewById(R.id.requestTimeBellboy);
             fromWhere = itemView.findViewById(R.id.locationB);
+            status = itemView.findViewById(R.id.status);
         }
     }
 }

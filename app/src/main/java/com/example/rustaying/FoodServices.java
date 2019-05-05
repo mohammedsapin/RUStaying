@@ -132,7 +132,8 @@ public class FoodServices extends AppCompatActivity {
                         info.getCoke(),
                         info.getSprite(),
                         info.getAppleJuice(),
-                        info.getFoodPrice()));
+                        info.getFoodPrice(),
+                        info.getStatus()));
                 //add array list to recycle view
                 createRecycleView();
             }

@@ -1,12 +1,20 @@
 package com.example.rustaying;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -107,7 +115,8 @@ public class BellboyServices extends AppCompatActivity{
             //bellboy
             if (info.getRequestType().equals("Bellboy")){
             serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
-                    info.getLuggageValue(),info.getRequestedTimeBellboy(),info.getFromWhere()));
+                    info.getLuggageValue(),info.getRequestedTimeBellboy(),info.getFromWhere(),
+                    info.getStatus()));
 
             //add array list to recycle view
             createRecycleView();
