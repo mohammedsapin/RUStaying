@@ -29,6 +29,8 @@ public class Service {
     private String destinationStreet;
     private String destinationCityStateZip;
 
+    private String userId;
+
     public Service(String requestType, String requestDate, String luggageValue,
                    String requestedTimeBellboy, String fromWhere) {
         this.requestType = requestType;
@@ -295,5 +297,13 @@ public class Service {
     }
 
     public Service() {
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
