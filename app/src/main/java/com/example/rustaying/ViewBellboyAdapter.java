@@ -1,7 +1,10 @@
 package com.example.rustaying;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,13 +14,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ViewServicesAdapter extends RecyclerView.Adapter<ViewServicesAdapter.ViewHolder> {
-    private static final String TAG = "ViewServicesAdapter";
+public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.ViewHolder> {
+    private static final String TAG = "ViewBellboyAdapter";
 
     private ArrayList<Service> serviceList;
     private Context mContext;
 
-    public ViewServicesAdapter (Context mContext, ArrayList<Service> serviceList){
+    public ViewBellboyAdapter(Context mContext, ArrayList<Service> serviceList){
         this.serviceList = serviceList;
         this.mContext = mContext;
     }
@@ -33,13 +36,36 @@ public class ViewServicesAdapter extends RecyclerView.Adapter<ViewServicesAdapte
     public void onBindViewHolder(ViewHolder viewHolder, int i){
         Log.d(TAG, "onBindViewHolder: Called");
 
-        Service info = serviceList.get(i);
+        final Service info = serviceList.get(i);
 
         viewHolder.requestType.setText(info.getRequestType());
         viewHolder.bellboyDate.setText(info.getRequestDate());
         viewHolder.luggageVal.setText(info.getLuggageValue());
         viewHolder.requestTime.setText(info.getRequestedTimeBellboy());
         viewHolder.fromWhere.setText(info.getFromWhere());
+
+        viewHolder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
+                alertDialog.setMessage("Set status of Service:").setPositiveButton("Completed",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                info.setStatus("Completed");
+                            }
+                        }).setNegativeButton("In Progress", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        info.setStatus("In Progress");
+                    }
+                });
+                AlertDialog alert = alertDialog.create();
+                alert.setTitle("Status Update");
+                alert.show();
+            }
+        });
+
     }
 
     @Override
@@ -49,10 +75,12 @@ public class ViewServicesAdapter extends RecyclerView.Adapter<ViewServicesAdapte
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+        CardView card;
         TextView requestType, luggageVal, requestTime, bellboyDate, fromWhere;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
+            card = itemView.findViewById(R.id.bellboyCard);
             requestType = itemView.findViewById(R.id.requestTypeB);
             bellboyDate = itemView.findViewById(R.id.bellboyDate);
             luggageVal = itemView.findViewById(R.id.luggageVal);
