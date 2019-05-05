@@ -31,7 +31,7 @@ public class InboxActivityAdapter extends RecyclerView.Adapter<InboxActivityAdap
 
     @Override
     public ViewHolder onCreateViewHolder( ViewGroup viewGroup, int i){
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_services,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_inbox,viewGroup,false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -58,9 +58,9 @@ public class InboxActivityAdapter extends RecyclerView.Adapter<InboxActivityAdap
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-            card = itemView.findViewById(R.id.)
-            requestType = itemView.findViewById(R.id.requestTypeB);
-            status= itemView.findViewById((R.id.status));
+            card = itemView.findViewById(R.id.inboxCard);
+            requestType = itemView.findViewById(R.id.requestTypeInbox);
+            status= itemView.findViewById((R.id.statusInbox));
         }
     }
 }
