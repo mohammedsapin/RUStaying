@@ -47,6 +47,7 @@ public class InboxActivity extends AppCompatActivity{
         myRef = mFirebaseDatabase.getReference();
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -98,9 +99,8 @@ public class InboxActivity extends AppCompatActivity{
 
     private void showData(DataSnapshot dataSnapshot) {
         for (DataSnapshot data : dataSnapshot.getChildren()) {
-
-            String serviceID = myRef.child("Service").child(userID).toString();
             Service info = new Service();
+            String serviceID = myRef.child("Service").child(userID).toString();
 
             info.setRequestType(data.getValue(Service.class).getRequestType());
             info.setStatus(data.getValue(Service.class).getStatus());

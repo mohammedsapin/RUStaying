@@ -2,6 +2,7 @@ package com.example.rustaying;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,12 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class InboxActivityAdapter extends RecyclerView.Adapter<InboxActivityAdapter.ViewHolder> {
     private static final String TAG = "InboxActivityAdapter";
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
 
     private ArrayList<Service> serviceList;
+    Service serv = new Service();
     private Context mContext;
 
     public InboxActivityAdapter (Context mContext, ArrayList<Service> serviceList){
@@ -36,8 +43,7 @@ public class InboxActivityAdapter extends RecyclerView.Adapter<InboxActivityAdap
         Service info = serviceList.get(i);
 
         viewHolder.requestType.setText(info.getRequestType());
-        //viewHolder.status.setText(info.getStatus());
-        //Log.d(TAG, "onBindViewHolder: " + info.getRequestedTimeBellboy());
+        viewHolder.status.setText(info.getStatus());
     }
 
     @Override
@@ -47,12 +53,14 @@ public class InboxActivityAdapter extends RecyclerView.Adapter<InboxActivityAdap
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+        CardView card;
         TextView requestType, status;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
+            card = itemView.findViewById(R.id.)
             requestType = itemView.findViewById(R.id.requestTypeB);
-            //status= itemView.findViewById((R.id.status));
+            status= itemView.findViewById((R.id.status));
         }
     }
 }
