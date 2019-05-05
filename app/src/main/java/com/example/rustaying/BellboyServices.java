@@ -85,7 +85,7 @@ public class BellboyServices extends AppCompatActivity{
      Log.d(TAG, "createRecycleView: Started view");
      RecyclerView recyclerView = findViewById(R.id.viewServicesRecycleView);
      recyclerView.setLayoutManager(new LinearLayoutManager(this));
-     ViewServicesAdapter adapter = new ViewServicesAdapter(this,serviceList);
+     ViewBellboyAdapter adapter = new ViewBellboyAdapter(this,serviceList);
      recyclerView.setAdapter(adapter);
     }
 
