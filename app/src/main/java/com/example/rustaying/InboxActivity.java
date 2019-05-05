@@ -101,8 +101,8 @@ public class InboxActivity extends AppCompatActivity{
         for (DataSnapshot data : dataSnapshot.getChildren()){
             Service info = new Service();
             //info.setServiceID(data.getValue(Service.class).getServiceID());
-            String serviceID = myRef.push().getKey();
-                    //data.getValue(Service.class).getServiceID();
+           String serviceID = data.getValue().toString();
+           //data.getValue(Service.class).getServiceID();
             info.setRequestType(data.getValue(Service.class).getRequestType());
             info.setStatus(data.getValue(Service.class).getStatus());
 
