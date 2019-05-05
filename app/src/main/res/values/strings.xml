@@ -339,6 +339,8 @@ A breakdown of the pricing is below for the current spring season:</string>
     <string name="edit_credit_info">Edit Credit Info?</string>
     <string name="expiration_date">Expiration Date</string>
     <string name="credit_card_information">Credit Card Information</string>
+    <string name="key_code">Key Code</string>
+    <string name="generate_key">Generate Key</string>
     <string-array name="months_array">
         <item>January</item>
         <item>February</item>
