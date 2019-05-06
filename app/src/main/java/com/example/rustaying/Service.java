@@ -31,6 +31,11 @@ public class Service {
     private String startingCityStateZip;
     private String destinationStreet;
     private String destinationCityStateZip;
+
+    private String serviceID;
+
+    private long id;
+
     private String numberTraveling;
     private String temp1;
     private String temp2;
@@ -181,6 +186,20 @@ public class Service {
 
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    public String getServiceID() {
+        return serviceID;
+    }
+
+    public void setServiceID(String serviceID) {
+        this.serviceID = serviceID;
+    }
     public String getStartingStreet() {
         return startingStreet;
     }
@@ -301,6 +320,10 @@ public class Service {
 
     public long getId() {
         return id;
+    }
+    public Service(String requestType, String status){
+        this.requestType = requestType;
+        this.status=status;
     }
 
     public void setId(long id) {

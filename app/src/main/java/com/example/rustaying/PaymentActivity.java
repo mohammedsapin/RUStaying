@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.Switch;
 
@@ -30,17 +32,23 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class PaymentActivity extends AppCompatActivity {
     private static final String TAG = "Payment Activity";
-    private EditText answerBox1, answerBox2, answerBox3, answerBox4, answerBox5, answerBox6, spinner1,spinner2;
+    private EditText answerBox1, answerBox2, answerBox3, answerBox4, answerBox5, answerBox6;
+    private Spinner  exMonth,exYear;
     private Button paymentButton;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
     private String userID;
+    private String[] arraySpinnerMonth;
+    private String[] arraySpinnerYear=new String[50];
+
     private Guest g = new Guest();
     private String checkIn, checkOut, roomId;
 
@@ -69,6 +77,18 @@ public class PaymentActivity extends AppCompatActivity {
                 return false;
             }
         });
+        Spinner spinnerX1 = (Spinner) findViewById(R.id.spinner1);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
+                R.array.months_array, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerX1.setAdapter(adapter1);
+
+        Spinner spinnerX2 = (Spinner) findViewById(R.id.spinner2);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.years_array, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerX2.setAdapter(adapter2);
+
 
         //Get resInfo data from newRoomAdapater Activity
         Intent i = this.getIntent();
@@ -84,8 +104,8 @@ public class PaymentActivity extends AppCompatActivity {
         answerBox4 = (EditText) findViewById(R.id.billingStreetAdd);
         answerBox5 = (EditText) findViewById(R.id.cityAdd);
         answerBox6 = (EditText) findViewById(R.id.zipAdd);
-        //spinner1 = (EditText) findViewById(R.id.spinner1);
-        //spinner2 = (EditText) findViewById(R.id.spinner2);
+        exMonth = findViewById(R.id.spinner1);
+        exYear = findViewById(R.id.spinner2);
 
         paymentButton = (Button) findViewById(R.id.button);
 
@@ -105,30 +125,21 @@ public class PaymentActivity extends AppCompatActivity {
                 final String answer4 = answerBox4.getText().toString().trim();//street
                 final String answer5 = answerBox5.getText().toString().trim();//city
                 final String answer6 = answerBox6.getText().toString().trim();//zip
-                //final String spin1 = spinner1.getText().toString().trim();//month
-                //final String spin2 = spinner2.getText().toString().trim();//date
+                final String spin1 = exMonth.getSelectedItem().toString().trim();//month
+                final String spin2 = exYear.getSelectedItem().toString().trim();//date
+                final String spin = spin1+"/"+spin2;
 
+                if (!TextUtils.isEmpty(answer1) && !TextUtils.isEmpty(answer2) && !TextUtils.isEmpty(answer3)
+                    && !TextUtils.isEmpty(answer4) && !TextUtils.isEmpty(answer5) && !TextUtils.isEmpty(answer6)
+                        && !TextUtils.isEmpty(spin1) && !TextUtils.isEmpty(spin2)){
 
-                if (!TextUtils.isEmpty(answer1) && !TextUtils.isEmpty(answer2) && !TextUtils.isEmpty(answer3)){
                     Map<String,Object> list = new HashMap<>();
-                    /*
-                    if(TextUtils.isEmpty(g.getNameOnCCard())){
-                        list.put("nameOnCCard", answer1);
-                    }*/
+                    list.put("nameOnCCard", answer1);
+                    list.put("creditCardNumber", answer2);
+                    list.put("CCV", answer3);
+                    list.put("billingAddress", answer4 + "," + answer5 + "," +answer6);
+                    list.put("expirationDate", spin);
 
-
-                    if(!answer1.isEmpty()) {
-                        list.put("nameOnCCard", answer1);
-                    }
-                    if(!answer2.isEmpty()) {
-                        list.put("creditCardNumber", answer1);
-                    }
-                    if(!answer3.isEmpty()) {
-                        list.put("CCV", answer1);
-                    }
-                    if(!answer4.isEmpty()) {
-                        list.put("billingAddress", answer4 + "," + answer5 + "," +answer6);
-                    }
                     list.put("validPayment", true);
 
                     myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
