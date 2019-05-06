@@ -118,15 +118,15 @@ public class InboxActivity extends AppCompatActivity{
 
             //info.setServiceID(data.getValue(Service.class).getServiceID());
 
-           //String serviceID = myRef.child("Service").child(userID).getKey();
+            //String serviceID = myRef.child("Service").child(userID).getKey();
             String serviceID = data.getKey();
 
-           //data.getValue(Service.class).getServiceID();
+            //data.getValue(Service.class).getServiceID();
 
             //Check the logcat debug. It is comparing the correct values
             Log.d(TAG, "showData: " + userID);
             Log.d(TAG, "showData: "+ serviceID);
-            
+
             info.setRequestType(data.getValue(Service.class).getRequestType());
             info.setStatus(data.getValue(Service.class).getStatus());
 
@@ -135,10 +135,10 @@ public class InboxActivity extends AppCompatActivity{
 
             //It properly compares the userID with the serviceID
             //But you'll need another for loop to iterate through all the requests under the user and to get that data
-            if(userID.equals(serviceID)){
-                serviceList.add(new Service(info.getRequestType(),info.getStatus()));
-                createRecycleView();
-            }
+
+            serviceList.add(new Service(info.getRequestType(),info.getStatus()));
+            createRecycleView();
+
         }
     }
 
