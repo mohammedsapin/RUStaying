@@ -56,7 +56,7 @@ public class InboxActivityAdapter extends RecyclerView.Adapter<InboxActivityAdap
 
         viewHolder.requestType.setText(info.getRequestType());
         viewHolder.status.setText(info.getStatus());
-        viewHolder.id.setText(String.valueOf(info.getId()));
+        //viewHolder.id.setText(String.valueOf(info.getId()));
 
 
         viewHolder.card.setOnClickListener(new View.OnClickListener() {
@@ -160,7 +160,7 @@ public class InboxActivityAdapter extends RecyclerView.Adapter<InboxActivityAdap
             card = itemView.findViewById(R.id.inboxCard);
             requestType = itemView.findViewById(R.id.requestTypeInbox);
             status= itemView.findViewById((R.id.statusInbox));
-            id=itemView.findViewById(R.id.id);
+            //id=itemView.findViewById(R.id.id);
         }
     }
 }
