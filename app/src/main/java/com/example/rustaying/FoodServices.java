@@ -112,10 +112,13 @@ public class FoodServices extends AppCompatActivity {
             info.setSprite(data.getValue(Service.class).getSprite());
             info.setAppleJuice(data.getValue(Service.class).getAppleJuice());
             info.setFoodPrice(data.getValue(Service.class).getFoodPrice());
+            info.setId(data.getValue(Service.class).getId());
+            info.setStatus(data.getValue(Service.class).getStatus());
+
 
             //add object to array list
             //Food Service
-            if (info.getRequestType().equals("Food Service")) {
+            if (info.getRequestType().equals("Food Service")&& (info.getStatus().equals("Incomplete") || info.getStatus().equals("In Progress"))) {
                 serviceList.add(new Service(
                         info.getRequestType(),
                         info.getRequestDate(),
@@ -133,7 +136,8 @@ public class FoodServices extends AppCompatActivity {
                         info.getSprite(),
                         info.getAppleJuice(),
                         info.getFoodPrice(),
-                        info.getStatus()));
+                        info.getStatus(),
+                        info.getId()));
                 //add array list to recycle view
                 createRecycleView();
             }

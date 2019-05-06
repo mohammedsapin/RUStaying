@@ -109,14 +109,15 @@ public class BellboyServices extends AppCompatActivity{
             info.setLuggageValue(data.getValue(Service.class).getLuggageValue());
             info.setRequestedTimeBellboy(data.getValue(Service.class).getRequestedTimeBellboy());
             info.setFromWhere(data.getValue(Service.class).getFromWhere());
-
+            info.setId(data.getValue(Service.class).getId());
+            info.setStatus(data.getValue(Service.class).getStatus());
             Log.d(TAG, "ViewServiceClass: " + info.getRequestedTimeBellboy());
 
             //bellboy
-            if (info.getRequestType().equals("Bellboy")){
+            if (info.getRequestType().equals("Bellboy") && (info.getStatus().equals("Incomplete") || info.getStatus().equals("In Progress"))){
             serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
                     info.getLuggageValue(),info.getRequestedTimeBellboy(),info.getFromWhere(),
-                    info.getStatus()));
+                    info.getStatus(), info.getId()));
 
             //add array list to recycle view
             createRecycleView();

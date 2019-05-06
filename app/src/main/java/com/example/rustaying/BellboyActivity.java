@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,8 +23,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Random;
@@ -215,11 +220,47 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
 
 
         submitButton= (Button) findViewById(R.id.submitButton);
+
+
+        FirebaseDatabase.getInstance().getReference().child("Service")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        long max=0;
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Log.d(TAG, "ViewServiceClass: =============================" + snapshot.getValue());
+                            for (DataSnapshot snapshot2 : snapshot.getChildren()){
+                                if (snapshot2.child("id").getValue()!=null) {
+                                    long id = Integer.parseInt(snapshot2.child("id").getValue().toString());
+                                    if (id>max){
+                                        max=id;
+                                    }
+                                    Log.d(TAG, "ViewServiceClass: +++++++++++++++++++" + id+ "     " + max);
+                                }
+                            }
+                        }
+                        max++;
+                        Log.d(TAG, "ViewServiceClass: ++++++++++++++++++++++++++++------+MAX " + max);
+                        bellboy.setId(max);
+
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
         submitButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
+
+
+
+
+
+
+                long id1 = bellboy.getId();
+                Log.d(TAG, "ViewServiceClass: --------------------------------+MAX " + id1);
                 Random rand = new Random();
                 long random = 100000000 + rand.nextInt(900000000);
                 bellboy.setRequestID(random);
@@ -238,7 +279,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                 if (!TextUtils.isEmpty(fromWhere)) {
 
                     Service service = new Service(requestType, requestDate, numLuggageValue,
-                            requestedTimeBellboy, fromWhere,status);
+                            requestedTimeBellboy, fromWhere,status, id1);
                     myRef.child("Service").child(userID).child(request).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

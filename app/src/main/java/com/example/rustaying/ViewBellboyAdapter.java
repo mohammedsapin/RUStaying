@@ -21,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.ViewHolder> {
     private static final String TAG = "ViewBellboyAdapter";
@@ -49,6 +51,8 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int i){
         Log.d(TAG, "onBindViewHolder: Called");
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
 
         final Service info = serviceList.get(i);
 
@@ -57,6 +61,9 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
         viewHolder.luggageVal.setText(info.getLuggageValue());
         viewHolder.requestTime.setText(info.getRequestedTimeBellboy());
         viewHolder.fromWhere.setText(info.getFromWhere());
+        viewHolder.status.setText(info.getStatus());
+        viewHolder.id.setText(String.valueOf(info.getId()));
+
 
         viewHolder.card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,13 +73,66 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                viewHolder.status.setText("Completed");
+                                FirebaseDatabase.getInstance().getReference().child("Service")
+                                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                Map<String, Object> statusUpdate = new HashMap<>();
+                                                long currentId=info.getId();
+                                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                                    Log.d(TAG, "ViewServiceClass: =============================" + snapshot.getKey());
+                                                    String userId = snapshot.getKey();
+                                                    for (DataSnapshot snapshot2 : snapshot.getChildren()){
+                                                        String requestID=snapshot2.getKey();
+                                                        Log.d(TAG, "ViewServiceClass: =============================" + snapshot2.getKey());
+                                                        if (snapshot2.child("id").getValue()!=null) {
+                                                            long id = Integer.parseInt(snapshot2.child("id").getValue().toString());
+                                                            if (id==currentId){
+                                                                statusUpdate.put("status","Completed");
+                                                                 myRef.child("Service").child(userId).child(requestID).updateChildren(statusUpdate);
+                                                                viewHolder.status.setText(info.getStatus());
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+                                            }
+                                        });
+
                             }
                         }).setNegativeButton("In Progress  ",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                viewHolder.status.setText("In Progress");
+                                FirebaseDatabase.getInstance().getReference().child("Service")
+                                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                Map<String, Object> statusUpdate = new HashMap<>();
+                                                long currentId=info.getId();
+                                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                                    String userId = snapshot.getKey();
+                                                    for (DataSnapshot snapshot2 : snapshot.getChildren()){
+                                                        String requestID=snapshot2.getKey();
+                                                        if (snapshot2.child("id").getValue()!=null) {
+                                                            long id = Integer.parseInt(snapshot2.child("id").getValue().toString());
+                                                            if (id==currentId){
+                                                                statusUpdate.put("status","In Progress");
+                                                                myRef.child("Service").child(userId).child(requestID).updateChildren(statusUpdate);
+                                                                viewHolder.status.setText(info.getStatus());
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+                                            }
+                                        });
                             }
                         });
 
@@ -99,7 +159,7 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         CardView card;
-        TextView requestType, luggageVal, requestTime, bellboyDate, fromWhere, status;
+        TextView requestType, luggageVal, requestTime, bellboyDate, fromWhere, status, id;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -110,6 +170,7 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
             requestTime = itemView.findViewById(R.id.requestTimeBellboy);
             fromWhere = itemView.findViewById(R.id.locationB);
             status = itemView.findViewById(R.id.status);
+            id=itemView.findViewById(R.id.id);
         }
     }
 }

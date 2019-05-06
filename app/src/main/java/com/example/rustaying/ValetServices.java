@@ -104,14 +104,16 @@ public class ValetServices extends AppCompatActivity {
             info.setDestinationStreet(data.getValue(Service.class).getDestinationStreet());
             info.setDestinationCityStateZip(data.getValue(Service.class).getDestinationCityStateZip());
             info.setNumberTraveling(data.getValue(Service.class).getNumberTraveling());
+            info.setStatus(data.getValue(Service.class).getStatus());
+            info.setId(data.getValue(Service.class).getId());
 
             //add object to array list
             //valet
-            if (info.getRequestType().equals("ValetTravel")) {
+            if (info.getRequestType().equals("ValetTravel")&& (info.getStatus().equals("Incomplete") || info.getStatus().equals("In Progress"))) {
                 serviceList.add(new Service(info.getRequestType(), info.getRequestedTimeValet(), info.getRequestDate(),
                         info.getStartingStreet(), info.getDestinationStreet(),info.getStartingCityStateZip(),
                          info.getDestinationCityStateZip(),info.getNumberTraveling(),
-                        info.getStatus(),info.getTemp1(),info.getTemp2()));
+                        info.getStatus(),info.getTemp1(),info.getTemp2(), info.getId()));
 
                 //add array list to recycle view
                 createRecycleView();

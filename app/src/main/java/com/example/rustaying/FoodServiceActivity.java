@@ -9,6 +9,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,8 +25,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -584,12 +588,40 @@ public class FoodServiceActivity extends AppCompatActivity {
             }
         });
 
+        FirebaseDatabase.getInstance().getReference().child("Service")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        long max=0;
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Log.d(TAG, "ViewServiceClass: =============================" + snapshot.getValue());
+                            for (DataSnapshot snapshot2 : snapshot.getChildren()){
+                                if (snapshot2.child("id").getValue()!=null) {
+                                    long id = Integer.parseInt(snapshot2.child("id").getValue().toString());
+                                    if (id>max){
+                                        max=id;
+                                    }
+                                    Log.d(TAG, "ViewServiceClass: +++++++++++++++++++" + id+ "     " + max);
+                                }
+                            }
+                        }
+                        max++;
+                        Log.d(TAG, "ViewServiceClass: ++++++++++++++++++++++++++++------+MAX " + max);
+                        foodservice.setId(max);
+
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
         answerBox1 = (EditText) findViewById(R.id.A1);
         submitButton= (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
+                final long id1=foodservice.getId();
                 Random rand = new Random();
                 long random = 100000000 + rand.nextInt(900000000);
                 foodservice.setRequestID(random);
@@ -637,7 +669,7 @@ public class FoodServiceActivity extends AppCompatActivity {
 
                                     Service service = new Service(requestType, requestDate, requestedTimeFoodService, answer1,
                                             app1, app2, main1, main2, main3, main4, des1, des2,
-                                            drink1, drink2, drink3, foodPrice,status);
+                                            drink1, drink2, drink3, foodPrice,status, id1);
                                     myRef.child("Service").child(userID).child(request).setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
