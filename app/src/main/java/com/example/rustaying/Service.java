@@ -1,6 +1,9 @@
 package com.example.rustaying;
 
+
+
 public class Service {
+
     private long requestID;
     private String requestType;
     private String description;
@@ -57,6 +60,8 @@ public class Service {
     private Integer dr1;
     private Integer dr2;
     private Integer dr3;
+
+    private long id;
 
 
     //live price calculation
@@ -164,13 +169,16 @@ public class Service {
 
 
     public Service(String requestType, String requestDate, String luggageValue,
-                   String requestedTimeBellboy, String fromWhere, String status) {
+                   String requestedTimeBellboy, String fromWhere, String status, long id) {
         this.requestType = requestType;
         this.requestDate = requestDate;
         this.luggageValue = luggageValue;
         this.requestedTimeBellboy = requestedTimeBellboy;
         this.fromWhere = fromWhere;
         this.status = status;
+        this.id =id;
+
+
     }
 
     public String getStartingStreet() {
@@ -208,7 +216,7 @@ public class Service {
     public Service(String requestType, String requestedTimeValet, String requestDate, String answer1, String answer2,
                    String answer3, String answer4, String numberTraveling, String status,
                    String temp1,
-                   String temp2) {
+                   String temp2, long id) {
         this.requestType = requestType;
         this.requestedTimeValet = requestedTimeValet;
         this.requestDate = requestDate;
@@ -218,10 +226,11 @@ public class Service {
         this.destinationCityStateZip = answer4;
         this.numberTraveling=numberTraveling;
         this.status = status;
+        this.id=id;
     }
 
     public Service(String requestType, String requestDate, String requestedTimeMaintenance, String inputs, String bathroom,
-                   String electronic, String lighting, String checkboxes, String status) {
+                   String electronic, String lighting, String checkboxes, String status, long id) {
         this.requestType = requestType;
         this.requestDate = requestDate;
         this.inputs = inputs;
@@ -231,11 +240,12 @@ public class Service {
         this.checkboxes = checkboxes;
         this.requestedTimeMaintenance = requestedTimeMaintenance;
         this.status = status;
+        this.id=id;
     }
 
     public Service(String requestType, String requestDate, String requestedTimeRoomService, String inputs,
                    String towels, String soap, String bedsheets, String cleaningservice,
-                   String checkboxes, String status) {
+                   String checkboxes, String status, long id) {
         this.requestType = requestType;
         this.requestDate = requestDate;
         this.inputs = inputs;
@@ -246,6 +256,7 @@ public class Service {
         this.cleaningservice = cleaningservice;
         this.requestedTimeRoomService = requestedTimeRoomService;
         this.status = status;
+        this.id=id;
     }
 
     //foodservice
@@ -267,7 +278,7 @@ public class Service {
                    String sprite,
                    String appleJuice,
                    String foodPrice,
-                   String status) {
+                   String status, long id) {
         this.requestType = requestType;
         this.requestDate = requestDate;
         this.inputs = inputs;
@@ -285,8 +296,16 @@ public class Service {
         this.appleJuice = appleJuice;
         this.foodPrice = foodPrice;
         this.status = status;
+        this.id =id;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getTemp1() {
         return temp1;

@@ -109,14 +109,15 @@ public class MaintenanceServices extends AppCompatActivity {
             info.setBathroom(data.getValue(Service.class).getBathroom());
             info.setElectronic(data.getValue(Service.class).getElectronic());
             info.setLighting(data.getValue(Service.class).getLighting());
+            info.setId(data.getValue(Service.class).getId());
+            info.setStatus(data.getValue(Service.class).getStatus());
 
 
-
-            if (info.getRequestType().equals("Maintenance")){
+            if (info.getRequestType().equals("Maintenance")&& (info.getStatus().equals("Incomplete") || info.getStatus().equals("In Progress"))){
             serviceList.add(new Service(info.getRequestType(),
                     info.getRequestDate(), info.getRequestedTimeMaintenance(), info.getInputs(),
                     info.getBathroom(), info.getElectronic(), info.getLighting(),
-                    info.getCheckboxes(),info.getStatus()));
+                    info.getCheckboxes(),info.getStatus(), info.getId()));
 
 
             //add array list to recycle view
