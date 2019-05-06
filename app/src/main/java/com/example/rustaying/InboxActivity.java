@@ -42,8 +42,6 @@ public class InboxActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inbox);
 
-        createRecycleView();
-
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -116,27 +114,45 @@ public class InboxActivity extends AppCompatActivity{
         for (DataSnapshot data : dataSnapshot.getChildren()){
             Service info = new Service();
 
-            //info.setServiceID(data.getValue(Service.class).getServiceID());
-
-            //String serviceID = myRef.child("Service").child(userID).getKey();
             String serviceID = data.getKey();
+            //Log.d(TAG, "showData: " + userID);
+            //Log.d(TAG, "showData: "+ serviceID);
 
-            //data.getValue(Service.class).getServiceID();
+            if(userID.equals(serviceID))
+            {
+                Log.d(TAG, "showData: " + userID + "     " + serviceID);
+                for (DataSnapshot snapshot : data.getChildren()) {
+                    Log.d(TAG, "Inbox1: =============================" + snapshot.getKey());
+                    for (DataSnapshot snapshot2 : snapshot.getChildren()){
+                        String requestID=snapshot2.getKey();
+                        Log.d(TAG, "Inbox2: =============================" + snapshot2.getKey());
+                        if(snapshot2.getKey().equals("requestType"))
+                        {
+                            info.setRequestType(snapshot.getValue(Service.class).getRequestType());
+                            Log.d(TAG, "showData: " + "setting value1");
+                        }
+                        if(snapshot2.getKey().equals("status"))
+                        {
+                            info.setStatus(snapshot.getValue(Service.class).getStatus());
+                            Log.d(TAG, "showData: " + "setting value2");
+                        }
 
-            //Check the logcat debug. It is comparing the correct values
-            Log.d(TAG, "showData: " + userID);
-            Log.d(TAG, "showData: "+ serviceID);
+                            if (userID.equals(serviceID)){
+                                Log.d(TAG, "showData: " + "Inside if statement");
 
-            info.setRequestType(data.getValue(Service.class).getRequestType());
-            info.setStatus(data.getValue(Service.class).getStatus());
 
-            //Basically need to do this
-            //info.setRequestType(data.child(9 DIGIT ID).getValue(Service.class).getRequestType());
+                                //statusUpdate.put("status","Completed");
+                                //myRef.child("Service").child(userId).child(requestID).updateChildren(statusUpdate);
+                                //viewHolder.status.setText(info.getStatus());
 
-            //It properly compares the userID with the serviceID
-            //But you'll need another for loop to iterate through all the requests under the user and to get that data
+                            }
 
-            serviceList.add(new Service(info.getRequestType(),info.getStatus()));
+                    }
+                    serviceList.add(new Service(info.getRequestType(),info.getStatus()));
+                }
+            }
+
+
             createRecycleView();
 
         }
