@@ -106,15 +106,18 @@ public class RoomServices extends AppCompatActivity {
             info.setTowels(data.getValue(Service.class).getTowels());
             info.setBedsheets(data.getValue(Service.class).getBedsheets());
             info.setCleaningservice(data.getValue(Service.class).getCleaningservice());
+            info.setId(data.getValue(Service.class).getId());
+            info.setStatus(data.getValue(Service.class).getStatus());
+
 
             //add object to array list
             //Room Service
-            if (info.getRequestType().equals("RoomService")) {
+            if (info.getRequestType().equals("RoomService")&& (info.getStatus().equals("Incomplete") || info.getStatus().equals("In Progress"))) {
                 serviceList.add(new Service(info.getRequestType(), info.getRequestDate(),
                         info.getRequestedTimeRoomService(),  info.getInputs(), info.getTowels(),
                         info.getSoap(), info.getBedsheets(),
                         info.getCleaningservice(),
-                        info.getCheckboxes()));
+                        info.getCheckboxes(),info.getStatus(), info.getId()));
                 //add array list to recycle view
                 createRecycleView();
             }

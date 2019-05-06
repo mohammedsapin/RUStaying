@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,8 +24,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -238,6 +243,32 @@ public class RoomServiceActivity extends AppCompatActivity {
                                          }
                                      }
         );
+        FirebaseDatabase.getInstance().getReference().child("Service")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        long max=0;
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            //Log.d(TAG, "ViewServiceClass: =============================" + snapshot.getValue());
+                            for (DataSnapshot snapshot2 : snapshot.getChildren()){
+                                if (snapshot2.child("id").getValue()!=null) {
+                                    long id = Integer.parseInt(snapshot2.child("id").getValue().toString());
+                                    if (id>max){
+                                        max=id;
+                                    }
+                                    //Log.d(TAG, "ViewServiceClass: +++++++++++++++++++" + id+ "     " + max);
+                                }
+                            }
+                        }
+                        max++;
+                     //   Log.d(TAG, "ViewServiceClass: ++++++++++++++++++++++++++++------+MAX " + max);
+                        roomservice.setId(max);
+
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
 
         answerBox1 = (EditText) findViewById(R.id.A1);
         submitButton= (Button) findViewById(R.id.submitButton);
@@ -246,6 +277,7 @@ public class RoomServiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                long id1 = roomservice.getId();
                 Random rand = new Random();
                 long random = 100000000 + rand.nextInt(900000000);
                 roomservice.setRequestID(random);
@@ -259,6 +291,7 @@ public class RoomServiceActivity extends AppCompatActivity {
                 String ampmValue = roomservice.getAmpmValue();
                 String requestedTimeRoomService = hourValue + ":" + minuteValue + " " + ampmValue;
                 String requestType = "RoomService";
+                String status = "Incomplete";
                 String requestDate=roomservice.getRequestDate();
                 String towels=roomservice.getTowels();
                 String soap=roomservice.getSoap();
@@ -280,17 +313,28 @@ public class RoomServiceActivity extends AppCompatActivity {
                     checkboxes+=" "+cleaningservice;
                 }
 
-                Service valettravel = new Service(requestType, requestDate, requestedTimeRoomService, answer1, towels, soap, bedsheets, cleaningservice, checkboxes);
 
-                myRef.child("Service").child(userID).child(request).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(RoomServiceActivity.this, "Request Sent!",Toast.LENGTH_SHORT).show();
-                        Intent submit = new Intent(RoomServiceActivity.this,ServicesActivity.class);
-                        startActivity(submit); //Redirect to main page
-                        finish();
-                    }
-                });
+                if (checkboxes!=""||!TextUtils.isEmpty(answer1)) {
+
+                    Service valettravel = new Service(requestType, requestDate,
+                            requestedTimeRoomService, answer1, towels, soap, bedsheets,
+                            cleaningservice, checkboxes,status, id1);
+
+                    myRef.child("Service").child(userID).child(request).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(RoomServiceActivity.this, "Request Sent!", Toast.LENGTH_SHORT).show();
+                            Intent submit = new Intent(RoomServiceActivity.this, ServicesActivity.class);
+                            startActivity(submit); //Redirect to main page
+                            finish();
+                        }
+                    });
+                }
+
+                else{
+                    Toast.makeText(RoomServiceActivity.this,"Please fill out the required fields",Toast.LENGTH_SHORT).show();
+                }
+
 
 
 

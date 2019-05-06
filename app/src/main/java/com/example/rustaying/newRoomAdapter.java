@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
@@ -24,11 +25,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
+import java.time.DayOfWeek;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,11 +46,14 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
     private ResInfo resInfo = new ResInfo();
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser user;
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
     private String userID;
-    boolean temp = false;
+    private String inDates, outDates;
 
+    ArrayList roomIds = new ArrayList();
+    boolean concatDates = false;
 
     public newRoomAdapter(Context mCtx, ArrayList<Room> roomList, ResInfo resInfo) {
         this.mCtx = mCtx;
@@ -62,37 +69,23 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
         mAuth = FirebaseAuth.getInstance(); //mAuth
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference(); //dbRef
-        final FirebaseUser user = mAuth.getCurrentUser();
+        user = mAuth.getCurrentUser();
         userID = user.getUid();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null){
-                    temp = true;
+                    userID = user.getUid();
                     Log.d(TAG, "onAuthStateChanged: Signed In");
                 }else{
-                    temp = false;
+
                     Log.d(TAG, "onAuthStateChanged: Signed out");
                 }
             }
         };
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null){
-                    temp = true;
-                    Log.d(TAG, "onAuthStateChanged: Signed In");
-                }else{
-                    temp = false;
-                    Log.d(TAG, "onAuthStateChanged: Signed out");
-                }
-            }
-        };
-
+        
         //LayoutInflater inflater = LayoutInflater.from(mCtx);
         //View view = inflater.inflate(R.layout.new_rooms, null);
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.new_rooms, viewGroup, false);
@@ -104,12 +97,9 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
 
     @Override
     public void onBindViewHolder(@NonNull RoomViewHolder roomViewHolder, int i) {
-        Room room = roomList.get(i);
+
+        final Room room = roomList.get(i);
         Log.i(TAG, room.getRoomType());
-        final int roomNum = i+1;
-        roomViewHolder.roomType.setText(room.getRoomType());
-        roomViewHolder.roomNum.setText(room.getRoomId());
-        roomViewHolder.price.setText("$250");
 
         roomViewHolder.roomType.setText(room.getRoomType());
         roomViewHolder.roomNum.setText(room.getRoomId());
@@ -119,26 +109,108 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
 
         if(room.getRoomType().equals("Single"))
         {
-            roomViewHolder.price.setText("$250");
+            int pr = 250;
+
+            //check for peak months
+            if(resInfo.getCheckIn().getMonth()== Month.DECEMBER //Christmas
+                    || resInfo.getCheckIn().getMonth()== Month.MARCH //Spring Break
+                    || resInfo.getCheckIn().getMonth()== Month.JUNE //summer
+                    || resInfo.getCheckIn().getMonth()== Month.JULY //summer
+                    || resInfo.getCheckIn().getMonth()== Month.AUGUST //summer
+            )
+            {
+                pr+=150;
+            }
+            //check if weekend
+            if(resInfo.getCheckIn().getDayOfWeek()==DayOfWeek.FRIDAY
+                    || resInfo.getCheckIn().getDayOfWeek()== DayOfWeek.SATURDAY)
+            {
+                pr+=100;
+            }
+
+            String pri = "$" + pr;
+            roomViewHolder.price.setText(pri);
             myImage = ResourcesCompat.getDrawable(res, R.drawable.singleroom, null);
         }
         else if(room.getRoomType().equals("Double"))
         {
-            roomViewHolder.price.setText("$300");
+            int pr = 300;
+
+            //check for peak months
+            if(resInfo.getCheckIn().getMonth()== Month.DECEMBER //Christmas
+                    || resInfo.getCheckIn().getMonth()== Month.MARCH //Spring Break
+                    || resInfo.getCheckIn().getMonth()== Month.JUNE //summer
+                    || resInfo.getCheckIn().getMonth()== Month.JULY //summer
+                    || resInfo.getCheckIn().getMonth()== Month.AUGUST //summer
+            )
+            {
+                pr+=150;
+            }
+
+            //check if weekend
+            if(resInfo.getCheckIn().getDayOfWeek()==DayOfWeek.FRIDAY
+                    || resInfo.getCheckIn().getDayOfWeek()==DayOfWeek.SATURDAY)
+            {
+                pr+=100;
+            }
+
+            String pri = "$" + pr;
+            roomViewHolder.price.setText(pri);
             myImage = ResourcesCompat.getDrawable(res, R.drawable.doubleroom, null);
         }
         else if(room.getRoomType().equals("Queen"))
         {
-            roomViewHolder.price.setText("$350");
+            int pr = 350;
+
+            //check for peak months
+            if(resInfo.getCheckIn().getMonth()== Month.DECEMBER //Christmas
+                    || resInfo.getCheckIn().getMonth()== Month.MARCH //Spring Break
+                    || resInfo.getCheckIn().getMonth()== Month.JUNE //summer
+                    || resInfo.getCheckIn().getMonth()== Month.JULY //summer
+                    || resInfo.getCheckIn().getMonth()== Month.AUGUST //summer
+            )
+            {
+                pr+=150;
+            }
+
+            //check if weekend
+            if(resInfo.getCheckIn().getDayOfWeek()==DayOfWeek.FRIDAY
+                    || resInfo.getCheckIn().getDayOfWeek()==DayOfWeek.SATURDAY)
+            {
+                pr+=100;
+            }
+
+            String pri = "$" + pr;
+            roomViewHolder.price.setText(pri);
             myImage = ResourcesCompat.getDrawable(res, R.drawable.queenroom, null);
         }
         else if(room.getRoomType().equals("King"))
         {
-            roomViewHolder.price.setText("$400");
+            int pr = 450;
+
+            //check for peak months
+            if(resInfo.getCheckIn().getMonth()== Month.DECEMBER //Christmas
+                    || resInfo.getCheckIn().getMonth()== Month.MARCH //Spring Break
+                    || resInfo.getCheckIn().getMonth()== Month.JUNE //summer
+                    || resInfo.getCheckIn().getMonth()== Month.JULY //summer
+                    || resInfo.getCheckIn().getMonth()== Month.AUGUST //summer
+            )
+            {
+                pr+=150;
+            }
+
+            //check if weekend
+            if(resInfo.getCheckIn().getDayOfWeek()==DayOfWeek.FRIDAY
+                    || resInfo.getCheckIn().getDayOfWeek()==DayOfWeek.SATURDAY)
+            {
+                pr+=100;
+            }
+
+            String pri = "$" + pr;
+            roomViewHolder.price.setText(pri);
             myImage = ResourcesCompat.getDrawable(res, R.drawable.hotelroom, null);
 
         }
-
 
         roomViewHolder.imageView.setImageDrawable(myImage);
 
@@ -146,7 +218,7 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
                 @Override
                 public void onClick(View v) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(mCtx);
-                    alertDialog.setMessage("Confirm Room Booking for Room: " + roomNum + "? \n Check in date is: " +
+                    alertDialog.setMessage("Confirm Room Booking for Room: " + room.getRoomId() + "? \n Check in date is: " +
                             resInfo.getCheckIn().toString() + "\n Check out date is: " +
                             resInfo.getCheckOut().toString())
                             //Positive button is Yes, meaning the use wants to logout
@@ -155,12 +227,20 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
                                 public void onClick(DialogInterface dialog, int which) {
                                     //Confirm booking
                                     //Send data to database
-                                    updateInformation();
-
+                                    //updateInformation(room.getRoomId());
 
                                     //Confirmation message
                                     //Toast.makeText(mCtx, "Booking Confirmed!",Toast.LENGTH_SHORT).show();
+
+                                    //Set up bundle to send resInfo
                                     Intent payment = new Intent(mCtx, PaymentActivity.class);
+
+                                    Bundle b = new Bundle();
+                                    b.putString("checkInDate", resInfo.getCheckIn().toString());
+                                    b.putString("checkOutDate", resInfo.getCheckOut().toString());
+                                    b.putString("roomId", room.getRoomId());
+                                    payment.putExtra("resInfo", b);
+
                                     mCtx.startActivity(payment);
 
                                 }
@@ -195,30 +275,7 @@ public class newRoomAdapter extends RecyclerView.Adapter<newRoomAdapter.RoomView
         return roomList.size();
     }
 
-    public void updateInformation()
-    {
-        Map<String,Object> list = new HashMap<>();
-        list.put("checkInDate",resInfo.getCheckIn().toString());
-        list.put("checkOutDate",resInfo.getCheckOut().toString());
-        list.put("checkedIn", true);
 
-        myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-
-                    //Toast.makeText(mCtx, "Info updated", Toast.LENGTH_SHORT).show();
-                    //Intent homeActivity = new Intent(mCtx, HomeActivity.class);
-                    //startActivity(homeActivity);
-
-                    //mCtx.startActivity(homeActivity);
-
-                }else{
-                    //startActivity(new Intent(EditInfoActivity.this, ProfileActivity.class));
-                    //finish();
-                }
-            }
-        });    }
 
     class RoomViewHolder extends RecyclerView.ViewHolder
     {

@@ -11,56 +11,79 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/colorPrimary"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <!--Add stuff here-->
+
         <Button
             android:id="@+id/bellboybtn"
-            android:layout_width="fill_parent"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/topborderwhite"
+            android:layout_marginTop="16dip"
             android:drawableStart="@drawable/ic_card_travel_white_24dp"
-            android:drawablePadding="5dp"
-            android:padding="8dp"
+            android:drawablePadding="10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
             android:text="@string/request_bellboy"
-            android:textAlignment="viewStart"
-            android:textSize="18sp" />
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/travelvaletbtn"
-            android:layout_width="fill_parent"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/topborderwhite"
+            android:layout_marginTop="16dip"
             android:drawableStart="@drawable/ic_directions_car_white_24dp"
-            android:drawablePadding="5dp"
-            android:padding="8dp"
+            android:drawablePadding="10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
             android:text="@string/request_travelvalet"
-            android:textAlignment="viewStart"
-            android:textSize="18sp" />
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/maintenancebtn"
-            android:layout_width="fill_parent"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/topborderwhite"
+            android:layout_marginTop="16dip"
             android:drawableStart="@drawable/ic_build_black_24dp"
-            android:drawablePadding="5dp"
-            android:padding="8dp"
+            android:drawablePadding="10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
             android:text="@string/request_maintenance"
-            android:textAlignment="viewStart"
-            android:textSize="18sp" />
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/roomServicebtn"
-            android:layout_width="fill_parent"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/topborderwhite"
-            android:drawableStart="@drawable/ic_local_dining_black_48dp"
-            android:drawablePadding="5dp"
-            android:padding="8dp"
+            android:layout_marginTop="16dip"
+            android:drawableStart="@drawable/ic_directions_walk_black_24dp"
+            android:drawablePadding="10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
             android:text="@string/request_roomservice"
-            android:textAlignment="viewStart"
-            android:textSize="18sp" />
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/foodServicebtn"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:drawableStart="@drawable/ic_local_dining_black_48dp"
+            android:drawablePadding="10dp"
+            android:padding="15dp"
+            android:background="@color/colorAccent"
+            android:text="@string/request_foodservice"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -78,4 +101,5 @@
         app:menu="@menu/navigation" />
 
 </android.support.design.widget.CoordinatorLayout>
+
 

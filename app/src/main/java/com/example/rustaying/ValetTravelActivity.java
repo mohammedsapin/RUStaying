@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,8 +24,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 import java.time.LocalDate;
@@ -191,6 +195,30 @@ public class ValetTravelActivity extends AppCompatActivity {
 
             }
         });
+
+        Spinner numberTraveling = (Spinner) findViewById(R.id.numberTravelingSpinner);
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.numberTravelingSpinner));
+        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        numberTraveling.setAdapter(adapter4);
+
+        numberTraveling.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String numberTraveling1 = parent.getItemAtPosition(position).toString();
+                Integer numberTraveling2=Integer.valueOf(numberTraveling1);
+                valettravel.setNumberTraveling(String.valueOf(numberTraveling2));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // String numberTraveling1="-1";
+                // valettravel.setNumberTraveling(numberTraveling1);
+
+            }
+        });
+
+
         answerBox1 = (EditText) findViewById(R.id.A1);
         answerBox2 = (EditText) findViewById(R.id.A2);
         answerBox3 = (EditText) findViewById(R.id.A3);
@@ -200,11 +228,41 @@ public class ValetTravelActivity extends AppCompatActivity {
 
 
         submitButton= (Button) findViewById(R.id.submitButton);
+
+        FirebaseDatabase.getInstance().getReference().child("Service")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        long max=0;
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Log.d(TAG, "ViewServiceClass: =============================" + snapshot.getValue());
+                            for (DataSnapshot snapshot2 : snapshot.getChildren()){
+                                if (snapshot2.child("id").getValue()!=null) {
+                                    long id = Integer.parseInt(snapshot2.child("id").getValue().toString());
+                                    if (id>max){
+                                        max=id;
+                                    }
+                                    Log.d(TAG, "ViewServiceClass: +++++++++++++++++++" + id+ "     " + max);
+                                }
+                            }
+                        }
+                        max++;
+                        Log.d(TAG, "ViewServiceClass: ++++++++++++++++++++++++++++------+MAX " + max);
+                        valettravel.setId(max);
+
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
         submitButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
+
+                long id1 = valettravel.getId();
                 Random rand = new Random();
 
                 long random = 100000000 + rand.nextInt(900000000);
@@ -223,10 +281,19 @@ public class ValetTravelActivity extends AppCompatActivity {
                 String ampmValue = valettravel.getAmpmValue();
                 String requestedTimeValet = hourValue + ":" + minuteValue + " " + ampmValue;
                 String requestType = "ValetTravel";
+                String status = "Incomplete";
                 String requestDate=valettravel.getRequestDate();
+                String numberTraveling1=valettravel.getNumberTraveling();
+
+                String temp1 = valettravel.getTemp1();
+                String temp2=valettravel.getTemp2();
+
+
 
                 if (!TextUtils.isEmpty(startingStreet) && !TextUtils.isEmpty(startingCityStateZip)&& !TextUtils.isEmpty(destinationCityStateZip)&& !TextUtils.isEmpty(destinationStreet)) {
-                    Service valettravel = new Service(requestType,requestedTimeValet, requestDate, startingStreet, destinationStreet, startingCityStateZip, destinationCityStateZip);
+                    Service valettravel = new Service(requestType,requestedTimeValet, requestDate, startingStreet,
+                            destinationStreet, startingCityStateZip, destinationCityStateZip,
+                            numberTraveling1, status, temp1, temp2, id1);
 
                     myRef.child("Service").child(userID).child(request).setValue(valettravel).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

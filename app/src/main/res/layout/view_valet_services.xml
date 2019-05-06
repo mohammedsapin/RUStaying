@@ -2,6 +2,7 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ValetCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
@@ -22,7 +23,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/requestTypeM"
+                android:id="@+id/requestTypeV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Request Type"
@@ -37,7 +38,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/requestTimeM"
+                android:id="@+id/requestTimeV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="11:00 AM"
@@ -45,13 +46,35 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/requestDateM"
+                android:id="@+id/requestDateV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="2019-04-06"
                 android:textAlignment="textEnd"
                 android:textColor="@color/design_default_color_primary"
                 android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Travelers: "
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/travelNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp"/>
 
         </LinearLayout>
 
@@ -76,7 +99,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/checkboxesM"
+                android:id="@+id/StartingStreetV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6256 BPO Way"
@@ -122,7 +145,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/inputsM"
+                android:id="@+id/destinationStreetV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Busch"
@@ -141,6 +164,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pway, NJ 08854"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView40"
+                android:layout_width="19dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Status: "
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/statusV"
+                android:layout_width="186dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView43"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ID #:  "
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/idV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:textColor="@color/design_default_color_primary"
                 android:textSize="16sp" />
 

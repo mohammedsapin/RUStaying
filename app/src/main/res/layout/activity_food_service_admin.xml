@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".HomeActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="150dp"
+            android:text="Welcome Food Services"
+            android:textAlignment="center"
+            android:textSize="48sp" />
+
+        <Button
+            android:id="@+id/viewServicesFoodService"
+            android:text="@string/view_services"
+            style="?android:textAppearanceSmall"
+            android:drawableStart="@drawable/ic_local_dining_black_48dp"
+            android:drawablePadding="-10dp"
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>/>
+        <Button
+            android:id="@+id/foodServiceLogout"
+            android:text="@string/logout"
+            style="?android:textAppearanceSmall"
+            android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
+            android:drawablePadding="-10dp"
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

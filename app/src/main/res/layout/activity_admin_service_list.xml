@@ -18,6 +18,9 @@
         <Button
             android:id="@+id/bellboy_requests"
             style="?android:textAppearanceSmall"
+            android:drawableStart="@drawable/ic_card_travel_white_24dp"
+            android:drawablePadding="-15dp"
+            android:padding="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dip"
@@ -29,6 +32,9 @@
         <Button
             android:id="@+id/valet_travel"
             style="?android:textAppearanceSmall"
+            android:drawableStart="@drawable/ic_directions_car_white_24dp"
+            android:drawablePadding="-15dp"
+            android:padding="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dip"
@@ -39,6 +45,9 @@
 
         <Button
             android:id="@+id/maintenance_request"
+            android:drawableStart="@drawable/ic_build_black_24dp"
+            android:drawablePadding="-15dp"
+            android:padding="15dp"
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,6 +59,9 @@
 
         <Button
             android:id="@+id/room_Service"
+            android:drawableStart="@drawable/ic_directions_walk_black_24dp"
+            android:drawablePadding="-15dp"
+            android:padding="15dp"
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,6 +70,20 @@
             android:text="@string/room_service_requests"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/food_Service"
+            android:drawableStart="@drawable/ic_local_dining_black_48dp"
+            android:drawablePadding="-15dp"
+            android:padding="15dp"
+            android:text="Food Service Requests"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
 
 
     </LinearLayout>

@@ -1,13 +1,11 @@
 package com.example.rustaying;
 
-import android.graphics.Canvas;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,7 +15,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -27,7 +24,6 @@ public class ValetServices extends AppCompatActivity {
 
     //Services List
     private ArrayList<Service> serviceList = new ArrayList<>();
-
 
     //Firebase
     private FirebaseDatabase mFirebaseDatabase;
@@ -107,13 +103,17 @@ public class ValetServices extends AppCompatActivity {
             info.setStartingCityStateZip(data.getValue(Service.class).getStartingCityStateZip());
             info.setDestinationStreet(data.getValue(Service.class).getDestinationStreet());
             info.setDestinationCityStateZip(data.getValue(Service.class).getDestinationCityStateZip());
+            info.setNumberTraveling(data.getValue(Service.class).getNumberTraveling());
+            info.setStatus(data.getValue(Service.class).getStatus());
+            info.setId(data.getValue(Service.class).getId());
 
             //add object to array list
             //valet
-            if (info.getRequestType().equals("ValetTravel")) {
+            if (info.getRequestType().equals("ValetTravel")&& (info.getStatus().equals("Incomplete") || info.getStatus().equals("In Progress"))) {
                 serviceList.add(new Service(info.getRequestType(), info.getRequestedTimeValet(), info.getRequestDate(),
                         info.getStartingStreet(), info.getDestinationStreet(),info.getStartingCityStateZip(),
-                         info.getDestinationCityStateZip()));
+                         info.getDestinationCityStateZip(),info.getNumberTraveling(),
+                        info.getStatus(),info.getTemp1(),info.getTemp2(), info.getId()));
 
                 //add array list to recycle view
                 createRecycleView();

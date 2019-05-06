@@ -78,19 +78,18 @@ public class ViewGuests extends AppCompatActivity {
 
             Guest info = new Guest();
 
+            info.setCheckedIn(data.getValue(Guest.class).isCheckedIn());
             info.setFirstName(data.getValue(Guest.class).getFirstName());
             info.setLastName(data.getValue(Guest.class).getLastName());
             info.setGuestEmail(data.getValue(Guest.class).getGuestEmail());
-            //add object to array list
-            guestInfo.add(new Guest(info.getFirstName(),info.getLastName(),info.getGuestEmail()));
 
-            Log.d(TAG, "showData: First Name: " + info.getFirstName());
-            Log.d(TAG, "showData: LastName: " + info.getLastName());
-            Log.d(TAG, "showData: Guest Email: " + info.getGuestEmail());
-            Log.d(TAG, "showData: Array List: " + guestInfo);
+            if (info.isCheckedIn()) {
+                //add object to array list
+                guestInfo.add(new Guest(info.getFirstName(), info.getLastName(), info.getGuestEmail()));
 
-            //add array list to recycle view
-            createRecycleView();
+                //add array list to recycle view
+                createRecycleView();
+            }
         }
     }
 

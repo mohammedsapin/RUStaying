@@ -18,7 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
+import java.util.StringTokenizer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +33,15 @@ public class newViewRooms extends AppCompatActivity {
     private DatabaseReference myRef;
     private ResInfo resInfo;
 
+    int year0Tok;
+    int month0Tok;
+    int day0Tok;
+    LocalDate inDateTok;
+
+    int year1Tok;
+    int month1Tok;
+    int day1Tok;
+    LocalDate outDateTok;
 
     RecyclerView recyclerView;
     newRoomAdapter adapter;
@@ -96,6 +105,7 @@ public class newViewRooms extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 showData(dataSnapshot);
+
             }
 
             @Override
@@ -125,11 +135,80 @@ public class newViewRooms extends AppCompatActivity {
 
         for (DataSnapshot data : dataSnapshot.getChildren()){
 
+            Log.d(TAG, "showData: " + data.getValue(Room.class).getRoomType());
+
             Room room = new Room(); // create new object
 
-            room.setRoomId(data.getValue(Room.class).getRoomId()); // set first name
-            room.setRoomType(data.getValue(Room.class).getRoomType()); // set last name
-            room.setIsAvailable(data.getValue(Room.class).getIsAvailable()); // set email
+            room.setRoomId(data.getValue(Room.class).getRoomId());
+            room.setRoomType(data.getValue(Room.class).getRoomType());
+            room.setIsAvailable(data.getValue(Room.class).getIsAvailable());
+            room.setCheckInDate(data.getValue(Room.class).getCheckInDate());
+            room.setCheckOutDate(data.getValue(Room.class).getCheckOutDate());
+
+
+            //Create LocalDates objects of the dates for comparison
+            StringTokenizer st0 = new StringTokenizer(room.getCheckInDate(),"-");
+            //Log.d(TAG, "showData: " + room.getCheckInDate());
+            //Log.d(TAG, "showData1: " + st0.nextToken());
+            //Log.d(TAG, "showData1: " + st0.nextToken());
+            //Log.d(TAG, "showData1: " + st0.nextToken());
+
+            if(st0.hasMoreTokens())
+            {
+                year0Tok = Integer.parseInt(st0.nextToken());
+                month0Tok = Integer.parseInt(st0.nextToken());
+                day0Tok = Integer.parseInt(st0.nextToken());
+                inDateTok = parseDate(year0Tok, month0Tok, day0Tok);
+            }
+
+            StringTokenizer st1 = new StringTokenizer(room.getCheckOutDate(),"-");
+
+            if(st1.hasMoreTokens())
+            {
+                year1Tok = Integer.parseInt(st1.nextToken());
+                month1Tok = Integer.parseInt(st1.nextToken());
+                day1Tok = Integer.parseInt(st1.nextToken());
+                outDateTok = parseDate(year1Tok, month1Tok, day1Tok);
+            }
+
+            //Check if ResInfo dates collide with existing checkIn and checkOut dates of the room
+            if(room.getCheckInDate().equals("") || room.getCheckInDate() == null)
+            {
+                //No reservation dates
+            }
+            else if(room.getCheckOutDate().equals("") || room.getCheckOutDate() == null)
+            {
+                //No reservation dates
+            }
+            else if(resInfo.getCheckIn().compareTo(inDateTok) == 0)
+            {
+                //If the new checkIn date is the same as existing checkIn date, conflict
+                continue;
+            }
+            else if(resInfo.getCheckOut().compareTo(outDateTok) == 0)
+            {
+                //The the checkOut dates are equal, conflict
+                continue;
+            }
+            else if(resInfo.getCheckIn().compareTo(outDateTok) > 0)
+            {
+                //If new reservation checkIn date is greater than existing checkOut dates, no conflict
+            }
+            else if(resInfo.getCheckOut().compareTo(inDateTok) < 0)
+            {
+                //If the new reservation checkOut date is less than existing checkIn date, no conflict
+            }
+            else if(resInfo.getCheckIn().compareTo(inDateTok) > 0 && resInfo.getCheckIn().compareTo(outDateTok) < 0)
+            {
+                //If new reservation checkIn date is after the existing checkIn date and before checkOut date, conflict
+                continue;
+            }
+            else if(resInfo.getCheckOut().compareTo(inDateTok) > 0 && resInfo.getCheckOut().compareTo(outDateTok) < 0)
+            {
+                //If new reservation checkOut date is after checkIn date but before checkOut date, conflict
+                continue;
+            }
+
 
 
             if(receivedRoomTypes[0] == null && room.getRoomType().equals("Single"))

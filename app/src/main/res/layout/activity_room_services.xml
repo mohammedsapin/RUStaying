@@ -47,7 +47,7 @@
             <!--android:layout_height="wrap_content"-->
             <!--android:background="@color/colorAccent"-->
             <!--android:layout_marginStart="140dp"-->
-            <!--android:text="@string/view_services"-->
+            <!--android:text="@string/view_bellboy"-->
             <!--android:textAlignment="center"-->
             <!--android:layout_marginBottom="32dp"-->
             <!--android:textColor="@android:color/black"-->

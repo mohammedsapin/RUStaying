@@ -1,14 +1,20 @@
 package com.example.rustaying;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -19,9 +25,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 
-public class ViewServices extends AppCompatActivity{
+public class BellboyServices extends AppCompatActivity{
 
-    private static final String TAG = "ViewServices";
+    private static final String TAG = "BellboyServices";
 
     //Services List
     private ArrayList<Service> serviceList = new ArrayList<>();
@@ -35,7 +41,7 @@ public class ViewServices extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_services);
+        setContentView(R.layout.activity_bellboy_services);
 
         createRecycleView();
 
@@ -87,7 +93,7 @@ public class ViewServices extends AppCompatActivity{
      Log.d(TAG, "createRecycleView: Started view");
      RecyclerView recyclerView = findViewById(R.id.viewServicesRecycleView);
      recyclerView.setLayoutManager(new LinearLayoutManager(this));
-     ViewServicesAdapter adapter = new ViewServicesAdapter(this,serviceList);
+     ViewBellboyAdapter adapter = new ViewBellboyAdapter(this,serviceList);
      recyclerView.setAdapter(adapter);
     }
 
@@ -103,13 +109,15 @@ public class ViewServices extends AppCompatActivity{
             info.setLuggageValue(data.getValue(Service.class).getLuggageValue());
             info.setRequestedTimeBellboy(data.getValue(Service.class).getRequestedTimeBellboy());
             info.setFromWhere(data.getValue(Service.class).getFromWhere());
-
+            info.setId(data.getValue(Service.class).getId());
+            info.setStatus(data.getValue(Service.class).getStatus());
             Log.d(TAG, "ViewServiceClass: " + info.getRequestedTimeBellboy());
 
             //bellboy
-            if (info.getRequestType().equals("Bellboy")){
+            if (info.getRequestType().equals("Bellboy") && (info.getStatus().equals("Incomplete") || info.getStatus().equals("In Progress"))){
             serviceList.add(new Service(info.getRequestType(),info.getRequestDate(),
-                    info.getLuggageValue(),info.getRequestedTimeBellboy(),info.getFromWhere()));
+                    info.getLuggageValue(),info.getRequestedTimeBellboy(),info.getFromWhere(),
+                    info.getStatus(), info.getId()));
 
             //add array list to recycle view
             createRecycleView();

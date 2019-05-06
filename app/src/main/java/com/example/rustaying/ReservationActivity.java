@@ -44,28 +44,6 @@ public class ReservationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
-        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
-                    case R.id.navigation_account:
-                        Intent account = new Intent(ReservationActivity.this,ProfileActivity.class);
-                        startActivity(account);
-                        break;
-                    case R.id.navigation_home:
-                        Intent home = new Intent(ReservationActivity.this,HomeActivity.class);
-                        startActivity(home);
-                        break;
-                    case R.id.navigation_services:
-                        Intent service = new Intent(ReservationActivity.this, ServicesActivity.class);
-                        startActivity(service);
-                        break;
-                }
-                return false;
-            }
-        });
-
 
         dateBtn1 = (Button) findViewById(R.id.calendarBtn1);
         dateBtn2 = (Button) findViewById(R.id.calendarBtn2);
@@ -102,6 +80,11 @@ public class ReservationActivity extends AppCompatActivity {
                             Toast.makeText(ReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
                             checkInDate = null;
                         }
+                        else if(checkOutDate != null && checkInDate.compareTo(checkOutDate) > 0)
+                        {
+                            Toast.makeText(ReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
+                            checkInDate = null;
+                        }
                         else
                         {
                             date1.setText((month1 + 1) + "/" +  dayOfMonth1 + "/" + year1);
@@ -124,6 +107,8 @@ public class ReservationActivity extends AppCompatActivity {
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
+                currentDate = parseDate(year,(month+1), day);
+
                 checkOutDialog = new DatePickerDialog(ReservationActivity.this,
                                                         R.style.Theme_AppCompat,
                                                         new DatePickerDialog.OnDateSetListener()
@@ -138,7 +123,7 @@ public class ReservationActivity extends AppCompatActivity {
                             Toast.makeText(ReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
                             checkOutDate = null;
                         }
-                        else if(checkOutDate.compareTo(checkInDate) < 1)
+                        else if(checkInDate != null && checkOutDate.compareTo(checkInDate) < 1)
                         {
                             Toast.makeText(ReservationActivity.this, "Check out date cannot be before check in date",Toast.LENGTH_LONG).show();
                             checkOutDate = null;
@@ -178,7 +163,8 @@ public class ReservationActivity extends AppCompatActivity {
                     roomTypes[3] = "King";
                 }
 
-                if(checkInDate != null && checkOutDate != null)
+                if(checkInDate != null && checkOutDate != null &&
+                        (single.isChecked() || double1.isChecked() || queen.isChecked() || king.isChecked()))
                 {
                     //Check checkIn and checkOut dates to make sure they are not null
 
@@ -208,7 +194,7 @@ public class ReservationActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(ReservationActivity.this, "Please choose valid dates",Toast.LENGTH_SHORT);
+                    Toast.makeText(ReservationActivity.this, "Please fill in valid options",Toast.LENGTH_SHORT);
                 }
             }
         });

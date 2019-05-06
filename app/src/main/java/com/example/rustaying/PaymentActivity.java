@@ -24,10 +24,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -47,6 +50,8 @@ public class PaymentActivity extends AppCompatActivity {
     private String[] arraySpinnerYear=new String[50];
 
     private Guest g = new Guest();
+    private String checkIn, checkOut, roomId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +88,14 @@ public class PaymentActivity extends AppCompatActivity {
                 R.array.years_array, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerX2.setAdapter(adapter2);
+
+
+        //Get resInfo data from newRoomAdapater Activity
+        Intent i = this.getIntent();
+        Bundle b = i.getBundleExtra("resInfo");
+        checkIn = b.getString("checkInDate");
+        checkOut = b.getString("checkOutDate");
+        roomId = b.getString("roomId");
 
 
         answerBox1 = (EditText) findViewById(R.id.nameCard);
@@ -133,6 +146,7 @@ public class PaymentActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()) {
+                                updateInformation(roomId);
                                 Toast.makeText(PaymentActivity.this, "Payment Confirmed", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(PaymentActivity.this, HomeActivity.class));
                                 finish();
@@ -143,6 +157,87 @@ public class PaymentActivity extends AppCompatActivity {
                         }
                     });
                     //end editing here
+                }
+            }
+        });
+    }
+
+    public void updateInformation(String roomNum)
+    {
+        //Create string of room number (ex: Room 01 or Room 12)
+        String temp;
+        int roomInt = Integer.parseInt(roomNum);
+        if(roomInt <= 9)
+        {
+            temp = "Room 0" + roomNum;
+        }
+        else
+        {
+            temp = "Room " + roomNum;
+        }
+
+        //Get the current dates of reservation for the room
+        myRef.child("Rooms").child(temp).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //inDates = dataSnapshot.getValue(Room.class).getCheckInDate();
+                //outDates = dataSnapshot.getValue(Room.class).getCheckOutDate();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        Map<String,Object> roomList = new HashMap<>();
+        roomList.put("checkInDate", checkIn);
+        roomList.put("checkOutDate", checkOut);
+        roomList.put("checkedIn", false);
+        roomList.put("isAvailable", false);
+
+
+        myRef.child("Rooms").child(temp).updateChildren(roomList).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+
+                    Toast.makeText(PaymentActivity.this, "Room info updated", Toast.LENGTH_SHORT).show();
+                    //Intent homeActivity = new Intent(mCtx, HomeActivity.class);
+                    //startActivity(homeActivity);
+
+                    //mCtx.startActivity(homeActivity);
+
+                }else{
+                    Toast.makeText(PaymentActivity.this, "Error updating info", Toast.LENGTH_SHORT).show();
+                    //startActivity(new Intent(EditInfoActivity.this, ProfileActivity.class));
+                    //finish();
+                }
+            }
+        });
+
+        Map<String,Object> list = new HashMap<>();
+        list.put("checkInDate", checkIn);
+        list.put("checkOutDate", checkOut);
+        list.put("checkedIn", false);
+        list.put("reservationMade", true);
+        list.put("roomNum", roomId);
+
+        myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+
+                    //Toast.makeText(mCtx, "Info updated", Toast.LENGTH_SHORT).show();
+                    //Intent homeActivity = new Intent(mCtx, HomeActivity.class);
+                    //startActivity(homeActivity);
+
+                    //mCtx.startActivity(homeActivity);
+
+                }else{
+                    //startActivity(new Intent(EditInfoActivity.this, ProfileActivity.class));
+                    //finish();
                 }
             }
         });
