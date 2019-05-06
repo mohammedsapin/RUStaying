@@ -80,6 +80,11 @@ public class ReservationActivity extends AppCompatActivity {
                             Toast.makeText(ReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
                             checkInDate = null;
                         }
+                        else if(checkOutDate != null && checkInDate.compareTo(checkOutDate) > 0)
+                        {
+                            Toast.makeText(ReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
+                            checkInDate = null;
+                        }
                         else
                         {
                             date1.setText((month1 + 1) + "/" +  dayOfMonth1 + "/" + year1);
@@ -102,6 +107,8 @@ public class ReservationActivity extends AppCompatActivity {
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
+                currentDate = parseDate(year,(month+1), day);
+
                 checkOutDialog = new DatePickerDialog(ReservationActivity.this,
                                                         R.style.Theme_AppCompat,
                                                         new DatePickerDialog.OnDateSetListener()
@@ -116,7 +123,7 @@ public class ReservationActivity extends AppCompatActivity {
                             Toast.makeText(ReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
                             checkOutDate = null;
                         }
-                        else if(checkOutDate.compareTo(checkInDate) < 1)
+                        else if(checkInDate != null && checkOutDate.compareTo(checkInDate) < 1)
                         {
                             Toast.makeText(ReservationActivity.this, "Check out date cannot be before check in date",Toast.LENGTH_LONG).show();
                             checkOutDate = null;
@@ -156,7 +163,8 @@ public class ReservationActivity extends AppCompatActivity {
                     roomTypes[3] = "King";
                 }
 
-                if(checkInDate != null && checkOutDate != null)
+                if(checkInDate != null && checkOutDate != null &&
+                        (single.isChecked() || double1.isChecked() || queen.isChecked() || king.isChecked()))
                 {
                     //Check checkIn and checkOut dates to make sure they are not null
 
@@ -186,7 +194,7 @@ public class ReservationActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(ReservationActivity.this, "Please choose valid dates",Toast.LENGTH_SHORT);
+                    Toast.makeText(ReservationActivity.this, "Please fill in valid options",Toast.LENGTH_SHORT);
                 }
             }
         });

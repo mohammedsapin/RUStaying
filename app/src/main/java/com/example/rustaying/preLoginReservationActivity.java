@@ -25,7 +25,7 @@ import java.util.Calendar;
 
 public class preLoginReservationActivity extends AppCompatActivity {
 
-    private static final String TAG = "ReservationActivity";
+    private static final String TAG = "preLoginReservationActivity";
 
     DatePickerDialog checkInDialog, checkOutDialog;
 
@@ -80,6 +80,11 @@ public class preLoginReservationActivity extends AppCompatActivity {
                             Toast.makeText(preLoginReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
                             checkInDate = null;
                         }
+                        else if(checkOutDate != null && checkInDate.compareTo(checkOutDate) > 0)
+                        {
+                            Toast.makeText(preLoginReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
+                            checkInDate = null;
+                        }
                         else
                         {
                             date1.setText((month1 + 1) + "/" +  dayOfMonth1 + "/" + year1);
@@ -102,6 +107,8 @@ public class preLoginReservationActivity extends AppCompatActivity {
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
+                currentDate = parseDate(year,(month+1), day);
+
                 checkOutDialog = new DatePickerDialog(preLoginReservationActivity.this,
                         R.style.Theme_AppCompat,
                         new DatePickerDialog.OnDateSetListener()
@@ -116,7 +123,7 @@ public class preLoginReservationActivity extends AppCompatActivity {
                                     Toast.makeText(preLoginReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
                                     checkOutDate = null;
                                 }
-                                else if(checkOutDate.compareTo(checkInDate) < 1)
+                                else if(checkInDate != null && checkOutDate.compareTo(checkInDate) < 1)
                                 {
                                     Toast.makeText(preLoginReservationActivity.this, "Check out date cannot be before check in date",Toast.LENGTH_LONG).show();
                                     checkOutDate = null;
