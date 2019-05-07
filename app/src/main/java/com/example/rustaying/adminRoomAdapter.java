@@ -54,6 +54,7 @@ public class adminRoomAdapter extends RecyclerView.Adapter<adminRoomAdapter.Room
 
     }
 
+    //Constructor to create new adminRoomAdapter
     public adminRoomAdapter(Context mCtx, ArrayList<Room> roomList, ResInfo resInfo) {
         this.mCtx = mCtx;
         this.roomList = roomList;
@@ -96,6 +97,7 @@ public class adminRoomAdapter extends RecyclerView.Adapter<adminRoomAdapter.Room
         return holder;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull RoomViewHolder roomViewHolder, int i) {
 
@@ -108,6 +110,7 @@ public class adminRoomAdapter extends RecyclerView.Adapter<adminRoomAdapter.Room
         Resources res = mCtx.getResources();
         Drawable myImage = ResourcesCompat.getDrawable(res, R.drawable.singleroom, null);
 
+        //PRICING ALGORTHIM
         if(room.getRoomType().equals("Single"))
         {
             int pr = 250;
