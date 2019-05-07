@@ -447,7 +447,7 @@ public class HomeActivity extends AppCompatActivity {
                 outDateTok = parseDate(year1Tok, month1Tok, day1Tok);
             }
 
-            if(currentDate.compareTo(outDateTok) > 0) //If current date is past check out date
+            if(outDateTok != null && currentDate.compareTo(outDateTok) > 0) //If current date is past check out date
             {
                 //Update room object information and update in database
                 room.setCheckOutDate("");
