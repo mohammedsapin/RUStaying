@@ -6,7 +6,6 @@
 
 package com.example.rustaying;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Room {

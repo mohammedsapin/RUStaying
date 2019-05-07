@@ -242,19 +242,16 @@ public class ValetTravelActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         long max=0;
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Log.d(TAG, "ViewServiceClass: =============================" + snapshot.getValue());
                             for (DataSnapshot snapshot2 : snapshot.getChildren()){
                                 if (snapshot2.child("id").getValue()!=null) {
                                     long id = Integer.parseInt(snapshot2.child("id").getValue().toString());
                                     if (id>max){
                                         max=id;
                                     }
-                                    Log.d(TAG, "ViewServiceClass: +++++++++++++++++++" + id+ "     " + max);
                                 }
                             }
                         }
                         max++;
-                        Log.d(TAG, "ViewServiceClass: ++++++++++++++++++++++++++++------+MAX " + max);
                         valettravel.setId(max);
 
                     }

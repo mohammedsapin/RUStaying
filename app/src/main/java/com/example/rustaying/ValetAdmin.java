@@ -102,10 +102,6 @@ public class ValetAdmin extends AppCompatActivity {
                 positiveButton.setBackgroundColor(Color.WHITE);
             }
         });
-
-
-
-
     }
 
     @Override

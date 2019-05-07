@@ -40,6 +40,7 @@ public class HotelData extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
 
+    //initialize list for data entry
     List<BarEntry> entries1 = new ArrayList<>();
     List<BarEntry> entries2 = new ArrayList<>();
     List<BarEntry> entries3 = new ArrayList<>();
@@ -68,7 +69,8 @@ public class HotelData extends AppCompatActivity {
             }
         };
 
-        myRef.child("Feedback").addValueEventListener(new ValueEventListener() {
+        myRef.child("Feedback").addValueEventListener(new ValueEventListener() { //add listener
+            // to get data from Feedback
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 showData(dataSnapshot);
@@ -81,7 +83,7 @@ public class HotelData extends AppCompatActivity {
         });
     }
 
-    private void showData(DataSnapshot dataSnapshot){
+    private void showData(DataSnapshot dataSnapshot){ //convert data into chart
 
         ArrayList<Double> ratingOneData = new ArrayList<>();
         ArrayList<Double> ratingTwoData = new ArrayList<>();
@@ -171,7 +173,7 @@ public class HotelData extends AppCompatActivity {
         chart.invalidate();
     }
 
-    private double average(ArrayList<Double> List){
+    private double average(ArrayList<Double> List){ //method to find average of feedback data
         double total = 0;
         double avg = 0;
         for (int i = 0; i < List.size(); i++){

@@ -6,14 +6,9 @@
 
 package com.example.rustaying;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -22,12 +17,8 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
-
 
 public class ReservationActivity extends AppCompatActivity {
 

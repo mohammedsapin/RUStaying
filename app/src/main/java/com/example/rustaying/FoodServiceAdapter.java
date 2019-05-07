@@ -1,8 +1,8 @@
 /************************
  Authors:
- Eric Zhang
- Thomas Tran
- Rameen Masood
+ Mohammed Sapin
+ Nga Man (Mandy) Cheng
+ Purna Haque
  *************************/
 
 package com.example.rustaying;

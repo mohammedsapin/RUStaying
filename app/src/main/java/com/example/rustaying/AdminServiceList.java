@@ -1,8 +1,8 @@
 /************************
  Authors:
- Eric Zhang
- Thomas Tran
- Rameen Masood
+ Mohammed Sapin
+ Nga Man (Mandy) Cheng
+ Purna Haque
  *************************/
 
 
@@ -17,6 +17,8 @@ import android.widget.Button;
 public class AdminServiceList extends AppCompatActivity {
 
     private static final String TAG = "AdminServiceList";
+
+    //XML attributes
     private Button bellboy, valet, maint, roomService, foodService;
 
     @Override
@@ -24,6 +26,7 @@ public class AdminServiceList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_service_list);
 
+        //XML definitions
         bellboy = (Button) findViewById(R.id.bellboy_requests);
         valet = (Button) findViewById(R.id.valet_travel);
         maint = (Button) findViewById(R.id.maintenance_request);
@@ -32,35 +35,35 @@ public class AdminServiceList extends AppCompatActivity {
 
         bellboy.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { //view bellboy services requests
                 startActivity(new Intent(AdminServiceList.this, BellboyServices.class));
             }
         });
 
         valet.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { //view valet services requests
                 startActivity(new Intent(AdminServiceList.this, ValetServices.class));
             }
         });
 
         maint.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { //view maintenance services requests
                 startActivity(new Intent(AdminServiceList.this,MaintenanceServices.class));
             }
         });
 
         roomService.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { //view room services requests
                 startActivity(new Intent(AdminServiceList.this, RoomServices.class));
             }
         });
 
         foodService.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { //view food services requests
                 startActivity(new Intent(AdminServiceList.this, FoodServices.class));
             }
         });

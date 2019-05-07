@@ -43,7 +43,7 @@ public class BellboyServices extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bellboy_services);
 
-        createRecycleView();
+        createRecycleView(); //creates view for page
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -61,7 +61,8 @@ public class BellboyServices extends AppCompatActivity{
             }
         };
 
-        myRef.child("Service").addChildEventListener(new ChildEventListener() {
+        myRef.child("Service").addChildEventListener(new ChildEventListener() { //adds listener
+            // for database when data is changed
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 showData(dataSnapshot);
@@ -89,7 +90,7 @@ public class BellboyServices extends AppCompatActivity{
         });
     }
 
-    private void createRecycleView(){
+    private void createRecycleView(){ //method to create view for page
      Log.d(TAG, "createRecycleView: Started view");
      RecyclerView recyclerView = findViewById(R.id.viewServicesRecycleView);
      recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -98,7 +99,8 @@ public class BellboyServices extends AppCompatActivity{
     }
 
 
-    private void showData(DataSnapshot dataSnapshot) {
+    private void showData(DataSnapshot dataSnapshot) { //method to retrieve data and add it to
+        // the page
         for (DataSnapshot data : dataSnapshot.getChildren()) {
 
             Service info = new Service();

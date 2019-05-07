@@ -37,8 +37,6 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
 
-
-
     private ArrayList<Service> serviceList;
     Service bellboy = new Service();
     private Context mContext;
@@ -70,7 +68,6 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
         viewHolder.fromWhere.setText(info.getFromWhere());
         viewHolder.status.setText(info.getStatus());
         viewHolder.id.setText(String.valueOf(info.getId()));
-
 
         viewHolder.card.setOnClickListener(new View.OnClickListener() {
             @Override

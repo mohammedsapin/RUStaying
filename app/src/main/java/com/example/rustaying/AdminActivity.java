@@ -5,7 +5,6 @@ Authors:
  Purna Haque
  *************************/
 
-
 package com.example.rustaying;
 
 import android.content.DialogInterface;
