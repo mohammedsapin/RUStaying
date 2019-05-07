@@ -120,28 +120,26 @@ public class CreditInfoActivity extends AppCompatActivity {
                     list.put("CCV", answer2);
                     list.put("nameOnCCard", answer3);
                     list.put("expirationDate",answer6);
-                }
 
+                    myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(CreditInfoActivity.this, " Credit Info updated", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(CreditInfoActivity.this, CreditActivity.class));
+                                finish();
 
-                myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(CreditInfoActivity.this, " Credit Info updated", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(CreditInfoActivity.this, CreditActivity.class));
-                            finish();
-
-                        }else{
-                            Toast.makeText(CreditInfoActivity.this, " Credit Info update was not successful, please try again", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(CreditInfoActivity.this, CreditInfoActivity.class));
-                            finish();
+                            }else{
+                                Toast.makeText(CreditInfoActivity.this, " Credit Info update was not successful, please try again", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(CreditInfoActivity.this, CreditInfoActivity.class));
+                                finish();
+                            }
                         }
-                    }
-                });
-
-
-
-
+                    });
+                }
+                else{
+                    Toast.makeText(CreditInfoActivity.this, "Please input all required fields.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

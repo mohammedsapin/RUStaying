@@ -66,7 +66,6 @@ public class Service {
     private Integer dr2;
     private Integer dr3;
 
-    private long id;
 
 
     //live price calculation
@@ -318,17 +317,12 @@ public class Service {
         this.id =id;
     }
 
-    public long getId() {
-        return id;
-    }
-    public Service(String requestType, String status){
+    public Service(String requestType, String status, String requestDate){
         this.requestType = requestType;
         this.status=status;
+        this.requestDate = requestDate;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getTemp1() {
         return temp1;
