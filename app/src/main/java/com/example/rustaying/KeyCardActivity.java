@@ -85,6 +85,7 @@ public class KeyCardActivity extends AppCompatActivity {
         if(checked==false)
         {
             genKeyBtn.setEnabled(false);
+            Toast.makeText(KeyCardActivity.this, "Please check in to get key code", Toast.LENGTH_SHORT).show();
         }else { //you are checked in
             //genKeyBtn.setEnabled(true);
             if (keyCodeStr.equals("-1")) { //key yet to be set
@@ -182,7 +183,6 @@ public class KeyCardActivity extends AppCompatActivity {
                 }*/
                 final String code = getRandomNumberString();
                 list.put("keyCode", code);
-
 
 
                 myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
