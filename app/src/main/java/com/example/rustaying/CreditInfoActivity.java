@@ -38,9 +38,9 @@ public class CreditInfoActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
     private String userID;
-    private Spinner expMonth,expYear;
+    private Spinner expMonth, expYear;
     private String[] arraySpinnerMonth;
-    private String[] arraySpinnerYear=new String[50];
+    private String[] arraySpinnerYear = new String[50];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,20 +49,19 @@ public class CreditInfoActivity extends AppCompatActivity {
 
         //SPINNERS POPULATED HERE
         int count = 0;
-        for(int x = 2019;x<2069;x++){
-            this.arraySpinnerYear[count]=""+x;
+        for (int x = 2019; x < 2069; x++) {
+            this.arraySpinnerYear[count] = "" + x;
             count++;
         }
-        Spinner spinnerYear= (Spinner)findViewById(R.id.date_year);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,arraySpinnerYear);
+        Spinner spinnerYear = (Spinner) findViewById(R.id.date_year);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arraySpinnerYear);
         spinnerYear.setAdapter(adapter);
 
-
-        this.arraySpinnerMonth=new String[]{
-          "1","2","3","4","5","6","7","8","9","10","11","12"
+        this.arraySpinnerMonth = new String[]{
+                "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"
         };
-        Spinner spinnerMonth= (Spinner)findViewById(R.id.date_month);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,arraySpinnerMonth);
+        Spinner spinnerMonth = (Spinner) findViewById(R.id.date_month);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arraySpinnerMonth);
         spinnerMonth.setAdapter(adapter2);
         //END OF SPINNER POPULATION
 
@@ -70,14 +69,14 @@ public class CreditInfoActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.navigation_account:
-                        Intent account = new Intent(CreditInfoActivity.this,ProfileActivity.class);
+                        Intent account = new Intent(CreditInfoActivity.this, ProfileActivity.class);
                         startActivity(account);
                         finish();
                         break;
                     case R.id.navigation_home:
-                        Intent home = new Intent(CreditInfoActivity.this,HomeActivity.class);
+                        Intent home = new Intent(CreditInfoActivity.this, HomeActivity.class);
                         startActivity(home);
                         finish();
                         break;
@@ -91,14 +90,12 @@ public class CreditInfoActivity extends AppCompatActivity {
             }
         });
 
-
         creditNumber = findViewById(R.id.creditNumber);
-        CCV =  findViewById(R.id.CCV_number);
+        CCV = findViewById(R.id.CCV_number);
         newName = findViewById(R.id.nameID);
         expMonth = findViewById(R.id.date_month);
         expYear = findViewById(R.id.date_year);
-        submitButton= findViewById(R.id.submitButton);
-
+        submitButton = findViewById(R.id.submitButton);
 
         mAuth = FirebaseAuth.getInstance(); //mAuth
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -106,54 +103,44 @@ public class CreditInfoActivity extends AppCompatActivity {
         final FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
 
-
-
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 final String answer1 = creditNumber.getText().toString().trim();
                 final String answer2 = CCV.getText().toString().trim();
                 final String answer3 = newName.getText().toString().trim();
                 final String answer4 = expMonth.getSelectedItem().toString();
                 final String answer5 = expYear.getSelectedItem().toString();
-                final String answer6 = answer4+"/"+answer5;
+                final String answer6 = answer4 + "/" + answer5;
 
-                Map<String,Object> list = new HashMap<>();
+                Map<String, Object> list = new HashMap<>();
 
-                if(!answer1.isEmpty() && !answer2.isEmpty() &&!answer3.isEmpty()&& !answer6.isEmpty()) {
+                if (!answer1.isEmpty() && !answer2.isEmpty() && !answer3.isEmpty() && !answer6.isEmpty()) {
                     list.put("creditCardNumber", answer1); //
                     list.put("CCV", answer2);
                     list.put("nameOnCCard", answer3);
-                    list.put("expirationDate",answer6);
+                    list.put("expirationDate", answer6);
 
                     myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 Toast.makeText(CreditInfoActivity.this, " Credit Info updated", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(CreditInfoActivity.this, CreditActivity.class));
                                 finish();
 
-                            }else{
+                            } else {
                                 Toast.makeText(CreditInfoActivity.this, " Credit Info update was not successful, please try again", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(CreditInfoActivity.this, CreditInfoActivity.class));
                                 finish();
                             }
                         }
                     });
-                }
-                else{
+                } else {
                     Toast.makeText(CreditInfoActivity.this, "Please input all required fields.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
-
-
-
-
     }
-
 }
+

@@ -11,14 +11,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.Toast;
 import android.widget.Switch;
@@ -27,11 +24,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class FeedbackActivity extends AppCompatActivity {
     private static final String TAG = "Feedback Activity";
@@ -50,7 +44,6 @@ public class FeedbackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
-        
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -82,7 +75,6 @@ public class FeedbackActivity extends AppCompatActivity {
         cBox3 = (CheckBox) findViewById(R.id.cb3);
         cBox4 = (CheckBox) findViewById(R.id.cb4);
         switch1 = (Switch)findViewById(R.id.switch1);
-
 
         submitButton = (Button) findViewById(R.id.submitButton);
 
@@ -124,7 +116,6 @@ public class FeedbackActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(FeedbackActivity.this,"Please fill out the required fields",Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }

@@ -104,12 +104,9 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
             }
         });
 
-
         dateBtn1 = (Button) findViewById(R.id.calendarBtn1);
         viewBtn = (Button) findViewById(R.id.viewRoomsBtn);
-
         date1 = (TextView) findViewById(R.id.requestDateR);
-
 
         dateBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,11 +119,9 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                 dateDialog = new DatePickerDialog(BellboyActivity.this, R.style.Theme_AppCompat, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year1, int month1, int dayOfMonth1) {
-
                         requestDate = parseDate(year1, (month1 + 1), dayOfMonth1);
                         String requestDate1=requestDate.toString();
                         bellboy.setRequestDate(requestDate1);
-
 
                         if(requestDate.compareTo(currentDate) < 0)
                         {
@@ -138,8 +133,6 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                         {
                             date1.setText((month1 + 1) + "/" + dayOfMonth1 + "/" + year1);
                         }
-
-
                     }
                 }, year, month, day);
                 dateDialog.show();
@@ -163,7 +156,6 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
 
             }
         });
-
 
         Spinner minutes = (Spinner) findViewById(R.id.minutes);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
@@ -219,15 +211,8 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
             }
         });
 
-
-
-
-
         answerBox1 = (EditText) findViewById(R.id.A1);
-
-
         submitButton= (Button) findViewById(R.id.submitButton);
-
 
         FirebaseDatabase.getInstance().getReference().child("Service")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -235,19 +220,16 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         long max=0;
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Log.d(TAG, "ViewServiceClass: =============================" + snapshot.getValue());
                             for (DataSnapshot snapshot2 : snapshot.getChildren()){
                                 if (snapshot2.child("id").getValue()!=null) {
                                     long id = Integer.parseInt(snapshot2.child("id").getValue().toString());
                                     if (id>max){
                                         max=id;
                                     }
-                                    Log.d(TAG, "ViewServiceClass: +++++++++++++++++++" + id+ "     " + max);
                                 }
                             }
                         }
                         max++;
-                        Log.d(TAG, "ViewServiceClass: ++++++++++++++++++++++++++++------+MAX " + max);
                         bellboy.setId(max);
 
                     }
@@ -260,14 +242,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
         {
             @Override
             public void onClick(View v) {
-
-
-
-
-
-
                 long id1 = bellboy.getId();
-                Log.d(TAG, "ViewServiceClass: --------------------------------+MAX " + id1);
                 Random rand = new Random();
                 long random = 100000000 + rand.nextInt(900000000);
                 bellboy.setRequestID(random);
@@ -297,14 +272,11 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                         }
                     });
                 }
-
                 else{
                     Toast.makeText(BellboyActivity.this,"Please fill out the required fields",Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
-
     }
 
     private LocalDate parseDate(int year, int month, int date)

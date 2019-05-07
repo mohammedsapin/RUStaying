@@ -14,7 +14,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -51,7 +50,6 @@ public class CheckInActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
     private String userID;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,12 +155,9 @@ public class CheckInActivity extends AppCompatActivity {
             }
         });
 
-
         checkOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(CheckInActivity.this);
 
                 //Check current date with check out date
@@ -174,7 +169,6 @@ public class CheckInActivity extends AppCompatActivity {
                 LocalDate cDate = parseDate(year, (month+1), day);
 
                 checkOutDate = parseStringDate(out);
-
 
                 if(g.isCheckedIn() == false)
                 {
@@ -216,7 +210,6 @@ public class CheckInActivity extends AppCompatActivity {
                                 }
                             });
                 }
-
                 else
                 { //if current date is before to check out date
 
@@ -262,7 +255,6 @@ public class CheckInActivity extends AppCompatActivity {
     }
 
     private void checkOutUpdate(){
-
         //Update room and guest information when user checks out
 
         //Guest has checked out so reset appropriate fields
@@ -288,7 +280,6 @@ public class CheckInActivity extends AppCompatActivity {
                 }
             }
         });
-
 
         String temp;
         int roomInt = Integer.parseInt(g.getRoomNum());
@@ -327,8 +318,6 @@ public class CheckInActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     private void updateCheckIn()
