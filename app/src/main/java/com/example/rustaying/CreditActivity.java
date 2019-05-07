@@ -100,7 +100,7 @@ public class CreditActivity extends AppCompatActivity {
 
                             TextView verification = (TextView) findViewById(R.id.CCV);
                             String verif = g.getCCV();
-                            verification.setText("*Hidden*");
+                            verification.setText("***");
 
                             TextView number = (TextView) findViewById(R.id.creditCardNumber);
                             String lastName = g.getCreditCardNumber();

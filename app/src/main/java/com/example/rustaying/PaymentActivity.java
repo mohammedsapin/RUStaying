@@ -156,7 +156,10 @@ public class PaymentActivity extends AppCompatActivity {
                             }
                         }
                     });
-                    //end editing here
+
+                }
+                else{
+                    Toast.makeText(PaymentActivity.this,"Please fill out the required fields",Toast.LENGTH_SHORT).show();
                 }
             }
         });
