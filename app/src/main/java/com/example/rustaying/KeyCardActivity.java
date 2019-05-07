@@ -77,18 +77,29 @@ public class KeyCardActivity extends AppCompatActivity {
 
 
         Intent i = getIntent(); //gets intent from Home Activity
-        //Bundle ex = i.getExtras();
-        boolean checked = i.getBooleanExtra("checkedIn", true);
-        //String keyCodeStr = ex.getString("keyCode");
+        Bundle b = i.getBundleExtra("keyInfo");
+        String keyCodeStr = b.getString("keycode");
+        boolean checked = b.getBoolean("checkedIn");
 
-        /*if(keyCodeStr.equals("-1"))
+
+        if(checked==false)
         {
-            codeStr.setText("Click to Generate Key");
+            genKeyBtn.setEnabled(false);
+        }else { //you are checked in
+            //genKeyBtn.setEnabled(true);
+            if (keyCodeStr.equals("-1")) { //key yet to be set
+                codeStr.setText("");
+                genKeyBtn.setEnabled(true);
+            } else { //key already exists
+                codeStr.setText(keyCodeStr);
+                genKeyBtn.setEnabled(false);
+            }
         }
-        else
-        {
-            codeStr.setText(keyCodeStr);
-        }*/
+
+
+
+
+
 
         //set up Bottom Navigation Bar
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
@@ -115,15 +126,6 @@ public class KeyCardActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
-
-        if(checked==false)
-        {
-            genKeyBtn.setEnabled(false);
-        }else {
-            genKeyBtn.setEnabled(true);
-        }
 
 
         mAuth = FirebaseAuth.getInstance(); //mAuth
@@ -179,7 +181,7 @@ public class KeyCardActivity extends AppCompatActivity {
                     list.put("keycode", "11");
                 }*/
                 final String code = getRandomNumberString();
-                list.put("keycode", code);
+                list.put("keyCode", code);
 
 
 
@@ -196,6 +198,7 @@ public class KeyCardActivity extends AppCompatActivity {
                         }
                     }
                 });
+                genKeyBtn.setEnabled(false);
             }
         });
 
