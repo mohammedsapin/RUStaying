@@ -71,7 +71,7 @@ public class ValetTravelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_valet_travel);
 
-
+        //bottom navigation view
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -94,12 +94,14 @@ public class ValetTravelActivity extends AppCompatActivity {
             }
         });
 
+        //firebaes intialization
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
 
+        //back button
         back = (Button) findViewById(R.id.backButton);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +111,7 @@ public class ValetTravelActivity extends AppCompatActivity {
             }
         });
 
+        //calendar date picker
         dateBtn1 = (Button) findViewById(R.id.calendarBtn1);
         viewBtn = (Button) findViewById(R.id.viewRoomsBtn);
 
@@ -147,6 +150,7 @@ public class ValetTravelActivity extends AppCompatActivity {
             }
         });
 
+        //spinner selecting hours
         Spinner hours = (Spinner) findViewById(R.id.hours);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.hours));
@@ -166,7 +170,7 @@ public class ValetTravelActivity extends AppCompatActivity {
             }
         });
 
-
+    //spinner selecting minutes
         Spinner minutes = (Spinner) findViewById(R.id.minutes);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.minutes));
@@ -184,6 +188,8 @@ public class ValetTravelActivity extends AppCompatActivity {
 
             }
         });
+
+        //spinner selecting am/pm
         Spinner ampm = (Spinner) findViewById(R.id.ampm);
         ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.ampm));
@@ -203,6 +209,7 @@ public class ValetTravelActivity extends AppCompatActivity {
             }
         });
 
+        //spinner selecting number traveling
         Spinner numberTraveling = (Spinner) findViewById(R.id.numberTravelingSpinner);
         ArrayAdapter<String> adapter4 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.numberTravelingSpinner));
@@ -226,16 +233,14 @@ public class ValetTravelActivity extends AppCompatActivity {
         });
 
 
+        //assigns address information to strings
         answerBox1 = (EditText) findViewById(R.id.A1);
         answerBox2 = (EditText) findViewById(R.id.A2);
         answerBox3 = (EditText) findViewById(R.id.A3);
         answerBox4 = (EditText) findViewById(R.id.A4);
 
-
-
-
         submitButton= (Button) findViewById(R.id.submitButton);
-
+        //create new request id by finding previous request in database and incrementing by 1
         FirebaseDatabase.getInstance().getReference().child("Service")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -260,6 +265,8 @@ public class ValetTravelActivity extends AppCompatActivity {
                     }
                 });
 
+        //on submission, retrieve all values set in the empty service object, and pass into a new object
+        //then pass into database
         submitButton.setOnClickListener(new View.OnClickListener()
         {
             @Override

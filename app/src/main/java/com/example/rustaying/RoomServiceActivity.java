@@ -203,7 +203,7 @@ public class RoomServiceActivity extends AppCompatActivity {
 
             }
         });
-
+        //checkbox listener to see which boxes have been checked
         checkbox1=(CheckBox)findViewById(R.id.checkBox1);
         checkbox2=(CheckBox)findViewById(R.id.checkBox2);
         checkbox3=(CheckBox)findViewById(R.id.checkBox3);
@@ -249,25 +249,24 @@ public class RoomServiceActivity extends AppCompatActivity {
                                          }
                                      }
         );
+
+        //create new request id by finding previous request in database and incrementing by 1
         FirebaseDatabase.getInstance().getReference().child("Service")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         long max=0;
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            //Log.d(TAG, "ViewServiceClass: =============================" + snapshot.getValue());
                             for (DataSnapshot snapshot2 : snapshot.getChildren()){
                                 if (snapshot2.child("id").getValue()!=null) {
                                     long id = Integer.parseInt(snapshot2.child("id").getValue().toString());
                                     if (id>max){
                                         max=id;
                                     }
-                                    //Log.d(TAG, "ViewServiceClass: +++++++++++++++++++" + id+ "     " + max);
                                 }
                             }
                         }
                         max++;
-                     //   Log.d(TAG, "ViewServiceClass: ++++++++++++++++++++++++++++------+MAX " + max);
                         roomservice.setId(max);
 
                     }
@@ -276,6 +275,8 @@ public class RoomServiceActivity extends AppCompatActivity {
                     }
                 });
 
+        //on submission, retrieve all values set in the empty service object, and pass into a new object
+        //then pass into database
         answerBox1 = (EditText) findViewById(R.id.A1);
         submitButton= (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener()
@@ -289,9 +290,6 @@ public class RoomServiceActivity extends AppCompatActivity {
                 roomservice.setRequestID(random);
                 long requestID=roomservice.getRequestID();
                 String request= Long.toString(requestID);
-
-
-
                 String hourValue = roomservice.getHourValue();
                 String minuteValue = roomservice.getMinuteValue();
                 String ampmValue = roomservice.getAmpmValue();

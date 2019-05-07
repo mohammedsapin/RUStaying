@@ -67,6 +67,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bellboy);
 
+        //bottom navigiation bar
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -89,12 +90,14 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
             }
         });
 
+        //firebase intialization
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
 
+        //back button
         back = (Button) findViewById(R.id.backButton);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +107,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
             }
         });
 
+        //calendar picker
         dateBtn1 = (Button) findViewById(R.id.calendarBtn1);
         viewBtn = (Button) findViewById(R.id.viewRoomsBtn);
         date1 = (TextView) findViewById(R.id.requestDateR);
@@ -138,6 +142,8 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                 dateDialog.show();
             }
         });
+
+        //spinner selecting hours
         Spinner hours = (Spinner) findViewById(R.id.hours);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.hours));
@@ -157,6 +163,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
             }
         });
 
+        //spinner selecting minutes
         Spinner minutes = (Spinner) findViewById(R.id.minutes);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.minutes));
@@ -174,6 +181,8 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
 
             }
         });
+
+        //spinner selecting am/pm
         Spinner ampm = (Spinner) findViewById(R.id.ampm);
         ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.ampm));
@@ -192,6 +201,8 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
 
             }
         });
+
+        //spinner selecting luggage numbers
         Spinner luggageNum = (Spinner) findViewById(R.id.luggageNum);
         ArrayAdapter<String> adapter4 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.luggageNum));
@@ -214,6 +225,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
         answerBox1 = (EditText) findViewById(R.id.A1);
         submitButton= (Button) findViewById(R.id.submitButton);
 
+        //create new id number for new request by incrementing the last request id number by 1
         FirebaseDatabase.getInstance().getReference().child("Service")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -238,6 +250,8 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                     }
                 });
 
+        //on submission, retrieve all values set in the empty service object, and pass into a new object
+        //then pass into database
         submitButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -258,6 +272,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
                 String requestDate = bellboy.getRequestDate();
                 final String fromWhere = answerBox1.getText().toString().trim();
 
+                //error checking on empty from where text box
                 if (!TextUtils.isEmpty(fromWhere)) {
 
                     Service service = new Service(requestType, requestDate, numLuggageValue,
@@ -279,6 +294,7 @@ public class BellboyActivity extends AppCompatActivity{ //implements OnItemSelec
         });
     }
 
+    //helper method to parse date
     private LocalDate parseDate(int year, int month, int date)
     {
         return LocalDate.of(year, month, date);

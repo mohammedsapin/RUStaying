@@ -78,6 +78,8 @@ public class FoodServiceActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
 
+
+        //bottom navigation view
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -109,6 +111,8 @@ public class FoodServiceActivity extends AppCompatActivity {
             }
         });
 
+        //spinner selecting hours
+
         Spinner hours = (Spinner) findViewById(R.id.hours);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.hours));
@@ -128,6 +132,8 @@ public class FoodServiceActivity extends AppCompatActivity {
             }
         });
 
+
+        //calendar date picker
         dateBtn1 = (Button) findViewById(R.id.calendarBtn1);
         viewBtn = (Button) findViewById(R.id.viewRoomsBtn);
 
@@ -166,9 +172,7 @@ public class FoodServiceActivity extends AppCompatActivity {
             }
         });
 
-
-
-
+        //spinner selecting minute value
         Spinner minutes = (Spinner) findViewById(R.id.minutes);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.minutes));
@@ -186,6 +190,8 @@ public class FoodServiceActivity extends AppCompatActivity {
 
             }
         });
+
+        //spinner selecting am/pm
         Spinner ampm = (Spinner) findViewById(R.id.ampm);
         ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.ampm));
@@ -205,6 +211,7 @@ public class FoodServiceActivity extends AppCompatActivity {
             }
         });
 
+        //setting live food price updates to 0 to begin subtotal calculations
         foodservice.setFoodPrice("0");
         foodservice.setA1(0);
         foodservice.setA2(0);
@@ -219,6 +226,7 @@ public class FoodServiceActivity extends AppCompatActivity {
         foodservice.setDr3(0);
 
 
+        //spinners for all food items
         Spinner app1S = (Spinner) findViewById(R.id.app1S);
         ArrayAdapter<String> adapter4 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.app1S));
@@ -594,25 +602,23 @@ public class FoodServiceActivity extends AppCompatActivity {
             }
         });
 
+        //create new request id by finding previous request in database and incrementing by 1
         FirebaseDatabase.getInstance().getReference().child("Service")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         long max=0;
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Log.d(TAG, "ViewServiceClass: =============================" + snapshot.getValue());
                             for (DataSnapshot snapshot2 : snapshot.getChildren()){
                                 if (snapshot2.child("id").getValue()!=null) {
                                     long id = Integer.parseInt(snapshot2.child("id").getValue().toString());
                                     if (id>max){
                                         max=id;
                                     }
-                                    Log.d(TAG, "ViewServiceClass: +++++++++++++++++++" + id+ "     " + max);
                                 }
                             }
                         }
                         max++;
-                        Log.d(TAG, "ViewServiceClass: ++++++++++++++++++++++++++++------+MAX " + max);
                         foodservice.setId(max);
 
                     }
@@ -623,6 +629,8 @@ public class FoodServiceActivity extends AppCompatActivity {
 
         answerBox1 = (EditText) findViewById(R.id.A1);
         submitButton= (Button) findViewById(R.id.submitButton);
+        //on submission, retrieve all values set in the empty service object, and pass into a new object
+        //then pass into database
         submitButton.setOnClickListener(new View.OnClickListener()
         {
             @Override

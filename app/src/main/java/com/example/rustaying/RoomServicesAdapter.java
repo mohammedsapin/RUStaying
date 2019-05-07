@@ -79,6 +79,7 @@ public class RoomServicesAdapter extends RecyclerView.Adapter<RoomServicesAdapte
                                         .addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
+                                                //search for matching id information in database to update status
                                                 Map<String, Object> statusUpdate = new HashMap<>();
                                                 long currentId=info.getId();
                                                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -113,6 +114,7 @@ public class RoomServicesAdapter extends RecyclerView.Adapter<RoomServicesAdapte
                                         .addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
+                                                //search for matching id information in database to update status
                                                 Map<String, Object> statusUpdate = new HashMap<>();
                                                 long currentId=info.getId();
                                                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {

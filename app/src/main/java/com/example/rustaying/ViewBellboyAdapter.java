@@ -81,6 +81,7 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
                                         .addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
+                                                //search for matching id information in database to update status
                                                 Map<String, Object> statusUpdate = new HashMap<>();
                                                 long currentId=info.getId();
                                                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -115,6 +116,7 @@ public class ViewBellboyAdapter extends RecyclerView.Adapter<ViewBellboyAdapter.
                                         .addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
+                                                //search for matching id information in database to update status
                                                 Map<String, Object> statusUpdate = new HashMap<>();
                                                 long currentId=info.getId();
                                                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {

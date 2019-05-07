@@ -86,6 +86,7 @@ public class MaintenanceActivity extends AppCompatActivity {
 
 
 
+        //bottom navigation view
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -109,6 +110,7 @@ public class MaintenanceActivity extends AppCompatActivity {
             }
         });
 
+        //back button
         back = (Button) findViewById(R.id.backButton);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +138,7 @@ public class MaintenanceActivity extends AppCompatActivity {
             }
         });
 
+        //calendar date picker
         dateBtn1 = (Button) findViewById(R.id.calendarBtn1);
         viewBtn = (Button) findViewById(R.id.viewRoomsBtn);
 
@@ -177,6 +180,7 @@ public class MaintenanceActivity extends AppCompatActivity {
 
 
 
+        //spinner to select minutes
         Spinner minutes = (Spinner) findViewById(R.id.minutes);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.minutes));
@@ -194,6 +198,8 @@ public class MaintenanceActivity extends AppCompatActivity {
 
             }
         });
+
+        //spinner to select  am/pm
         Spinner ampm = (Spinner) findViewById(R.id.ampm);
         ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.ampm));
@@ -215,6 +221,7 @@ public class MaintenanceActivity extends AppCompatActivity {
 
 
 
+        //checkbox listener to see which boxes have been checked
         checkbox1=(CheckBox)findViewById(R.id.checkBox1);
         checkbox2=(CheckBox)findViewById(R.id.checkBox2);
         checkbox3=(CheckBox)findViewById(R.id.checkBox3);
@@ -255,25 +262,23 @@ public class MaintenanceActivity extends AppCompatActivity {
         answerBox1 = (EditText) findViewById(R.id.A1);
         submitButton= (Button) findViewById(R.id.submitButton);
 
+        //create new request id by finding previous request in database and incrementing by 1
         FirebaseDatabase.getInstance().getReference().child("Service")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         long max=0;
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Log.d(TAG, "ViewServiceClass: =============================" + snapshot.getValue());
                             for (DataSnapshot snapshot2 : snapshot.getChildren()){
                                 if (snapshot2.child("id").getValue()!=null) {
                                     long id = Integer.parseInt(snapshot2.child("id").getValue().toString());
                                     if (id>max){
                                         max=id;
                                     }
-                                    Log.d(TAG, "ViewServiceClass: +++++++++++++++++++" + id+ "     " + max);
                                 }
                             }
                         }
                         max++;
-                        Log.d(TAG, "ViewServiceClass: ++++++++++++++++++++++++++++------+MAX " + max);
                         maintenance.setId(max);
 
                     }
@@ -281,6 +286,9 @@ public class MaintenanceActivity extends AppCompatActivity {
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
+
+        //on submission, retrieve all values set in the empty service object, and pass into a new object
+        //then pass into database
         submitButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -288,7 +296,6 @@ public class MaintenanceActivity extends AppCompatActivity {
             {
 
                 long id1 = maintenance.getId();
-                Log.d(TAG, "ViewServiceClass: --------------------------------+MAX " + id1);
                 Random rand = new Random();
                 long random = 100000000 + rand.nextInt(900000000);
                 maintenance.setRequestID(random);
