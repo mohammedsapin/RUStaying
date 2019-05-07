@@ -196,8 +196,14 @@ public class HomeActivity extends AppCompatActivity {
                  @Override
                  public void onClick(View v)
                  {
-                     Intent InboxPage = new Intent(HomeActivity.this, InboxActivity.class);
-                     startActivity(InboxPage); //Redirect to list of all rooms
+                     final Boolean check1 = g.isCheckedIn();
+                     if(check1){
+                         Intent InboxPage = new Intent(HomeActivity.this, InboxActivity.class);
+                         startActivity(InboxPage); //Redirect to list of all rooms
+                     }
+                     else{
+                         Toast.makeText(HomeActivity.this, "You can not access this page as you have not Checked-In", Toast.LENGTH_SHORT).show();
+                     }
                  }
              }
         );
