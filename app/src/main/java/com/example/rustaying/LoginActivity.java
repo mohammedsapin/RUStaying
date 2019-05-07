@@ -1,3 +1,8 @@
+/************************
+ Authors:
+ Mohammed Sapin
+ *************************/
+
 package com.example.rustaying;
 
 import android.content.Intent;

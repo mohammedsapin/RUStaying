@@ -1,3 +1,8 @@
+/************************
+ Authors:
+ Thomas Tran
+ *************************/
+
 package com.example.rustaying;
 
 import android.os.Bundle;

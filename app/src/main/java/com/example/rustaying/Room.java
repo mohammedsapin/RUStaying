@@ -1,3 +1,9 @@
+/************************
+ Authors:
+ Shilp Shah
+ Mathew Varghese
+ *************************/
+
 package com.example.rustaying;
 
 import java.time.LocalDate;

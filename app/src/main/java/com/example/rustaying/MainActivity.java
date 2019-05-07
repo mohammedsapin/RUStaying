@@ -1,3 +1,9 @@
+/************************
+ Authors:
+ Mohammed Sapin
+ Shilp Shah
+ *************************/
+
 package com.example.rustaying;
 
 import android.content.Intent;

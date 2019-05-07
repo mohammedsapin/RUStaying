@@ -1,3 +1,8 @@
+/************************
+ Authors:
+ Updated by all members
+ *************************/
+
 package com.example.rustaying;
 
 import android.content.DialogInterface;

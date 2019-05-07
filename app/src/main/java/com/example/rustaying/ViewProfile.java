@@ -1,3 +1,9 @@
+/************************
+ Authors:
+ Zain Sayed
+ Keya Patel
+ *************************/
+
 package com.example.rustaying;
 
 public class ViewProfile {

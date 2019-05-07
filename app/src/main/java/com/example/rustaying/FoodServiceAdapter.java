@@ -1,3 +1,10 @@
+/************************
+ Authors:
+ Eric Zhang
+ Thomas Tran
+ Rameen Masood
+ *************************/
+
 package com.example.rustaying;
 
 import android.app.AlertDialog;

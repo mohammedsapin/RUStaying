@@ -1,3 +1,10 @@
+/************************
+ Authors:
+ Mohammed Sapin
+ Nga Man (Mandy) Cheng
+ Purna Haque
+ *************************/
+
 package com.example.rustaying;
 
 import android.app.AlertDialog;

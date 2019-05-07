@@ -1,3 +1,9 @@
+/************************
+ Authors:
+ Zain Sayed
+ Keya Patel
+ *************************/
+
 package com.example.rustaying;
 
 import android.content.Intent;

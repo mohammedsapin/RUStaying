@@ -1,3 +1,9 @@
+/************************
+ Authors:
+ Keya Patel
+ Zain Sayed
+ *************************/
+
 package com.example.rustaying;
 
 import android.app.AlertDialog;

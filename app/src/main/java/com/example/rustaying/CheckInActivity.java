@@ -1,3 +1,9 @@
+/************************
+ Authors:
+ Shilp Shah
+ Mathew Varghese
+ *************************/
+
 package com.example.rustaying;
 
 import android.content.DialogInterface;
@@ -300,6 +306,7 @@ public class CheckInActivity extends AppCompatActivity {
         roomList.put("checkOutDate", "");
         roomList.put("checkedIn", false);
         roomList.put("isAvailable", true);
+        roomList.put("keyCode", "-1");
 
         //Updating room object information
         myRef.child("Rooms").child(temp).updateChildren(roomList).addOnCompleteListener(new OnCompleteListener<Void>() {

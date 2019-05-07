@@ -1,3 +1,9 @@
+/************************
+ Authors:
+ Mathew Varghese
+ Shilp Shah
+ *************************/
+
 package com.example.rustaying;
 
 import android.content.Context;
