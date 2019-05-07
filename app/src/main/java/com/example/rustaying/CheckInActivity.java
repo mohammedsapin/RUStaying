@@ -134,11 +134,14 @@ public class CheckInActivity extends AppCompatActivity {
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
+
+                //Parse the dates into strings
                 currentDate = parseDate(year, (month + 1), day); //Current date of LocalDate object
                 checkInDate = parseStringDate(in);
 
                 checkOutDate = parseStringDate(out);
 
+                //Check if guest is allowed to check in today
                 if(checkInDate.equals(currentDate))
                 {
                     //Allow them to check in
@@ -170,6 +173,7 @@ public class CheckInActivity extends AppCompatActivity {
 
                 checkOutDate = parseStringDate(out);
 
+                //Error check for wanting to check out before checking in
                 if(g.isCheckedIn() == false)
                 {
                     alertDialog.setMessage("You have not checked in, do you want to cancel your reservation and check out?")

@@ -159,6 +159,8 @@ public class adminViewRooms extends AppCompatActivity {
             //Log.d(TAG, "showData1: " + st0.nextToken());
             //Log.d(TAG, "showData1: " + st0.nextToken());
 
+
+            //Create LocalDate objects from string date
             if(st0.hasMoreTokens())
             {
                 year0Tok = Integer.parseInt(st0.nextToken());
@@ -216,7 +218,7 @@ public class adminViewRooms extends AppCompatActivity {
             }
 
 
-
+            //Checking to see the types of room user wanted
             if(receivedRoomTypes[0] == null && room.getRoomType().equals("Single"))
             {
                 continue;

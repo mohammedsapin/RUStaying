@@ -75,12 +75,14 @@ public class ReservationActivity extends AppCompatActivity {
 
                 currentDate = parseDate(year,(month+1), day); //Current date of LocalDate object
 
+                //Open calendar
                 checkInDialog = new DatePickerDialog(ReservationActivity.this, R.style.Theme_AppCompat, new DatePickerDialog.OnDateSetListener()
                 {
                     @Override
                     public void onDateSet(DatePicker view, int year1, int month1, int dayOfMonth1)
                     {
                         checkInDate = parseDate(year1, (month1+1), dayOfMonth1);
+                        //Error checking on the dates selected by user
                         if(checkInDate.compareTo(currentDate) < 0)
                         {
                             Toast.makeText(ReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
@@ -104,6 +106,8 @@ public class ReservationActivity extends AppCompatActivity {
             }
         });
 
+
+        //Check out date calendar
         dateBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -124,6 +128,7 @@ public class ReservationActivity extends AppCompatActivity {
                     {
                         checkOutDate = parseDate(year1, (month1+1), dayOfMonth1);
 
+                        //Error checking to ensure proper dates are selected
                         if(checkOutDate.compareTo(currentDate) < 0)
                         {
                             Toast.makeText(ReservationActivity.this, "Invalid Date",Toast.LENGTH_SHORT).show();
@@ -146,11 +151,13 @@ public class ReservationActivity extends AppCompatActivity {
             }
         });
 
+        //Makes sure all fields are filled in before before this runs
         viewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String[] roomTypes = new String[4]; //String array of room types checked
+
                 //Determine which checkboxes are checked
                 if(single.isChecked())
                 {
@@ -180,6 +187,7 @@ public class ReservationActivity extends AppCompatActivity {
 
                     Intent viewRooms = new Intent(ReservationActivity.this, newViewRooms.class);
 
+                    //Set up bundle to send all information
                     Bundle b = new Bundle();
 
                     b.putInt("inDay", info.getCheckIn().getDayOfMonth());
