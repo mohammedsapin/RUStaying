@@ -136,19 +136,18 @@ public class InboxActivity extends AppCompatActivity{
                             info.setStatus(snapshot.getValue(Service.class).getStatus());
                             Log.d(TAG, "showData: " + "setting value2");
                         }
+                        if(snapshot2.getKey().equals("requestDate")){
+                            info.setRequestDate(snapshot.getValue(Service.class).getRequestDate());
+                            Log.d(TAG, "showData: " + "setting value3");
+                        }
 
                             if (userID.equals(serviceID)){
                                 Log.d(TAG, "showData: " + "Inside if statement");
 
-
-                                //statusUpdate.put("status","Completed");
-                                //myRef.child("Service").child(userId).child(requestID).updateChildren(statusUpdate);
-                                //viewHolder.status.setText(info.getStatus());
-
                             }
 
                     }
-                    serviceList.add(new Service(info.getRequestType(),info.getStatus()));
+                    serviceList.add(new Service(info.getRequestType(),info.getStatus(),info.getRequestDate()));
                 }
             }
 

@@ -317,9 +317,10 @@ public class Service {
         this.id =id;
     }
 
-    public Service(String requestType, String status){
+    public Service(String requestType, String status, String requestDate){
         this.requestType = requestType;
         this.status=status;
+        this.requestDate = requestDate;
     }
 
 
