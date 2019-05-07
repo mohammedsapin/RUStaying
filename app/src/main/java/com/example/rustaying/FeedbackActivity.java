@@ -44,6 +44,7 @@ public class FeedbackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
+        //navigation bar
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -63,7 +64,7 @@ public class FeedbackActivity extends AppCompatActivity {
                 return false;
             }
         });
-
+        //reads in all the feedback inputs from the user
         ratingBar1 = (RatingBar) findViewById(R.id.rating1);
         ratingBar2 = (RatingBar) findViewById(R.id.rating2);
         ratingBar3 = (RatingBar) findViewById(R.id.rating3);
@@ -87,7 +88,7 @@ public class FeedbackActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //converting all the floats to string types to make it easier for us to store into Firebase
                 final String answer1 = answerBox1.getText().toString().trim();
                 final String rating1= Float.toString(ratingBar1.getRating());
                 final String rating2= Float.toString(ratingBar2.getRating());
@@ -101,6 +102,7 @@ public class FeedbackActivity extends AppCompatActivity {
                 final boolean check4 =cBox4.isChecked();
                 final boolean switch1Checked = switch1.isChecked();
 
+                //checks for the required field
                 if (ratingBar1.getRating() > 0){
                     Feedback feedbackInfo = new Feedback(rating1, rating2, rating3, rating4, rating5, answer1,
                             check1, check2, check3, check3, switch1Checked);

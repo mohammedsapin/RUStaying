@@ -63,7 +63,7 @@ public class PaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-
+        //navigation bar at the bottom
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -83,6 +83,7 @@ public class PaymentActivity extends AppCompatActivity {
                 return false;
             }
         });
+        //adding functionality for the two spinners for expiration date
         Spinner spinnerX1 = (Spinner) findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.months_array, android.R.layout.simple_spinner_item);
@@ -103,15 +104,15 @@ public class PaymentActivity extends AppCompatActivity {
         checkOut = b.getString("checkOutDate");
         roomId = b.getString("roomId");
 
-
-        answerBox1 = (EditText) findViewById(R.id.nameCard);
-        answerBox2 = (EditText) findViewById(R.id.numCard);
-        answerBox3 = (EditText) findViewById(R.id.ccvCard);
-        answerBox4 = (EditText) findViewById(R.id.billingStreetAdd);
-        answerBox5 = (EditText) findViewById(R.id.cityAdd);
-        answerBox6 = (EditText) findViewById(R.id.zipAdd);
-        exMonth = findViewById(R.id.spinner1);
-        exYear = findViewById(R.id.spinner2);
+        //reading data from the XML file
+        answerBox1 = (EditText) findViewById(R.id.nameCard); //name of the card holder
+        answerBox2 = (EditText) findViewById(R.id.numCard); //credit card number
+        answerBox3 = (EditText) findViewById(R.id.ccvCard); //ccv number
+        answerBox4 = (EditText) findViewById(R.id.billingStreetAdd); //street billing address on credit card
+        answerBox5 = (EditText) findViewById(R.id.cityAdd); //city of the address on card
+        answerBox6 = (EditText) findViewById(R.id.zipAdd); //zipcode on the card
+        exMonth = findViewById(R.id.spinner1); //expiration month on card
+        exYear = findViewById(R.id.spinner2); //expiration year on card
 
         paymentButton = (Button) findViewById(R.id.button);
 
@@ -133,12 +134,14 @@ public class PaymentActivity extends AppCompatActivity {
                 final String answer6 = answerBox6.getText().toString().trim();//zip
                 final String spin1 = exMonth.getSelectedItem().toString().trim();//month
                 final String spin2 = exYear.getSelectedItem().toString().trim();//date
-                final String spin = spin1+"/"+spin2;
+                final String spin = spin1+"/"+spin2; //expiration month/year
 
+                //checks for all the required fields
                 if (!TextUtils.isEmpty(answer1) && !TextUtils.isEmpty(answer2) && !TextUtils.isEmpty(answer3)
                     && !TextUtils.isEmpty(answer4) && !TextUtils.isEmpty(answer5) && !TextUtils.isEmpty(answer6)
                         && !TextUtils.isEmpty(spin1) && !TextUtils.isEmpty(spin2)){
 
+                    //creating a hashmap which we use to store data under each account
                     Map<String,Object> list = new HashMap<>();
                     list.put("nameOnCCard", answer1);
                     list.put("creditCardNumber", answer2);
@@ -163,7 +166,7 @@ public class PaymentActivity extends AppCompatActivity {
                         }
                     });
 
-                }
+                }//if the required fields are not filled
                 else{
                     Toast.makeText(PaymentActivity.this,"Please fill out the required fields",Toast.LENGTH_SHORT).show();
                 }

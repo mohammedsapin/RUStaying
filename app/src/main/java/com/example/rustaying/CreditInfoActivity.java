@@ -89,7 +89,7 @@ public class CreditInfoActivity extends AppCompatActivity {
                 return false;
             }
         });
-
+        //reading in credit card info
         creditNumber = findViewById(R.id.creditNumber);
         CCV = findViewById(R.id.CCV_number);
         newName = findViewById(R.id.nameID);
@@ -106,6 +106,7 @@ public class CreditInfoActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final String answer1 = creditNumber.getText().toString().trim();
                 final String answer2 = CCV.getText().toString().trim();
                 final String answer3 = newName.getText().toString().trim();
@@ -113,8 +114,9 @@ public class CreditInfoActivity extends AppCompatActivity {
                 final String answer5 = expYear.getSelectedItem().toString();
                 final String answer6 = answer4 + "/" + answer5;
 
+                //hashmap to store all the credit card data
                 Map<String, Object> list = new HashMap<>();
-
+                //checks for required fields
                 if (!answer1.isEmpty() && !answer2.isEmpty() && !answer3.isEmpty() && !answer6.isEmpty()) {
                     list.put("creditCardNumber", answer1); //
                     list.put("CCV", answer2);

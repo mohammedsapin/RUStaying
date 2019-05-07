@@ -27,12 +27,14 @@ public class AdminServiceList extends AppCompatActivity {
         setContentView(R.layout.activity_admin_service_list);
 
         //XML definitions
+        //Set buttons for each service
         bellboy = (Button) findViewById(R.id.bellboy_requests);
         valet = (Button) findViewById(R.id.valet_travel);
         maint = (Button) findViewById(R.id.maintenance_request);
         roomService = (Button) findViewById(R.id.room_Service);
         foodService = (Button) findViewById(R.id.food_Service);
 
+        //Open intent based on button code
         bellboy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { //view bellboy services requests
