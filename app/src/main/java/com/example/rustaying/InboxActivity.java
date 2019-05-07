@@ -106,34 +106,6 @@ public class InboxActivity extends AppCompatActivity{
 
             }
         });
-        /*
-        myRef.child("Service").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                showData(dataSnapshot);
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                showData(dataSnapshot);
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                showData(dataSnapshot);
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                showData(dataSnapshot);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        */
     }
 
     private void createRecycleView(){
@@ -150,8 +122,6 @@ public class InboxActivity extends AppCompatActivity{
             Service info = new Service();
 
             String serviceID = data.getKey();
-            //Log.d(TAG, "showData: " + userID);
-            //Log.d(TAG, "showData: "+ serviceID);
 
             if(userID.equals(serviceID))
             {
