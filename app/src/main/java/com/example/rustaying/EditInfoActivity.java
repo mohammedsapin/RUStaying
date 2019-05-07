@@ -5,13 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,7 +37,6 @@ public class EditInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_info);
 
-
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -66,12 +62,10 @@ public class EditInfoActivity extends AppCompatActivity {
             }
         });
 
-
         first_name = findViewById(R.id.firstname);
         last_name =  findViewById(R.id.lastname);
         emailID = findViewById(R.id.emailID);
         submitButton= findViewById(R.id.submitButton);
-
 
         mAuth = FirebaseAuth.getInstance(); //mAuth
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -79,16 +73,12 @@ public class EditInfoActivity extends AppCompatActivity {
         final FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
 
-
-
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 final String answer1 = first_name.getText().toString().trim();
                 final String answer2 = last_name.getText().toString().trim();
                 final String answer3 = emailID.getText().toString().trim();
-
 
                     Map<String,Object> list = new HashMap<>();
 
@@ -104,8 +94,6 @@ public class EditInfoActivity extends AppCompatActivity {
                         list.put("guestEmail", answer3);
                     }
 
-
-
                     myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -120,17 +108,7 @@ public class EditInfoActivity extends AppCompatActivity {
                             }
                         }
                     });
-
-
-
-
             }
         });
-
-
-
-
-
-
     }
 }

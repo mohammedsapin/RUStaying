@@ -22,7 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CreditActivity extends AppCompatActivity {
 
-
     private static final String TAG = "CreditActivity";
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth auth;
@@ -35,7 +34,6 @@ public class CreditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credit);
-
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -59,16 +57,12 @@ public class CreditActivity extends AppCompatActivity {
             }
         });
 
-
-
         //mListView=(ListView)findViewById(R.id.guestInfo);
         mFirebaseDatabase=FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
         myRef=mFirebaseDatabase.getReference();
         FirebaseUser user = auth.getCurrentUser();
         userID = user.getUid();
-
-
 
         Edit = (Button) findViewById(R.id.creditInfo);
         Edit.setOnClickListener(new View.OnClickListener() {
@@ -79,8 +73,6 @@ public class CreditActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -123,9 +115,6 @@ public class CreditActivity extends AppCompatActivity {
                 }
             }
         };
-
-
-
     }
 
     private void showData(DataSnapshot dataSnapshot) {
@@ -133,7 +122,6 @@ public class CreditActivity extends AppCompatActivity {
         g.setNameOnCCard(dataSnapshot.getValue(Guest.class).getNameOnCCard());
         g.setCCV(dataSnapshot.getValue(Guest.class).getCCV());
         g.setCreditCardNumber(dataSnapshot.getValue(Guest.class).getCreditCardNumber());
-
     }
 
     @Override
@@ -149,6 +137,4 @@ public class CreditActivity extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
-
-
 }

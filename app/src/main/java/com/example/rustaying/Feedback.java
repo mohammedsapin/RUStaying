@@ -33,7 +33,6 @@ public class Feedback {
         return rating1;
     }
 
-
     public void setRating1(String rating1) {
         this.rating1 = rating1;
     }

@@ -1,7 +1,6 @@
 package com.example.rustaying;
 
 import android.app.DatePickerDialog;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
