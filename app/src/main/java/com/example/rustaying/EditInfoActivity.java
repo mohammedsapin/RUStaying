@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
-
+//Author: Zain Sayed| Assisted: Keya Patel| Debugged: Keya Patel
 public class EditInfoActivity extends AppCompatActivity {
 
     private static final String TAG = "EditInfoActivity";

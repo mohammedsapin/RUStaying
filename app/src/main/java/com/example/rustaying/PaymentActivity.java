@@ -42,7 +42,7 @@ import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
-
+//Author: Keya Patel| Assisted: Keya Patel| Debugged: Keya Patel
 public class PaymentActivity extends AppCompatActivity {
     private static final String TAG = "Payment Activity";
     private EditText answerBox1, answerBox2, answerBox3, answerBox4, answerBox5, answerBox6;
