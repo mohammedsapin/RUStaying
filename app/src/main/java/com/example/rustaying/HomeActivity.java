@@ -221,7 +221,12 @@ public class HomeActivity extends AppCompatActivity {
                 else //If there is reservation, setup intent and send checkIn and checkOut date to new activity
                 {
                     Intent keyPage = new Intent(HomeActivity.this, KeyCardActivity.class);
-                    keyPage.putExtra("checkedIn", g.isCheckedIn());
+
+                    Bundle b = new Bundle();
+                    b.putBoolean("checkedIn", g.isCheckedIn());
+                    b.putString("keycode", g.getKeyCode());
+                    keyPage.putExtra("keyInfo", b);
+                    //keyPage.putExtra("checkedIn", g.isCheckedIn());
                     startActivity(keyPage);
                 }
 
