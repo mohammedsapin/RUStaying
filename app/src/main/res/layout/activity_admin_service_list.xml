@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".AdminServiceList">
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -14,7 +12,6 @@
         android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp">
-
         <Button
             android:id="@+id/bellboy_requests"
             style="?android:textAppearanceSmall"
@@ -28,7 +25,6 @@
             android:text="@string/bellboy_requests"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
-
         <Button
             android:id="@+id/valet_travel"
             style="?android:textAppearanceSmall"
@@ -42,7 +38,6 @@
             android:text="@string/valet_and_travel_requests"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
-
         <Button
             android:id="@+id/maintenance_request"
             android:drawableStart="@drawable/ic_build_black_24dp"
@@ -56,7 +51,6 @@
             android:text="@string/maintenance_requests"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
-
         <Button
             android:id="@+id/room_Service"
             android:drawableStart="@drawable/ic_directions_walk_black_24dp"
@@ -70,7 +64,6 @@
             android:text="@string/room_service_requests"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
-
         <Button
             android:id="@+id/food_Service"
             android:drawableStart="@drawable/ic_local_dining_black_48dp"
@@ -84,8 +77,5 @@
             android:background="@color/colorAccent"
             android:textColor="@android:color/black"
             android:textStyle="bold"/>
-
-
     </LinearLayout>
-
 </android.support.design.widget.CoordinatorLayout>

@@ -6,15 +6,11 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".CreditInfoActivity">
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/linearLayout4"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/colorPrimary">
-
-        <!--Add stuff here-->
-
         <Spinner
             android:id="@+id/date_month"
             android:layout_width="124dp"
@@ -27,7 +23,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView34"
             app:layout_constraintVertical_bias="0.007" />
-
         <Spinner
             android:id="@+id/date_year"
             android:layout_width="124dp"
@@ -182,9 +177,6 @@
             app:layout_constraintVertical_bias="0.625" />
     </android.support.constraint.ConstraintLayout>
 
-
-
-    <!--Dont change-->
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigationView"
         android:layout_width="match_parent"

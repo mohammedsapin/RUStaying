@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:background="#0c4c8a"
     tools:context=".BellboyActivity">
-
-
     <Button
         android:id="@+id/calendarBtn1"
         android:layout_width="106dp"
@@ -19,7 +17,6 @@
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -28,10 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
-
     </View>
-
-
     <EditText
         android:id="@+id/requestDateR"
         android:layout_width="221dp"
@@ -46,7 +40,6 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -62,7 +55,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.012" />
-
     <TextView
         android:id="@+id/bellboy_title"
         android:layout_width="wrap_content"
@@ -79,7 +71,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.024" />
-
     <TextView
         android:id="@+id/timeOfRequest"
         android:layout_width="369dp"
@@ -97,7 +88,6 @@
         app:layout_constraintStart_toStartOf="@+id/container"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.162" />
-
     <TextView
         android:id="@+id/numbLuggage"
         android:layout_width="wrap_content"
@@ -114,7 +104,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.661" />
-
     <TextView
         android:id="@+id/fromLocation"
         android:layout_width="wrap_content"
@@ -131,7 +120,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.437" />
-
     <Button
         android:id="@+id/submitButton"
         android:layout_width="97dp"
@@ -149,7 +137,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.859" />
-
     <Spinner
         android:id="@+id/hours"
         android:layout_width="100dp"
@@ -165,7 +152,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.336" />
-
     <Spinner
         android:id="@+id/minutes"
         android:layout_width="100dp"
@@ -181,7 +167,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.336" />
-
     <Spinner
         android:id="@+id/ampm"
         android:layout_width="120dp"
@@ -197,7 +182,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.336" />
-
     <Spinner
         android:id="@+id/luggageNum"
         android:layout_width="394dp"
@@ -213,7 +197,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.734" />
-
     <android.support.design.widget.TextInputEditText
         android:id="@+id/A1"
         android:layout_width="393dp"
@@ -231,14 +214,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.569" />
-
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintEnd_toStartOf="@+id/view2" />
-
     <View
         android:id="@+id/view2"
         android:layout_width="match_parent"
@@ -248,9 +229,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
-
     </View>
-
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigationView"
         android:layout_width="0dp"
@@ -263,5 +242,4 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation" />
-
 </android.support.constraint.ConstraintLayout>
