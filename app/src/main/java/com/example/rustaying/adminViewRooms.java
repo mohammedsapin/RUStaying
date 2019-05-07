@@ -87,6 +87,7 @@ public class adminViewRooms extends AppCompatActivity {
         LocalDate inDate = parseDate(inYear, inMonth, inDay);
         LocalDate outDate = parseDate(outYear, outMonth, outDay);
 
+        //Object to manage reservation information
         resInfo = new ResInfo(inDate, outDate, receivedRoomTypes);
 
         createRecycleView();
@@ -109,7 +110,7 @@ public class adminViewRooms extends AppCompatActivity {
             }
         };
 
-
+        //Get room data from database
         myRef.child("Rooms").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -263,6 +263,7 @@ public class CheckInActivity extends AppCompatActivity {
         list.put("checkInDate", "");
         list.put("checkOutDate", "");
         list.put("roomNum", "");
+        list.put("keyCode", "-1");
 
         myRef.child("Guest").child(userID).updateChildren(list).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -297,7 +298,7 @@ public class CheckInActivity extends AppCompatActivity {
         roomList.put("checkOutDate", "");
         roomList.put("checkedIn", false);
         roomList.put("isAvailable", true);
-        roomList.put("keyCode", "-1");
+
 
         //Updating room object information
         myRef.child("Rooms").child(temp).updateChildren(roomList).addOnCompleteListener(new OnCompleteListener<Void>() {
