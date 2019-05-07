@@ -26,7 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
+//Author: Keya Patel| Assisted: Zain Sayed| Debugged: Keya Patel
 public class FeedbackActivity extends AppCompatActivity {
     private static final String TAG = "Feedback Activity";
     private EditText answerBox1;
