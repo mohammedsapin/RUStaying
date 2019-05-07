@@ -179,6 +179,7 @@ public class Service {
         this.dr3 = dr3;}
 
 
+        //bellboy object
     public Service(String requestType, String requestDate, String luggageValue,
                    String requestedTimeBellboy, String fromWhere, String status, long id) {
         this.requestType = requestType;
@@ -238,6 +239,7 @@ public class Service {
         this.destinationCityStateZip = destinationCityStateZip;
     }
 
+    //bellboy valet and travel object
     public Service(String requestType, String requestedTimeValet, String requestDate, String answer1, String answer2,
                    String answer3, String answer4, String numberTraveling, String status,
                    String temp1,
@@ -254,6 +256,7 @@ public class Service {
         this.id=id;
     }
 
+    //maintenance object
     public Service(String requestType, String requestDate, String requestedTimeMaintenance, String inputs, String bathroom,
                    String electronic, String lighting, String checkboxes, String status, long id) {
         this.requestType = requestType;
@@ -268,6 +271,7 @@ public class Service {
         this.id=id;
     }
 
+    //room service object
     public Service(String requestType, String requestDate, String requestedTimeRoomService, String inputs,
                    String towels, String soap, String bedsheets, String cleaningservice,
                    String checkboxes, String status, long id) {
@@ -284,9 +288,7 @@ public class Service {
         this.id=id;
     }
 
-    //foodservice
-
-
+    //food service object
     public Service(String requestType,
                    String requestDate,
                    String requestedTimeFoodService,
